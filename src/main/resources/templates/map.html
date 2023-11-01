@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>노선도</title>
-    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" th:href="@{/css/map.css}">
 </head>
 <body>
     <h1>노선도</h1>
-    <img src="img/map.png" usemap="#map">
+    <img th:src="@{/img/map.png}"  usemap="#map" alt="No view">
     <map name="map" id="map">
         <area shape="circle" coords="509, 327, 8" href="main.html" target="_blank">
     </map>
