@@ -20,6 +20,7 @@ public class ExcelRead {
 
         @Autowired
         public ExcelRead() {
+
                 try {
                         File file = new File("./stations.xlsx");
                         FileInputStream fis = new FileInputStream(file);
@@ -34,12 +35,12 @@ public class ExcelRead {
                                 XSSFRow row1 = sheet.getRow(rowindex);//엑셀 시트에서 rowindex에 해당하는 행을 읽고
                                 if(row1 != null){// 잘 읽었다면
                                         Station station = new Station();
-                                        station.setFrom(String.valueOf(row1.getCell(0)));
-                                        station.setTo(String.valueOf(row1.getCell(1)));
+                                        station.setFrom((int) row1.getCell(0).getNumericCellValue());
+                                        station.setTo((int) row1.getCell(1).getNumericCellValue());
                                         station.setTime((int) row1.getCell(2).getNumericCellValue());
                                         station.setDistance((int) row1.getCell(3).getNumericCellValue());
                                         station.setCost((int) row1.getCell(4).getNumericCellValue());
-
+                                        System.out.println("station.toString() = " + station.toString());
                                         stations.add(station);
                                         }
                                 }
@@ -55,6 +56,7 @@ public class ExcelRead {
                         e.printStackTrace();
                 }
         }
+
         public List<Station> getStations() {
                 return stations;
         }
