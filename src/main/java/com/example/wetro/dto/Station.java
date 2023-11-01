@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Station {
 
-    private String start;   //  출발역
-    private String finish;  //  도착역
+    private String from;   //  출발역
+    private String to;  //  도착역
     private Integer time;   //  시간
     private Integer distance;//거리
     private Integer cost;   //비용

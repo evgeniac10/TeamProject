@@ -1,7 +1,6 @@
 package com.example.wetro.repository;
 
 import com.example.wetro.dto.Station;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -31,8 +30,8 @@ public class ExcelRead {
                                 XSSFRow row1 = sheet.getRow(rowindex);//엑셀 시트에서 rowindex에 해당하는 행을 읽고
                                 if(row1 != null){// 잘 읽었다면
                                         Station station = new Station();
-                                        station.setStart(String.valueOf(row1.getCell(0)));
-                                        station.setFinish(String.valueOf(row1.getCell(1)));
+                                        station.setFrom(String.valueOf(row1.getCell(0)));
+                                        station.setTo(String.valueOf(row1.getCell(1)));
                                         station.setTime(Integer.parseInt(String.valueOf(row1.getCell(2))));
                                         station.setDistance(Integer.parseInt(String.valueOf((row1.getCell(3)))));
                                         station.setCost(Integer.parseInt(String.valueOf(row1.getCell(4))));
