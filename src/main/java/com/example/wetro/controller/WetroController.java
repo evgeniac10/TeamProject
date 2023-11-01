@@ -13,15 +13,17 @@ public class WetroController {
 
     private WetroService wetroService;
 
+    @GetMapping("/map")
+    public String mapPage() {
+        return "map";
+    }
+
     @GetMapping("/excel")
     public String datas(){
         return "excel";
     }
 
-    @GetMapping("/map")
-    public String mapPage() {
-        return "map";
-    }
+
     @GetMapping("/main")
     public String main(){
         return "main";
