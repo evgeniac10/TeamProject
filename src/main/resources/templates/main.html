@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>wetro 메인페이지</title>
+<!--    <link rel="stylesheet" href="./main_page.css">-->
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            margin
+            padding: 10px;
+        }
+        .row1{
+            display: flex;
+            background-color: gray;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo{
+            font-size: 30px;
+            border: 1px solid black;
+        }
+        .menu{
+            font-size: 30px;
+            border: 1px solid black;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Hello wetro !!</h1>
-<p>wetro home page</p>
+<div id="container">
+    <div class="row1">
+        <div class="logo">WETRO</div>
+        <div class="menu">=</div>
+    </div>
+    <form action="" method="">
+        <input type="text" name="from" value="출발역" ><br>
+        <input type="text" name="to" value="도착역"><br>
+        <input type="button" name="search" value="길찾기"><br>
+    </form>
+    <div class="map">
+        <a href="#">노선도 보기</a>
+    </div>
+    <div class="info">
+        <a href="#">웹사이트 기타 정보</a>
+    </div>
+</div>
 </body>
 </html>

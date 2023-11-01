@@ -1,0 +1,20 @@
+*{
+    margin:0;
+    border: 0;
+    padding:0;
+}
+#container{
+    padding: 10px;
+}
+.row1{
+    display: flex;
+    background-color: gray;
+}
+.logo{
+    font-size: 30px;
+    border: 1px black;
+}
+.menu{
+    font-size: 30px;
+    border: 1px black;
+}
