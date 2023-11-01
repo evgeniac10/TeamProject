@@ -38,8 +38,9 @@ public class WetroController {
 
     @PostMapping("/main")
     public String mainInfo(@ModelAttribute("st") Station st){
-        System.out.println("출발역 = " + st.getFrom()+ "  도착역 = "+st.getTo());
         if (wetroService != null) {
+            System.out.println("출발역 = " + st.getFrom()+ "  도착역 = "+st.getTo());
+
             wetroService.searchFromStation(st.getFrom());//입력받은 출발역
             wetroService.searchToStation(st.getTo());//입력받은 도착역
             wetroService.isStation();//

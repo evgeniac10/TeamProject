@@ -1,19 +1,17 @@
 package com.example.wetro.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Station {
 
-    private String from;   //  출발역
-    private String to;  //  도착역
+    private Integer from;   //  출발역
+    private Integer to;  //  도착역
     private Integer time;   //  시간
     private Integer distance;//거리
     private Integer cost;   //비용
