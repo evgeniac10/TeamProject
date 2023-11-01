@@ -36,6 +36,7 @@ public class ExcelRead {
                                         station.setTime(Integer.parseInt(String.valueOf(row1.getCell(2))));
                                         station.setDistance(Integer.parseInt(String.valueOf((row1.getCell(3)))));
                                         station.setCost(Integer.parseInt(String.valueOf(row1.getCell(4))));
+
                                         stations.add(station);
                                         }
                                 }
