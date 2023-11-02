@@ -19,8 +19,8 @@
     </div>
     <div class="form-container">
         <form action="/wetro/api" method="post" onsubmit="return validateForm()">
-            <input type="text" name="from" id="from" value="출발역"><br>
-            <input type="text" name="to" id="to" value="도착역"><br>
+            <input type="text" name="from" id="from" placeholder="출발역" onfocus="this.placeholder=''" onblur="this.placeholder='출발역'"><br>
+            <input type="text" name="to" id="to" placeholder="도착역" onfocus="this.placeholder=''" onblur="this.placeholder='도착역'"><br>
             <button type="submit" id="search">길찾기</button>
         </form>
     </div>
