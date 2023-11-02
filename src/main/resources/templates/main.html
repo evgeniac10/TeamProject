@@ -9,13 +9,19 @@
 <div id="container">
     <div class="header">
         <div class="logo">WETRO</div>
-        <div class="menu" onclick="toggleMenu()">=</div>
+        <div class="menu" onclick="toggleMenu()">
+            <span>=</span>
+            <ul>
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">즐겨찾기</a></li>
+            </ul>
+        </div>
     </div>
     <div class="form-container">
         <form action="/wetro/api" method="post" onsubmit="return validateForm()">
             <input type="text" name="from" id="from" value="출발역"><br>
             <input type="text" name="to" id="to" value="도착역"><br>
-            <button type="submit">길찾기</button>
+            <button type="submit" id="search">길찾기</button>
         </form>
     </div>
     <div class="map">
