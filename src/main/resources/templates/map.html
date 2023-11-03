@@ -6,33 +6,58 @@
     <link rel="stylesheet" href="/css/map.css">
 </head>
 <body>
-    <h1>노선도</h1>
-    <img src="/img/map.png"  usemap="#map" alt="No view" id="fullMap">
-    <map name="map" id="map">
-        <area shape="circle" coords="509, 327, 8" href="#" alt="영역1" id="popup-trigger">
-    </map>
-    <div class="popup" id="popup-content">
-        <p>119</p>
-        <hr>
-        <p><a href="#">출발역</a></p>
-        <hr>
-        <p><a href="#">도착역</a></p>
-        <hr>
-        <p><a href="#">경유지</a></p>
+<div id="container">
+    <div class="header">
+        <h1>노선도</h1>
     </div>
+    <div class="map">
+        <img src="/img/map.png" usemap="#map" alt="No view" id="fullMap">
+        <map name="map" id="map">
+            <area shape="circle" coords="509, 327, 8" href="#" alt="119" class="popup-trigger">
+            <area shape="circle" coords="745, 479, 8" href="#" alt="608" class="popup-trigger">
+        </map>
+        <div class="popup">
+            <p id="stationName">역 이름</p>
+            <hr>
+            <p><a href="#">출발역</a></p>
+            <hr>
+            <p><a href="#">도착역</a></p>
+            <hr>
+            <p><a href="#">경유지</a></p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 <script>
-    const popupTrigger = document.getElementById('popup-trigger');
-    const popupContent = document.getElementById('popup-content');
+    const popupTriggers = document.querySelectorAll('.popup-trigger');
+    const popupContent = document.querySelector('.popup');
+    const stationNameElement = document.getElementById('stationName');
 
-    popupTrigger.addEventListener('mouseover', () => {
+    popupTriggers.forEach(trigger => {
+        trigger.addEventListener('mouseover', (event) => {
+            // Get the mouse position and update the popup's position accordingly
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            popupContent.style.left = mouseX + 'px';
+            popupContent.style.top = mouseY + 'px';
+
+            // Set the station name based on the alt attribute of the clicked area
+            stationNameElement.innerText = trigger.getAttribute('alt');
+
+            popupContent.style.display = 'block';
+        });
+
+        trigger.addEventListener('mouseout', () => {
+            popupContent.style.display = 'none';
+        });
+    });
+
+    popupContent.addEventListener('mouseover', () => {
         popupContent.style.display = 'block';
     });
 
-    popupContent.addEventListener('mouseout', (event) => {
-        if (!popupContent.contains(event.relatedTarget)) {
-            popupContent.style.display = 'none';
-        }
+    popupContent.addEventListener('mouseout', () => {
+        popupContent.style.display = 'none';
     });
 </script>

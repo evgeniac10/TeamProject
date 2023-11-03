@@ -11,13 +11,13 @@
 .header{
     display: flex;
     width: 100%;
-    background-color: #999999FF;
+    background-color: #d8d8d8;
     align-items: center;
     justify-content: center;
 }
 .logo{
-    font-size: 30px;
     margin-left: auto;
+    color: #838383;
 }
 .menu{
     font-size: 30px;
@@ -48,14 +48,14 @@ form{
     margin:20px;
     height: 30px;
     border-radius: 15px;
-    color: gray;
+    color: grey;
 }
 #to{
     border: 5px solid #fde400;
     margin:0 20px;
     height: 30px;
     border-radius: 15px;
-    color: gray;
+    color: grey;
 }
 #search{
     height: 30px;
@@ -70,7 +70,7 @@ form{
     border-radius: 15px;
 }
 .map a{
-    color: gray;
+    color: grey;
     padding: 3px;
     font-size: 10px;
     text-decoration: none;
