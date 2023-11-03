@@ -44,14 +44,14 @@ form{
 }
 
 #from{
-    border: 5px solid pink;
+    border: 5px solid #fd7373;
     margin:20px;
     height: 30px;
     border-radius: 15px;
     color: gray;
 }
 #to{
-    border: 5px solid yellowgreen;
+    border: 5px solid #fde400;
     margin:0 20px;
     height: 30px;
     border-radius: 15px;
@@ -60,13 +60,13 @@ form{
 #search{
     height: 30px;
     margin: 0 40px;
-    background-color: lightskyblue;
+    background-color: #6a9be8;
     color: white;
     border-radius: 15px;
 }
 .map{
     margin: 20px;
-    border: 5px solid coral;
+    border: 5px solid #f77070;
     border-radius: 15px;
 }
 .map a{
