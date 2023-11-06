@@ -39,6 +39,10 @@ public class WetroController {
     public String main(){
         return "main";
     }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
 //    @PostMapping("/main")
 //    @ResponseBody
