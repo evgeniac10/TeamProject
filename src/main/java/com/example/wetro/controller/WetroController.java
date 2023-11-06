@@ -43,6 +43,10 @@ public class WetroController {
     public String login(){
         return "login";
     }
+    @GetMapping("/join")
+    public String join(){
+        return "join";
+    }
 
 //    @PostMapping("/main")
 //    @ResponseBody
