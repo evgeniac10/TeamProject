@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <title>Log in</title>
   <style>
+    *{
+      margin:0;
+      border: 0;
+      padding:0;
+    }
+    .header{
+      display: flex;
+      width: 100%;
+      background-color: #d8d8d8;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo{
+      color: #838383;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .login-container {
@@ -20,11 +35,8 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
+      width: 50%;
+      margin: auto;
     }
 
     .login-form {
@@ -38,11 +50,6 @@
       flex-direction: column;
     }
 
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
     input {
       padding: 8px;
       border: 1px solid #ddd;
@@ -52,28 +59,40 @@
 
     button {
       padding: 10px;
-      background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 4px;
       font-size: 16px;
       cursor: pointer;
     }
+    .login{
+      background-color: #007bff;
+    }
+    .join{
+      background-color: #f77070;
+    }
+    .join a{
+      text-decoration: none;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+<div class="header">
+  <div class="logo">
+    <h1>WETRO</h1>
+  </div>
+</div>
 <div class="login-container">
-  <h2>Login</h2>
   <form class="login-form" action="#" method="post">
     <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
+      <input type="text" id="username" name="username" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"required>
     </div>
     <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'"required>
     </div>
-    <button type="submit">Login</button>
+    <button class="login" type="submit">로그인</button>
+    <button class="join"><a href="join">회원가입</a></button>
   </form>
 </div>
 </body>
