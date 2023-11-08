@@ -37,6 +37,8 @@
 }
 .menu a{
     text-decoration: none;
+    color: #838383;
+    font-size: 15px;
 }
 form{
     display: flex;

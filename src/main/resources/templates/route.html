@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>경로추천</title>
+</head>
+<body>
+<script>
+    const { from,to } = JSON.parse(localStorage.getItem("user-info"));
+    localStorage.remove("user-info");
+    console.log(from,to);
+</script>
+</body>
+</html>
