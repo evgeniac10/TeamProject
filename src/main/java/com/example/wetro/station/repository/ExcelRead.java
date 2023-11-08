@@ -1,6 +1,6 @@
-package com.example.wetro.repository;
+package com.example.wetro.station.repository;
 
-import com.example.wetro.dto.Station;
+import com.example.wetro.station.dto.Station;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
