@@ -31,6 +31,7 @@ INSERT INTO `user` (user_email, login_type) VALUES
     ('user2@example.com', 2),
     ('user3@example.com', 1);
 
+
 -- user_profile 테이블에 더미 데이터 추가
 INSERT INTO user_profile (user_no, user_id, user_password, join_date, update_date) VALUES
     (1, 'user1_id', 'user1_password', NOW(), NOW()),
