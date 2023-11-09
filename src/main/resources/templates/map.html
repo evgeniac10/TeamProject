@@ -10,11 +10,63 @@
     <div class="header">
         <h1>노선도</h1>
     </div>
+    <div class="main">
+
+    </div>
     <div class="map">
         <img src="/img/map.png" usemap="#map" alt="No view" id="fullMap">
         <map name="map" id="map">
+            <area shape="circle" coords=", 8" href="#" alt="" class="popup-trigger">
+            <area shape="circle" coords="44, 367, 8" href="#" alt="101" class="popup-trigger">
+            <area shape="circle" coords="44, 432, 8" href="#" alt="102" class="popup-trigger">
+            <area shape="circle" coords="44, 504, 8" href="#" alt="103" class="popup-trigger">
+            <area shape="circle" coords="45, 574, 8" href="#" alt="104" class="popup-trigger-bottom">
+            <area shape="circle" coords="44, 646, 8" href="#" alt="105" class="popup-trigger-bottom">
+            <area shape="circle" coords="79, 697, 8" href="#" alt="106" class="popup-trigger-bottom">
+            <area shape="circle" coords="157, 698, 8" href="#" alt="107" class="popup-trigger-bottom">
+            <area shape="circle" coords="216, 699, 8" href="#" alt="108" class="popup-trigger-bottom">
+            <area shape="circle" coords="274, 699, 8" href="#" alt="109" class="popup-trigger-bottom">
+            <area shape="circle" coords="352, 698, 8" href="#" alt="110" class="popup-trigger-bottom">
+            <area shape="circle" coords="430, 699, 8" href="#" alt="111" class="popup-trigger-bottom">
+            <area shape="circle" coords="507, 699, 8" href="#" alt="112" class="popup-trigger-bottom">
+            <area shape="circle" coords="599, 699, 8" href="#" alt="113" class="popup-trigger-bottom">
+            <area shape="circle" coords="636, 641, 8" href="#" alt="114" class="popup-trigger-bottom">
+            <area shape="circle" coords="634, 575, 8" href="#" alt="115" class="popup-trigger-bottom">
+            <area shape="circle" coords="635, 480, 8" href="#" alt="116" class="popup-trigger">
+            <area shape="circle" coords="635, 430, 8" href="#" alt="117" class="popup-trigger">
+            <area shape="circle" coords="624, 349, 8" href="#" alt="118" class="popup-trigger">
             <area shape="circle" coords="509, 327, 8" href="#" alt="119" class="popup-trigger">
+            <area shape="circle" coords="429, 329, 8" href="#" alt="120" class="popup-trigger">
+            <area shape="circle" coords="353, 328, 8" href="#" alt="121" class="popup-trigger">
+            <area shape="circle" coords="275, 328, 8" href="#" alt="122" class="popup-trigger">
+            <area shape="circle" coords="156, 327, 8" href="#" alt="123" class="popup-trigger">
+            <area shape="circle" coords="44, 268, 8" href="#" alt="201" class="popup-trigger">
+            <area shape="circle" coords="46, 211, 8" href="#" alt="202" class="popup-trigger">
+            <area shape="circle" coords="46, 152, 8" href="#" alt="203" class="popup-trigger">
+            <area shape="circle" coords="44, 93, 8" href="#" alt="204" class="popup-trigger">
+            <area shape="circle" coords="46, 37, 8" href="#" alt="205" class="popup-trigger">
+            <area shape="circle" coords="102, 37, 8" href="#" alt="206" class="popup-trigger">
+            <area shape="circle" coords="156, 37, 8" href="#" alt="207" class="popup-trigger">
+            <area shape="circle" coords="215, 39, 8" href="#" alt="208" class="popup-trigger">
+            <area shape="circle" coords="274, 37, 8" href="#" alt="209" class="popup-trigger">
+            <area shape="circle" coords="350, 34, 8" href="#" alt="210" class="popup-trigger">
+            <area shape="circle" coords="510, 35, 8" href="#" alt="211" class="popup-trigger">
+            <area shape="circle" coords="582, 33, 8" href="#" alt="212" class="popup-trigger">
+            <area shape="circle" coords="669, 35, 8" href="#" alt="213" class="popup-trigger">
+            <area shape="circle" coords="745, 40, 8" href="#" alt="214" class="popup-trigger">
+            <area shape="circle" coords="814, 39, 8" href="#" alt="215" class="popup-trigger">
+            <area shape="circle" coords="881, 37, 8" href="#" alt="216" class="popup-trigger">
+            <area shape="circle" coords="998, 37, 8" href="#" alt="217" class="popup-trigger">
+            <area shape="circle" coords="507, 479, 8" href="#" alt="605" class="popup-trigger">
             <area shape="circle" coords="745, 479, 8" href="#" alt="608" class="popup-trigger">
+            <area shape="circle" coords="156, 94, 8" href="#" alt="301" class="popup-trigger">
+            <area shape="circle" coords="154, 154, 8" href="#" alt="302" class="popup-trigger">
+            <area shape="circle" coords="155, 211, 8" href="#" alt="303" class="popup-trigger">
+            <area shape="circle" coords="155, 272, 8" href="#" alt="304" class="popup-trigger">
+            <area shape="circle" coords="156, 328, 8" href="#" alt="305" class="popup-trigger">
+            <area shape="circle" coords=", 8" href="#" alt="306" class="popup-trigger">
+            <area shape="circle" coords=", 8" href="#" alt="307" class="popup-trigger-bottom">
+            <area shape="circle" coords=", 8" href="#" alt="308" class="popup-trigger-bottom">
         </map>
         <div class="popup">
             <p id="stationName">역 이름</p>
@@ -31,6 +83,7 @@
 </html>
 <script>
     const popupTriggers = document.querySelectorAll('.popup-trigger');
+    const popupTriggersBottom = document.querySelectorAll('.popup-trigger-bottom');
     const popupContent = document.querySelector('.popup');
     const stationNameElement = document.getElementById('stationName');
 
@@ -41,6 +94,25 @@
             const mouseY = event.clientY;
             popupContent.style.left = mouseX + 'px';
             popupContent.style.top = mouseY + 'px';
+
+            // Set the station name based on the alt attribute of the clicked area
+            stationNameElement.innerText = trigger.getAttribute('alt');
+
+            popupContent.style.display = 'block';
+        });
+
+        trigger.addEventListener('mouseout', () => {
+            popupContent.style.display = 'none';
+        });
+    });
+
+    popupTriggersBottom.forEach(trigger => {
+        trigger.addEventListener('mouseover', (event) => {
+            // Get the mouse position and update the popup's position accordingly
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            popupContent.style.left = mouseX + 'px';
+            popupContent.style.top = (mouseY - 170) + 'px';
 
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');
