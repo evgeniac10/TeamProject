@@ -1,4 +1,4 @@
-package com.example.wetro.dto;
+package com.example.wetro.station.dto;
 
 
 import lombok.*;
