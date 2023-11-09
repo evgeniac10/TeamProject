@@ -17,6 +17,10 @@ public class WetroController {
         this.wetroService = wetroService;
     }
 
+    @GetMapping("/route")
+    public String route(){
+        return "route";
+    }
 
     @GetMapping("/map")
     public String mapPage() {

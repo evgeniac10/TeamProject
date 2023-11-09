@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/wetro")
 public class usercontroller {
 
+    @GetMapping("/bookmark")
+    public String bookmark(){
+        return "bookmark";
+    }
+
 
     @GetMapping("/login")
     public String login(){
