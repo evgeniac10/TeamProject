@@ -1,16 +1,15 @@
-version: "3"
-services:
-  mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: wetro
+version: '3.1'
 
-      MYSQL_USER: wetro
-      MYSQL_PASSWORD: 1234
+services:
+  mysql-container:
+    image: mysql:8.0
     ports:
       - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12341234
+      MYSQL_DATABASE: wetro
+      MYSQL_PASSWORD: 12341234
     volumes:
-      - ./mysql/data:/var/lib/mysql
-      - ./docker/mysql/config:/etc/mysql/conf.d
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command:
+      --default-authentication-plugin=mysql_native_password

@@ -1,12 +1,11 @@
 package com.example.wetro.station.controller;
 
 import com.example.wetro.station.service.WetroService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Slf4j
 @Controller
 @RequestMapping("/wetro")
 public class WetroController {
@@ -17,6 +16,10 @@ public class WetroController {
         this.wetroService = wetroService;
     }
 
+    @GetMapping("/route")
+    public String route(){
+        return "route";
+    }
 
     @GetMapping("/map")
     public String mapPage() {

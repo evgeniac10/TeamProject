@@ -22,14 +22,12 @@ public class WetroService {
     public Integer searchFromStation(Integer from) {
         for(Station s : getStations()){
             if(s.getFrom().equals(from)){//사용자가 입력한 출발역이 엑셀파일에 있어야 실행되는 조건문
-                System.out.println("s.toString() = " + s.toString());
             }
         }
         return from;
     }
 
     public Integer searchToStation(Integer to) {
-        System.out.println("------------searchToStation메서드-----------");
         for(Station s : getStations()){
             if(s.getFrom().equals(to))
                 System.out.println("s.toString() = " + s.toString());
