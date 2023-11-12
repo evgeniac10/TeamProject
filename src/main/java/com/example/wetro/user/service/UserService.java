@@ -24,4 +24,5 @@ public class UserService {
     public User findUser(String userid, String password) {
         return userRepository.findByUseridAndPassword(userid, password);
     }
+
 }

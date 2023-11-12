@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login Check</title>
+</head>
+<body>
+<h1>어서오세요 <span th:text="${findUser.userid}"></span>!</h1>
+<p>입력하신 회원 정보입니다.</p>
+<p>비밀번호 : <span th:text="${findUser.password}"></span></p>
+<p>이메일 주소 : <span th:text="${findUser.email}"></span></p>
+</body>
+</html>
