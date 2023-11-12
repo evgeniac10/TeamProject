@@ -21,4 +21,7 @@ public class UserService {
         inputuser.setEmail(email);
         return userRepository.save(inputuser);
     }
+    public User findUser(String userid, String password) {
+        return userRepository.findByUseridAndPassword(userid, password);
+    }
 }
