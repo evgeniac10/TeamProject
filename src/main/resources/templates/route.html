@@ -3,13 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>경로추천</title>
+    <style>
+        *{
+            margin:0;
+            border: 0;
+            padding:0;
+        }
+        .header{
+            display: flex;
+            width: 100%;
+            background-color: #d8d8d8;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo{
+            color: #838383;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .route-info{
+            color: #838383;
+        }
+        .rec-name:nth-child(1){
+            color: #6a9be8;
+        }
+        .rec-name:nth-child(2){
+            color: #f77070;
+        }
+        .rec-name:nth-child(3){
+            color: lightgreen;
+        }
+        .rec-info{
+            color: #838383;
+        }
+        .from{
+            color: #838383;
+        }
+        .to{
+            color: #838383;
+        }
+    </style>
 </head>
 <body>
+<div class="header">
+    <div class="logo">
+        <h1>WETRO</h1>
+    </div>
+</div>
 <h1>경로</h1>
-<script>
-    const { from,to } = JSON.parse(localStorage.getItem("user-info"));
-    localStorage.remove("user-info");
-    console.log(from,to);
-</script>
+<h2 class="route-info">출발역 :</h2>
+<h2 class="route-info">도착역 :</h2>
+<div class="recommend">
+    <h4 class="rec-name">최소 시간</h4>
+    <div class="from"></div>
+    <div class="to"></div>
+    <p class="rec-info">시간 :</p>
+    <p class="rec-info">비용 :</p>
+    <p class="rec-info">환승 :</p>
+</div>
+<div class="recommend">
+    <h4 class="rec-name">최소 비용</h4>
+    <div class="from"></div>
+    <div class="to"></div>
+    <p class="rec-info">시간 :</p>
+    <p class="rec-info">비용 :</p>
+    <p class="rec-info">환승 :</p>
+</div>
+<div class="recommend">
+    <h4 class="rec-name">최소 환승</h4>
+    <div class="from"></div>
+    <div class="to"></div>
+    <p class="rec-info">시간 :</p>
+    <p class="rec-info">비용 :</p>
+    <p class="rec-info">환승 :</p>
+</div>
+
+<!--<script>-->
+<!--    const { from,to } = JSON.parse(localStorage.getItem("user-info"));-->
+<!--    localStorage.remove("user-info");-->
+<!--    console.log(from,to);-->
+<!--</script>-->
+
 </body>
 </html>
