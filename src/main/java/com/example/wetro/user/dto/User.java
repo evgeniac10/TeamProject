@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Getter
@@ -16,14 +17,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     @NotNull
     private String userid;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String password;
 
-    @Column(nullable = false)
     @NotNull
     @Email
     private String email;

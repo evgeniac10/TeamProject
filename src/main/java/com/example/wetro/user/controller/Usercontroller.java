@@ -31,30 +31,11 @@ public class Usercontroller {
     public String loginPage(){
         return "login";
     }
-    @PostMapping("/login")
-    public String login(Model model
-            , @RequestParam("userid") String userid,
-                        @RequestParam("password") String password){
-        User findUser = userService.findUser(userid, password);
-        model.addAttribute("findUser", findUser);
 
-        return "loginCheck";
-    }
 
     @GetMapping("/join")
     public String joinPage(){
         return "join";
-    }
-
-    @PostMapping("/join")
-    public String join(
-            @RequestParam("userid") String userid,
-            @RequestParam("password") String password,
-            @RequestParam("email") String email
-//            @ModelAttribute User user
-    ){
-        userService.saveUser(userid,password ,email);
-        return "redirect:/wetro/main";
     }
 
 }

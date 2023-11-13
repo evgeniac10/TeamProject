@@ -1,87 +1,67 @@
 package com.example.wetro.user.controller;
 
+import com.example.wetro.user.dto.EmailRequest;
 import com.example.wetro.user.dto.User;
-import com.example.wetro.user.service.UserServiceImpl;
+import com.example.wetro.user.service.EmailService;
+import com.example.wetro.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/wetro")
 public class UserApiController {
 
     @Autowired
-    private UserServiceImpl userService;
-
+    private final UserService userService;
     @Autowired
-    public UserApiController(UserServiceImpl userService) {
-        this.userService = userService;
-    }
-    //아이디 중복 체크
-    @PostMapping("/checkDuplicateId")
-    public ResponseEntity<String> checkDuplicateId(@RequestParam("userid") String userid) {
-        if (userService.isUserIdDuplicate(userid)) {
+    private final EmailService emailService;
+
+    //id 중복 확인
+    @GetMapping("/checkDuplicateId/{userid}")
+    public ResponseEntity<String> checkDuplicateId(@PathVariable String userid) {
+        if (userService.isExistId(userid)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디 중복");
         } else {
             return ResponseEntity.ok("아이디 사용 가능");
         }
     }
-    //인증번호 발송
-
     @PostMapping("/sendVerificationCode")
-    public ResponseEntity<String> sendVerificationCode(@RequestParam("email") String email) {
-        String verificationCode = userService.generateAndSendVerificationCode(email);
-        if (verificationCode != null) {
-            return ResponseEntity.ok("인증번호 발송 성공");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("인증번호 발송 실패");
-        }
-    }
-
-    //인증번호 확인
-    @PostMapping("/verifyCode")
-    public ResponseEntity<String> verifyCode(@RequestParam("email") String email
-            , @RequestParam("check") String check) {
-        if (userService.verifyCode(email, check)) {
-            return ResponseEntity.ok("인증번호 확인 성공");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("인증번호 확인 실패");
-        }
+    public ResponseEntity<String> sendVerificationCode(@RequestBody EmailRequest emailAddress) throws Exception {
+        String input = emailAddress.getEmailAddress();
+        // emailRequest에는 이메일 주소 등이 포함될 것으로 가정
+        String confirm = emailService.sendSimpleMessage(input);
+        // 이메일 발송 로직 수행
+        return ResponseEntity.ok("이메일 인증번호 발송 성공");
     }
 
     // 가입 처리
     @PostMapping("/signup")
-    public ResponseEntity<String> signUp(@RequestParam("userid") String userid,
-                                         @RequestParam("password") String password,
-                                         @RequestParam("email") String email) {
-        if (userService.isUserIdDuplicate(userid)) {
-            // 아이디 중복 시 메시지 반환
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디 중복");
-        } else {
-            // 아이디 중복이 아니면 가입 처리
-            userService.signUp(userid, password, email);
-            return ResponseEntity.ok("가입 성공");
-        }
-    }
+    public ResponseEntity<User> signUp(@RequestBody @Valid User userDto , BindingResult bindingResult) {
 
+        if(bindingResult.hasErrors())//Valid로 유효성 검사를 했는데 입력해야하는 양식에 맞지 않는 경우 BAD_REQUEST를 반환한다.
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-    @RequestMapping(value = "/user/api", method = { RequestMethod.POST,RequestMethod.GET})
-    @ResponseBody
-    public ResponseEntity<User> mainInfo(
-            @RequestParam("userid") String userid,
-            @RequestParam("password") String password
-    ) {
-        try {
-            User findUser = userService.findUser(userid, password);
-            if (findUser != null) {
-                return ResponseEntity.ok(findUser);
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        if (userService.isExistId(userDto.getUserid()))
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+
+        if(userService.isExistEmail(userDto.getEmail()))
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+
+        User user = new User();
+        user.setUserid(userDto.getUserid());
+        user.setPassword(userDto.getPassword());
+        user.setEmail(userDto.getEmail());
+
+        User saveUser = userService.save(user);
+
+        return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
     }
 
 }

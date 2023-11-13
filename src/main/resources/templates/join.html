@@ -95,100 +95,58 @@
 </div>
 <div class="signup-container">
   <h2>회원가입</h2>
-  <form class="signup-form" action="/wetro/signup" method="post" onsubmit="return validateForm()">
+  <form class="signup-form" action="/wetro/signup" method="post">
     <div class="form-group">
       <input type="text" name="userid" id="userid" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"><br>
-      <button class="id-check" type="button" onclick="checkDuplicateId()">중복확인</button>
+      <button class="id-check" type="button">중복확인</button>
     </div>
     <div class="form-group">
       <input type="password" name="password" id="password" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'"><br>
     </div>
     <div class="form-group">
       <input type="email" name="email" id="email" placeholder="이메일" onfocus="this.placeholder=''" onblur="this.placeholder='이메일'"><br>
-      <button class="send-num" type="button" onclick="sendVerificationCode()">인증번호 발송</button>
+      <button class="send-num" type="button">인증번호 발송</button>
     </div>
     <div class="form-group">
       <input type="text" name="check" id="check" placeholder="인증번호" onfocus="this.placeholder=''" onblur="this.placeholder='인증번호'"><br>
-      <button class="num-check" type="button" onclick="verifyCode()">인증번호 확인</button>
+      <button class="num-check" type="button" >인증번호 확인</button>
     </div>
-    <button class="signup" type="submit">가입하기</button>
+    <button class="signup" type="button" onclick="submitForm()">가입하기</button>
   </form>
 </div>
-</body>
+
 <script>
-  var isUserIdValid = false;
-  var isVerificationCodeValid = false;
-
-  function validateForm() {
-    var email = document.getElementById("email").value;
-    var check = document.getElementById("check").value;
-
-    if (email === "" || check === "" || !isUserIdValid || !isVerificationCodeValid) {
-      alert("양식을 모두 채워주세요.");
-      return false;
-    }
-
-    return true;
-  }
-
-  function checkDuplicateId() {
-    var userId = document.getElementById("userid").value;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/wetro/checkDuplicateId", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          alert(xhr.responseText);
-          isUserIdValid = true; // 아이디 중복 확인이 성공했을 때 true로 설정
-        } else {
-          alert("현재 사용중인 아이디 입니다.");
-          isUserIdValid = false;
-        }
-      }
+  function submitForm() {
+    const form = document.getElementById('signup-form');
+    const formData = {
+      userid: form.elements['userid'].value,
+      password: form.elements['password'].value,
+      email: form.elements['email'].value,
     };
-    xhr.send("userid=" + userId);
+
+    // JavaScript fetch API를 사용하여 JSON 형식으로 데이터 전송
+    fetch('/wetro/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              // 서버로부터의 응답 처리
+              console.log(data);
+            })
+            .catch(error => {
+              // 오류 처리
+              console.error('Error:', error);
+            });
   }
-
-  function sendVerificationCode() {
-    var userEmail = document.getElementById("email").value;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/wetro/sendVerificationCode", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          alert(xhr.responseText);
-        } else {
-          alert("인증번호 발송 실패");
-        }
-      }
-    };
-    xhr.send("email=" + userEmail);
-  }
-
-  function verifyCode() {
-    var userEmail = document.getElementById("email").value;
-    var verificationCode = document.getElementById("check").value;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/wetro/verifyCode", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          alert(xhr.responseText);
-          isVerificationCodeValid = true; // 인증번호 확인이 성공했을 때 true로 설정
-        } else {
-          alert("인증번호를 한번더 확인해주세요.");
-          isVerificationCodeValid = false;
-        }
-      }
-    };
-    xhr.send("email=" + userEmail + "&check=" + verificationCode);
-  }
-
 </script>
+</body>
 </html>
