@@ -12,7 +12,7 @@ function fetchData() {
         .then(data => {
             const click = document.querySelector('form a');
             const routeInfo = {출발역:data.from,도착역:data.to}
-            click.addEventListener('click',()=> {
+            click.addEventListener('submit',()=> {
                 localStorage.setItem("route-info",JSON.stringify(routeInfo))
             })
         })
@@ -21,7 +21,7 @@ function fetchData() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const click = document.querySelector('form a');
-    click.addEventListener('click', (event) => {
+    click.addEventListener('submit', (event) => {
         event.preventDefault(); // 주석 해제
         if (validateForm()) {
             console.log('Form is valid');
