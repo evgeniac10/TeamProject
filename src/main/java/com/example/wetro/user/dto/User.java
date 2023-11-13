@@ -1,9 +1,11 @@
 package com.example.wetro.user.dto;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Getter
@@ -15,12 +17,15 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
+    @NotNull
     private String userid;
 
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
+    @NotNull
+    @Email
     private String email;
 
     public User() {
