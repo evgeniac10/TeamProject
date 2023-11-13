@@ -46,9 +46,8 @@ public class UserApiController {
 
     //이메일 인증 코드 확인
     @PostMapping("/verify")
-    public ResponseEntity<String> verifyCode(@RequestBody VerificationRequest verificationRequest) {
-        System.out.println("verificationRequest = " + verificationRequest.getVerificationCode());
-        String inputCode = verificationRequest.getVerificationCode();
+    public ResponseEntity<String> verifyCode(@RequestBody VerificationRequest verificationCode) {
+        String inputCode = verificationCode.getVerificationCode();
 
         if (inputCode.equals(savedVerificationCode)) {
             return ResponseEntity.ok("이메일 인증 성공");
