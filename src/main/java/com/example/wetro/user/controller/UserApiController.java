@@ -28,6 +28,7 @@ public class UserApiController {
         }
     }
     //인증번호 발송
+
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<String> sendVerificationCode(@RequestParam("email") String email) {
         String verificationCode = userService.generateAndSendVerificationCode(email);
@@ -40,8 +41,9 @@ public class UserApiController {
 
     //인증번호 확인
     @PostMapping("/verifyCode")
-    public ResponseEntity<String> verifyCode(@RequestParam("email") String email, @RequestParam("code") String code) {
-        if (userService.verifyCode(email, code)) {
+    public ResponseEntity<String> verifyCode(@RequestParam("email") String email
+            , @RequestParam("check") String check) {
+        if (userService.verifyCode(email, check)) {
             return ResponseEntity.ok("인증번호 확인 성공");
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("인증번호 확인 실패");

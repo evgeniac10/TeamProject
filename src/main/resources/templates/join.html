@@ -108,8 +108,8 @@
       <button class="send-num" type="button" onclick="sendVerificationCode()">인증번호 발송</button>
     </div>
     <div class="form-group">
-      <input type="num" name="check" id="check" placeholder="인증번호" onfocus="this.placeholder=''" onblur="this.placeholder='인증번호'"><br>
-      <button class="num-check" type="submit">인증번호 확인</button>
+      <input type="text" name="check" id="check" placeholder="인증번호" onfocus="this.placeholder=''" onblur="this.placeholder='인증번호'"><br>
+      <button class="num-check" type="button" onclick="verifyCode()">인증번호 확인</button>
     </div>
     <button class="signup" type="submit">가입하기</button>
   </form>
@@ -155,6 +155,25 @@
     };
     xhr.send("email=" + userEmail);
   }
-</script>
+  function verifyCode() {
+    // 사용자가 입력한 이메일과 인증번호 값을 가져오는 코드
+    var userEmail = document.getElementById("email").value;
+    var verificationCode = document.getElementById("check").value;
 
+    // AJAX를 사용하여 서버로 요청을 보내는 코드
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/wetro/verifyCode", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          alert(xhr.responseText);  // 서버 응답을 처리하는 코드
+        } else {
+          alert("인증번호를 한번더 확인해주세요.");
+        }
+      }
+    };
+    xhr.send("email=" + userEmail + "&check=" + verificationCode);
+  }
+</script>
 </html>

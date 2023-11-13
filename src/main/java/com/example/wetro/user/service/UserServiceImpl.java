@@ -3,8 +3,12 @@ package com.example.wetro.user.service;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -12,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private final UserRepository userRepository;
+    @Autowired
+    private JavaMailSender mailSender;
+    private Map<String, String> emailVerificationCodes = new HashMap<>();
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -28,8 +35,12 @@ public class UserServiceImpl implements UserService {
         // 실제로는 외부 API나 이메일 서비스를 사용하여 구현할 수 있습니다.
         // 이 예시에서는 간단하게 랜덤한 문자열을 생성하는 메서드를 사용합니다.
         String verificationCode = generateRandomCode();
+        sendEmail(email,"wetro 인증번호 입니다.",verificationCode);
+        emailVerificationCodes.put(email, verificationCode);
+
         // 여기서 이메일 전송 로직을 추가해야 합니다.
         // sendEmail(email, "Verification Code", "Your verification code is: " + verificationCode);
+        System.out.println("현재 생성된 인증번호 = " + verificationCode);
         return verificationCode;
     }
 
@@ -38,7 +49,10 @@ public class UserServiceImpl implements UserService {
         // 여기에는 이메일 주소와 사용자가 입력한 코드를 확인하는 로직이 들어갑니다.
         // 실제로는 데이터베이스에 저장된 코드와 비교하거나, 외부 API 호출 등이 필요할 수 있습니다.
         // 이 예시에서는 간단하게 코드가 "1234"인 경우에만 성공으로 간주합니다.
-        return "1234".equals(code);
+        String savedVerificationCode = emailVerificationCodes.get(email);
+        System.out.println("사용자가 입력한 인증코드 = " + code);
+        System.out.println("현재 저장되어있는 인증코드 = " + savedVerificationCode);
+        return savedVerificationCode != null && savedVerificationCode.equals(code);
     }
 
     @Override
@@ -49,6 +63,17 @@ public class UserServiceImpl implements UserService {
         User newUser = new User(userid, password, email);
         userRepository.save(newUser);
         return true;  // 가입 성공을 의미하는 값을 반환합니다.
+    }
+
+    @Override
+    public void sendEmail(String toEmail, String subject, String body) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("wetro@gmail.com");
+        message.setTo(toEmail);
+        message.setText("wetro 인증번호는 : "+body +"입니다.");
+        message.setSubject(subject);
+
+        mailSender.send(message);
     }
 
     private String generateRandomCode() {

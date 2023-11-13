@@ -11,6 +11,7 @@ public interface UserService {
 
     boolean signUp(String userid, String password, String email);
 
+    void sendEmail(String toEmail, String subject ,String body);
     public User saveUser(String userid , String password , String email);
     public User findUser(String userid, String password);
 }
