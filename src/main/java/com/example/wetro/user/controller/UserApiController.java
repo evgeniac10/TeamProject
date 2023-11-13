@@ -50,15 +50,18 @@ public class UserApiController {
         }
     }
 
-    //가입 성공
+    // 가입 처리
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestParam("userid") String userid,
                                          @RequestParam("password") String password,
                                          @RequestParam("email") String email) {
-        if (userService.signUp(userid, password, email)) {
-            return ResponseEntity.ok("가입 성공");
+        if (userService.isUserIdDuplicate(userid)) {
+            // 아이디 중복 시 메시지 반환
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디 중복");
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("가입 실패");
+            // 아이디 중복이 아니면 가입 처리
+            userService.signUp(userid, password, email);
+            return ResponseEntity.ok("가입 성공");
         }
     }
 
