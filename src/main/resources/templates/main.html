@@ -12,20 +12,25 @@
         <div class="logo">
             <h1>WETRO</h1>
         </div>
-        <div class="menu" onclick="toggleMenu()">
-            <span>=</span>
-            <ul>
-                <li><a href="login">로그인</a></li>
-                <li><a href="join">회원가입</a></li>
-                <li><a href="bookmark">즐겨찾기</a></li>
-            </ul>
+        <input type="checkbox" id="menuicon">
+        <label for="menuicon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <a href="login"><div class="menu-button" id="login-button">로그인</div></a>
+                <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
+                <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
+            </div>
         </div>
     </div>
     <div class="form-container">
         <form action="/wetro/api" method="post" onsubmit="return validateForm()">
             <input type="text" name="from" id="from" placeholder="출발역" onfocus="this.placeholder=''" onblur="this.placeholder='출발역'"><br>
             <input type="text" name="to" id="to" placeholder="도착역" onfocus="this.placeholder=''" onblur="this.placeholder='도착역'"><br>
-            <a href="route">길찾기</a>
+            <a href="route" id="search">길찾기</a>
 <!--            <button type="submit" id="search">길찾기</button>-->
         </form>
     </div>

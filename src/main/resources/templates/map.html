@@ -130,12 +130,9 @@
         </map>
         <div class="popup">
             <p id="stationName">역 이름</p>
-            <hr>
-            <p><a href="#">출발역</a></p>
-            <hr>
-            <p><a href="#">도착역</a></p>
-            <hr>
-            <p><a href="#">경유지</a></p>
+            <a href="#"><div class="button" id="start">출발역</div></a>
+            <a href="#"><div class="button" id="end">도착역</div></a>
+            <a href="#"><div class="button" id="via">경유지</div></a>
         </div>
     </div>
 </div>
@@ -153,8 +150,8 @@
             // Get the mouse position and update the popup's position accordingly
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-            popupContent.style.left = mouseX + 'px';
-            popupContent.style.top = mouseY + 'px';
+            popupContent.style.left = (mouseX-8) + 'px';
+            popupContent.style.top = (mouseY-8) + 'px';
 
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');
@@ -172,8 +169,8 @@
             // Get the mouse position and update the popup's position accordingly
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-            popupContent.style.left = mouseX + 'px';
-            popupContent.style.top = (mouseY - 170) + 'px';
+            popupContent.style.left = (mouseX-5) + 'px';
+            popupContent.style.top = (mouseY-165) + 'px';
 
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');
@@ -191,8 +188,8 @@
             // Get the mouse position and update the popup's position accordingly
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-            popupContent.style.left = (mouseX - 120) + 'px';
-            popupContent.style.top = mouseY + 'px';
+            popupContent.style.left = (mouseX-115) + 'px';
+            popupContent.style.top = (mouseY-5) + 'px';
 
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');

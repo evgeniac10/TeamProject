@@ -9,42 +9,96 @@
     align-items: center;
 }
 .header{
+    padding: 20px;
     display: flex;
     width: 100%;
     background-color: #d8d8d8;
-    align-items: center;
     justify-content: center;
 }
 .logo{
-    margin-left: auto;
+    position: absolute;
+    margin: auto;
     color: #838383;
 }
-.menu{
-    font-size: 30px;
-    margin-left: auto;
-}
-.menu ul{
+input[id="menuicon"] {
     display: none;
-    font-size: 20px;
-    list-style: none;
 }
-.menu:hover{
-    color: white;
+input[id="menuicon"] + label {
+    display: block;
+    width: 60px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 15px;
+    z-index: 2;
 }
-.menu:hover ul{
-    display: flex;
-    flex-direction: column;
+input[id="menuicon"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    border-radius: 30px;
+    background: #828282;
+    transition: all .35s;
 }
-.menu a{
+input[id="menuicon"] + label span:nth-child(1) {
+    top: 0;
+}
+input[id="menuicon"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+input[id="menuicon"] + label span:nth-child(3) {
+    bottom: 0;
+}
+input[id="menuicon"]:checked + label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    background: #d7d7d7;
+}
+input[id="menuicon"]:checked + label span:nth-child(2) {
+    opacity: 0;
+    background: #d7d7d7;
+}
+input[id="menuicon"]:checked + label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+    background: #d7d7d7;
+}
+div[class="sidebar"] {
+    width: 300px;
+    height: 100%;
+    background: #828282;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    z-index: 1;
+    transition: all .35s;
+}
+input[id="menuicon"]:checked + label + div {
+    right: 0;
+    box-shadow: -1px 0 10px rgba(0, 0, 0, 0.5);
+}
+.sidebar-menu {
+    margin-top: 80px;
+}
+.menu-button {
+    padding: 10px;
+    margin: 20px;
+    background: #d7d7d7;
+    text-align: center;
+    border-radius: 8px;
+    color: #828282;
+    font-weight: bold;
+}
+a {
     text-decoration: none;
-    color: #838383;
-    font-size: 15px;
 }
 form{
     display: flex;
     flex-direction: column;
 }
-
 #from{
     border: 5px solid #fd7373;
     margin:20px;
@@ -61,10 +115,13 @@ form{
 }
 #search{
     height: 30px;
+    line-height: 30px;
+    padding: 5px;
     margin: 0 40px;
     background-color: #6a9be8;
     color: white;
-    border-radius: 15px;
+    border-radius: 30px;
+    text-align: center;
 }
 .map{
     margin: 20px;
