@@ -3,14 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>즐겨찾기</title>
+    <style>
+        *{
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        .header{
+            display: flex;
+            width: 100%;
+            background-color: #d8d8d8;
+            align-items: center;
+            justify-content: center;
+        }
+        a {
+            color: #838383;
+            text-decoration: none;
+        }
+        .logo{
+            color: #838383;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        .bookmark{
+            width: 90%;
+            padding: 5px;
+            margin: 10px 0;
+        }
+        .first-mark{
+            border: #333333 1px solid ;
+            padding: 10px;
+            width: 90%;
+        }
+        #mark-name{
+            color: #6a9be8;
+        }
+        .mark-info{
+            color: #838383;
+        }
+        .mark-button{
+            align-content: space-between;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
-  <h1>즐겨찾기</h1>
+    <div class="logo">
+        <a href="main"><h1>WETRO</h1></a>
+    </div>
 </div>
 <div class="bookmark">
-
+    <div class="first-mark">
+        <h1 id="mark-name">등교</h1>
+        <div class="mark-info">
+            <h2>출발역:</h2>
+            <h2>도착역:</h2>
+            <h2>알람 시간:</h2>
+        </div>
+        <div class="mark-button">
+            <button class="setting" type="button">연필</button>
+            <button class="alarm" type="button">종</button>
+        </div>
+    </div>
 </div>
-
+<script>
+    class Bookmark{
+        constructor(from,to,alarm) {
+            this.from=from
+            this.to=to
+            this.alarm=alarm
+        }
+        createMark(){
+            const bookmark=document.querySelector('.bookmark')
+            bookmark.innerHTML=`
+            <div class="first-mark">
+                <h1 id="mark-name">등교</h1>
+                <div class="mark-info">
+                    <h2>출발역:${this.from}</h2>
+                    <h2>도착역:${this.to}</h2>
+                    <h2>알람 시간:${this.alarm}</h2>
+                </div>
+                <div class="mark-button">
+                    <button class="setting" type="button">연필</button>
+                    <button class="alarm" type="button">종</button>
+                </div>
+            </div>
+            `
+        }
+    }
+</script>
 </body>
 </html>
