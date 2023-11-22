@@ -125,10 +125,13 @@
         const check = document.getElementById('pw-check').value;
         const message = document.querySelector('span')
         if(pw !== check){
-            message.textContent = '비밀번호를 다시 확인해주세요'
+            message.textContent = '비밀번호를 다시 확인해주세요';
+            message.style.color = 'red'
+
         }
         else {
-            message.textContent = '확인되었습니다.'
+            message.textContent = '확인되었습니다';
+            message.style.color = 'blue'
         }
     }
   function checkDuplicate() {
