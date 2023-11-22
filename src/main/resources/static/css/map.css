@@ -14,6 +14,7 @@
     background-color: #d8d8d8;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
 }
 h1 {
     display: flex;
@@ -67,7 +68,9 @@ a {
 .popup-trigger:hover + .popup {
     display: block;
 }
-
+.map {
+    margin-top: 10px;
+}
 #fullMap {
     position: relative;
 }
