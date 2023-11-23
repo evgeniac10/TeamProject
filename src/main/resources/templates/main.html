@@ -8,40 +8,39 @@
 </head>
 <body>
 <div class="deco-line"></div>
-<div id="container">
-    <div class="header">
-        <div class="logo">
-            <h1>WETRO</h1>
-        </div>
-        <input type="checkbox" id="menuicon">
-        <label for="menuicon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <div class="sidebar">
-            <div class="sidebar-menu">
-                <a href="login"><div class="menu-button" id="login-button">로그인</div></a>
-                <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
-                <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
-            </div>
+<header>
+    <div class="logo">
+        <h1>WETRO</h1>
+    </div>
+    <input type="checkbox" id="menuicon">
+    <label for="menuicon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="sidebar">
+        <div class="sidebar-menu">
+            <a href="login"><div class="menu-button" id="login-button">로그인</div></a>
+            <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
+            <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
         </div>
     </div>
-    <div class="form-container">
+</header>
+<main>
+    <div class="container">
         <form action="/wetro/api" method="post" onsubmit="return validateForm()">
             <input type="text" name="from" id="from" placeholder="출발역" onfocus="this.placeholder=''" onblur="this.placeholder='출발역'"><br>
             <input type="text" name="to" id="to" placeholder="도착역" onfocus="this.placeholder=''" onblur="this.placeholder='도착역'"><br>
             <a href="route" id="search">길찾기</a>
-<!--            <button type="submit" id="search">길찾기</button>-->
+            <!--            <button type="submit" id="search">길찾기</button>-->
+            <a href="map" id="map">노선도 보기</a>
         </form>
     </div>
-    <div class="map">
-        <a href="map" target="_self">노선도 보기</a>
-    </div>
-</div>
-<footer class="info">
-    <a href="#">웹사이트 기타 정보</a>
+</main>
+<footer>
+    <div class="info"><a href="#">웹사이트 기타 정보</a></div>
 </footer>
+</body>
 <div class="result-container">
     <p id="result-message"></p>
 </div>
