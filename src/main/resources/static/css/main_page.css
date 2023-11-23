@@ -123,7 +123,7 @@ form{
     flex-direction: column;
 }
 #from{
-    border: 5px solid #fd7373;
+    border: 10px solid #fd7373;
     margin-top: 40px;
     height: 60px;
     border-radius: 60px;
@@ -133,7 +133,7 @@ form{
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 #to{
-    border: 5px solid #fde400;
+    border: 10px solid #fde400;
     margin-top: 40px;
     height: 60px;
     border-radius: 60px;
