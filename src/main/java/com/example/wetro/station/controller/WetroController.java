@@ -26,6 +26,12 @@ public class WetroController {
         return "map";
     }
 
+    @GetMapping("/routedetail")
+    public String routeDetail(){
+        return "route_detail";
+    }
+
+
     @GetMapping("/excel")
     public String datas(){
         return "excel";
