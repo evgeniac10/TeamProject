@@ -28,7 +28,7 @@ public class WetroController {
 
     @GetMapping("/routedetail")
     public String routeDetail(){
-        return "route_detail";
+        return "routedetail";
     }
 
 
