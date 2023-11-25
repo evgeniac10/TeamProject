@@ -156,11 +156,13 @@
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');
 
-            popupContent.style.display = 'block';
+            popupContent.style.visibility = 'visible';
+            popupContent.style.opacity = '1';
         });
 
         trigger.addEventListener('mouseout', () => {
-            popupContent.style.display = 'none';
+            popupContent.style.visibility = 'hidden';
+            popupContent.style.opacity = '0';
         });
     });
 
@@ -175,11 +177,13 @@
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');
 
-            popupContent.style.display = 'block';
+            popupContent.style.visibility = 'visible';
+            popupContent.style.opacity = '1';
         });
 
         trigger.addEventListener('mouseout', () => {
-            popupContent.style.display = 'none';
+            popupContent.style.visibility = 'hidden';
+            popupContent.style.opacity = '0';
         });
     });
 
@@ -194,19 +198,23 @@
             // Set the station name based on the alt attribute of the clicked area
             stationNameElement.innerText = trigger.getAttribute('alt');
 
-            popupContent.style.display = 'block';
+            popupContent.style.visibility = 'visible';
+            popupContent.style.opacity = '1';
         });
 
         trigger.addEventListener('mouseout', () => {
-            popupContent.style.display = 'none';
+            popupContent.style.visibility = 'hidden';
+            popupContent.style.opacity = '0';
         });
     });
 
     popupContent.addEventListener('mouseover', () => {
-        popupContent.style.display = 'block';
+        popupContent.style.visibility = 'visible';
+        popupContent.style.opacity = '1';
     });
 
     popupContent.addEventListener('mouseout', () => {
-        popupContent.style.display = 'none';
+        popupContent.style.visibility = 'hidden';
+        popupContent.style.opacity = '0';
     });
 </script>
