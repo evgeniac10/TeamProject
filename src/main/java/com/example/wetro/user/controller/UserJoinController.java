@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/wetro")
-public class UserApiController {
+public class UserJoinController {
 
     @Autowired
     private final UserService userService;
