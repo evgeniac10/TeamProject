@@ -15,8 +15,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/wetro/main","/wetro/join","/wetro/lgoin").permitAll()
+                .antMatchers("/wetro/main","/wetro/map","/wetro/join","/wetro/login","/wetro/route").permitAll()
                 .antMatchers("/css/**").permitAll()
+                .antMatchers("/img/**").permitAll()
+                .antMatchers("/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().disable()
