@@ -21,7 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().disable()
+                .formLogin().loginPage("/wetro/login")
+                .loginProcessingUrl("/wetro/login")
+                .usernameParameter("userid")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/wetro/main")
                 ;
     }
 }
