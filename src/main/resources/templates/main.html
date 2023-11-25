@@ -10,7 +10,7 @@
 <div class="deco-line"></div>
 <header>
     <div class="logo">
-        <h1>WETRO</h1>
+        <a href="#"><h1>WETRO</h1></a>
     </div>
     <input type="checkbox" id="menuicon">
     <label for="menuicon">
@@ -30,8 +30,14 @@
     <div class="container">
         <form action="/wetro/api" method="post" onsubmit="return validateForm()">
             <input type="text" name="from" id="from" placeholder="출발역" onfocus="this.placeholder=''" onblur="this.placeholder='출발역'"><br>
-            <input type="text" name="layover" id="layover" placeholder="경유지" onfocus="this.placeholder=''" onblur="this.placeholder='경유지'"><br>
-            <button type="button" name="layover-btn" id="layover-btn" onclick="insertLayover()">+</button>
+            <div id="layover-a"><input type="text" name="layover" id="layover" placeholder="경유지" onfocus="this.placeholder=''" onblur="this.placeholder='경유지'"><br></div>
+            <button type="button" name="layover-btn" id="layover-btn" onclick="insertLayover()">
+                <input type="checkbox" id="addButton">
+                <label for="addButton">
+                    <span></span>
+                    <span></span>
+                </label>
+            </button>
             <input type="text" name="to" id="to" placeholder="도착역" onfocus="this.placeholder=''" onblur="this.placeholder='도착역'"><br>
             <a href="route" id="search">길찾기</a>
             <!--            <button type="submit" id="search">길찾기</button>-->
@@ -50,17 +56,16 @@
 <script>
     function insertLayover(){
         const layover = document.getElementById('layover')
-        const btn = document.getElementById('layover-btn')
+        const btn = document.getElementById('addButton')
 
-        if(layover.style.display !== 'none'){
-            layover.style.display = 'none'
-            btn.innerHTML="+"
+        if(btn.checked){
+            layover.style.opacity = "1"
+            layover.style.visibility = "visible"
         }
         else{
-            layover.style.display = 'block'
-            btn.innerHTML="-"
+            layover.style.opacity = "0"
+            layover.style.visibility = "hidden"
         }
-
     }
     function validateForm() {
         // 폼 유효성 검사 로직을 추가할 수 있습니다.
