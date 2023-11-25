@@ -6,7 +6,6 @@
 #container{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 .header{
     display: flex;
@@ -15,6 +14,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 h1 {
     display: flex;
@@ -23,10 +23,12 @@ h1 {
 }
 #fullMap {
     -webkit-user-drag: none;
+    left: 5%;
+    position: relative;
 }
 .popup {
     visibility: hidden;
-    position: absolute;
+    position: fixed;
     width: 100px;
     height: 150px;
     padding: 10px;
@@ -70,8 +72,5 @@ a {
     display: block;
 }
 .map {
-    margin-top: 10px;
-}
-#fullMap {
-    position: relative;
+    z-index: 0;
 }

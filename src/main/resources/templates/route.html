@@ -23,6 +23,7 @@
         }
         a {
             text-decoration: none;
+            color: #838383;
         }
         body{
             display: flex;
@@ -30,17 +31,20 @@
             align-items: center;
             justify-content: center;
         }
+        .info {
+            margin-top: 20px;
+            width: 90%;
+            padding: 5px;
+        }
         .route-info{
             color: #838383;
             border: #333333 solid 1px;
-            width: 90%;
             margin: 10px 0;
-            padding: 5px;
         }
         .recommend{
             border:  #333333 solid 1px;
-            width: 90%;
             padding: 5px;
+            margin: 10px 0;
         }
         .rec-time h4{
             color: #6a9be8;
@@ -65,47 +69,57 @@
 <body>
 <div class="header">
     <div class="logo">
-        <h1>WETRO</h1>
+        <a href="main"><h1>WETRO</h1></a>
     </div>
 </div>
-<h2 class="route-info">출발역 :</h2>
-<h2 class="route-info">도착역 :</h2>
-<div class="recommend">
-    <div class="rec-time">
-        <a href="routedetail.html"><h4>최소 시간</h4></a>
-        <div class="from"></div>
-        <div class="to"></div>
-        <div class="rec-info">
-            <p>시간 :</p>
-            <p>비용 :</p>
-            <p>환승 :</p>
-        </div>
+<div class="info">
+    <h2 class="route-info">출발역 :</h2>
+    <h2 class="route-info">도착역 :</h2>
+    <div class="recommend">
+        <a href="routedetail">
+            <div class="rec-time">
+                <h4>최소 시간</h4>
+                <div class="from"></div>
+                <div class="to"></div>
+                <div class="rec-info">
+                    <p>시간 :</p>
+                    <p>비용 :</p>
+                    <p>환승 :</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="recommend">
+        <a href="routedetail">
+            <div class="rec-cost">
+                <h4>최소 비용</h4>
+                <div class="from"></div>
+                <div class="to"></div>
+                <div class="rec-info">
+                    <p>시간 :</p>
+                    <p>비용 :</p>
+                    <p>환승 :</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="recommend">
+        <a href="routedetail">
+            <div class="rec-trans">
+                <h4>최소 환승</h4>
+                <div class="from"></div>
+                <div class="to"></div>
+                <div class="rec-info">
+                    <p>시간 :</p>
+                    <p>비용 :</p>
+                    <p>환승 :</p>
+                </div>
+            </div>
+        </a>
     </div>
 </div>
-<div class="recommend">
-    <div class="rec-cost">
-        <a href="routedetail.html"><h4>최소 비용</h4></a>
-        <div class="from"></div>
-        <div class="to"></div>
-        <div class="rec-info">
-            <p>시간 :</p>
-            <p>비용 :</p>
-            <p>환승 :</p>
-        </div>
-    </div>
-</div>
-<div class="recommend">
-    <div class="rec-trans">
-        <a href="routedetail"><h4>최소 환승</h4></a>
-        <div class="from"></div>
-        <div class="to"></div>
-        <div class="rec-info">
-            <p>시간 :</p>
-            <p>비용 :</p>
-            <p>환승 :</p>
-        </div>
-    </div>
-</div>
+
+
 
 <!--<script>-->
 <!--    const { from,to } = JSON.parse(localStorage.getItem("user-info"));-->

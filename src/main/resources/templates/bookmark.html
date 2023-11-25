@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>즐겨찾기</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         *{
             margin: 0;
@@ -15,6 +17,7 @@
             background-color: #d8d8d8;
             align-items: center;
             justify-content: center;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
         }
         a {
             color: #838383;
@@ -40,6 +43,7 @@
             border: #333333 1px solid ;
             padding: 10px;
             width: 90%;
+            margin-top: 20px;
         }
         #mark-name{
             color: #6a9be8;
@@ -50,7 +54,22 @@
         .mark-button{
             display: flex;
             justify-content: space-between;
+            margin-top: 10px;
         }
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+          }
+         .material-symbols-outlined {
+             font-variation-settings:
+                 'FILL' 0,
+                 'wght' 400,
+                 'GRAD' 0,
+                 'opsz' 24
+         }
     </style>
 </head>
 <body>
@@ -68,8 +87,8 @@
             <h2>알람 시간:</h2>
         </div>
         <div class="mark-button">
-            <button class="setting" type="button">연필</button>
-            <button class="alarm" type="button">종</button>
+            <button class="setting" type="button"><span class="material-symbols-outlined">edit</span></button>
+            <button class="alarm" type="button"><span class="material-symbols-outlined">notifications</span></button>
         </div>
     </div>
 </div>
