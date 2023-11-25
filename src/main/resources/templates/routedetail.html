@@ -38,8 +38,33 @@
             margin: 10px 0;
             padding: 5px;
         }
-        .route-detail{
-
+        .route-container{
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin-top: 20px;
+        }
+        .route-time{
+            font-size: 30px;
+            color: #838383;
+        }
+        #marking{
+            background-color: #fd7373;
+            color: #ffffff;
+            padding: 10px;
+            width: 30%;
+            border-radius: 4px;
+            font-size: 20px;
+        }
+        .line{
+            list-style: none;
+        }
+        .line::before{
+            background-color: rgb(255, 255, 255);
+            width: 4px;
+            border-radius: 50%;
+            border: seagreen solid 2px;
+            content: "";
         }
     </style>
 </head>
@@ -51,12 +76,22 @@
 </div>
 <h2 class="route-info">출발역 :</h2>
 <h2 class="route-info">도착역 :</h2>
-<div class="route-detail">
-    <ul>
-        <li>from</li>
-        <li>to</li>
-    </ul>
+<div class="route-container">
+    <div class="route-detail">
+        <ul>
+            <li class="line">from</li>
+            <li class="line">to</li>
+        </ul>
+    </div>
+    <div class="route-time">
+        <ul>
+            <li>분 초</li>
+        </ul>
+    </div>
 </div>
+<button type="button" id="marking">즐겨찾기 추가</button>
+
+
 
 
 <script>
