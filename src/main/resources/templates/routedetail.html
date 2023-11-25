@@ -31,17 +31,19 @@
             align-items: center;
             justify-content: center;
         }
+        .main {
+            margin-top: 30px;
+            width: 90%;
+        }
         .route-info{
             color: #838383;
             border: #333333 solid 1px;
-            width: 90%;
             margin: 10px 0;
             padding: 5px;
         }
         .route-container{
             display: flex;
             justify-content: space-between;
-            width: 90%;
             margin-top: 20px;
         }
         .route-time{
@@ -55,6 +57,8 @@
             width: 30%;
             border-radius: 4px;
             font-size: 20px;
+            margin-left: 50%;
+            transform: translate(-50%, 0);
         }
         .line{
             list-style: none;
@@ -74,22 +78,25 @@
         <a href="main"><h1>WETRO</h1></a>
     </div>
 </div>
-<h2 class="route-info">출발역 :</h2>
-<h2 class="route-info">도착역 :</h2>
-<div class="route-container">
-    <div class="route-detail">
-        <ul>
-            <li class="line">from</li>
-            <li class="line">to</li>
-        </ul>
+<div class="main">
+    <h2 class="route-info">출발역 :</h2>
+    <h2 class="route-info">도착역 :</h2>
+    <div class="route-container">
+        <div class="route-detail">
+            <ul>
+                <li class="line">from</li>
+                <li class="line">to</li>
+            </ul>
+        </div>
+        <div class="route-time">
+            <ul>
+                <li>분 초</li>
+            </ul>
+        </div>
     </div>
-    <div class="route-time">
-        <ul>
-            <li>분 초</li>
-        </ul>
-    </div>
+    <button type="button" id="marking">즐겨찾기 추가</button>
 </div>
-<button type="button" id="marking">즐겨찾기 추가</button>
+
 
 
 
