@@ -4,12 +4,14 @@ import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
 import com.example.wetro.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
@@ -40,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
         // 사용자가 존재하고, 비밀번호가 일치하면 로그인 성공
         if (loginUser.isPresent() && verifyPassword(dto.getPassword(), loginUser.get().getPassword())) {
+            log.info("loginUser = {}",dto.getUserid());
             return loginUser;
         }
 

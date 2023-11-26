@@ -1,40 +1,42 @@
 package com.example.wetro.user.controller;
 
+import com.example.wetro.config.JwtTokenProvider;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
 import com.example.wetro.user.service.UserService;
+import com.example.wetro.response.Response;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
 
-@Slf4j
+import static com.example.wetro.response.Response.*;
+import static com.example.wetro.response.SuccessMessage.*;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/wetro")
 public class UserLoginController {
 
     private final UserService userService;
+    private final JwtTokenProvider tokenProvider;
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(
-            @RequestParam("userid") String userid,
-            @RequestParam("password") String password
-    ) {
-        UserLoginDto dto = new UserLoginDto(userid, password);
+    public Response login(@RequestBody @Valid UserLoginDto loginDto) {
+        System.out.println("login 컨트롤러");
+        UserLoginDto dto = new UserLoginDto(loginDto.getUserid(), loginDto.getPassword());
         Optional<User> loginUser = userService.login(dto);
 
         if (loginUser.isPresent()) {
-            // 로그인 성공 시 사용자 정보 반환
-            return ResponseEntity.ok(loginUser.get());
+            System.out.println("로그인 성공");
+            String token = tokenProvider.createToken(loginDto.getUserid());
+            return success(SUCCESS_TO_LOGIN,token);
         } else {
-            // 로그인 실패 시 404 반환
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            System.out.println("로그인 실패");
+            return fail(HttpStatus.NOT_FOUND,FAIL_TO_LOGIN);
         }
     }
 }

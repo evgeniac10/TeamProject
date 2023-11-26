@@ -17,4 +17,7 @@ public class SuccessMessage {
     public static final String SUCCESS_TO_FAIL = "회원가입 실패";
     public static final String VALID_INPUT_REQUIRED = "올바른 값을 입력해주세요";
 
+    public static final String SUCCESS_TO_LOGIN = "로그인 성공";
+    public static final String FAIL_TO_LOGIN = "로그인 실패";
+
 }
