@@ -145,27 +145,29 @@
     const userid = document.getElementById('userid').value;
     // 서버로 아이디 전송
     const apiUrl = '/wetro/checkDuplicateId/' + userid;
+    const iddata = {
+      userid: userid
+    };
     // Ajax 또는 fetch를 사용하여 서버에 GET 요청을 전송
     // 아이디 중복 여부를 서버에서 확인하고 처리
-    fetch(apiUrl)
-            .then(response => {
-              if (response.ok) {
-                // 중복이 아닌 경우
-                console.log('아이디 사용 가능');
-                alert('아이디 사용 가능');
-              } else if (response.status === 409) {
-                // 중복인 경우
-                console.log('아이디 중복');
-              } else {
-                console.error('서버 응답 오류:', response.status);
-              }
-            })
-            .catch(error => console.error('통신 오류:', error));
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(iddata)
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('에러 발생:', error);
+      });
   }
 
   function sendVerificationCode() {
     const email = document.getElementById('email').value;
-
     // 서버로 이메일 주소 전송
     const apiUrl = '/wetro/sendVerificationCode';
     const requestData = {
@@ -179,16 +181,13 @@
       },
       body: JSON.stringify(requestData)
     })
-            .then(response => {
-              if (response.ok) {
-                console.log('이메일 인증번호 발송 성공');
-                alert('이메일 인증번호 발송 성공');
-                // 서버 응답에 따른 처리를 추가할 수 있습니다.
-              } else {
-                console.error('서버 응답 오류:', response.status);
-              }
-            })
-            .catch(error => console.error('통신 오류:', error));
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('에러 발생:', error);
+      });
   }
 
   function verifyCode() {
@@ -199,7 +198,6 @@
     const requestBody = {
       verificationCode: verificationCode
     };
-
     // Ajax 또는 fetch를 사용하여 서버에 POST 요청을 전송
     fetch(apiUrl, {
       method: 'POST',
@@ -208,19 +206,13 @@
       },
       body: JSON.stringify(requestBody)
     })
-            .then(response => {
-              if (response.ok) {
-                // 인증 성공
-                console.log('이메일 인증 성공');
-                alert('이메일 인증 성공');
-              } else if (response.status === 401) {
-                // 인증 실패
-                console.log('이메일 인증 실패');
-              } else {
-                console.error('서버 응답 오류:', response.status);
-              }
-            })
-            .catch(error => console.error('통신 오류:', error));
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('에러 발생:', error);
+      });
   }
 
   function submitForm() {
@@ -247,17 +239,15 @@
       },
       body: JSON.stringify(formData)
     })
-            .then(response => {
-              if (response.ok) {
-                // 회원가입 성공
-                console.log('회원가입 성공');
-                alert('회원가입 성공');
-              } else {
-                // 회원가입 실패
-                console.error('회원가입 실패:', response.status);
-              }
-            })
-            .catch(error => console.error('통신 오류:', error));
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          alert(data.message);
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(error => console.error('통신 오류:', error));
   }
 </script>
 </body>

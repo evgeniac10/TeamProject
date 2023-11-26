@@ -1,0 +1,20 @@
+package com.example.wetro.response;
+
+import lombok.Getter;
+
+@Getter
+public class SuccessMessage {
+
+    public static final String SUCCESS_UES_ID = "아이디 사용이 가능합니다.";
+    public static final String FAIL_USE_ID = "중복된 아이디 입니다.";
+    public static final String FAIL_USE_EMAIL = "중복된 이메일 입니다.";
+
+    public static final String SUCCESS_TO_SEND_VERI = "이메일 인증번호 발송 성공";
+    public static final String SUCCESS_TO_VERI_CODE = "이메일 인증 성공";
+    public static final String FAIL_TO_VERI_CODE = "이메일 인증 실패";
+
+    public static final String SUCCESS_TO_SIGN = "회원가입 성공";
+    public static final String SUCCESS_TO_FAIL = "회원가입 실패";
+    public static final String VALID_INPUT_REQUIRED = "올바른 값을 입력해주세요";
+
+}
