@@ -1,5 +1,6 @@
 package com.example.wetro.user.controller;
 
+import com.example.wetro.response.Response;
 import com.example.wetro.user.dto.EmailRequest;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.VerificationRequest;
@@ -13,6 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import static com.example.wetro.response.Response.*;
+import static com.example.wetro.response.SuccessMessage.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,10 +42,10 @@ public class UserJoinController {
 
     //이메일 인증 코드
     @PostMapping("/sendVerificationCode")
-    public ResponseEntity<String> sendVerificationCode(@RequestBody EmailRequest emailAddress) throws Exception {
+    public Response sendVerificationCode(@RequestBody EmailRequest emailAddress) throws Exception {
         savedVerificationCode = emailService.sendSimpleMessage(emailAddress.getEmailAddress());
         // 이메일 발송 로직 수행
-        return ResponseEntity.ok("이메일 인증번호 발송 성공");
+        return success(SUCCESS_TO_SEND_VERI);
     }
 
     //이메일 인증 코드 확인

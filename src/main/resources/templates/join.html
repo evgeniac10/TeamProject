@@ -174,16 +174,13 @@
       },
       body: JSON.stringify(requestData)
     })
-            .then(response => {
-              if (response.ok) {
-                console.log('이메일 인증번호 발송 성공');
-                alert('이메일 인증번호 발송 성공');
-                // 서버 응답에 따른 처리를 추가할 수 있습니다.
-              } else {
-                console.error('서버 응답 오류:', response.status);
-              }
-            })
-            .catch(error => console.error('통신 오류:', error));
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('에러 발생:', error);
+      });
   }
 
   function verifyCode() {
