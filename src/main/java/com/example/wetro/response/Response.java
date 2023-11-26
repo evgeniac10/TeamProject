@@ -13,4 +13,7 @@ public class Response {
     public static Response success(String message){
         return new Response(message);
     }
+    public static Response fail(String message) {
+        return new Response(message);
+    }
 }

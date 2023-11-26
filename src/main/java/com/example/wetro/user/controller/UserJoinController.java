@@ -31,12 +31,12 @@ public class UserJoinController {
     private String savedVerificationCode;
 
     //id 중복 확인
-    @GetMapping("/checkDuplicateId/{userid}")
-    public ResponseEntity<String> checkDuplicateId(@PathVariable String userid) {
+    @PostMapping("/checkDuplicateId/{userid}")
+    public Response checkDuplicateId(@PathVariable String userid) {
         if (userService.isExistId(userid)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디 중복");
+            return fail(FAIL_USE_ID);
         } else {
-            return ResponseEntity.ok("아이디 사용 가능");
+            return success(SUCCESS_UES_ID);
         }
     }
 
