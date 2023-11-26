@@ -36,7 +36,7 @@ public class UserJoinController {
         if (userService.isExistId(userid)) {
             return fail(HttpStatus.BAD_REQUEST,FAIL_USE_ID);
         } else {
-            return success(HttpStatus.OK,SUCCESS_UES_ID);
+            return success(SUCCESS_UES_ID);
         }
     }
 
@@ -45,7 +45,7 @@ public class UserJoinController {
     public Response sendVerificationCode(@RequestBody EmailRequest emailAddress) throws Exception {
         savedVerificationCode = emailService.sendSimpleMessage(emailAddress.getEmailAddress());
         // 이메일 발송 로직 수행
-        return success(HttpStatus.OK,SUCCESS_TO_SEND_VERI);
+        return success(SUCCESS_TO_SEND_VERI);
     }
 
     //이메일 인증 코드 확인
@@ -53,9 +53,9 @@ public class UserJoinController {
     public Response verifyCode(@RequestBody VerificationRequest verificationCode) {
         String inputCode = verificationCode.getVerificationCode();
         if (inputCode.equals(savedVerificationCode)) {
-            return success(HttpStatus.OK,SUCCESS_TO_VERI_CODE);
+            return success(SUCCESS_TO_VERI_CODE);
         } else {
-            return success(HttpStatus.OK,FAIL_TO_VERI_CODE);
+            return success(FAIL_TO_VERI_CODE);
         }
     }
 
@@ -78,7 +78,7 @@ public class UserJoinController {
 
         User saveUser = userService.save(user);
 
-        return success(HttpStatus.OK, SUCCESS_TO_SIGN);
+        return success( SUCCESS_TO_SIGN);
     }
 
 }
