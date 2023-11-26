@@ -50,13 +50,12 @@ public class UserJoinController {
 
     //이메일 인증 코드 확인
     @PostMapping("/verify")
-    public ResponseEntity<String> verifyCode(@RequestBody VerificationRequest verificationCode) {
+    public Response verifyCode(@RequestBody VerificationRequest verificationCode) {
         String inputCode = verificationCode.getVerificationCode();
-
         if (inputCode.equals(savedVerificationCode)) {
-            return ResponseEntity.ok("이메일 인증 성공");
+            return success(SUCCESS_TO_VERI_CODE);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("이메일 인증 실패");
+            return success(FAIL_TO_VERI_CODE);
         }
     }
 

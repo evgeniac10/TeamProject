@@ -9,6 +9,8 @@ public class SuccessMessage {
     public static final String FAIL_USE_ID = "중복된 아이디 입니다.";
 
     public static final String SUCCESS_TO_SEND_VERI = "이메일 인증번호 발송 성공";
+    public static final String SUCCESS_TO_VERI_CODE = "이메일 인증 성공";
+    public static final String FAIL_TO_VERI_CODE = "이메일 인증 실패";
 
 
 }
