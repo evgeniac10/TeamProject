@@ -1,4 +1,4 @@
-package com.example.wetro.config;
+package com.example.wetro.user.jwt;
 
 import com.example.wetro.user.service.UserService;
 import io.jsonwebtoken.Claims;

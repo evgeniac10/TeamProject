@@ -1,6 +1,5 @@
-package com.example.wetro.user.security;
+package com.example.wetro.user.jwt;
 
-import com.example.wetro.config.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

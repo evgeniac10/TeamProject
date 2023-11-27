@@ -1,6 +1,7 @@
 package com.example.wetro.config;
 
-import com.example.wetro.user.security.JwtConfigurer;
+import com.example.wetro.user.jwt.JwtConfigurer;
+import com.example.wetro.user.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -34,14 +35,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/css/**")
+                .antMatchers("/img/**");
+    }
+
     protected void configure(HttpSecurity http) throws Exception {
         // 특정 URL은 인증을 거치지 않도록 설정
         http.authorizeRequests()
                     .antMatchers("/wetro/main","/wetro/login","/wetro/route"
                                 ,"/wetro/map","/wetro/join").permitAll()
-                    .antMatchers("/css/**").permitAll()
-                    .antMatchers("/img/**").permitAll()
-                    .antMatchers("/js/**").permitAll()
+//                    .antMatchers("/css/**").permitAll()
+//                    .antMatchers("/img/**").permitAll()
+//                    .antMatchers("/js/**").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
                 .and()
                     .csrf().disable()

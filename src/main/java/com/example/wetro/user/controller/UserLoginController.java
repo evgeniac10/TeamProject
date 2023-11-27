@@ -1,8 +1,8 @@
 package com.example.wetro.user.controller;
 
-import com.example.wetro.config.JwtTokenProvider;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
+import com.example.wetro.user.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.UserService;
 import com.example.wetro.response.Response;
 

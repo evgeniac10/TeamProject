@@ -1,6 +1,5 @@
-package com.example.wetro.user.security;
+package com.example.wetro.user.jwt;
 
-import com.example.wetro.config.JwtTokenProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
