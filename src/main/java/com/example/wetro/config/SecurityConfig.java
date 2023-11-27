@@ -1,6 +1,6 @@
 package com.example.wetro.config;
 
-import com.example.wetro.user.jwt.JwtConfigurer;
+import com.example.wetro.user.jwt.JwtSecurityConfig;
 import com.example.wetro.user.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/css/**")
-                .antMatchers("/img/**");
+                .antMatchers("/img/**")
+                .antMatchers("/js/**");
     }
 
     protected void configure(HttpSecurity http) throws Exception {
@@ -48,15 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                     .antMatchers("/wetro/main","/wetro/login","/wetro/route"
                                 ,"/wetro/map","/wetro/join").permitAll()
-//                    .antMatchers("/css/**").permitAll()
-//                    .antMatchers("/img/**").permitAll()
-//                    .antMatchers("/js/**").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
                 .and()
                     .csrf().disable()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //세션 사용 안함
                 .and()
-                    .apply(new JwtConfigurer(tokenProvider)); // JwtConfigurer를 적용하여 JWT 사용 설정
+                .apply(new JwtSecurityConfig(tokenProvider)); // JwtConfigurer를 적용하여 JWT 사용 설정
+
 //                .addFilterBefore(new JwtFilter(userService,secretKey), UsernamePasswordAuthenticationFilter.class);
     }
 
