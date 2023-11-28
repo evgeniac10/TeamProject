@@ -144,7 +144,7 @@
   function checkDuplicate() {
     const userid = document.getElementById('userid').value;
     // 서버로 아이디 전송
-    const apiUrl = '/wetro/checkDuplicateId/' + userid;
+    const apiUrl = '/wetro/join/checkDuplicateId/' + userid;
     const iddata = {
       userid: userid
     };
@@ -169,7 +169,7 @@
   function sendVerificationCode() {
     const email = document.getElementById('email').value;
     // 서버로 이메일 주소 전송
-    const apiUrl = '/wetro/sendVerificationCode';
+    const apiUrl = '/wetro/join/sendVerificationCode';
     const requestData = {
       emailAddress: email
     };
@@ -194,7 +194,7 @@
     const verificationCode = document.getElementById('check').value;
 
     // 서버로 인증번호 전송
-    const apiUrl = '/wetro/verify';
+    const apiUrl = '/wetro/join/verify';
     const requestBody = {
       verificationCode: verificationCode
     };
@@ -230,7 +230,7 @@
     };
 
     // 서버로 데이터 전송
-    const apiUrl = '/wetro/signup';
+    const apiUrl = '/wetro/join/signup';
 
     fetch(apiUrl, {
       method: 'POST',

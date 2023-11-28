@@ -8,20 +8,22 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 @RequiredArgsConstructor
 public class SecurityCustomUserDetailService implements UserDetailsService {
 
-    private final UserRepository userREpository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
-        return userREpository.findOneWithAuthoritiesByUserid(userid)
+        return userRepository.findOneWithAuthoritiesByUserid(userid)
                 .map(user -> createUser(userid, user))
                 .orElseThrow(() -> new UsernameNotFoundException(userid + " -> 데이터베이스에서 찾을 수 없습니다."));
     }

@@ -4,12 +4,11 @@ import com.example.wetro.user.jwt.JwtAccessDeniedHandler;
 import com.example.wetro.user.jwt.JwtAuthenticationEntryPoint;
 import com.example.wetro.user.jwt.JwtSecurityConfig;
 import com.example.wetro.user.jwt.JwtTokenProvider;
-import com.example.wetro.user.service.UserService;
+import com.example.wetro.user.service.SecurityCustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -23,21 +22,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final JwtTokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final SecurityCustomUserDetailService securityCustomUserDetailService; // 사용자 정보를 가져올 서비스
+
     @Value("${jwt.secret}")
     private String secretKey;
 
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(securityCustomUserDetailService)
+                .passwordEncoder(passwordEncoder());
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                     .authorizeRequests()
                     .antMatchers("/wetro/main","/wetro/login","/wetro/route"
-                                ,"/wetro/map","/wetro/join").permitAll()
+                                ,"/wetro/map","/wetro/join/**","/error").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
 
                 .and()
@@ -72,17 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                     .apply(new JwtSecurityConfig(tokenProvider)); // JwtConfigurer를 적용하여 JWT 사용 설정
 
-//                .addFilterBefore(new JwtFilter(userService,secretKey), UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 사용자 인증을 위한 AuthenticationManagerBuilder 설정
-        // (예: 사용자 정보를 DB에서 가져오는 경우)
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER");
     }
 
 

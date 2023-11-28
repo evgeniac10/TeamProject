@@ -42,9 +42,9 @@ INSERT INTO authority (authority_name) VALUES
 
 -- "user_authority" 테이블
 INSERT INTO user_authority (user_id, authority_name) VALUES
-    (1, 'USER'),
-    (2, 'USER'),
-    (3, 'USER');
+    (1, 'ROLE_USER'),
+    (2, 'ROLE_USER'),
+    (3, 'ROLE_USER');
 
 
 INSERT INTO bookmark (user_id, departure_station, arrival_station, time, cost) VALUES
