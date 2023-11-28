@@ -26,19 +26,22 @@ public class UserLoginController {
     private final UserService userService;
     private final JwtTokenProvider tokenProvider;
 
+
     @PostMapping("/login")
     public Response login(@RequestBody @Valid UserLoginDto loginDto) {
-        System.out.println("login 컨트롤러");
+        log.info("로그인 컨트롤러");
+
         UserLoginDto dto = new UserLoginDto(loginDto.getUserid(), loginDto.getPassword());
         log.info("현재 입력된 유저 아이디 ={} 그리고 유저 비밀번호 = {}",loginDto.getUserid(),loginDto.getPassword());
         Optional<User> loginUser = userService.login(dto);
         log.info("DB에서 꺼내온 유저 ={}",loginUser.toString());
+
         if (loginUser.isPresent()) {
-            System.out.println("로그인 성공");
+            log.info("로그인 성공");
             String token = tokenProvider.createToken(null);
             return success(SUCCESS_TO_LOGIN,token);
         } else {
-            System.out.println("로그인 실패");
+            log.info("로그인 실패");
             return fail(HttpStatus.NOT_FOUND,FAIL_TO_LOGIN);
         }
     }

@@ -1,5 +1,7 @@
 package com.example.wetro.config;
 
+import com.example.wetro.user.jwt.JwtAccessDeniedHandler;
+import com.example.wetro.user.jwt.JwtAuthenticationEntryPoint;
 import com.example.wetro.user.jwt.JwtSecurityConfig;
 import com.example.wetro.user.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.UserService;
@@ -22,9 +24,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtTokenProvider tokenProvider;
-    private final UserService userService;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     @Value("${jwt.secret}")
     private String secretKey;
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -46,15 +51,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         // 특정 URL은 인증을 거치지 않도록 설정
-        http.authorizeRequests()
+        http
+                    .exceptionHandling()
+                    .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                    .accessDeniedHandler(jwtAccessDeniedHandler)
+
+                .and()
+
+                    .authorizeRequests()
                     .antMatchers("/wetro/main","/wetro/login","/wetro/route"
                                 ,"/wetro/map","/wetro/join").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
+
                 .and()
+
                     .csrf().disable()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //세션 사용 안함
+
                 .and()
-                .apply(new JwtSecurityConfig(tokenProvider)); // JwtConfigurer를 적용하여 JWT 사용 설정
+
+                    .apply(new JwtSecurityConfig(tokenProvider)); // JwtConfigurer를 적용하여 JWT 사용 설정
 
 //                .addFilterBefore(new JwtFilter(userService,secretKey), UsernamePasswordAuthenticationFilter.class);
     }
