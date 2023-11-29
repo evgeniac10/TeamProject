@@ -117,6 +117,7 @@ input[id="menuicon"]:checked + label + div {
 .sidebar-menu {
     margin-top: 80px;
     z-index: 3;
+    text-align: center;
 }
 .menu-button {
     padding: 10px;
@@ -126,6 +127,14 @@ input[id="menuicon"]:checked + label + div {
     border-radius: 8px;
     color: #828282;
     font-weight: bold;
+}
+#welcome-text {
+    font-size: 20px;
+    color: #d7d7d7;
+    font-weight: bolder;
+    border: 3px dashed #d7d7d7;
+    margin: 0 20px 50px;
+    padding: 20px 0;
 }
 .background {
     position: fixed;
