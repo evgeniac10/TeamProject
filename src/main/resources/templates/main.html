@@ -42,8 +42,7 @@
                 </label>
             </button>
             <input type="text" name="to" id="to" placeholder="도착역" onfocus="this.placeholder=''" onblur="this.placeholder='도착역'"><br>
-            <a href="route" id="search">길찾기</a>
-            <!--            <button type="submit" id="search">길찾기</button>-->
+            <button type="submit" ><a href="route" id="search">길찾기</a></button>
             <a href="map" id="map">노선도 보기</a>
         </form>
     </div>
@@ -82,20 +81,12 @@
         })
             .then(response => response.json())
             .then(data => {
-                const resultContainer = document.querySelector('.result-container');
-                resultContainer.innerHTML = `
-                <p>현재 입력한 역은 다음과 같습니다:</p>
-                <ul>
-                    <li>출발역: ${data.from}</li>
-                    <li>도착역: ${data.to}</li>
-                </ul>
-            `;
+                localStorage.setItem('data',JSON.stringify(data));
             })
             .catch(error => console.error('Error:', error));
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        const resultContainer = document.getElementById('result-message');
         const form = document.querySelector('form');
         form.addEventListener('submit', (event) => {
             event.preventDefault(); // 주석 해제
