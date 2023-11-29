@@ -135,6 +135,7 @@
       if (data.code === 200) {
         alert(data.message);
         location.href="main"
+        localStorage.setItem("token",data.token)
       } else if(data.status ===401){
         alert("아이디 또는 비밀번호를 확인해주세요.");
       }else{
