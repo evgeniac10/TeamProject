@@ -1,4 +1,4 @@
-package com.example.wetro.user.jwt;
+package com.example.wetro.jwt;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -80,7 +80,8 @@ public class JwtTokenProvider implements InitializingBean {
             logger.info("지원되지 않는 JWT 토큰입니다.");
         }catch(IllegalArgumentException e){
             logger.info("JWT 토큰이 잘못되었습니다.");
-        }return false;}
+        }return false;
+    }
 
 
 
@@ -88,7 +89,6 @@ public class JwtTokenProvider implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         byte[] keyByte = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyByte);
-
         //HMAC은 충돌이 어려운 성질을 가집니다. 즉, 서로 다른 입력에 대해 동일한 해시 출력이 발생할 확률이 낮습니다.
     }
 }

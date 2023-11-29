@@ -1,4 +1,4 @@
-package com.example.wetro.user.jwt;
+package com.example.wetro.jwt;
 
 
 import lombok.AllArgsConstructor;
