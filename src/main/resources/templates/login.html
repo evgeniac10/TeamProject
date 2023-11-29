@@ -105,7 +105,7 @@
     <div class="form-group">
       <input type="password" id="password" name="password" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" required>
     </div>
-    <button class="login" type="submit"  >로그인</button>
+    <button class="login" type="submit"><a href="main">로그인</a></button>
     <button class="join" type="button" onclick="location.href='join'">회원가입</button>
   </form>
 </div>
@@ -131,9 +131,11 @@
     })
     .then(response => response.json())
     .then(data => {
-      if (data.status === 'ok') {
+      if (data.code === 200) {
         alert(data.message);
-      } else {
+      } else if(data.status ===401){
+        alert("아이디 또는 비밀번호를 확인해주세요.");
+      }else{
         alert(data.message);
       }
     })

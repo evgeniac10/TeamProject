@@ -2,7 +2,7 @@ package com.example.wetro.user.controller;
 
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
-import com.example.wetro.user.jwt.JwtTokenProvider;
+import com.example.wetro.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.UserService;
 import com.example.wetro.response.Response;
 
@@ -42,23 +42,31 @@ public class UserLoginController {
         List<GrantedAuthority> authorities = new ArrayList<>();
         // authorities를 설정할 필요에 따라서 UserRepository 등을 통해 DB에서 가져와서 설정
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUserid(), loginDto.getPassword(),authorities);
+        UsernamePasswordAuthenticationToken authenticationToken
+                = new UsernamePasswordAuthenticationToken(loginDto.getUserid()
+                                                        ,loginDto.getPassword()
+                                                        ,authorities);
+
+
         log.info("인증토큰 = {}",authenticationToken.getAuthorities());
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        Authentication authentication = authenticationManagerBuilder.getObject()
+                                                                    .authenticate(authenticationToken);
         log.info("authentication ={}",authentication.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        UserLoginDto dto = new UserLoginDto(loginDto.getUserid(), loginDto.getPassword());
-        log.info("현재 입력된 유저 아이디 ={} 그리고 유저 비밀번호 = {}",loginDto.getUserid(),loginDto.getPassword());
+        UserLoginDto dto = new UserLoginDto(loginDto.getUserid()
+                                            ,loginDto.getPassword());
         Optional<User> loginUser = userService.login(dto);
+
+        String token = tokenProvider.createToken(authentication);
+
+
+        log.info("현재 입력된 유저 아이디 ={} 그리고 유저 비밀번호 = {}",loginDto.getUserid(),loginDto.getPassword());
         log.info("DB에서 꺼내온 유저 ={}",loginUser.toString());
 
         if (loginUser.isPresent()) {
             log.info("로그인 성공");
-            String token = tokenProvider.createToken(authentication);
             return success(SUCCESS_TO_LOGIN,token);
         } else {
             log.info("로그인 실패");

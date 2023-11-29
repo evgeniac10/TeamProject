@@ -1,9 +1,9 @@
 package com.example.wetro.config;
 
-import com.example.wetro.user.jwt.JwtAccessDeniedHandler;
-import com.example.wetro.user.jwt.JwtAuthenticationEntryPoint;
-import com.example.wetro.user.jwt.JwtSecurityConfig;
-import com.example.wetro.user.jwt.JwtTokenProvider;
+import com.example.wetro.jwt.JwtAccessDeniedHandler;
+import com.example.wetro.jwt.JwtAuthenticationEntryPoint;
+import com.example.wetro.jwt.JwtSecurityConfig;
+import com.example.wetro.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.SecurityCustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                     .authorizeRequests()
-                    .antMatchers("/wetro/main","/wetro/login","/wetro/route"
+                    .antMatchers("/wetro/main","/wetro/login","/wetro/route","/wetro/routedetail"
                                 ,"/wetro/map","/wetro/join/**","/error").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
 
