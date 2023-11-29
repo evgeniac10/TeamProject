@@ -56,6 +56,28 @@
 </div>
 
 <script>
+    const login=document.getElementById('login-button')
+    const join=document.getElementById('join-button')
+    const bookmark=document.getElementById('bookmark-button')
+    fetch('/wetro/api',{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response =>response.json())
+        .then(data=>{
+            if(data.token===NULL){
+                bookmark.style.display='none';
+            }
+            else{
+                login.style.display='none'
+                join.style.display='none'
+            }
+        })
+
+
     function insertLayover(){
         const layover = document.getElementById('layover')
         const btn = document.getElementById('addButton')
