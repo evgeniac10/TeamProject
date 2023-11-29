@@ -5,6 +5,17 @@ CREATE TABLE user (
 password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE token(
+    user_id BIGINT PRIMARY KEY ,
+    token VARCHAR(1024) NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id)
+);
+CREATE TABLE token (
+    user_id BIGINT PRIMARY KEY,
+    token VARCHAR(1024) NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id)
+);
+
 -- "authority" 테이블 생성
 CREATE TABLE authority (
     authority_name VARCHAR(50) PRIMARY KEY

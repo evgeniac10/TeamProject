@@ -1,8 +1,11 @@
 package com.example.wetro.user.controller;
 
+import com.example.wetro.user.dto.Token;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
 import com.example.wetro.jwt.JwtTokenProvider;
+import com.example.wetro.user.repository.TokenRepository;
+import com.example.wetro.user.repository.UserRepository;
 import com.example.wetro.user.service.UserService;
 import com.example.wetro.response.Response;
 
@@ -30,7 +33,8 @@ import static com.example.wetro.response.SuccessMessage.*;
 @RequiredArgsConstructor
 @RequestMapping("/wetro")
 public class UserLoginController {
-
+    private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
     private final UserService userService;
     private final JwtTokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
@@ -61,11 +65,15 @@ public class UserLoginController {
 
         String token = tokenProvider.createToken(authentication);
 
+        userRepository.save(loginUser.get());
 
         log.info("현재 입력된 유저 아이디 ={} 그리고 유저 비밀번호 = {}",loginDto.getUserid(),loginDto.getPassword());
         log.info("DB에서 꺼내온 유저 ={}",loginUser.toString());
 
         if (loginUser.isPresent()) {
+            Token loginToken = new Token(token, loginUser.get());
+            loginUser.get().setToken(loginToken);
+            tokenRepository.save(loginToken);
             log.info("로그인 성공");
             return success(SUCCESS_TO_LOGIN,token);
         } else {

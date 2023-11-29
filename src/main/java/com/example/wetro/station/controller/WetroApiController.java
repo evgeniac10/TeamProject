@@ -19,7 +19,7 @@ public class WetroApiController {
         this.wetroService = wetroService;
     }
 
-    @RequestMapping(value = "/api", method = { RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping(value = "/search", method = { RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public ResponseEntity<Station> mainInfo(
             @RequestParam("from") String from,

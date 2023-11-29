@@ -1,10 +1,7 @@
 package com.example.wetro.user.controller;
 
 import com.example.wetro.response.Response;
-import com.example.wetro.user.dto.Authority;
-import com.example.wetro.user.dto.EmailRequest;
-import com.example.wetro.user.dto.User;
-import com.example.wetro.user.dto.VerificationRequest;
+import com.example.wetro.user.dto.*;
 import com.example.wetro.user.service.EmailService;
 import com.example.wetro.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -80,10 +77,11 @@ public class UserJoinController {
         String encodePassword = passwordEncoder.encode(userDto.getPassword());
         user.setPassword(encodePassword);
         user.setEmail(userDto.getEmail());
+
         Set<Authority> authorities = new HashSet<>();
         user.setAuthorities(authorities);
 
-        User saveUser = userService.save(user);
+        userService.save(user);
 
         return success( SUCCESS_TO_SIGN);
     }
