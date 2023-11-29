@@ -95,7 +95,17 @@
 <script>
     function getData(){
         fetch('wetro/bookmark',{
-            me
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name:name,
+                from:from,
+                to:to,
+                alarm:alarm,
+            })
+                .
         })
     }
 

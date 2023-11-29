@@ -108,9 +108,14 @@
             body: JSON.stringify({
                 "from":from,
                 "to":to,
-                "list":[{time:time,cost:cost,transfer:transfer},{time:time,cost:cost,transfer:transfer},{time:time,cost:cost,transfer:transfer}]
+                "list":[{time:time,cost:cost,transfer:transfer},{time:time,cost:cost,transfer:transfer},{time:time,cost:cost,transfer:transfer}],
             })
         })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('data',JSON.stringify(data));
+            })
+            .catch(error => console.error('Error:', error));
     }
 
 </script>
