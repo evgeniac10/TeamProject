@@ -46,7 +46,8 @@
             justify-content: space-between;
             margin-top: 20px;
         }
-        .route-time{
+        .route-time li{
+            list-style: none;
             font-size: 30px;
             color: #838383;
         }
@@ -62,11 +63,13 @@
         }
         .line{
             list-style: none;
+            margin-left: 16px;
+            padding-left: 20px;
         }
         .line::before{
+            margin: 3.5px 15px 3.5px 0px;
+            padding: 4px;
             background-color: rgb(255, 255, 255);
-            width: 4px;
-            height: 4px;
             border-radius: 50%;
             border: seagreen solid 2px;
             content: "";
