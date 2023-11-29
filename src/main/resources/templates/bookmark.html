@@ -93,6 +93,13 @@
     </div>
 </div>
 <script>
+    function getData(){
+        fetch('wetro/bookmark',{
+            me
+        })
+    }
+
+
     class Bookmark{
         constructor(from,to,alarm) {
             this.from=from
