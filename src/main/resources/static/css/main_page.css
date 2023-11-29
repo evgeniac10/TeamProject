@@ -127,9 +127,6 @@ input[id="menuicon"]:checked + label + div {
     color: #828282;
     font-weight: bold;
 }
-#bookmark-button{
-    display: none;
-}
 .background {
     position: fixed;
     top: 0;
