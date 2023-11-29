@@ -79,39 +79,23 @@
     </div>
 </div>
 <div class="bookmark">
-    <div class="first-mark">
-        <h1 id="mark-name">등교</h1>
-        <div class="mark-info">
-            <h2>출발역:</h2>
-            <h2>도착역:</h2>
-            <h2>알람 시간:</h2>
-        </div>
-        <div class="mark-button">
-            <button class="setting" type="button"><span class="material-symbols-outlined">edit</span></button>
-            <button class="alarm" type="button"><span class="material-symbols-outlined">notifications</span></button>
-        </div>
-    </div>
+<!--    <div class="first-mark">-->
+<!--        <h1 id="mark-name">등교</h1>-->
+<!--        <div class="mark-info">-->
+<!--            <h2>출발역:</h2>-->
+<!--            <h2>도착역:</h2>-->
+<!--            <h2>알람 시간:</h2>-->
+<!--        </div>-->
+<!--        <div class="mark-button">-->
+<!--            <button class="setting" type="button"><span class="material-symbols-outlined">edit</span></button>-->
+<!--            <button class="alarm" type="button"><span class="material-symbols-outlined">notifications</span></button>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <script>
-    function getData(){
-        fetch('wetro/bookmark',{
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name:name,
-                from:from,
-                to:to,
-                alarm:alarm,
-            })
-                .
-        })
-    }
-
-
     class Bookmark{
-        constructor(from,to,alarm) {
+        constructor(name,from,to,alarm) {
+            this.name=name
             this.from=from
             this.to=to
             this.alarm=alarm
@@ -120,20 +104,38 @@
             const bookmark=document.querySelector('.bookmark')
             bookmark.innerHTML=`
             <div class="first-mark">
-                <h1 id="mark-name">등교</h1>
+                <h1 id="mark-name">${this.name}</h1>
                 <div class="mark-info">
                     <h2>출발역:${this.from}</h2>
                     <h2>도착역:${this.to}</h2>
                     <h2>알람 시간:${this.alarm}</h2>
                 </div>
                 <div class="mark-button">
-                    <button class="setting" type="button">연필</button>
-                    <button class="alarm" type="button">종</button>
+                    <button class="setting" type="button"><span class="material-symbols-outlined">edit</span></button>
+                    <button class="alarm" type="button"><span class="material-symbols-outlined">notifications</span></button>
                 </div>
             </div>
             `
         }
     }
+
+    fetch('wetro/bookmark',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "mark":num,
+                "list":[Bookmark],
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            for (let i=0;i<data.mark;i++){
+                data.list[i].createMark();
+            }
+        })
 </script>
 </body>
 </html>
