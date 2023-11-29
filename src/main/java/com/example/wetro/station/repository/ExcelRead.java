@@ -40,7 +40,6 @@ public class ExcelRead {
                                         station.setTime((int) row1.getCell(2).getNumericCellValue());
                                         station.setDistance((int) row1.getCell(3).getNumericCellValue());
                                         station.setCost((int) row1.getCell(4).getNumericCellValue());
-                                        System.out.println("station.toString() = " + station.toString());
                                         stations.add(station);
                                         }
                                 }

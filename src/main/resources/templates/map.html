@@ -129,11 +129,28 @@
             <area shape="circle" coords="508, 153, 8" href="#" alt="904" class="popup-trigger">
             <div class="popup">
                 <p id="stationName"></p>
-                <a href="#"><div class="button" id="start">출발역</div></a>
-                <a href="#"><div class="button" id="end">도착역</div></a>
-                <a href="#"><div class="button" id="via">경유지</div></a>
+                <button type="submit" name="start" value="start" id="startButton"><div class="button" id="start">출발역</div></button>
+                <button type="submit" name="end" value="end" id="endButton"><div class="button" id="end">도착역</div></button>
+                <button type="submit" name="lay" value="lay" id="layButton"><div class="button" id="lay">경유지</div></button>
             </div>
         </map>
+    </div>
+    <div class="result">
+        <div>
+            <button type="button" class="reset" id="resetStartButton">x</button><p></p>
+        </div>
+        <div>
+            <button type="button" class="reset" id="resetEndButton">x</button><p></p>
+        </div>
+        <div>
+            <button type="button" class="reset" id="resetLayButton">x</button><p></p>
+        </div>
+        <div id="search-button">
+            <a href="route">길찾기</a>
+        </div>
+        <div class="opacity-bar">
+            <input type="range" min="0.4" max="1" step="0.01" value="0.85" id="opacityRange">
+        </div>
     </div>
 </div>
 </body>
@@ -144,6 +161,60 @@
     const popupTriggersRight = document.querySelectorAll('.popup-trigger-right');
     const popupContent = document.querySelector('.popup');
     const stationNameElement = document.getElementById('stationName');
+    const startButton = document.getElementById('startButton');
+    const resultStart = document.querySelector('.result div:nth-child(1) p');
+    const resultS = document.querySelector('.result div:nth-child(1)');
+    const endButton = document.getElementById('endButton');
+    const resultEnd = document.querySelector('.result div:nth-child(2) p');
+    const resultE = document.querySelector('.result div:nth-child(2)');
+    const layButton = document.getElementById('layButton');
+    const resultLay = document.querySelector('.result div:nth-child(3) p');
+    const resultL = document.querySelector('.result div:nth-child(3)');
+
+    startButton.addEventListener('click', () => {
+        const stationName = stationNameElement.innerText;
+        resultStart.innerText = `출발역 : ${stationName}`;
+        resultS.style.opacity = '1';
+        resultS.style.visibility = 'visible';
+    });
+
+    endButton.addEventListener('click', () => {
+        const stationName = stationNameElement.innerText;
+        resultEnd.innerText = `도착역 : ${stationName}`;
+        resultE.style.opacity = '1';
+        resultE.style.visibility = 'visible';
+    });
+
+    layButton.addEventListener('click', () => {
+        const stationName = stationNameElement.innerText;
+        resultLay.innerText = `경유지 : ${stationName}`;
+        resultL.style.opacity = '1';
+        resultL.style.visibility = 'visible';
+    });
+
+    const resetStart = () => {
+        resultStart.innerText = '';
+        resultS.style.opacity = '0';
+        resultS.style.visibility = 'hidden';
+    };
+
+    document.getElementById('resetStartButton').addEventListener('click', resetStart);
+
+    const resetEnd = () => {
+        resultEnd.innerText = '';
+        resultE.style.opacity = '0';
+        resultE.style.visibility = 'hidden';
+    };
+
+    document.getElementById('resetEndButton').addEventListener('click', resetEnd);
+
+    const resetLay = () => {
+        resultLay.innerText = '';
+        resultL.style.opacity = '0';
+        resultL.style.visibility = 'hidden';
+    };
+
+    document.getElementById('resetLayButton').addEventListener('click', resetLay);
 
     popupTriggers.forEach(trigger => {
         trigger.addEventListener('mouseover', (event) => {
@@ -216,5 +287,57 @@
     popupContent.addEventListener('mouseout', () => {
         popupContent.style.visibility = 'hidden';
         popupContent.style.opacity = '0';
+    });
+    // 드래그 가능한 요소를 선택합니다.
+    const draggableElement = document.querySelector('.result');
+
+    // 드래그 시작 시 초기 마우스 위치와 요소 위치를 저장합니다.
+    let startX, startY, initialPositionX, initialPositionY;
+
+    // 드래그를 시작하는 함수입니다.
+    const startDrag = (event) => {
+        // 마우스의 초기 위치를 저장합니다.
+        startX = event.clientX;
+        startY = event.clientY;
+
+        // 요소의 초기 위치를 저장합니다.
+        const style = window.getComputedStyle(draggableElement);
+        initialPositionX = parseInt(style.getPropertyValue('left'));
+        initialPositionY = parseInt(style.getPropertyValue('top'));
+
+        // 드래그 이벤트를 등록합니다.
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+    };
+
+    // 드래그 중인 함수입니다.
+    const drag = (event) => {
+        // 이동한 거리를 계산합니다.
+        const deltaX = event.clientX - startX;
+        const deltaY = event.clientY - startY;
+
+        // 요소의 위치를 업데이트합니다.
+        draggableElement.style.left = `${initialPositionX + deltaX}px`;
+        draggableElement.style.top = `${initialPositionY + deltaY}px`;
+    };
+
+    // 드래그 종료 시 드래그 이벤트를 제거합니다.
+    const stopDrag = () => {
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('mouseup', stopDrag);
+    };
+
+    // 드래그를 시작하는 이벤트 리스너를 등록합니다.
+    draggableElement.addEventListener('mousedown', startDrag);
+
+    const opacityRange = document.getElementById("opacityRange");
+    const resultDiv = document.querySelector(".result");
+
+    opacityRange.addEventListener("input", function() {
+        resultDiv.style.opacity = this.value;
+    });
+    // opacity-bar를 드래그할 때 result가 움직이지 않도록 이벤트를 막습니다.
+    opacityRange.addEventListener("mousedown", (event) => {
+        event.stopPropagation();
     });
 </script>

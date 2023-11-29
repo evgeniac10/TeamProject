@@ -8,6 +8,7 @@
     flex-direction: column;
 }
 .header{
+    position: fixed;
     display: flex;
     width: 100%;
     background-color: #d8d8d8;
@@ -49,15 +50,23 @@ h1 {
 }
 a {
     text-decoration: none;
+    color: white;
 }
 
 .button {
     width: 80px;
     height: 15px;
     padding: 10px;
-    margin: 7px 0;
+    margin: 4px 0;
     border-radius: 20px;
     color: white;
+}
+button {
+    background: white;
+    margin: 0;
+    padding: 0;
+    font-size: large;
+    line-height: 19px;
 }
 #start {
     background-color: #73aafd;
@@ -65,7 +74,7 @@ a {
 #end {
     background-color: #fd7373;
 }
-#via {
+#lay {
     background-color: #fde400;
     color: #838383;
 }
@@ -73,5 +82,73 @@ a {
     display: block;
 }
 .map {
+    padding-top: 43px;
     z-index: 0;
+}
+.result {
+    position: fixed;
+    left: 77%;
+    top: 100px;
+    background-color: #ffffff;
+    border: 5px solid #d7d7d7;
+    width: 280px;
+    height: 250px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    opacity: 0.85;
+}
+.opacity-bar {
+    padding: 10px;
+}
+.result input[type="range"] {
+    width: 100%;
+    height: 10px;
+    margin-top: 10px;
+}
+.result > div {
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    margin: 10px 20px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.result > div:nth-child(1) {
+    background-color: #73aafd;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .35s;
+}
+.result > div:nth-child(2) {
+    background-color: #fd7373;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .35s;
+}
+.result > div:nth-child(3) {
+    background-color: #fde400;
+    color: #838383;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .35s;
+}
+.result > div:nth-child(4) {
+    margin: auto;
+    text-align: center;
+    background-color: #838383;
+    width: 30%;
+    border-radius: 30px;
+}
+.reset {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-top: 6px;
+    left: 80%;
+    font-weight: bolder;
+    color: #838383;
+    transition: all .35s;
+    border-radius: 5px;
 }

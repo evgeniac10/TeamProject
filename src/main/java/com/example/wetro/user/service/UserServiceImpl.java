@@ -6,6 +6,7 @@ import com.example.wetro.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,8 +16,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -37,15 +38,23 @@ public class UserServiceImpl implements UserService {
     }
 
     public Optional<User> login(UserLoginDto dto) {
+        log.info("login service");
         // 사용자 아이디로 사용자 조회
         Optional<User> loginUser = userRepository.findByUserid(dto.getUserid());
-
+        log.info("로그인을 위한 사용자 조회 = {}",loginUser.get());
         // 사용자가 존재하고, 비밀번호가 일치하면 로그인 성공
-        if (loginUser.isPresent() && verifyPassword(dto.getPassword(), loginUser.get().getPassword())) {
-            log.info("loginUser = {}",dto.getUserid());
-            return loginUser;
+        if (loginUser.isPresent() && passwordEncoder.matches(dto.getPassword(), loginUser.get().getPassword())) {
+            User user = loginUser.get();
+            String storedEncodedPassword = user.getPassword();
+            if (passwordEncoder.matches(dto.getPassword(), storedEncodedPassword)) {
+                log.info("loginUser = {}",dto.getUserid());
+                return loginUser;
+            } else {
+                // 비밀번호 불일치
+                log.info("비밀번호 불일치");
+                return Optional.empty();
+            }
         }
-
         // 로그인 실패
         return Optional.empty();
     }

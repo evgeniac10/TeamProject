@@ -1,6 +1,7 @@
 package com.example.wetro.user.controller;
 
 import com.example.wetro.response.Response;
+import com.example.wetro.user.dto.Authority;
 import com.example.wetro.user.dto.EmailRequest;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.VerificationRequest;
@@ -10,23 +11,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static com.example.wetro.response.Response.*;
 import static com.example.wetro.response.SuccessMessage.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/wetro")
+@RequestMapping("/wetro/join")
 public class UserJoinController {
 
-    @Autowired
     private final UserService userService;
-    @Autowired
     private final EmailService emailService;
+    private final PasswordEncoder passwordEncoder;
 
     private String savedVerificationCode;
 
@@ -73,8 +77,12 @@ public class UserJoinController {
 
         User user = new User();
         user.setUserid(userDto.getUserid());
-        user.setPassword(userDto.getPassword());
+        String encodePassword = passwordEncoder.encode(userDto.getPassword());
+        user.setPassword(encodePassword);
         user.setEmail(userDto.getEmail());
+        Set<Authority> authorities = new HashSet<>();
+        authorities.add(new Authority("ROLE_USER"));
+        user.setAuthorities(authorities);
 
         User saveUser = userService.save(user);
 
