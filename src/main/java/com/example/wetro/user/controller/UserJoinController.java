@@ -81,7 +81,6 @@ public class UserJoinController {
         user.setPassword(encodePassword);
         user.setEmail(userDto.getEmail());
         Set<Authority> authorities = new HashSet<>();
-        authorities.add(new Authority("ROLE_USER"));
         user.setAuthorities(authorities);
 
         User saveUser = userService.save(user);
