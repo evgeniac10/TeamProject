@@ -137,19 +137,19 @@
     </div>
     <div class="result">
         <div>
-            <p></p>
-            <button type="button" class="reset" id="resetStartButton">x</button>
+            <button type="button" class="reset" id="resetStartButton">x</button><p></p>
         </div>
         <div>
-            <p></p>
-            <button type="button" class="reset" id="resetEndButton">x</button>
+            <button type="button" class="reset" id="resetEndButton">x</button><p></p>
         </div>
         <div>
-            <p></p>
-            <button type="button" class="reset" id="resetLayButton">x</button>
+            <button type="button" class="reset" id="resetLayButton">x</button><p></p>
         </div>
         <div id="search-button">
             <a href="route">길찾기</a>
+        </div>
+        <div class="opacity-bar">
+            <input type="range" min="0.4" max="1" step="0.01" value="0.85" id="opacityRange">
         </div>
     </div>
 </div>
@@ -329,4 +329,15 @@
 
     // 드래그를 시작하는 이벤트 리스너를 등록합니다.
     draggableElement.addEventListener('mousedown', startDrag);
+
+    const opacityRange = document.getElementById("opacityRange");
+    const resultDiv = document.querySelector(".result");
+
+    opacityRange.addEventListener("input", function() {
+        resultDiv.style.opacity = this.value;
+    });
+    // opacity-bar를 드래그할 때 result가 움직이지 않도록 이벤트를 막습니다.
+    opacityRange.addEventListener("mousedown", (event) => {
+        event.stopPropagation();
+    });
 </script>
