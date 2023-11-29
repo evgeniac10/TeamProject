@@ -25,6 +25,7 @@
             <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
             <div class="menu-text" id="welcom-text">~님 환영합니다~!</div>
             <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
+            <input type="submit" class="menu-button" id="logout-button" value="로그아웃"></input>
         </div>
     </div>
     <label for="menuicon" class="background"></label>
@@ -62,7 +63,10 @@
         const join=document.getElementById('join-button')
         const bookmark=document.getElementById('bookmark-button')
         const welcome=document.getElementById('welcom-text')
+        const logout=document.getElementById('logout-button')
         if(localStorage.getItem("token")===null){
+            bookmark.style.display='none';
+            logout.style.display='none';
             login.style.display='block'
             join.style.display='block'
             bookmark.style.display='none';
@@ -73,6 +77,8 @@
             join.style.display='none'
             bookmark.style.display='block';
             welcome.style.display='block'
+            bookmark.style.display='block'
+            logout.style.display='block'
         }
     }
 
