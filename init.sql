@@ -28,28 +28,28 @@ CREATE TABLE bookmark (
     cost DECIMAL(10, 2),
 FOREIGN KEY (user_id) REFERENCES user(id)
 );
--- 데이터 삽입
--- "user" 테이블
-INSERT INTO user (email, userid, password)VALUES
-    ('user1@naver.com','user1','1234'),
-    ('user2@naver.com','user2','12345'),
-    ('user3@naver.com','user3','123456');
-
-
--- "authority" 테이블
-INSERT INTO authority (authority_name) VALUES
-    ('USER');
-
--- "user_authority" 테이블
-INSERT INTO user_authority (user_id, authority_name) VALUES
-    (1, 'ROLE_USER'),
-    (2, 'ROLE_USER'),
-    (3, 'ROLE_USER');
-
-
-INSERT INTO bookmark (user_id, departure_station, arrival_station, time, cost) VALUES
-    (1, '101', '104', '10:00', 2000),
-    (1, '301', '102', '14:30', 1500),
-    (2, '402', '201', '09:45', 1800),
-    (3, '112', '701', '12:15', 2230);
+# -- 데이터 삽입
+# -- "user" 테이블
+# INSERT INTO user (email, userid, password)VALUES
+#     ('user1@naver.com','user1','1234'),
+#     ('user2@naver.com','user2','12345'),
+#     ('user3@naver.com','user3','123456');
+#
+#
+# -- "authority" 테이블
+# INSERT INTO authority (authority_name) VALUES
+#     ('USER');
+#
+# -- "user_authority" 테이블
+# INSERT INTO user_authority (user_id, authority_name) VALUES
+#     (1, 'ROLE_USER'),
+#     (2, 'ROLE_USER'),
+#     (3, 'ROLE_USER');
+#
+#
+# INSERT INTO bookmark (user_id, departure_station, arrival_station, time, cost) VALUES
+#     (1, '101', '104', '10:00', 2000),
+#     (1, '301', '102', '14:30', 1500),
+#     (2, '402', '201', '09:45', 1800),
+#     (3, '112', '701', '12:15', 2230);
 
