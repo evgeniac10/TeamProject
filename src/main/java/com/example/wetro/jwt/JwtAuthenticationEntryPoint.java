@@ -1,4 +1,4 @@
-package com.example.wetro.user.jwt;
+package com.example.wetro.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -13,9 +13,9 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
-    public void commence(HttpServletRequest request,
-                         HttpServletResponse response,
-                         AuthenticationException authException) throws IOException {
+    public void commence(HttpServletRequest request
+                        ,HttpServletResponse response
+                        ,AuthenticationException authException) throws IOException {
         // 유효한 자격증명을 제공하지 않고 접근하려 할때 401
         log.info("JwtAuthenticationEntryPoint 호출입니다.");
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);

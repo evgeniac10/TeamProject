@@ -131,9 +131,11 @@
     })
     .then(response => response.json())
     .then(data => {
-      if (data.status === 'ok') {
+      if (data.code === 200) {
         alert(data.message);
-      } else {
+      } else if(data.status ===401){
+        alert("아이디 또는 비밀번호를 확인해주세요.");
+      }else{
         alert(data.message);
       }
     })

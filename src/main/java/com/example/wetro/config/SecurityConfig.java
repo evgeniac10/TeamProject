@@ -1,9 +1,9 @@
 package com.example.wetro.config;
 
-import com.example.wetro.user.jwt.JwtAccessDeniedHandler;
-import com.example.wetro.user.jwt.JwtAuthenticationEntryPoint;
-import com.example.wetro.user.jwt.JwtSecurityConfig;
-import com.example.wetro.user.jwt.JwtTokenProvider;
+import com.example.wetro.jwt.JwtAccessDeniedHandler;
+import com.example.wetro.jwt.JwtAuthenticationEntryPoint;
+import com.example.wetro.jwt.JwtSecurityConfig;
+import com.example.wetro.jwt.JwtTokenProvider;
 import com.example.wetro.user.service.SecurityCustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
