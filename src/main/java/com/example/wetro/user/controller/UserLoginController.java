@@ -1,6 +1,7 @@
 package com.example.wetro.user.controller;
 
 import com.example.wetro.user.dto.Token;
+import com.example.wetro.user.dto.TokenDto;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
 import com.example.wetro.jwt.JwtTokenProvider;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.wetro.response.Response.*;
-import static com.example.wetro.response.SuccessMessage.*;
+import static com.example.wetro.response.Message.*;
 
 @Slf4j
 @RestController
@@ -48,37 +49,56 @@ public class UserLoginController {
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         UsernamePasswordAuthenticationToken authenticationToken
                 = new UsernamePasswordAuthenticationToken(loginDto.getUserid()
-                                                        ,loginDto.getPassword()
-                                                        ,authorities);
+                , loginDto.getPassword()
+                , authorities);
 
-
-        log.info("인증토큰 = {}",authenticationToken.getAuthorities());
+        log.info("인증토큰 = {}", authenticationToken.getAuthorities());
 
         Authentication authentication = authenticationManagerBuilder.getObject()
-                                                                    .authenticate(authenticationToken);
-        log.info("authentication ={}",authentication.getAuthorities());
+                .authenticate(authenticationToken);
+        log.info("authentication ={}", authentication.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserLoginDto dto = new UserLoginDto(loginDto.getUserid()
-                                            ,loginDto.getPassword());
+                , loginDto.getPassword());
         Optional<User> loginUser = userService.login(dto);
 
         String token = tokenProvider.createToken(authentication);
 
         userRepository.save(loginUser.get());
 
-        log.info("현재 입력된 유저 아이디 ={} 그리고 유저 비밀번호 = {}",loginDto.getUserid(),loginDto.getPassword());
-        log.info("DB에서 꺼내온 유저 ={}",loginUser.toString());
+        log.info("현재 입력된 유저 아이디 ={} 그리고 유저 비밀번호 = {}", loginDto.getUserid(), loginDto.getPassword());
+        log.info("DB에서 꺼내온 유저 ={}", loginUser.toString());
 
         if (loginUser.isPresent()) {
             Token loginToken = new Token(token, loginUser.get());
             loginUser.get().setToken(loginToken);
             tokenRepository.save(loginToken);
             log.info("로그인 성공");
-            return success(SUCCESS_TO_LOGIN,token);
+            return success(SUCCESS_TO_LOGIN, token,loginUser.get().getToken().getId());
         } else {
             log.info("로그인 실패");
-            return fail(HttpStatus.NOT_FOUND,FAIL_TO_LOGIN);
+            return fail(HttpStatus.NOT_FOUND, FAIL_TO_LOGIN);
         }
     }
+
+    @PostMapping("/logout")
+    public Response logout(@RequestBody TokenDto tokenDto){
+        Long tokenId = tokenDto.getTokenId();
+        Optional<Token> token = tokenRepository.findById(tokenId);
+
+        if (token.isPresent()) {
+            // 토큰을 삭제하고 클라이언트에게 응답
+            User user = token.get().getUser();
+            user.setToken(null);
+            tokenRepository.delete(token.get());
+            log.info("로그아웃 성공");
+            return success(SUCCESS_TO_LOGOUT);
+        } else {
+            // 유효하지 않은 토큰 ID인 경우 실패 응답
+            return fail(HttpStatus.NOT_FOUND, FAIL_TO_LOGOUT);
+        }
+
+    }
+
 }
