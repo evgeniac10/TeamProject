@@ -1,6 +1,6 @@
 package com.example.wetro.user.controller;
 
-import com.example.wetro.response.Response;
+import com.example.wetro.response.tokenResponse;
 import com.example.wetro.user.dto.*;
 import com.example.wetro.user.service.EmailService;
 import com.example.wetro.user.service.UserService;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.example.wetro.response.Response.*;
+import static com.example.wetro.response.tokenResponse.*;
 import static com.example.wetro.response.Message.*;
 
 @RestController
@@ -31,7 +31,7 @@ public class UserJoinController {
 
     //id 중복 확인
     @PostMapping("/checkDuplicateId/{userid}")
-    public Response checkDuplicateId(@PathVariable String userid) {
+    public tokenResponse checkDuplicateId(@PathVariable String userid) {
         if (userService.isExistId(userid)) {
             return fail(HttpStatus.BAD_REQUEST,FAIL_USE_ID);
         } else {
@@ -41,7 +41,7 @@ public class UserJoinController {
 
     //이메일 인증 코드
     @PostMapping("/sendVerificationCode")
-    public Response sendVerificationCode(@RequestBody EmailRequest emailAddress) throws Exception {
+    public tokenResponse sendVerificationCode(@RequestBody EmailRequest emailAddress) throws Exception {
         savedVerificationCode = emailService.sendSimpleMessage(emailAddress.getEmailAddress());
         // 이메일 발송 로직 수행
         return success(SUCCESS_TO_SEND_VERI);
@@ -49,7 +49,7 @@ public class UserJoinController {
 
     //이메일 인증 코드 확인
     @PostMapping("/verify")
-    public Response verifyCode(@RequestBody VerificationRequest verificationCode) {
+    public tokenResponse verifyCode(@RequestBody VerificationRequest verificationCode) {
         String inputCode = verificationCode.getVerificationCode();
         if (inputCode.equals(savedVerificationCode)) {
             return success(SUCCESS_TO_VERI_CODE);
@@ -60,7 +60,7 @@ public class UserJoinController {
 
     // 가입 처리
     @PostMapping("/signup")
-    public Response signUp(@RequestBody @Valid User userDto , BindingResult bindingResult) {
+    public tokenResponse signUp(@RequestBody @Valid User userDto , BindingResult bindingResult) {
 
         if(bindingResult.hasErrors())//Valid로 유효성 검사를 했는데 입력해야하는 양식에 맞지 않는 경우 BAD_REQUEST를 반환한다.
             return fail(HttpStatus.BAD_REQUEST, VALID_INPUT_REQUIRED);

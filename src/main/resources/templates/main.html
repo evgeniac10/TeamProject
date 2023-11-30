@@ -23,9 +23,15 @@
         <div class="sidebar-menu">
             <a href="login"><div class="menu-button" id="login-button">로그인</div></a>
             <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
-            <div class="menu-text" id="welcome-text">~님 환영합니다~!</div>
+            <script th:inline="javascript">
+                // JavaScript 코드를 Thymeleaf에서 직접 작성하기 위한 설정
+                // 유저 이름이 존재하는 경우에만 동적으로 표시
+                if (window.loggedInUserid) {
+                    document.write('<div class="menu-text" id="welcome-text">' + window.loggedInUserid + '님 어서오세요!</div>');
+                }
+            </script>
             <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
-            <input type="submit" class="menu-button" id="logout-button" value="로그아웃"></input>
+            <input type="submit"  id="logoutForm" onclick="logout()" value="로그아웃">
         </div>
     </div>
     <label for="menuicon" class="background"></label>
@@ -33,6 +39,7 @@
 <main>
     <div class="container">
         <form action="/wetro/api" method="post" onsubmit="return validateForm()">
+<!--            여기에 action URL 맞는지 확인하기 -->
             <input type="text" name="from" id="from" placeholder="출발역" onfocus="this.placeholder=''" onblur="this.placeholder='출발역'"><br>
             <div id="layover-a"><input type="text" name="layover" id="layover" placeholder="경유지" onfocus="this.placeholder=''" onblur="this.placeholder='경유지'"><br></div>
             <button type="button" name="layover-btn" id="layover-btn" onclick="insertLayover()">
@@ -62,24 +69,23 @@
         const login=document.getElementById('login-button')
         const join=document.getElementById('join-button')
         const bookmark=document.getElementById('bookmark-button')
-        const welcome=document.getElementById('welcome-text')
-        const logout=document.getElementById('logout-button')
+        //const welcome=document.getElementById('welcome-text')
+        const logout=document.getElementById('logoutForm')
         if(localStorage.getItem("token")===null){
             bookmark.style.display='none'
             logout.style.display='none'
             login.style.display='block'
             join.style.display='block'
-            welcome.style.display='none'
+            //welcome.style.display='none'
         }
         else{
             login.style.display='none'
             join.style.display='none'
             bookmark.style.display='block'
-            welcome.style.display='block'
+            //welcome.style.display='block'
             logout.style.display='block'
         }
     }
-
 
     function insertLayover(){
         const layover = document.getElementById('layover')
@@ -95,30 +101,59 @@
         }
     }
     function validateForm() {
-        // 폼 유효성 검사 로직을 추가할 수 있습니다.
-        return true; // 예시로 항상 true 반환
+        return true;
     }
     function fetchData() {
-        const form = document.querySelector('form');
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+
+        const requestData = {
+            from: from,
+            to: to
+        };
+
+        console.log('Request Data:', requestData);
+
         fetch('/wetro/search', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                "from":from,
-                "to":to,
-                "list":[{"time":time,"cost":cost,"transfer":transfer},{"time":time,"cost":cost,"transfer":transfer},{"time":time,"cost":cost,"transfer":transfer}],
-            })
+            body: JSON.stringify(requestData)
         })
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem('data',JSON.stringify(data));
+                localStorage.setItem('data', JSON.stringify(data));
             })
             .catch(error => console.error('Error:', error));
     }
 
-</script>
+    function logout(){
 
+        var tokenId = localStorage.getItem("tokenId");
+
+        fetch('/wetro/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "tokenId":tokenId
+            })
+        }).then(data => {
+            console.log('Response:', data);
+
+            if (data.status === 200) {
+                localStorage.removeItem("tokenId");
+                localStorage.removeItem("token");
+
+                window.location.reload();
+            } else {
+                console.log('Logout failed:', data.message);
+            }
+        })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
 </body>
 </html>
