@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>wetro 메인페이지</title>
     <link rel="stylesheet" href="/css/main_page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
 <!--    <script src="main.js"></script>-->
 </head>
 <body>
@@ -128,8 +131,7 @@
             .catch(error => console.error('Error:', error));
     }
 
-    function logout(){
-
+    function logout() {
         var tokenId = localStorage.getItem("tokenId");
 
         fetch('/wetro/logout', {
@@ -138,21 +140,27 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "tokenId":tokenId
+                "tokenId": tokenId
             })
         }).then(data => {
             console.log('Response:', data);
 
             if (data.status === 200) {
+                // Logout successful
                 localStorage.removeItem("tokenId");
                 localStorage.removeItem("token");
 
+                // Reload the page
                 window.location.reload();
             } else {
+                // Logout failed
                 console.log('Logout failed:', data.message);
+                alert('Logout failed. Please try again.'); // You can customize the alert message
             }
         })
             .catch(error => console.error('Error:', error));
+
+        alert('로그아웃 성공');
     }
 </script>
 </body>
