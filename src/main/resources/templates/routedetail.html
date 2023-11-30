@@ -45,11 +45,13 @@
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            z-index: 2;
         }
         .route-time li{
             list-style: none;
             font-size: 30px;
             color: #838383;
+            z-index: 2;
         }
         #marking{
             background-color: #fd7373;
@@ -61,13 +63,17 @@
             margin-left: 50%;
             transform: translate(-50%, 0);
         }
-        .line{
+        .dot{
             list-style: none;
             font-weight: bold;
             font-size: 40px;
             color: #838383;
         }
-        .line::before{
+        .dot-text {
+            margin: 0 0 2px 40px;
+        }
+        .dot::before {
+            position: absolute;
             padding: 0;
             background-color: rgb(255, 255, 255);
             border-radius: 50%;
@@ -77,6 +83,26 @@
             width: 10px;
             display: inline-block;
             margin-right: 10px;
+            margin-top: 18px;
+            z-index: 1;
+        }
+        .line {
+            list-style: none;
+            font-size: 30px;
+            color: #838383;
+        }
+        .line-text{
+            margin: 7px 0 2px 40px;
+        }
+        .line::before{
+            position: absolute;
+            background-color: rgb(115, 170, 253); /*임시 background color*/
+            content: "";
+            height: 85px;
+            width: 14px;
+            display: inline-block;
+            margin: -20px 0 -30px 6px;
+            z-index: 0;
         }
     </style>
 </head>
@@ -92,8 +118,12 @@
     <div class="route-container">
         <div class="route-detail">
             <ul>
-                <li class="line">from</li>
-                <li class="line">to</li>
+                <li class="dot"><p class="dot-text">from</p></li>
+                <li class="line"><p class="line-text">101</p></li> <!--더미 데이터 입니당-->
+                <li class="line"><p class="line-text">102</p></li> <!--더미 데이터 입니당-->
+                <li class="line"><p class="line-text">102</p></li> <!--더미 데이터 입니당-->
+                <li class="line"><p class="line-text">102</p></li> <!--더미 데이터 입니당-->
+                <li class="dot"><p class="dot-text">to</p></li>
             </ul>
         </div>
         <div class="route-time">
