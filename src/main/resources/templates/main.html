@@ -23,7 +23,7 @@
         <div class="sidebar-menu">
             <a href="login"><div class="menu-button" id="login-button">로그인</div></a>
             <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
-            <div class="menu-text" id="welcome-text">님</div>
+            <div class="menu-text" id="welcome-text">~님 환영합니다~!</div>
             <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
             <input type="submit" class="menu-button" id="logout-button" value="로그아웃"></input>
         </div>
@@ -76,7 +76,6 @@
             join.style.display='none'
             bookmark.style.display='block'
             welcome.style.display='block'
-            welcome.innerHTML=`${getId()}님`
             logout.style.display='block'
         }
     }
@@ -117,25 +116,6 @@
                 localStorage.setItem('data',JSON.stringify(data));
             })
             .catch(error => console.error('Error:', error));
-    }
-    function getId(){
-        let id
-        fetch('wetro/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: {
-                userid: userid,
-                password: password,
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                id = data.userid;
-                return id;
-            })
-            .catch(error => console.error('통신 오류:', error));
     }
 
 </script>

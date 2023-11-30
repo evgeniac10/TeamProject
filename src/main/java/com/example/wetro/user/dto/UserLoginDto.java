@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
 public class UserLoginDto {
 

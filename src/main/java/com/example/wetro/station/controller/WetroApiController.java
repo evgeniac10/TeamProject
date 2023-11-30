@@ -1,45 +1,31 @@
 package com.example.wetro.station.controller;
 
+import com.example.wetro.response.Response;
 import com.example.wetro.station.dto.Station;
+import com.example.wetro.station.dto.StationDto;
 import com.example.wetro.station.service.WetroService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static com.example.wetro.response.Response.success;
+
 @Slf4j
 @RestController
 @RequestMapping("/wetro")
+@RequiredArgsConstructor
 public class WetroApiController {
 
-    private WetroService wetroService;
-    @Autowired
-    public WetroApiController(WetroService wetroService) {
-        this.wetroService = wetroService;
-    }
+    private final WetroService wetroService;
 
-    @RequestMapping(value = "/search", method = { RequestMethod.POST,RequestMethod.GET})
+    @PostMapping(value = "/search")
     @ResponseBody
-    public ResponseEntity<Station> mainInfo(
-            @RequestParam("from") String from,
-            @RequestParam("to") String to
-    ) {
-        if (wetroService != null) {
-            System.out.println("출발역 = " + from + "  도착역 = " + to);
+    public Response Info(@RequestBody StationDto stationDto) {
 
-            Integer depart = wetroService.searchFromStation(Integer.parseInt(from));
-            Integer arrive = wetroService.searchToStation(Integer.parseInt(to));
-
-            Station station = new Station();
-            station.setFrom(Integer.valueOf(String.valueOf(depart)));
-            station.setTo(Integer.valueOf(String.valueOf(arrive)));
-
-
-            return ResponseEntity.ok(station);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return success()
     }
-
 }
+

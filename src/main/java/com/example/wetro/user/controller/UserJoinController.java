@@ -5,9 +5,7 @@ import com.example.wetro.user.dto.*;
 import com.example.wetro.user.service.EmailService;
 import com.example.wetro.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.example.wetro.response.Response.*;
-import static com.example.wetro.response.SuccessMessage.*;
+import static com.example.wetro.response.Message.*;
 
 @RestController
 @RequiredArgsConstructor
