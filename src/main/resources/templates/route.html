@@ -118,14 +118,72 @@
         </a>
     </div>
 </div>
+<script>
+    function printTime(){
+        const rectime=localStorage.getItem("list",data.list[0])
+        const time=rectime.time
+        const cost=rectime.cost
+        const transfer=rectime.transfer
 
+        const recommend=document.querySelector('.route-detail')
+        recommend.innerHTML=`
+            <div class="rec-time">
+                <h4>최소 시간</h4>
+                <div class="from"></div>
+                <div class="to"></div>
+                <div class="rec-info">
+                    <p>시간 : ${time}</p>
+                    <p>비용 : ${cost}</p>
+                    <p>환승 : ${transfer}</p>
+                </div>
+            </div>
+        `
+    }
+    function printCost(){
+        const reccost=localStorage.getItem("list",data.list[1])
+        const time=rectime.time
+        const cost=rectime.cost
+        const transfer=rectime.transfer
 
+        const recommend=document.querySelector('.route-detail')
+        recommend.innerHTML=`
+            <div class="rec-cost">
+                <h4>최소 비용</h4>
+                <div class="from"></div>
+                <div class="to"></div>
+                <div class="rec-info">
+                    <p>시간 : ${time}</p>
+                    <p>비용 : ${cost}</p>
+                    <p>환승 : ${transfer}</p>
+                </div>
+            </div>
+        `
+    }
+    function printTransfer(){
+        const rectransfer=localStorage.getItem("list",data.list[2])
+        const time=rectime.time
+        const cost=rectime.cost
+        const transfer=rectime.transfer
 
-<!--<script>-->
-<!--    const { from,to } = JSON.parse(localStorage.getItem("user-info"));-->
-<!--    localStorage.remove("user-info");-->
-<!--    console.log(from,to);-->
-<!--</script>-->
+        const recommend=document.querySelector('.route-detail')
+        recommend.innerHTML=`
+            <div class="rec-trans">
+                <h4>최소 환승</h4>
+                <div class="from"></div>
+                <div class="to"></div>
+                <div class="rec-info">
+                    <p>시간 : ${time}</p>
+                    <p>비용 : ${cost}</p>
+                    <p>환승 : ${transfer}</p>
+                </div>
+            </div>
+        `
+    }
+
+    printTime()
+    printCost()
+    printTransfer()
+</script>
 
 </body>
 </html>
