@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,4 +32,8 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities = new HashSet<>(Arrays.asList(new Authority("ROLE_USER")));
+
+
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private Token token;
 }
