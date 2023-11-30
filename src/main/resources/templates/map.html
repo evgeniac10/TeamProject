@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>노선도</title>
     <link rel="stylesheet" href="/css/map.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="container">
@@ -218,13 +221,26 @@
 
     popupTriggers.forEach(trigger => {
         trigger.addEventListener('mouseover', (event) => {
-            // Get the mouse position and update the popup's position accordingly
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-            popupContent.style.left = (mouseX-8) + 'px';
-            popupContent.style.top = (mouseY-8) + 'px';
+            const popupWidth = popupContent.offsetWidth;
+            const popupHeight = popupContent.offsetHeight;
 
-            // Set the station name based on the alt attribute of the clicked area
+            // Adjust left position
+            let leftPosition = mouseX - 8;
+            if (leftPosition + popupWidth > window.innerWidth) {
+                leftPosition = window.innerWidth - popupWidth;
+            }
+
+            // Adjust top position
+            let topPosition = mouseY - 8;
+            if (topPosition + popupHeight > window.innerHeight) {
+                topPosition = window.innerHeight - popupHeight;
+            }
+
+            popupContent.style.left = leftPosition + 'px';
+            popupContent.style.top = topPosition + 'px';
+
             stationNameElement.innerText = trigger.getAttribute('alt');
 
             popupContent.style.visibility = 'visible';
@@ -239,13 +255,26 @@
 
     popupTriggersBottom.forEach(trigger => {
         trigger.addEventListener('mouseover', (event) => {
-            // Get the mouse position and update the popup's position accordingly
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-            popupContent.style.left = (mouseX-5) + 'px';
-            popupContent.style.top = (mouseY-165) + 'px';
+            const popupWidth = popupContent.offsetWidth;
+            const popupHeight = popupContent.offsetHeight;
 
-            // Set the station name based on the alt attribute of the clicked area
+            // Adjust left position
+            let leftPosition = mouseX - 5;
+            if (leftPosition + popupWidth > window.innerWidth) {
+                leftPosition = window.innerWidth - popupWidth;
+            }
+
+            // Adjust top position
+            let topPosition = mouseY - 165;
+            if (topPosition + popupHeight > window.innerHeight) {
+                topPosition = window.innerHeight - popupHeight;
+            }
+
+            popupContent.style.left = leftPosition + 'px';
+            popupContent.style.top = topPosition + 'px';
+
             stationNameElement.innerText = trigger.getAttribute('alt');
 
             popupContent.style.visibility = 'visible';
@@ -260,13 +289,26 @@
 
     popupTriggersRight.forEach(trigger => {
         trigger.addEventListener('mouseover', (event) => {
-            // Get the mouse position and update the popup's position accordingly
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-            popupContent.style.left = (mouseX-115) + 'px';
-            popupContent.style.top = (mouseY-5) + 'px';
+            const popupWidth = popupContent.offsetWidth;
+            const popupHeight = popupContent.offsetHeight;
 
-            // Set the station name based on the alt attribute of the clicked area
+            // Adjust left position
+            let leftPosition = mouseX - 115;
+            if (leftPosition + popupWidth > window.innerWidth) {
+                leftPosition = window.innerWidth - popupWidth;
+            }
+
+            // Adjust top position
+            let topPosition = mouseY - 5;
+            if (topPosition + popupHeight > window.innerHeight) {
+                topPosition = window.innerHeight - popupHeight;
+            }
+
+            popupContent.style.left = leftPosition + 'px';
+            popupContent.style.top = topPosition + 'px';
+
             stationNameElement.innerText = trigger.getAttribute('alt');
 
             popupContent.style.visibility = 'visible';
@@ -288,47 +330,63 @@
         popupContent.style.visibility = 'hidden';
         popupContent.style.opacity = '0';
     });
-    // 드래그 가능한 요소를 선택합니다.
+
     const draggableElement = document.querySelector('.result');
 
-    // 드래그 시작 시 초기 마우스 위치와 요소 위치를 저장합니다.
     let startX, startY, initialPositionX, initialPositionY;
 
-    // 드래그를 시작하는 함수입니다.
-    const startDrag = (event) => {
-        // 마우스의 초기 위치를 저장합니다.
-        startX = event.clientX;
-        startY = event.clientY;
-
-        // 요소의 초기 위치를 저장합니다.
-        const style = window.getComputedStyle(draggableElement);
-        initialPositionX = parseInt(style.getPropertyValue('left'));
-        initialPositionY = parseInt(style.getPropertyValue('top'));
-
-        // 드래그 이벤트를 등록합니다.
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('mouseup', stopDrag);
+    const isResultDivOrChild = (target) => {
+        return (
+            target === draggableElement ||
+            draggableElement.contains(target)
+        );
     };
 
-    // 드래그 중인 함수입니다.
-    const drag = (event) => {
-        // 이동한 거리를 계산합니다.
-        const deltaX = event.clientX - startX;
-        const deltaY = event.clientY - startY;
+    const startDrag = (event) => {
+        if (
+            (event.type === 'mousedown' && event.button === 0) ||
+            (event.type === 'touchstart' && event.touches.length === 1 && isResultDivOrChild(event.target))
+        ) {
+            startX = event.clientX || event.touches[0].clientX;
+            startY = event.clientY || event.touches[0].clientY;
 
-        // 요소의 위치를 업데이트합니다.
+            const style = window.getComputedStyle(draggableElement);
+            initialPositionX = parseInt(style.getPropertyValue('left'));
+            initialPositionY = parseInt(style.getPropertyValue('top'));
+
+            if (event.type === 'mousedown') {
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', stopDrag);
+            } else if (event.type === 'touchstart') {
+                document.addEventListener('touchmove', drag, { passive: false });
+                document.addEventListener('touchend', stopDrag);
+            }
+        }
+    };
+
+    const drag = (event) => {
+        const clientX = event.clientX || event.touches[0].clientX;
+        const clientY = event.clientY || event.touches[0].clientY;
+
+        const deltaX = clientX - startX;
+        const deltaY = clientY - startY;
+
         draggableElement.style.left = `${initialPositionX + deltaX}px`;
         draggableElement.style.top = `${initialPositionY + deltaY}px`;
+
+        // Prevent other elements from receiving touch events
+        event.preventDefault();
     };
 
-    // 드래그 종료 시 드래그 이벤트를 제거합니다.
     const stopDrag = () => {
         document.removeEventListener('mousemove', drag);
         document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('touchmove', drag);
+        document.removeEventListener('touchend', stopDrag);
     };
 
-    // 드래그를 시작하는 이벤트 리스너를 등록합니다.
     draggableElement.addEventListener('mousedown', startDrag);
+    draggableElement.addEventListener('touchstart', startDrag);
 
     const opacityRange = document.getElementById("opacityRange");
     const resultDiv = document.querySelector(".result");
@@ -336,8 +394,41 @@
     opacityRange.addEventListener("input", function() {
         resultDiv.style.opacity = this.value;
     });
-    // opacity-bar를 드래그할 때 result가 움직이지 않도록 이벤트를 막습니다.
+
     opacityRange.addEventListener("mousedown", (event) => {
         event.stopPropagation();
     });
+
+    // Touch events for mobile devices
+    opacityRange.addEventListener("touchstart", (event) => {
+        event.stopPropagation(); // Prevent touch events from reaching other elements
+
+        const startTouchX = event.touches[0].clientX;
+        const initialOpacity = parseFloat(opacityRange.value);
+
+        const touchMoveHandler = (moveEvent) => {
+            const currentTouchX = moveEvent.touches[0].clientX;
+            const deltaTouchX = currentTouchX - startTouchX;
+
+            // Calculate the new opacity value based on touch movement
+            const newOpacity = Math.max(0.4, Math.min(1, initialOpacity + deltaTouchX / opacityRange.offsetWidth));
+
+            // Update the opacity and the range input value
+            resultDiv.style.opacity = newOpacity;
+            opacityRange.value = newOpacity.toFixed(2);
+
+            moveEvent.preventDefault();
+        };
+
+        const touchEndHandler = () => {
+            // Remove the touchmove and touchend event listeners when dragging ends
+            document.removeEventListener("touchmove", touchMoveHandler);
+            document.removeEventListener("touchend", touchEndHandler);
+        };
+
+        // Attach touchmove and touchend event listeners
+        document.addEventListener("touchmove", touchMoveHandler, { passive: false });
+        document.addEventListener("touchend", touchEndHandler);
+    });
+
 </script>
