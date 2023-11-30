@@ -32,7 +32,6 @@
             </script>
             <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
             <input type="submit"  id="logoutForm" onclick="logout()" value="로그아웃">
-            </input>
         </div>
     </div>
     <label for="menuicon" class="background"></label>
@@ -70,24 +69,23 @@
         const login=document.getElementById('login-button')
         const join=document.getElementById('join-button')
         const bookmark=document.getElementById('bookmark-button')
-        const welcome=document.getElementById('welcome-text')
-        const logout=document.getElementById('logout-button')
+        //const welcome=document.getElementById('welcome-text')
+        const logout=document.getElementById('logoutForm')
         if(localStorage.getItem("token")===null){
             bookmark.style.display='none'
             logout.style.display='none'
             login.style.display='block'
             join.style.display='block'
-            welcome.style.display='none'
+            //welcome.style.display='none'
         }
         else{
             login.style.display='none'
             join.style.display='none'
             bookmark.style.display='block'
-            welcome.style.display='block'
+            //welcome.style.display='block'
             logout.style.display='block'
         }
     }
-
 
     function insertLayover(){
         const layover = document.getElementById('layover')
@@ -157,6 +155,5 @@
             .catch(error => console.error('Error:', error));
     }
 </script>
-
 </body>
 </html>
