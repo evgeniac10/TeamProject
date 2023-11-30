@@ -22,4 +22,6 @@ public class Message {
     public static final String SUCCESS_TO_LOGOUT = "로그아웃 성공";
     public static final String FAIL_TO_LOGOUT = "로그아웃 실패";
 
+    public static final String SUCCESS_TO_INFO = "경로 계산 완료";
+
 }

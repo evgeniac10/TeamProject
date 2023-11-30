@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                     .authorizeRequests()
                     .antMatchers("/wetro/main","/wetro/login","/wetro/logout"
-                                ,"/wetro/route","/wetro/routedetail"
+                                ,"/wetro/route","/wetro/routedetail","/wetro/search"
                                 ,"/wetro/map","/wetro/join/**","/error").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
 

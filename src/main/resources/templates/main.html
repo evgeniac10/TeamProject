@@ -106,24 +106,26 @@
         return true;
     }
     function fetchData() {
-        const form = document.querySelector('form');
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+
+        const requestData = {
+            from: from,
+            to: to
+        };
+
+        console.log('Request Data:', requestData);
+
         fetch('/wetro/search', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                "from":from,
-                //경유지 할지말지
-                "to":to
-                // "Infolists":[{"time":time,"cost":cost,"transfer":transfer}
-                //     ,{"time":time,"cost":cost,"transfer":transfer}
-                //     ,{"time":time,"cost":cost,"transfer":transfer}],
-            })
+            body: JSON.stringify(requestData)
         })
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem('data',JSON.stringify(data));
+                localStorage.setItem('data', JSON.stringify(data));
             })
             .catch(error => console.error('Error:', error));
     }

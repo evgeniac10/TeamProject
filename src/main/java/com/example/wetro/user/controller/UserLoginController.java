@@ -8,7 +8,7 @@ import com.example.wetro.jwt.JwtTokenProvider;
 import com.example.wetro.user.repository.TokenRepository;
 import com.example.wetro.user.repository.UserRepository;
 import com.example.wetro.user.service.UserService;
-import com.example.wetro.response.Response;
+import com.example.wetro.response.tokenResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.wetro.response.Response.*;
+import static com.example.wetro.response.tokenResponse.*;
 import static com.example.wetro.response.Message.*;
 
 @Slf4j
@@ -41,7 +41,7 @@ public class UserLoginController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @PostMapping("/login")
-    public Response login(@RequestBody @Valid UserLoginDto loginDto) {
+    public tokenResponse login(@RequestBody @Valid UserLoginDto loginDto) {
         log.info("로그인 컨트롤러");
 
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -83,7 +83,7 @@ public class UserLoginController {
     }
 
     @PostMapping("/logout")
-    public Response logout(@RequestBody TokenDto tokenDto){
+    public tokenResponse logout(@RequestBody TokenDto tokenDto){
         Long tokenId = tokenDto.getTokenId();
         Optional<Token> token = tokenRepository.findById(tokenId);
 
