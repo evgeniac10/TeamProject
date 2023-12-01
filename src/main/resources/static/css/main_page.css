@@ -34,13 +34,16 @@ header{
     box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
     z-index: 2;
 }
-a {
+h1 {
     color: #838383;
+}
+a {
+    color: white;
+    text-decoration: none;
 }
 .logo{
     position: absolute;
     margin: auto;
-    color: #838383;
 }
 input[id="menuicon"] {
     display: none;
@@ -157,9 +160,6 @@ input[id="menuicon"]:checked ~ .background{
     opacity: 1;
     visibility: visible;
 }
-a {
-    text-decoration: none;
-}
 main {
     z-index: 1;
 }
@@ -260,10 +260,9 @@ input[id="addButton"]:checked + label {
     margin-top: 80px;
 }
 #search{
-    height: 30px;
-    width: 100px;
+    height: 50px;
+    width: 120px;
     line-height: 30px;
-    padding: 10px;
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
@@ -273,6 +272,15 @@ input[id="addButton"]:checked + label {
     text-align: center;
     font-size: 20px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+#search-text {
+    height: 50px;
+    width: 120px;
+    background-color: #6a9be8;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 20px;
 }
 #map{
     height: 30px;
@@ -300,7 +308,4 @@ footer {
     left: 0;
     background: #d7d7d7;
     box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
-}
-#search {
-    background-color: white;
 }
