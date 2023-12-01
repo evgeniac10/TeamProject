@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 @Setter
 @RequiredArgsConstructor
 @Component
-class Node implements Comparable<Node>{
+public class Node implements Comparable<Node>{
     //호선
     private String line;
     //노드 이름
@@ -110,7 +110,6 @@ class Node implements Comparable<Node>{
                 ? String.format("%s : %s", destination.getName(), destination.getDistance())
                 : String.format("%s -> %s : %s", path, destination.getName(), destination.getDistance()));
     }
-/**********************************************************************************************************************/
 //최소환승 메서드들
 
     public static void initializeNodesT(Node... nodes) {
