@@ -3,6 +3,7 @@ package com.example.wetro.dijkstra;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,20 +12,12 @@ import java.util.stream.Stream;
 @Getter
 @Setter
 @RequiredArgsConstructor
-class Edge{
-    private final Node start;
-    private final Node end;
-    private final String line;
-}
-
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Component
 class Node implements Comparable<Node>{
     //호선
-    private final String line;
+    private String line;
     //노드 이름
-    private final String name;
+    private String name;
     //현재까지의 최단 거리 초기값 무한
     private Integer distance = Integer.MAX_VALUE;
     //최단 경로 저장, 수정 용이하게 위해 링크드리스트
@@ -33,6 +26,11 @@ class Node implements Comparable<Node>{
     private Map<Node, Integer> adjacentNodes = new HashMap<>();
     //환승 횟수
     private int transferCount = 0;
+
+    public Node(String Line, String name){
+        this.line = Line;
+        this.name = name;
+    }
 
     //노드 초기화
     public static void initializeNodes(Node... nodes) {
