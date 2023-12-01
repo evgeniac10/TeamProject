@@ -130,7 +130,8 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "mark":num,//즐겨찾기 개수
+                "user":userid,
+                "token":token
             }),
         })
         .then(response => response.json())
