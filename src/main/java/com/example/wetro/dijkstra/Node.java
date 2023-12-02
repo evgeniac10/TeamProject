@@ -13,30 +13,6 @@ import java.util.stream.Stream;
 @Setter
 @RequiredArgsConstructor
 @Component
-class resultT implements Comparable<resultT>{
-    private  List<Node> shortestPath;
-    private int transferCount = 100;
-    private Integer distance = Integer.MAX_VALUE;
-
-    @Override
-    public int compareTo(resultT other) {
-        int compare = Integer.compare(this.transferCount, other.transferCount);
-        if (compare == 0) {
-            compare = Integer.compare(this.distance, other.distance);
-        }
-        return compare;
-    }
-
-    public resultT(List<Node> shortestPath, Integer distance ,int transferCount) {
-        this.shortestPath = shortestPath;
-        this.distance = distance;
-        this.transferCount = transferCount;
-    }
-}
-@Getter
-@Setter
-@RequiredArgsConstructor
-@Component
 public class Node implements Comparable<Node>{
 
     //호선
@@ -527,5 +503,45 @@ public class Node implements Comparable<Node>{
 
         System.out.println(calculateMinTransfer("101", "601").getTransferCount());
         calculateMinTransfer("123", "601");
+    }
+
+    @Getter
+    @Setter
+    @RequiredArgsConstructor
+    @Component
+    static
+    class resultT implements Comparable<resultT>{
+        private List<Node> shortestPath;
+        private int transferCount = 100;
+        private Integer distance = Integer.MAX_VALUE;
+
+        @Override
+        public int compareTo(resultT other) {
+            int compare = Integer.compare(this.transferCount, other.transferCount);
+            if (compare == 0) {
+                compare = Integer.compare(this.distance, other.distance);
+            }
+            return compare;
+        }
+
+        public resultT(List<Node> shortestPath, Integer distance ,int transferCount) {
+            this.shortestPath = shortestPath;
+            this.distance = distance;
+            this.transferCount = transferCount;
+        }
+    }
+
+    @Getter
+    @Setter
+    @RequiredArgsConstructor
+    @Component
+
+    public static class result{
+        private List<Node> shortestPath;
+        private Integer distance;
+        public result(List<Node> shortestPath, Integer distance) {
+            this.shortestPath = shortestPath;
+            this.distance = distance;
+        }
     }
 }
