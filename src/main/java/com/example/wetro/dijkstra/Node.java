@@ -38,6 +38,301 @@ public class Node implements Comparable<Node>{
         this.name = name;
     }
 
+    public static void init(){
+        Node node1 = new Node("1", "101");
+        Node node2 = new Node("1", "102");
+        Node node3 = new Node("1", "103");
+        Node node4 = new Node("1", "104");
+        Node node5 = new Node("1", "105");
+        Node node6 = new Node("1", "106");
+        Node node7 = new Node("1", "107");
+        Node node8 = new Node("1", "108");
+        Node node9 = new Node("1", "109");
+        Node node10 = new Node("1", "110");
+        Node node11 = new Node("1", "111");
+        Node node12 = new Node("1", "112");
+        Node node13 = new Node("1", "113");
+        Node node14 = new Node("1", "114");
+        Node node15 = new Node("1", "115");
+        Node node16 = new Node("1", "116");
+        Node node17 = new Node("1", "117");
+        Node node18 = new Node("1", "118");
+        Node node19 = new Node("1", "119");
+        Node node20 = new Node("1", "120");
+        Node node21 = new Node("1", "121");
+        Node node22 = new Node("1", "122");
+        Node node23 = new Node("1", "123");
+
+        Node node24 = new Node("2", "201");
+        Node node25 = new Node("2", "202");
+        Node node26 = new Node("2", "203");
+        Node node27 = new Node("2", "204");
+        Node node28 = new Node("2", "205");
+        Node node29 = new Node("2", "206");
+        Node node30 = new Node("2", "207");
+        Node node31 = new Node("2", "208");
+        Node node32 = new Node("2", "209");
+        Node node33 = new Node("2", "210");
+        Node node34 = new Node("2", "211");
+        Node node35 = new Node("2", "212");
+        Node node36 = new Node("2", "213");
+        Node node37 = new Node("2", "214");
+        Node node38 = new Node("2", "215");
+        Node node39 = new Node("2", "216");
+        Node node40 = new Node("2", "217");
+        Node node41 = new Node("2", "101");
+
+        Node node42 = new Node("3", "301");
+        Node node43 = new Node("3", "302");
+        Node node44 = new Node("3", "303");
+        Node node45 = new Node("3", "304");
+        Node node46 = new Node("3", "305");
+        Node node47 = new Node("3", "306");
+        Node node48 = new Node("3", "307");
+        Node node49 = new Node("3", "308");
+        Node node50 = new Node("3", "207");
+        Node node51 = new Node("3", "123");
+        Node node52 = new Node("3", "107");
+
+        Node node53 = new Node("4", "401");
+        Node node54 = new Node("4", "402");
+        Node node55 = new Node("4", "403");
+        Node node56 = new Node("4", "404");
+        Node node57 = new Node("4", "405");
+        Node node58 = new Node("4", "406");
+        Node node59 = new Node("4", "407");
+        Node node60 = new Node("4", "408");
+        Node node61 = new Node("4", "409");
+        Node node62 = new Node("4", "410");
+        Node node63 = new Node("4", "411");
+        Node node64 = new Node("4", "412");
+        Node node65 = new Node("4", "413");
+        Node node66 = new Node("4", "414");
+        Node node67 = new Node("4", "415");
+        Node node68 = new Node("4", "416");
+        Node node69 = new Node("4", "417");
+        Node node70 = new Node("4", "104");
+        Node node71 = new Node("4", "307");
+        Node node72 = new Node("4", "115");
+        Node node73 = new Node("4", "216");
+
+        Node node74 = new Node("5", "501");
+        Node node75 = new Node("5", "502");
+        Node node76 = new Node("5", "503");
+        Node node77 = new Node("5", "504");
+        Node node78 = new Node("5", "505");
+        Node node79 = new Node("5", "506");
+        Node node80 = new Node("5", "507");
+        Node node81 = new Node("5", "209");
+        Node node82 = new Node("5", "122");
+        Node node83 = new Node("5", "403");
+        Node node84 = new Node("5", "109");
+
+        Node node85 = new Node("6", "601");
+        Node node86 = new Node("6", "602");
+        Node node87 = new Node("6", "603");
+        Node node88 = new Node("6", "604");
+        Node node89 = new Node("6", "605");
+        Node node90 = new Node("6", "606");
+        Node node91 = new Node("6", "607");
+        Node node92 = new Node("6", "608");
+        Node node93 = new Node("6", "609");
+        Node node94 = new Node("6", "610");
+        Node node95 = new Node("6", "611");
+        Node node96 = new Node("6", "612");
+        Node node97 = new Node("6", "613");
+        Node node98 = new Node("6", "614");
+        Node node99 = new Node("6", "615");
+        Node node100 = new Node("6", "616");
+        Node node101 = new Node("6", "617");
+        Node node102 = new Node("6", "618");
+        Node node103 = new Node("6", "619");
+        Node node104 = new Node("6", "620");
+        Node node105 = new Node("6", "621");
+        Node node106 = new Node("6", "622");
+        Node node107 = new Node("6", "121");
+        Node node108 = new Node("6", "116");
+        Node node109 = new Node("6", "412");
+        Node node110 = new Node("6", "417");
+
+        Node node111 = new Node("7", "701");
+        Node node112 = new Node("7", "702");
+        Node node113 = new Node("7", "703");
+        Node node114 = new Node("7", "704");
+        Node node115 = new Node("7", "705");
+        Node node116 = new Node("7", "706");
+        Node node117 = new Node("7", "707");
+        Node node118 = new Node("7", "202");
+        Node node119 = new Node("7", "303");
+        Node node120 = new Node("7", "503");
+        Node node121 = new Node("7", "601");
+        Node node122 = new Node("7", "416");
+        Node node123 = new Node("7", "614");
+
+        Node node124 = new Node("8", "801");
+        Node node125 = new Node("8", "802");
+        Node node126 = new Node("8", "803");
+        Node node127 = new Node("8", "804");
+        Node node128 = new Node("8", "805");
+        Node node129 = new Node("8", "806");
+        Node node130 = new Node("8", "409");
+        Node node131 = new Node("8", "608");
+        Node node132 = new Node("8", "705");
+        Node node133 = new Node("8", "618");
+        Node node134 = new Node("8", "214");
+        Node node146 = new Node("8", "113");
+
+        Node node135 = new Node("9", "901");
+        Node node136 = new Node("9", "902");
+        Node node137 = new Node("9", "903");
+        Node node138 = new Node("9", "904");
+        Node node139 = new Node("9", "112");
+        Node node140 = new Node("9", "406");
+        Node node141 = new Node("9", "605");
+        Node node142 = new Node("9", "119");
+        Node node143 = new Node("9", "702");
+        Node node144 = new Node("9", "621");
+        Node node145 = new Node("9", "211");
+
+        Node[] allNodes = {
+                node1, node2, node3, node4, node5, node6, node7, node8, node9, node10,
+                node11, node12, node13, node14, node15, node16, node17, node18, node19, node20,
+                node21, node22, node23, node24, node25, node26, node27, node28, node29, node30,
+                node31, node32, node33, node34, node35, node36, node37, node38, node39, node40,
+                node41, node42, node43, node44, node45, node46, node47, node48, node49, node50,
+                node51, node52, node53, node54, node55, node56, node57, node58, node59, node60,
+                node61, node62, node63, node64, node65, node66, node67, node68, node69, node70,
+                node71, node72, node73, node74, node75, node76, node77, node78, node79, node80,
+                node81, node82, node83, node84, node85, node86, node87, node88, node89, node90,
+                node91, node92, node93, node94, node95, node96, node97, node98, node99, node100,
+                node101, node102, node103, node104, node105, node106, node107, node108, node109, node110,
+                node111, node112, node113, node114, node115, node116, node117, node118, node119, node120,
+                node121, node122, node123, node124, node125, node126, node127, node128, node129, node130,
+                node131, node132, node133, node134, node135, node136, node137, node138, node139, node140,
+                node141, node142, node143, node144, node145, node146
+        };
+
+        Map<String, Integer> nameCount = new HashMap<>();
+        for (Node node : allNodes) {
+            nameCount.put(node.getName(), nameCount.getOrDefault(node.getName(), 0) + 1);
+        }
+
+        for (Node node : allNodes) {
+            if (nameCount.get(node.getName()) == 1) {
+                nodes.add(node);
+            } else {
+                transNodes.add(node);
+            }
+        }
+        // 1호선
+        node1.addAdjacentNode(node2, 100);
+        node1.addAdjacentNode(node24, 100);
+        node1.addAdjacentNode(node23, 100);
+        node1.addAdjacentNode(node51, 100);
+
+        node2.addAdjacentNode(node1, 100);
+        node2.addAdjacentNode(node3, 100);
+
+        node3.addAdjacentNode(node2, 100);
+        node3.addAdjacentNode(node4, 100);
+        node3.addAdjacentNode(node70, 100);
+
+        node4.addAdjacentNode(node3, 100);
+        node4.addAdjacentNode(node5, 100);
+        node4.addAdjacentNode(node53, 100);
+
+        node5.addAdjacentNode(node4, 100);
+        node5.addAdjacentNode(node6, 100);
+
+        node6.addAdjacentNode(node5, 100);
+        node6.addAdjacentNode(node7, 100);
+        node6.addAdjacentNode(node52, 100);
+
+        node7.addAdjacentNode(node6, 100);
+        node7.addAdjacentNode(node8, 100);
+        node7.addAdjacentNode(node49, 100);
+
+        node8.addAdjacentNode(node7, 100);
+        node8.addAdjacentNode(node9, 100);
+        node8.addAdjacentNode(node52, 100);
+        node8.addAdjacentNode(node84, 100);
+
+        node9.addAdjacentNode(node8, 100);
+        node9.addAdjacentNode(node10, 100);
+        node9.addAdjacentNode(node80, 100);
+
+        node10.addAdjacentNode(node9, 100);
+        node10.addAdjacentNode(node11, 100);
+
+        node11.addAdjacentNode(node10, 100);
+        node11.addAdjacentNode(node12, 100);
+        node11.addAdjacentNode(node139, 100);
+
+        node12.addAdjacentNode(node11, 100);
+        node12.addAdjacentNode(node13, 100);
+        node12.addAdjacentNode(node146, 100);
+
+        node13.addAdjacentNode(node12, 100);
+        node13.addAdjacentNode(node14, 100);
+        node13.addAdjacentNode(node124, 100);
+
+        node14.addAdjacentNode(node13, 100);
+        node14.addAdjacentNode(node15, 100);
+        node14.addAdjacentNode(node146, 100);
+        node14.addAdjacentNode(node72, 100);
+
+        node15.addAdjacentNode(node14, 100);
+        node15.addAdjacentNode(node16, 100);
+        node15.addAdjacentNode(node59, 100);
+        node15.addAdjacentNode(node60, 100);
+        node15.addAdjacentNode(node108, 100);
+
+        node16.addAdjacentNode(node15, 100);
+        node16.addAdjacentNode(node17, 100);
+        node16.addAdjacentNode(node90, 100);
+        node16.addAdjacentNode(node91, 100);
+        node16.addAdjacentNode(node72, 100);
+
+        node17.addAdjacentNode(node16, 100);
+        node17.addAdjacentNode(node18, 100);
+        node17.addAdjacentNode(node108, 100);
+
+        node18.addAdjacentNode(node17, 100);
+        node18.addAdjacentNode(node19, 100);
+        node18.addAdjacentNode(node142, 100);
+
+        node19.addAdjacentNode(node18, 100);
+        node19.addAdjacentNode(node20, 100);
+        node19.addAdjacentNode(node136, 100);
+        node19.addAdjacentNode(node137, 100);
+
+        node20.addAdjacentNode(node19, 100);
+        node20.addAdjacentNode(node21, 100);
+        node20.addAdjacentNode(node142, 100);
+        node20.addAdjacentNode(node107, 100);
+
+        node21.addAdjacentNode(node20, 100);
+        node21.addAdjacentNode(node22, 100);
+        node21.addAdjacentNode(node86, 100);
+        node21.addAdjacentNode(node87, 100);
+        node21.addAdjacentNode(node82, 100);
+
+        node22.addAdjacentNode(node21, 100);
+        node22.addAdjacentNode(node23, 100);
+        node22.addAdjacentNode(node77, 100);
+        node22.addAdjacentNode(node78, 100);
+        node22.addAdjacentNode(node107, 100);
+        node22.addAdjacentNode(node51, 100);
+
+        node23.addAdjacentNode(node22, 100);
+        node23.addAdjacentNode(node1, 100);
+        node23.addAdjacentNode(node45, 100);
+        node23.addAdjacentNode(node46, 100);
+        node23.addAdjacentNode(node41, 100);
+        node23.addAdjacentNode(node82, 100);
+
+
+    }
 
     //노드 초기화
     public static void initializeNodes() {
@@ -303,218 +598,16 @@ public class Node implements Comparable<Node>{
                 ? String.format("%s", destination.getName())
                 : String.format("%s -> %s, 환승 횟수: %d", path, destination.getName(), destination.getTransferCount())); // 거리 출력 제거
     }
-    public static void main(String[] args) {
-        //노드 추가
-        Node node1_1 = new Node("1","123");
-        Node node1_3 = new Node("3","123");
-        Node node2_1 = new Node("1","122");
-        Node node2_5 = new Node("5","122");
-        Node node3 = new Node("3","304");
-        Node node4 = new Node("5","504");
-        Node node5_3 = new Node("3","303");
-        Node node5_7 = new Node("7","303");
-        Node node6_5 = new Node("5","503");
-        Node node6_7 = new Node("7","503");
-        Node node7 = new Node("1","101");
-        Node node8_6 = new Node("6","601");
-        Node node8_7 = new Node("7","601");
-        Node node9 = new Node("6","602");
-        Node node10_1 = new Node("1","121");
-        Node node10_6 = new Node("6","121");
-
-        //모든 노드 배열 초기화
-        transNodes.add(node1_1);
-        transNodes.add(node1_3);
-        transNodes.add(node2_1);
-        transNodes.add(node2_5);
-        nodes.add(node3);
-        nodes.add(node4);
-        transNodes.add(node5_3);
-        transNodes.add(node5_7);
-        transNodes.add(node6_5);
-        transNodes.add(node6_7);
-        nodes.add(node7);
-        transNodes.add(node8_6);
-        transNodes.add(node8_7);
-        nodes.add(node9);
-        transNodes.add(node10_1);
-        transNodes.add(node10_6);
-
-        //각 노드에 인접한 노드와 가중치 추가
-        node1_1.addAdjacentNode(node2_1, 1);
-        node1_1.addAdjacentNode(node2_5, 1);
-        node1_1.addAdjacentNode(node3, 2);
-        node1_1.addAdjacentNode(node7, 5);
-
-        node1_3.addAdjacentNode(node2_1, 1);
-        node1_3.addAdjacentNode(node2_5, 1);
-        node1_3.addAdjacentNode(node3, 2);
-        node1_3.addAdjacentNode(node7, 5);
-
-        node2_1.addAdjacentNode(node4, 5);
-        node2_1.addAdjacentNode(node1_1, 1);
-        node2_1.addAdjacentNode(node1_3, 1);
-        node2_1.addAdjacentNode(node10_1, 4);
-        node2_1.addAdjacentNode(node10_6, 4);
-
-        node2_5.addAdjacentNode(node4, 5);
-        node2_5.addAdjacentNode(node1_1, 1);
-        node2_5.addAdjacentNode(node1_3, 1);
-        node2_5.addAdjacentNode(node10_1, 4);
-        node2_5.addAdjacentNode(node10_6, 4);
-
-        node3.addAdjacentNode(node5_3, 5);
-        node3.addAdjacentNode(node5_7, 5);
-        node3.addAdjacentNode(node1_1, 2);
-        node3.addAdjacentNode(node1_3, 2);
-
-        node4.addAdjacentNode(node6_5, 4);
-        node4.addAdjacentNode(node6_7, 4);
-        node4.addAdjacentNode(node2_1, 5);
-        node4.addAdjacentNode(node2_5, 5);
-
-        node5_3.addAdjacentNode(node6_5, 9);
-        node5_3.addAdjacentNode(node6_7, 9);
-        node5_3.addAdjacentNode(node3, 5);
-
-        node5_7.addAdjacentNode(node6_5, 9);
-        node5_7.addAdjacentNode(node6_7, 9);
-        node5_7.addAdjacentNode(node3, 5);
-
-        node6_5.addAdjacentNode(node5_3, 9);
-        node6_5.addAdjacentNode(node5_7, 9);
-        node6_5.addAdjacentNode(node4, 4);
-        node6_5.addAdjacentNode(node8_7, 10);
-        node6_5.addAdjacentNode(node8_6, 10);
-
-        node6_7.addAdjacentNode(node5_3, 9);
-        node6_7.addAdjacentNode(node5_7, 9);
-        node6_7.addAdjacentNode(node4, 4);
-        node6_7.addAdjacentNode(node8_7, 10);
-        node6_7.addAdjacentNode(node8_6, 10);
-
-
-        node7.addAdjacentNode(node1_1, 5);
-        node7.addAdjacentNode(node1_3, 5);
-
-        node8_6.addAdjacentNode(node6_7, 10);
-        node8_6.addAdjacentNode(node6_5, 10);
-        node8_6.addAdjacentNode(node9, 34);
-
-        node8_7.addAdjacentNode(node6_7, 10);
-        node8_7.addAdjacentNode(node6_5, 10);
-        node8_7.addAdjacentNode(node9, 34);
-
-        node9.addAdjacentNode(node8_6, 34);
-        node9.addAdjacentNode(node8_7, 34);
-        node9.addAdjacentNode(node10_1, 4);
-        node9.addAdjacentNode(node10_6, 4);
-
-        node10_1.addAdjacentNode(node9, 4);
-        node10_1.addAdjacentNode(node2_1, 4);
-        node10_1.addAdjacentNode(node2_5, 4);
-
-        node10_6.addAdjacentNode(node9, 4);
-        node10_6.addAdjacentNode(node2_1, 4);
-        node10_6.addAdjacentNode(node2_5, 4);
-
-        System.out.println(calculateShortestPath("101", "601").getDistance());
-        calculateShortestPath("101", "601");
-        calculateShortestPath("101", "602");
-
-        //최소환승일때
-        node1_1.addAdjacentNodeT(node2_1, 1);
-        node1_1.addAdjacentNodeT(node2_5, 1);
-        node1_1.addAdjacentNodeT(node3, 2);
-        node1_1.addAdjacentNodeT(node7, 5);
-
-        node1_3.addAdjacentNodeT(node2_1, 1);
-        node1_3.addAdjacentNodeT(node2_5, 1);
-        node1_3.addAdjacentNodeT(node3, 2);
-        node1_3.addAdjacentNodeT(node7, 5);
-
-        node2_1.addAdjacentNodeT(node4, 5);
-        node2_1.addAdjacentNodeT(node1_1, 1);
-        node2_1.addAdjacentNodeT(node1_3, 1);
-        node2_1.addAdjacentNodeT(node10_1, 4);
-        node2_1.addAdjacentNodeT(node10_6, 4);
-
-        node2_5.addAdjacentNodeT(node4, 5);
-        node2_5.addAdjacentNodeT(node1_1, 1);
-        node2_5.addAdjacentNodeT(node1_3, 1);
-        node2_5.addAdjacentNodeT(node10_1, 4);
-        node2_5.addAdjacentNodeT(node10_6, 4);
-
-        node3.addAdjacentNodeT(node5_3, 5);
-        node3.addAdjacentNodeT(node5_7, 5);
-        node3.addAdjacentNodeT(node1_1, 2);
-        node3.addAdjacentNodeT(node1_3, 2);
-
-        node4.addAdjacentNodeT(node6_5, 4);
-        node4.addAdjacentNodeT(node6_7, 4);
-        node4.addAdjacentNodeT(node2_1, 5);
-        node4.addAdjacentNodeT(node2_5, 5);
-
-        node5_3.addAdjacentNodeT(node6_5, 9);
-        node5_3.addAdjacentNodeT(node6_7, 9);
-        node5_3.addAdjacentNodeT(node3, 5);
-
-        node5_7.addAdjacentNodeT(node6_5, 9);
-        node5_7.addAdjacentNodeT(node6_7, 9);
-        node5_7.addAdjacentNodeT(node3, 5);
-
-        node6_5.addAdjacentNodeT(node5_3, 9);
-        node6_5.addAdjacentNodeT(node5_7, 9);
-        node6_5.addAdjacentNodeT(node4, 4);
-        node6_5.addAdjacentNodeT(node8_7, 10);
-        node6_5.addAdjacentNodeT(node8_6, 10);
-
-        node6_7.addAdjacentNodeT(node5_3, 9);
-        node6_7.addAdjacentNodeT(node5_7, 9);
-        node6_7.addAdjacentNodeT(node4, 4);
-        node6_7.addAdjacentNodeT(node8_7, 10);
-        node6_7.addAdjacentNodeT(node8_6, 10);
-
-
-        node7.addAdjacentNodeT(node1_1, 5);
-        node7.addAdjacentNodeT(node1_3, 5);
-
-        node8_6.addAdjacentNodeT(node6_7, 10);
-        node8_6.addAdjacentNodeT(node6_5, 10);
-        node8_6.addAdjacentNodeT(node9, 34);
-
-        node8_7.addAdjacentNodeT(node6_7, 10);
-        node8_7.addAdjacentNodeT(node6_5, 10);
-        node8_7.addAdjacentNodeT(node9, 34);
-
-        node9.addAdjacentNodeT(node8_6, 34);
-        node9.addAdjacentNodeT(node8_7, 34);
-        node9.addAdjacentNodeT(node10_1, 4);
-        node9.addAdjacentNodeT(node10_6, 4);
-
-        node10_1.addAdjacentNodeT(node9, 4);
-        node10_1.addAdjacentNodeT(node2_1, 4);
-        node10_1.addAdjacentNodeT(node2_5, 4);
-
-        node10_6.addAdjacentNodeT(node9, 4);
-        node10_6.addAdjacentNodeT(node2_1, 4);
-        node10_6.addAdjacentNodeT(node2_5, 4);
-
-
-        System.out.println(calculateMinTransfer("101", "601").getTransferCount());
-        calculateMinTransfer("123", "601");
-    }
-
     @Getter
     @Setter
     @RequiredArgsConstructor
     @Component
     static
     class resultT implements Comparable<resultT>{
+
         private List<Node> shortestPath;
         private int transferCount = 100;
         private Integer distance = Integer.MAX_VALUE;
-
         @Override
         public int compareTo(resultT other) {
             int compare = Integer.compare(this.transferCount, other.transferCount);
@@ -529,19 +622,23 @@ public class Node implements Comparable<Node>{
             this.distance = distance;
             this.transferCount = transferCount;
         }
-    }
 
+    }
     @Getter
     @Setter
     @RequiredArgsConstructor
     @Component
 
     public static class result{
+
         private List<Node> shortestPath;
         private Integer distance;
         public result(List<Node> shortestPath, Integer distance) {
             this.shortestPath = shortestPath;
             this.distance = distance;
         }
+    }
+    public static void main(String[] args) {
+        init();
     }
 }
