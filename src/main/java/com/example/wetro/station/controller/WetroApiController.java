@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.example.wetro.response.Message.*;
 import static com.example.wetro.response.stationResponse.*;
 
@@ -26,6 +28,12 @@ public class WetroApiController {
 
         log.info("입력한 출발역 = {}",stationDto.getFrom());
         log.info("입력한 도착역 = {}",stationDto.getTo());
+
+        result result = Node.calculateShortestPath("101","123");
+        Integer distance = result.getDistance();
+        List<Node> shortestPath = result.getShortestPath();
+        shortestPath.get(0);
+        log.info("다익스트라 결과 = {} ,{} ",distance,shortestPath);
 
         return success(SUCCESS_TO_INFO);
     }

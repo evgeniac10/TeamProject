@@ -13,20 +13,6 @@ import java.util.stream.Stream;
 @Setter
 @RequiredArgsConstructor
 @Component
-
-class result{
-    private  List<Node> shortestPath;
-    private Integer distance;
-    public result(List<Node> shortestPath, Integer distance) {
-        this.shortestPath = shortestPath;
-        this.distance = distance;
-    }
-}
-
-@Getter
-@Setter
-@RequiredArgsConstructor
-@Component
 class resultT implements Comparable<resultT>{
     private  List<Node> shortestPath;
     private int transferCount = 100;

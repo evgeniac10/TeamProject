@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Repository
 public class ExcelRead {
         List<Station> stations = new ArrayList<>();
 
-        @Autowired
         public ExcelRead() {
 
                 try {
