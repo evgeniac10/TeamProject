@@ -29,7 +29,7 @@ public class WetroApiController {
         log.info("입력한 출발역 = {}",stationDto.getFrom());
         log.info("입력한 도착역 = {}",stationDto.getTo());
 
-        result result = Node.calculateShortestPath("101","123");
+        Node.result result = Node.calculateShortestPath("101","123");
         Integer distance = result.getDistance();
         List<Node> shortestPath = result.getShortestPath();
         shortestPath.get(0);
