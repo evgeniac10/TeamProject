@@ -51,7 +51,6 @@ class resultT implements Comparable<resultT>{
 @Setter
 @RequiredArgsConstructor
 @Component
-class Node implements Comparable<Node>{
 public class Node implements Comparable<Node>{
 
     //호선
