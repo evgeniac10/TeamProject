@@ -60,16 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                     .authorizeRequests()
-                    .antMatchers("/wetro/main","/wetro/login","/wetro/logout"
-                                ,"/wetro/route","/wetro/routedetail","/wetro/search"
-                                ,"/wetro/map","/wetro/join/**","/error").permitAll()
+                    .antMatchers("/wetro/**").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
 
                 .and()
 
                     .csrf().disable()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //세션 사용 안함
-
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
 
                     .apply(new JwtSecurityConfig(tokenProvider)); // JwtConfigurer를 적용하여 JWT 사용 설정

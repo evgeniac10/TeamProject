@@ -2,6 +2,7 @@ package com.example.wetro.user.controller;
 
 import com.example.wetro.user.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +34,8 @@ public class Usercontroller {
         return "join";
     }
 
-
+    @GetMapping("/timer")
+    public String timer(){
+        return "timer";
+    }
 }

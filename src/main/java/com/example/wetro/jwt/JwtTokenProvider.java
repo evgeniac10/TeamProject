@@ -64,7 +64,8 @@ public class JwtTokenProvider implements InitializingBean {
                 .collect(Collectors.toList());
 
         User principal = new User(claims.getSubject(),"",authorities);
-        return new UsernamePasswordAuthenticationToken(principal,token,authorities);}
+        return new UsernamePasswordAuthenticationToken(principal,token,authorities);
+    }
 
     public boolean validateToken(String token){
         try{Jwts.parserBuilder()
