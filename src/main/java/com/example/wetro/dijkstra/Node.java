@@ -27,14 +27,24 @@ class Node implements Comparable<Node>{
     //환승 횟수
     private int transferCount = 0;
 
+    //일반역 리스트
+    private static List<Node> nodes = new ArrayList<>();
+    //환승역 리스트
+    private static List<Node> transNodes = new ArrayList<>();
+
     public Node(String Line, String name){
         this.line = Line;
         this.name = name;
     }
 
+
     //노드 초기화
-    public static void initializeNodes(Node... nodes) {
+    public static void initializeNodes() {
         for (Node node : nodes) {
+            node.setDistance(Integer.MAX_VALUE);
+            node.setShortestPath(new LinkedList<>());
+        }
+        for (Node node : transNodes) {
             node.setDistance(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
         }
@@ -53,8 +63,37 @@ class Node implements Comparable<Node>{
     }
 
 
-    //최소 가중치 계산 메서드
-    public static void calculateShortestPath(Node source, Node destination){
+    //string으로 이름받아서
+    public static void calculateShortestPath(String start, String end){
+        Node source = null;
+        Node destination = null;
+
+        //루프돌려서 이름에 맞는 노드 배정
+        for (Node node:nodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+        for (Node node:transNodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+
+        //계산 로직돌려서 printPath메서드 호출해 출력
+        calcLogic(source, destination);
+    }
+
+    //다익스트라 계산 로직
+    public static void calcLogic(Node source, Node destination){
+        initializeNodes();
+
         source.setDistance(0);
         //최단거리 확정된 경로
         Set<Node> settleNodes = new HashSet<>();
@@ -82,8 +121,6 @@ class Node implements Comparable<Node>{
         //경로, 거리 출력
         source.printPath(destination);
     }
-
-
 
     //주어진 인접노드와의 최단경로 평가하고 업데이트
     private static void evaluateDistanceAndPath(Node adjacentNode, Integer edgeWeight, Node sourceNode){
@@ -113,8 +150,13 @@ class Node implements Comparable<Node>{
 /**********************************************************************************************************************/
 //최소환승 메서드들
 
-    public static void initializeNodesT(Node... nodes) {
+    public static void initializeNodesT() {
         for (Node node : nodes) {
+            node.setDistance(Integer.MAX_VALUE);
+            node.setShortestPath(new LinkedList<>());
+            node.setTransferCount(0);
+        }
+        for (Node node : transNodes) {
             node.setDistance(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
@@ -126,7 +168,73 @@ class Node implements Comparable<Node>{
         }
         adjacentNodes.put(node, weight);
     }
-    public static void calculateMinTransfer(Node source, Node destination){
+
+    //이름받아서
+    public static void calculateMinTransfer(String start, String end){
+        Node source = null;
+        Node source2 = null;
+        Node destination = null;
+        Node destination2 = null;
+
+        //이름 맞는거 찾아서 노드 배정
+        for (Node node:nodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+
+        //출발 or 도착이 환승역이면 source2, destination2도 배정
+        for (Node node:transNodes) {
+            if(source != null){
+                break;
+            }
+            if(start.equals(node.getName())){
+                source = node;
+            }
+        }
+
+        for (Node node:transNodes) {
+            if(start.equals(node.getName())){
+                source2 = node;
+            }
+        }
+        for (Node node:transNodes) {
+            if(destination != null){
+                break;
+            }
+            if(end.equals(node.getName())){
+                destination = node;
+            }
+        }
+        for (Node node:transNodes) {
+            if(end.equals(node.getName())){
+                destination2 = node;
+            }
+        }
+
+        calcLogicT(source, destination);
+
+        //출발만 환승역
+        if(source2 != null && destination2 == null){
+            calcLogicT(source2, destination);
+        }
+        //도착만 환승역
+        if(source2 == null && destination2 != null){
+            calcLogicT(source, destination2);
+        }
+        //둘다 환승역
+        if(source2 != null && destination2 != null){
+            calcLogicT(source2, destination);
+            calcLogicT(source2, destination2);
+            calcLogicT(source, destination2);
+        }
+    }
+    public static void calcLogicT(Node source, Node destination){
+        initializeNodesT();
+
         source.setDistance(0);
         //최단거리 확정된 경로
         Set<Node> settleNodes = new HashSet<>();
@@ -198,9 +306,23 @@ class Node implements Comparable<Node>{
         Node node10_1 = new Node("1","121");
         Node node10_6 = new Node("6","121");
 
-        //모든 노드 배열
-        Node[] allNodes = {node1_1, node1_3, node2_1,node2_5 ,node3, node4, node5_3,
-                node5_7, node6_5,node6_7, node7, node8_6, node8_7, node9, node10_1, node10_6};
+        //모든 노드 배열 초기화
+        transNodes.add(node1_1);
+        transNodes.add(node1_3);
+        transNodes.add(node2_1);
+        transNodes.add(node2_5);
+        nodes.add(node3);
+        nodes.add(node4);
+        transNodes.add(node5_3);
+        transNodes.add(node5_7);
+        transNodes.add(node6_5);
+        transNodes.add(node6_7);
+        nodes.add(node7);
+        transNodes.add(node8_6);
+        transNodes.add(node8_7);
+        nodes.add(node9);
+        transNodes.add(node10_1);
+        transNodes.add(node10_6);
 
         //각 노드에 인접한 노드와 가중치 추가
         node1_1.addAdjacentNode(node2_1, 1);
@@ -280,20 +402,9 @@ class Node implements Comparable<Node>{
         node10_6.addAdjacentNode(node2_1, 4);
         node10_6.addAdjacentNode(node2_5, 4);
 
-        //한번 최단경로 계산하면 초기화 해야함
-        calculateShortestPath(node7, node8_6);
-        initializeNodes(allNodes);
-        calculateShortestPath(node7, node8_7);
-        initializeNodes(allNodes);
-
-        calculateShortestPath(node1_1, node8_6);
-        initializeNodes(allNodes);
-        calculateShortestPath(node1_1, node8_7);
-        initializeNodes(allNodes);
-        calculateShortestPath(node1_3, node8_6);
-        initializeNodes(allNodes);
-        calculateShortestPath(node1_3, node8_7);
-        initializeNodes(allNodes);
+        calculateShortestPath("101", "601");
+        calculateShortestPath("101", "601");
+        calculateShortestPath("101", "602");
 
         //최소환승일때
         node1_1.addAdjacentNodeT(node2_1, 1);
@@ -373,18 +484,8 @@ class Node implements Comparable<Node>{
         node10_6.addAdjacentNodeT(node2_1, 4);
         node10_6.addAdjacentNodeT(node2_5, 4);
 
-        initializeNodesT(allNodes);
-        calculateMinTransfer(node7, node8_6);
-        initializeNodesT(allNodes);
-        calculateMinTransfer(node7, node8_7);
 
-        initializeNodesT(allNodes);
-        calculateMinTransfer(node1_1, node8_6);
-        initializeNodesT(allNodes);
-        calculateMinTransfer(node1_1, node8_7);
-        initializeNodesT(allNodes);
-        calculateMinTransfer(node1_3, node8_6);
-        initializeNodesT(allNodes);
-        calculateMinTransfer(node1_3, node8_7);
+        calculateMinTransfer("101", "601");
+        calculateMinTransfer("123", "601");
     }
 }
