@@ -70,7 +70,7 @@
             color: #f77070;
         }
         .rec-trans h4{
-            color: lightgreen;
+            color: #00af50;
         }
         .rec-info{
             color: #838383;
@@ -136,65 +136,76 @@
         </a>
     </div>
 <script>
-    function printTime(rectime){
-        const time=rectime.time
-        const cost=rectime.cost
-        const transfer=rectime.transfer
-        console.log(rectime)
+    function printTime(rectime) {
+        const totalSeconds = rectime.time;
 
-        const recommend=document.querySelector('.recommend-time')
-        recommend.innerHTML=`
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+
+        const recommend = document.querySelector('.recommend-time');
+        recommend.innerHTML = `
         <a href="routedetail">
             <div class="rec-time">
                 <h4>최소 시간</h4>
                 <div class="from"></div>
                 <div class="to"></div>
                 <div class="rec-info">
-                    <p>시간 : ${time}</p>
-                    <p>비용 : ${cost}</p>
-                    <p>환승 : ${transfer}</p>
+                    <p>시간 : ${formattedTime}</p>
+                    <p>비용 : ${rectime.cost}원</p>
+                    <p>환승 : ${rectime.transfer}회</p>
                 </div>
             </div>
         </a>
-        `
+    `
     }
     function printCost(reccost){
-        const time=reccost.time
-        const cost=reccost.cost
-        const transfer=reccost.transfer
+        const totalSeconds = reccost.time;
 
-        const recommend=document.querySelector('.recommend-cost')
-        recommend.innerHTML=`
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+
+        const recommend = document.querySelector('.recommend-cost');
+        recommend.innerHTML = `
         <a href="routedetail">
             <div class="rec-cost">
                 <h4>최소 비용</h4>
                 <div class="from"></div>
                 <div class="to"></div>
                 <div class="rec-info">
-                    <p>시간 : ${time}</p>
-                    <p>비용 : ${cost}</p>
-                    <p>환승 : ${transfer}</p>
+                    <p>시간 : ${formattedTime}</p>
+                    <p>비용 : ${reccost.cost}원</p>
+                    <p>환승 : ${reccost.transfer}회</p>
                 </div>
             </div>
         </a>
         `
     }
     function printTransfer(rectransfer){
-        const time=rectransfer.time
-        const cost=rectransfer.cost
-        const transfer=rectransfer.transfer
+        const totalSeconds = rectransfer.time;
 
-        const recommend=document.querySelector('.recommend-trans')
-        recommend.innerHTML=`
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+
+        const recommend = document.querySelector('.recommend-trans');
+        recommend.innerHTML = `
         <a href="routedetail">
             <div class="rec-trans">
                 <h4>최소 환승</h4>
                 <div class="from"></div>
                 <div class="to"></div>
                 <div class="rec-info">
-                    <p>시간 : ${time}</p>
-                    <p>비용 : ${cost}</p>
-                    <p>환승 : ${transfer}</p>
+                    <p>시간 : ${formattedTime}</p>
+                    <p>비용 : ${rectransfer.cost}원</p>
+                    <p>환승 : ${rectransfer.transfer}회</p>
                 </div>
             </div>
         </a>
