@@ -19,6 +19,12 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
+    public Optional<User> findByUserid(String userid) {
+        Optional<User> byUserid = userRepository.findByUserid(userid);
+        return  byUserid;
+    }
+
+    @Override
     public boolean isExistId(String userid) {
         Optional<User> existingUser = userRepository.findByUserid(userid);
         return existingUser.isPresent();

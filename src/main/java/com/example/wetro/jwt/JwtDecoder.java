@@ -16,6 +16,5 @@ public class JwtDecoder {
                 .setSigningKey(secretKey) // 서버에서 사용한 시크릿 키
                 .parseClaimsJws(token)
                 .getBody();
-
     }
 }

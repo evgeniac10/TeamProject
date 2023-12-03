@@ -1,11 +1,9 @@
 package com.example.wetro.bookmark.dto;
 
+import com.example.wetro.user.dto.User;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalTime;
 
 @Entity
@@ -24,6 +22,8 @@ public class BookMark {
     private String layover;
     private String alias;
 
-    private LocalTime alarm;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

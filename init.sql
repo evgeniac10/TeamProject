@@ -30,7 +30,6 @@ CREATE TABLE bookmark (
     from VARCHAR(5) NOT NULL,
     layover VARCHAR(5) NOT NULL,
     to VARCHAR(5) NOT NULL,
-    alarm TIME,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 # -- 데이터 삽입

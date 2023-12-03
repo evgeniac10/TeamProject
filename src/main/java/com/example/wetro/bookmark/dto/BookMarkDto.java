@@ -8,7 +8,6 @@ import java.time.LocalTime;
 @Builder
 public class BookMarkDto {
 
-    Long id;
     String token;
     String from;
     String layover;
@@ -16,6 +15,4 @@ public class BookMarkDto {
     String type;//min**
     String alias;
 
-    @JsonFormat(pattern = "HH:mm")
-    LocalTime alarm;
 }

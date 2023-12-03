@@ -1,13 +1,12 @@
 package com.example.wetro.user.dto;
+import com.example.wetro.bookmark.dto.BookMark;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
 
 @Entity
 @Table(name = "user")
@@ -29,6 +28,9 @@ public class User {
     public String getUserid() {
         return userid;
     }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookMark> bookMarks = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
