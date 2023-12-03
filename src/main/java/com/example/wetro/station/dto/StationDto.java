@@ -7,5 +7,6 @@ import lombok.Data;
 public class StationDto {
 
     String from;
+    String layover;
     String to;
 }
