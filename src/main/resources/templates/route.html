@@ -183,36 +183,92 @@
 
     const mainfrom = localStorage.getItem("from")
     const mainto = localStorage.getItem("to")
+    const mainlayover = localStorage.getItem("layover")
     localStorage.removeItem("from")
     localStorage.removeItem("to")
 
-    fetch('/wetro/search', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "from":mainfrom,
-            "to":mainto
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            const rectime = data.recTime;
-            const reccost = data.recCost;
-            const rectansfer = data.recTrans;
+    if(mainlayover!==null){
+        localStorage.removeItem("layover")
+        let rectime
+        let reccost
+        let rectransfer
 
-            const info = document.querySelector('.info')
-            info.innerHTML=`
+        fetch('/wetro/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "from":mainfrom,
+                "to":mainlayover
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                rectime = data.recTime;
+                reccost = data.recCost;
+                rectansfer = data.recTrans;
+
+                const info = document.querySelector('.info')
+                info.innerHTML=`
+                <h2 class="route-info">출발역 : ${mainfrom}</h2>
+                <h2 class="route-info">도착역 : ${mainto}</h2>
+            `
+            })
+            .catch(error => console.error('Error:', error));
+
+        fetch('/wetro/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "from":mainlayover,
+                "to":mainto
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                rectime += data.recTime;
+                reccost += data.recCost;
+                rectansfer += data.recTrans;
+
+                printTime(rectime)
+                printCost(reccost)
+                printTransfer(rectansfer)
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    else{
+        fetch('/wetro/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "from":mainfrom,
+                "to":mainto
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const rectime = data.recTime;
+                const reccost = data.recCost;
+                const rectansfer = data.recTrans;
+
+                const info = document.querySelector('.info')
+                info.innerHTML=`
                 <h2 class="route-info">출발역 : ${mainfrom}</h2>
                 <h2 class="route-info">도착역 : ${mainto}</h2>
             `
 
-            printTime(rectime)
-            printCost(reccost)
-            printTransfer(rectansfer)
-        })
-        .catch(error => console.error('Error:', error));
+                printTime(rectime)
+                printCost(reccost)
+                printTransfer(rectansfer)
+            })
+            .catch(error => console.error('Error:', error));
+    }
 
 </script>
 
