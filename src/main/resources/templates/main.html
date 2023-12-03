@@ -125,15 +125,6 @@
         if(check.checked){
             const layover = document.getElementById('layover').value;
 
-            if(from===layover){
-                alert('출발역과 경유지가 같습니다.')
-                return;
-            }
-            else if(layover===to){
-                alert('경유지와 도착역이 같습니다.')
-                return;
-            }
-
             if(node.includes(from)){
                 localStorage.setItem("from",from)
             }
@@ -155,13 +146,18 @@
                 alert('도착역 정보가 존재하지 않습니다.')
                 return;
             }
+            if(from===layover){
+                alert('출발역과 경유지가 같습니다.')
+                return;
+            }
+            else if(layover===to){
+                alert('경유지와 도착역이 같습니다.')
+                return;
+            }
             location.href="route"
         }
         else{
-            if(from===to){
-                alert('출발역과 도착역이 같습니다.')
-                return;
-            }
+
             if(node.includes(from)){
                 localStorage.setItem("from",from)
             }
@@ -174,6 +170,10 @@
             }
             else{
                 alert('도착역 정보가 존재하지 않습니다.')
+                return;
+            }
+            if(from===to){
+                alert('출발역과 도착역이 같습니다.')
                 return;
             }
             location.href="route"
