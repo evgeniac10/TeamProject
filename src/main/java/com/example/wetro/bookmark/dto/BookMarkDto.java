@@ -7,9 +7,9 @@ import lombok.*;
 public class BookMarkDto {
 
     String token;
-    String from;
-    String layover;
-    String to;
+    String start_location;
+    String layover_location;
+    String end_location;
     String type;//min**
     String alias;
 

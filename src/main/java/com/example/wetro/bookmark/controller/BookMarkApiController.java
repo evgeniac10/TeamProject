@@ -43,12 +43,13 @@ public class BookMarkApiController {
         if (user.isPresent()) {
             // 토큰에 해당하는 회원 정보가 있으면 BookMark 객체 생성 및 저장
             BookMark bookmark = BookMark.builder()
-                    .from(bookMarkdto.getFrom())
-                    .to(bookMarkdto.getTo())
-                    .layover(bookMarkdto.getLayover())
-                    .alias(bookMarkdto.getAlias())
-                    .user(user.get())
-                    .build();
+                                    .start_location(bookMarkdto.getStart_location())
+                                    .end_location(bookMarkdto.getEnd_location())
+                                    .layover_location(bookMarkdto.getLayover_location())
+                                            .alias(bookMarkdto.getAlias())
+                                                    .user(user.get())
+                                                            .build();
+
 
             bookMarkService.saveBookMark(bookmark);
 
