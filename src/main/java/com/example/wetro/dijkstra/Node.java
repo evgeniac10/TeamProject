@@ -1904,7 +1904,9 @@ public class Node implements Comparable<Node>{
 
             settleNodes.add(currentNode);
         }
-        return new result(destination.getShortestPath(), destination.getDistance());
+        String resultPath = destination.printPath(destination);
+
+        return new result(destination.getShortestPath(), destination.getDistance(), resultPath);
     }
 
     //주어진 인접노드와의 최단경로 평가하고 업데이트
@@ -1921,6 +1923,16 @@ public class Node implements Comparable<Node>{
         }
     }
 
+    //경로 + 최소 가중치
+    private String printPath(Node destination) {
+        String path = destination.getShortestPath().stream()
+                .map(Node::getName)
+                .collect(Collectors.joining(" -> "));
+        String resultPath = path.isBlank()
+                ? String.format("%s : %s", destination.getName(), destination.getDistance())
+                : String.format("%s -> %s : %s", path, destination.getName(), destination.getDistance());
+        return resultPath;
+    }
 
 //최소환승 메서드들
 
@@ -1949,6 +1961,7 @@ public class Node implements Comparable<Node>{
         Node source2 = null;
         Node destination = null;
         Node destination2 = null;
+        initT();
 
         //이름 맞는거 찾아서 노드 배정
         for (Node node:nodes) {
@@ -2107,10 +2120,22 @@ public class Node implements Comparable<Node>{
 
         private List<Node> shortestPath;
         private Integer distance;
-        public result(List<Node> shortestPath, Integer distance) {
+        private String path;
+        public result(List<Node> shortestPath, Integer distance, String path) {
             this.shortestPath = shortestPath;
             this.distance = distance;
+            this.path = path;
         }
     }
+    public static void main(String[] args) {
+        init();
+        System.out.println(calculateShortestPath("123", "217").getDistance());
 
+        initNodeList();
+
+        initT();
+        System.out.println(calculateMinTransfer("123", "217").getDistance());
+        System.out.println(calculateMinTransfer("123", "217").getTransferCount());
+
+    }
 }

@@ -3,7 +3,6 @@ package com.example.wetro.station.controller;
 import com.example.wetro.response.stationResponse;
 import com.example.wetro.dijkstra.*;
 import com.example.wetro.station.dto.StationDto;
-import com.example.wetro.station.service.WetroService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,6 @@ import static com.example.wetro.response.stationResponse.*;
 @RequiredArgsConstructor
 public class WetroApiController {
 
-    private final WetroService wetroService;
     private final Node node;
 
     @PostMapping(value = "/search")
@@ -29,13 +27,11 @@ public class WetroApiController {
         log.info("입력한 출발역 = {}",stationDto.getFrom());
         log.info("입력한 도착역 = {}",stationDto.getTo());
 
+        Node.init();
         Node.result result = Node.calculateShortestPath("101","123");
 
-        Integer distance = result.getDistance();
-        List<Node> shortestPath = result.getShortestPath();
-        Node node1 = shortestPath.get(0);
 
-        log.info("다익스트라 결과 = {} , {} , {}", distance , node1.getDistance() , node1.getTransferCount());
+        log.info("다익스트라 결과 = {} , {} ", result.getDistance(), result.getPath());
 
         return success(SUCCESS_TO_INFO);
     }
