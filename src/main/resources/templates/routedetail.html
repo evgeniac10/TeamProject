@@ -68,6 +68,17 @@
             margin-left: 50%;
             transform: translate(-50%, 0);
         }
+        #timer{
+            position: absolute;
+            background-color: rgb(115, 170, 253);
+            color: #ffffff;
+            width: 180px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 20px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
         .dot{
             list-style: none;
             font-weight: bold;
@@ -137,6 +148,8 @@
         <div class="route-time">
             <ul>
                 <li>분 초</li>
+                <li>원</li>
+                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
             </ul>
         </div>
     </div>
@@ -187,6 +200,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectime.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -208,6 +222,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectime.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -219,6 +234,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",reccost.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -240,6 +256,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${reccost.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -251,6 +268,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectrans.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -272,6 +290,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectrans.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -308,6 +327,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectime.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -329,6 +349,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectime.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -340,6 +361,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",reccost.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -361,6 +383,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${reccost.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -372,6 +395,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectrans.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -393,6 +417,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectrans.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -421,7 +446,9 @@
                     "from":routefrom,
                     "layover":routelayover,
                     "to":routeto,
-                    "type":routetype
+                    "type":routetype,
+                    "alias":'즐겨찾기',
+                    "alarm":null,
                 }),
             })
             .then(response => response.json())

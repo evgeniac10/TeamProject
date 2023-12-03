@@ -130,11 +130,11 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "user":userid,
-                "from":from,
-                "layover":layover,
-                "to":to,
-                "min":rectype
+                "token":token,
+                "from":routefrom,
+                "layover":routelayover,
+                "to":routeto,
+                "type":routetype
             }),
         })
         .then(response => response.json())
