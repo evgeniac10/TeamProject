@@ -1858,7 +1858,7 @@ public class Node implements Comparable<Node>{
 
     @Override
     public int compareTo(Node node){
-        return Integer.compare(this.cost, node.getCost());
+        return Integer.compare(this.time, node.getTime());
     }
 
 
@@ -2070,13 +2070,13 @@ public class Node implements Comparable<Node>{
         }
     }
     public void addAdjacentNodeT(Node node, int time, int cost){
-        if (!this.line.equals(node.getLine())) {
+        if (!((this.getLine()).equals(node.getLine()))) {
             time += 2000; // 환승하면 가중치에 추가
         }
         List<Integer> arr = new ArrayList<>();
         arr.add(0, time);
         arr.add(1, cost);
-        adjacentNodes.put(node, arr);
+        this.adjacentNodes.put(node, arr);
     }
 
     //이름받아서
@@ -2267,23 +2267,22 @@ public class Node implements Comparable<Node>{
     }
 
     public static void main(String[] args) {
-        System.out.println(        calculateShortestCost("101", "805").getCost());
-        System.out.println(        calculateShortestCost("101", "805").getTime());
-        System.out.println(        calculateShortestCost("101", "805").getPath());
-        System.out.println(        calculateShortestCost("101", "805").getTransferCount());
+        System.out.println(        calculateShortestCost("101", "702").getCost());
+        System.out.println(        calculateShortestCost("101", "702").getTime());
+        System.out.println(        calculateShortestCost("101", "702").getPath());
+        System.out.println(        calculateShortestCost("101", "702").getTransferCount());
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-        System.out.println(        calculateShortestTime("101", "805").getCost());
-        System.out.println(        calculateShortestTime("101", "805").getTime());
-        System.out.println(        calculateShortestTime("101", "805").getPath());
-        System.out.println(        calculateShortestTime("101", "805").getTransferCount());
+        System.out.println(        calculateShortestTime("101", "702").getCost());
+        System.out.println(        calculateShortestTime("101", "702").getTime());
+        System.out.println(        calculateShortestTime("101", "702").getPath());
+        System.out.println(        calculateShortestTime("101", "702").getTransferCount());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-        calculateMinTransfer("101", "805");
-        System.out.println(        calculateMinTransfer("101", "805").getCost());
-        System.out.println(        calculateMinTransfer("101", "805").getTime());
-        System.out.println(        calculateMinTransfer("101", "805").getPath());
-        System.out.println(        calculateMinTransfer("101", "805").getTransferCount());
+        calculateMinTransfer("101", "702");
+        System.out.println(        calculateMinTransfer("101", "702").getCost());
+        System.out.println(        calculateMinTransfer("101", "702").getTime());
+        System.out.println(        calculateMinTransfer("101", "702").getPath());
+        System.out.println(        calculateMinTransfer("101", "702").getTransferCount());
     }
 }
