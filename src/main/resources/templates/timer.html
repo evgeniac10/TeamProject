@@ -101,6 +101,10 @@
         alert('타이머 start')
         const settime=document.getElementById('settime').value
         const sec = settime*60
+        if(sec>time){
+            alert('경로의 시간보다 긴 시간입니다!')
+            return
+        }
 
         const alarmtime = time-sec
         console.log(alarmtime)
