@@ -25,7 +25,7 @@ FOREIGN KEY (authority_name) REFERENCES authority (authority_name)
 );
 
 CREATE TABLE book_mark (
-    bookmark_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
     start_location VARCHAR(5) NOT NULL,
     layover_location VARCHAR(5),
