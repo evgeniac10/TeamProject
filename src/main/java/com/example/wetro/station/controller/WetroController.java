@@ -1,9 +1,6 @@
 package com.example.wetro.station.controller;
 
-import com.example.wetro.station.service.WetroService;
-import com.example.wetro.user.repository.TokenRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/wetro")
 public class WetroController {
 
-    private final WetroService wetroService;
 
     @GetMapping("/route")
     public String route(){

@@ -28,7 +28,7 @@ public class WetroApiController {
         log.info("입력한 도착역 = {}",stationDto.getTo());
 
         Node.init();
-        Node.result result = Node.calculateShortestPath("101","123");
+        Node.result result = Node.calculateShortestPath("101","703");
 
 
         log.info("다익스트라 결과 = {} , {} ", result.getDistance(), result.getPath());

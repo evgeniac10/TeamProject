@@ -20,11 +20,12 @@ public class Node implements Comparable<Node>{
     //노드 이름
     private String name;
     //현재까지의 최단 거리 초기값 무한
-    private Integer distance = Integer.MAX_VALUE;
+    private Integer cost = Integer.MAX_VALUE;
+    private Integer time = Integer.MAX_VALUE;
     //최단 경로 저장, 수정 용이하게 위해 링크드리스트
     private List<Node> shortestPath = new LinkedList<>();
     //해당 노드의 인접한 노드와 그 사이의 가중치를 저장
-    private Map<Node, Integer> adjacentNodes = new HashMap<>();
+    private Map<Node, List<Integer>> adjacentNodes = new HashMap<>();
     //환승 횟수
     private int transferCount = 0;
 
@@ -1828,30 +1829,33 @@ public class Node implements Comparable<Node>{
     //노드 초기화
     public static void initializeNodes() {
         for (Node node : nodes) {
-            node.setDistance(Integer.MAX_VALUE);
+            node.setCost(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
         }
         for (Node node : transNodes) {
-            node.setDistance(Integer.MAX_VALUE);
+            node.setCost(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
         }
     }
 
 
     //노드에 인접노드, 가중치 추가
-    public void addAdjacentNode(Node node, int weight){
-        adjacentNodes.put(node, weight);
+    public void addAdjacentNode(Node node, int time, int cost){
+        List<Integer> arr = new ArrayList<>();
+        arr.add(0, time);
+        arr.add(1, cost);
+        adjacentNodes.put(node,arr);
     }
 
 
     @Override
     public int compareTo(Node node){
-        return Integer.compare(this.distance, node.getDistance());
+        return Integer.compare(this.cost, node.getCost());
     }
 
 
     //string으로 이름받아서
-    public static result calculateShortestPath(String start, String end){
+    public static result calculateShortestTime(String start, String end){
         Node source = null;
         Node destination = null;
         init();
@@ -1873,14 +1877,16 @@ public class Node implements Comparable<Node>{
             }
         }
 
-        return calcLogic(source, destination);
+        return timeCalcLogic(source, destination);
     }
 
     //다익스트라 계산 로직
-    public static result calcLogic(Node source, Node destination){
+    public static result timeCalcLogic(Node source, Node destination){
         initializeNodes();
 
-        source.setDistance(0);
+        source.setTime(0);
+        source.setCost(0);
+
         //최단거리 확정된 경로
         Set<Node> settleNodes = new HashSet<>();
         //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
@@ -1898,61 +1904,154 @@ public class Node implements Comparable<Node>{
                     .entrySet().stream()
                     .filter(entry -> !settleNodes.contains(entry.getKey()))
                     .forEach(entry -> {
-                        evaluateDistanceAndPath(entry.getKey(), entry.getValue(), currentNode);
+                        evaluateTime(entry.getKey(), entry.getValue().get(0), currentNode);
                         unsettledNodes.add(entry.getKey());
                     });
 
             settleNodes.add(currentNode);
         }
-        String resultPath = destination.printPath(destination);
+        String resultPath = destination.printTImePath(destination);
 
-        return new result(destination.getShortestPath(), destination.getDistance(), resultPath);
+        return new result(destination.getTime(), destination.getCost(), resultPath);
     }
 
     //주어진 인접노드와의 최단경로 평가하고 업데이트
-    private static void evaluateDistanceAndPath(Node adjacentNode, Integer edgeWeight, Node sourceNode){
-        Integer newDistance = sourceNode.getDistance() + edgeWeight;
+    private static void evaluateTime(Node adjacentNode, Integer edgeWeight, Node sourceNode){
+        Integer newTime = sourceNode.getTime() + edgeWeight;
         //새 가중치가 기존 가중치보다 작으면
-        if(newDistance < adjacentNode.getDistance()){
+        if(newTime < adjacentNode.getTime()){
             //가중치 초기화
-            adjacentNode.setDistance(newDistance);
+            adjacentNode.setTime(newTime);
             //ShortestPath에 추가
             List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
+
+            adjacentNode.setCost(adjacentNode.getCost() + edgeWeight);
         }
     }
 
     //경로 + 최소 가중치
-    private String printPath(Node destination) {
+    private String printTImePath(Node destination) {
         String path = destination.getShortestPath().stream()
                 .map(Node::getName)
                 .collect(Collectors.joining(" -> "));
         String resultPath = path.isBlank()
-                ? String.format("%s : %s", destination.getName(), destination.getDistance())
-                : String.format("%s -> %s : %s", path, destination.getName(), destination.getDistance());
+                ? String.format("%s ", destination.getName())
+                : String.format("%s -> %s : ", path, destination.getName());
         return resultPath;
     }
+/////////////////////////////////////////////////////////////////////////////////////////
 
+    //string으로 이름받아서
+    public static result calculateShortestCost(String start, String end){
+        Node source = null;
+        Node destination = null;
+        init();
+        //루프돌려서 이름에 맞는 노드 배정
+        for (Node node:nodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+        for (Node node:transNodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+
+        return costCalcLogic(source, destination);
+    }
+
+    //다익스트라 계산 로직
+    public static result costCalcLogic(Node source, Node destination){
+        initializeNodes();
+
+        source.setTime(0);
+        source.setCost(0);
+
+        //최단거리 확정된 경로
+        Set<Node> settleNodes = new HashSet<>();
+        //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
+        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
+
+        //
+        while(!unsettledNodes.isEmpty()){
+            Node currentNode = unsettledNodes.poll();
+
+            if(currentNode.equals(destination)){
+                break;
+            }
+
+            currentNode.getAdjacentNodes()
+                    .entrySet().stream()
+                    .filter(entry -> !settleNodes.contains(entry.getKey()))
+                    .forEach(entry -> {
+                        evaluateCost(entry.getKey(), entry.getValue().get(1), currentNode);
+                        unsettledNodes.add(entry.getKey());
+                    });
+
+            settleNodes.add(currentNode);
+        }
+        String resultPath = destination.printCostPath(destination);
+
+        return new result(destination.getTime(), destination.getCost(), resultPath);
+    }
+
+    //주어진 인접노드와의 최단경로 평가하고 업데이트
+    private static void evaluateCost(Node adjacentNode, Integer edgeWeight, Node sourceNode){
+        Integer newCost = sourceNode.getCost() + edgeWeight;
+        //새 가중치가 기존 가중치보다 작으면
+        if(newCost < adjacentNode.getCost()){
+            //가중치 초기화
+            adjacentNode.setCost(newCost);
+            //ShortestPath에 추가
+            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
+                    .collect(Collectors.toList());
+            adjacentNode.setShortestPath(newPath);
+
+            adjacentNode.setTime(adjacentNode.getTime() + edgeWeight);
+        }
+    }
+
+    //경로 + 최소 가중치
+    private String printCostPath(Node destination) {
+        String path = destination.getShortestPath().stream()
+                .map(Node::getName)
+                .collect(Collectors.joining(" -> "));
+        String resultPath = path.isBlank()
+                ? String.format("%s ", destination.getName())
+                : String.format("%s -> %s : ", path, destination.getName());
+        return resultPath;
+    }
 //최소환승 메서드들
 
     public static void initializeNodesT() {
         for (Node node : nodes) {
-            node.setDistance(Integer.MAX_VALUE);
+            node.setCost(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
         }
         for (Node node : transNodes) {
-            node.setDistance(Integer.MAX_VALUE);
+            node.setCost(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
         }
     }
-    public void addAdjacentNodeT(Node node, int weight){
+    public void addAdjacentNodeT(Node node, int time, int cost){
         if (!this.line.equals(node.getLine())) {
-            weight += 2000; // 환승하면 가중치에 추가
+            time += 2000; // 환승하면 가중치에 추가
         }
-        adjacentNodes.put(node, weight);
+        List<Integer> arr = new ArrayList<>();
+        arr.add(0, time);
+        arr.add(1, cost);
+        adjacentNodes.put(node, arr);
     }
 
     //이름받아서
@@ -2041,7 +2140,8 @@ public class Node implements Comparable<Node>{
     public static resultT calcLogicT(Node source, Node destination){
         initializeNodesT();
 
-        source.setDistance(0);
+        source.setTime(0);
+        source.setCost(0);
         //최단거리 확정된 경로
         Set<Node> settleNodes = new HashSet<>();
         //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
@@ -2059,20 +2159,23 @@ public class Node implements Comparable<Node>{
                     .entrySet().stream()
                     .filter(entry -> !settleNodes.contains(entry.getKey()))
                     .forEach(entry -> {
-                        evaluateTransferAndPath(entry.getKey(), entry.getValue(), currentNode);
+                        evaluateTransferAndPath(entry.getKey(), entry.getValue().get(0), currentNode);
                         unsettledNodes.add(entry.getKey());
                     });
 
             settleNodes.add(currentNode);
         }
-        destination.setDistance(destination.getDistance()-2000* destination.getTransferCount());
+        destination.setCost(destination.getCost()-2000* destination.getTransferCount());
+        destination.setTime(destination.getCost()-2000* destination.getTransferCount());
 
-        return new resultT(destination.getShortestPath(), destination.getDistance(), destination.getTransferCount());
+        String resultPath = destination.printMinTransfer(destination);
+
+        return new resultT(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
     }
     private static void evaluateTransferAndPath(Node adjacentNode, Integer edgeWeight, Node sourceNode){
-        Integer newDistance = sourceNode.getDistance() + edgeWeight;
-        if(newDistance < adjacentNode.getDistance()){
-            adjacentNode.setDistance(newDistance);
+        Integer newDistance = sourceNode.getCost() + edgeWeight;
+        if(newDistance < adjacentNode.getCost()){
+            adjacentNode.setCost(newDistance);
             List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
@@ -2083,33 +2186,44 @@ public class Node implements Comparable<Node>{
             } else {
                 adjacentNode.setTransferCount(sourceNode.getTransferCount());
             }
+            adjacentNode.setCost(adjacentNode.getCost() + edgeWeight);
+            adjacentNode.setTime(adjacentNode.getTime() + edgeWeight);
         }
+    }
+    private String printMinTransfer(Node destination) {
+        String path = destination.getShortestPath().stream()
+                .map(Node::getName)
+                .collect(Collectors.joining(" -> "));
+        String resultPath = path.isBlank()
+                ? String.format("%s", destination.getName())
+                : String.format("%s -> %s", path, destination.getName()); // 거리 출력 제거
+        return resultPath;
     }
     @Getter
     @Setter
-    @RequiredArgsConstructor
     @Component
     static
     class resultT implements Comparable<resultT>{
 
-        private List<Node> shortestPath;
         private int transferCount = 100;
-        private Integer distance = Integer.MAX_VALUE;
+        private Integer cost;
+        private Integer time;
+        private String path;
         @Override
         public int compareTo(resultT other) {
             int compare = Integer.compare(this.transferCount, other.transferCount);
             if (compare == 0) {
-                compare = Integer.compare(this.distance, other.distance);
+                compare = Integer.compare(this.time, other.time);
             }
             return compare;
         }
 
-        public resultT(List<Node> shortestPath, Integer distance ,int transferCount) {
-            this.shortestPath = shortestPath;
-            this.distance = distance;
+        public resultT(Integer time, Integer cost, int transferCount, String path) {
+            this.time = time;
+            this.cost = cost;
             this.transferCount = transferCount;
+            this.path = path;
         }
-
     }
     @Getter
     @Setter
@@ -2118,24 +2232,16 @@ public class Node implements Comparable<Node>{
 
     public static class result{
 
-        private List<Node> shortestPath;
-        private Integer distance;
+        private Integer cost;
+        private Integer time;
         private String path;
-        public result(List<Node> shortestPath, Integer distance, String path) {
-            this.shortestPath = shortestPath;
-            this.distance = distance;
+        public result(Integer time, Integer cost, String path) {
+            this.time = time;
+            this.cost = cost;
             this.path = path;
         }
     }
     public static void main(String[] args) {
-        init();
-        System.out.println(calculateShortestPath("123", "217").getDistance());
-
-        initNodeList();
-
-        initT();
-        System.out.println(calculateMinTransfer("123", "217").getDistance());
-        System.out.println(calculateMinTransfer("123", "217").getTransferCount());
 
     }
 }
