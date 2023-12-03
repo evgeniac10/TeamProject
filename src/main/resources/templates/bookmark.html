@@ -131,7 +131,10 @@
             },
             body: JSON.stringify({
                 "user":userid,
-                "token":token
+                "from":from,
+                "layover":layover,
+                "to":to,
+                "min":rectype
             }),
         })
         .then(response => response.json())

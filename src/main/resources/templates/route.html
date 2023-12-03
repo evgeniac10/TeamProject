@@ -230,23 +230,29 @@
         `
     }
 
-    function minTime(mainfrom,mainto,mainlayover){
+    function minTime(){
         localStorage.setItem("from",mainfrom)
         localStorage.setItem("to",mainto)
-        localStorage.setItem("layover",mainlayover)
-        localStorage.setItem("type",mintime)
+        if(mainlayover!==null){
+            localStorage.setItem("layover",mainlayover)
+        }
+        localStorage.setItem("type",'mintime')
     }
-    function minCost(mainfrom,mainto,mainlayover){
+    function minCost(){
         localStorage.setItem("from",mainfrom)
         localStorage.setItem("to",mainto)
-        localStorage.setItem("layover",mainlayover)
-        localStorage.setItem("type",mincost)
+        if(mainlayover!==null){
+            localStorage.setItem("layover",mainlayover)
+        }
+        localStorage.setItem("type",'mincost')
     }
-    function minTrans(mainfrom,mainto,mainlayover){
+    function minTrans(){
         localStorage.setItem("from",mainfrom)
         localStorage.setItem("to",mainto)
-        localStorage.setItem("layover",mainlayover)
-        localStorage.setItem("type",mintrans)
+        if(mainlayover!==null){
+            localStorage.setItem("layover",mainlayover)
+        }
+        localStorage.setItem("type",'mintrans')
     }
 
     const mainfrom = localStorage.getItem("from")

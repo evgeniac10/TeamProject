@@ -122,8 +122,10 @@
     </div>
 </div>
 <div class="main">
-    <h2 class="route-info">출발역 :</h2>
-    <h2 class="route-info">도착역 :</h2>
+    <div class="info">
+        <h2 class="route-info">출발역 :</h2>
+        <h2 class="route-info">도착역 :</h2>
+    </div>
     <div class="route-container">
         <div class="route-detail">
             <ul>
@@ -146,8 +148,293 @@
 
 
 <script>
+    const routefrom = localStorage.getItem("from")
+    const routeto = localStorage.getItem("to")
+    const routelayover = localStorage.getItem("layover")
+    const routetype = localStorage.getItem("type")
+    localStorage.removeItem("from")
+    localStorage.removeItem("to")
+    localStorage.removeItem("type")
+
+    if(routelayover!==null){
+        localStorage.removeItem("layover")
+
+        fetch('/wetro/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "from":routefrom,
+                "layover":routelayover,
+                "to":routeto
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const info = document.querySelector('.info')
+                info.innerHTML=`
+                <h2 class="route-info">출발역 : ${routefrom}</h2>
+                <h2 class="route-info">경유지 : ${routelayover}</h2>
+                <h2 class="route-info">도착역 : ${routeto}</h2>
+            `
 
 
+                if(routetype==='mintime'){
+                    const rectime = data.infolists[0]
+                    const totalSeconds = rectime.time
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    let formattedTime
+
+                    if(hours===0){
+                        formattedTime = `${minutes}분 ${seconds}초`;
+                    }
+                    else {
+                        formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                    }
+
+                    const container = document.querySelector('.route-container')
+                    container.innerHTML =`
+                        <div class="route-detail">
+                            <ul>
+                                <li class="dot"><p class="dot-text">${routefrom}</p></li>
+                                <li class="line"><div class="line-text"></div></li>
+                                <li class="dot"><p class="dot-text">${routeto}</p></li>
+                            </ul>
+                        </div>
+                        <div class="route-time">
+                            <ul>
+                                <li>${formattedTime}</li>
+                                <li>${rectime.cost}원</li>
+                            </ul>
+                        </div>
+                    `
+                }
+                else{
+                    const reccost = data.infolists[1]
+                    const totalSeconds = reccost.time
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    let formattedTime
+
+                    if(hours===0){
+                        formattedTime = `${minutes}분 ${seconds}초`;
+                    }
+                    else {
+                        formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                    }
+
+                    const container = document.querySelector('.route-container')
+                    container.innerHTML =`
+                        <div class="route-detail">
+                            <ul>
+                                <li class="dot"><p class="dot-text">${routefrom}</p></li>
+                                <li class="line"><div class="line-text"></div></li>
+                                <li class="dot"><p class="dot-text">${routeto}</p></li>
+                            </ul>
+                        </div>
+                        <div class="route-time">
+                            <ul>
+                                <li>${formattedTime}</li>
+                                <li>${reccost.cost}원</li>
+                            </ul>
+                        </div>
+                    `
+                }
+                else if(routetype==='mintrans'){
+                    const rectrans = data.infolists[2]
+                    const totalSeconds = rectrans.time
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    let formattedTime
+
+                    if(hours===0){
+                        formattedTime = `${minutes}분 ${seconds}초`;
+                    }
+                    else {
+                        formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                    }
+
+                    const container = document.querySelector('.route-container')
+                    container.innerHTML =`
+                        <div class="route-detail">
+                            <ul>
+                                <li class="dot"><p class="dot-text">${routefrom}</p></li>
+                                <li class="line"><div class="line-text"></div></li>
+                                <li class="dot"><p class="dot-text">${routeto}</p></li>
+                            </ul>
+                        </div>
+                        <div class="route-time">
+                            <ul>
+                                <li>${formattedTime}</li>
+                                <li>${rectrans.cost}원</li>
+                            </ul>
+                        </div>
+                    `
+                }
+
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    else if(routelayover===null){
+        fetch('/wetro/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "from":routefrom,
+                "layover":routelayover,
+                "to":routeto
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const info = document.querySelector('.info')
+                info.innerHTML=`
+                <h2 class="route-info">출발역 : ${routefrom}</h2>
+                <h2 class="route-info">도착역 : ${routeto}</h2>
+            `
+
+                if(routetype==='mintime'){
+                    const rectime = data.infolists[0]
+                    const totalSeconds = rectime.time
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    let formattedTime
+
+                    if(hours===0){
+                        formattedTime = `${minutes}분 ${seconds}초`;
+                    }
+                    else {
+                        formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                    }
+
+                    const container = document.querySelector('.route-container')
+                    container.innerHTML =`
+                        <div class="route-detail">
+                            <ul>
+                                <li class="dot"><p class="dot-text">${routefrom}</p></li>
+                                <li class="line"><div class="line-text"></div></li>
+                                <li class="dot"><p class="dot-text">${routeto}</p></li>
+                            </ul>
+                        </div>
+                        <div class="route-time">
+                            <ul>
+                                <li>${formattedTime}</li>
+                                <li>${rectime.cost}원</li>
+                            </ul>
+                        </div>
+                    `
+                }
+                else if(routetype==='mincost'){
+                    const reccost = data.infolists[1]
+                    const totalSeconds = reccost.time
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    let formattedTime
+
+                    if(hours===0){
+                        formattedTime = `${minutes}분 ${seconds}초`;
+                    }
+                    else {
+                        formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                    }
+
+                    const container = document.querySelector('.route-container')
+                    container.innerHTML =`
+                        <div class="route-detail">
+                            <ul>
+                                <li class="dot"><p class="dot-text">${routefrom}</p></li>
+                                <li class="line"><div class="line-text"></div></li>
+                                <li class="dot"><p class="dot-text">${routeto}</p></li>
+                            </ul>
+                        </div>
+                        <div class="route-time">
+                            <ul>
+                                <li>${formattedTime}</li>
+                                <li>${reccost.cost}원</li>
+                            </ul>
+                        </div>
+                    `
+                }
+                else if(routetype==='mintrans'){
+                    const rectrans = data.infolists[2]
+                    const totalSeconds = rectrans.time
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    let formattedTime
+
+                    if(hours===0){
+                        formattedTime = `${minutes}분 ${seconds}초`;
+                    }
+                    else {
+                        formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                    }
+
+                    const container = document.querySelector('.route-container')
+                    container.innerHTML =`
+                        <div class="route-detail">
+                            <ul>
+                                <li class="dot"><p class="dot-text">${routefrom}</p></li>
+                                <li class="line"><div class="line-text"></div></li>
+                                <li class="dot"><p class="dot-text">${routeto}</p></li>
+                            </ul>
+                        </div>
+                        <div class="route-time">
+                            <ul>
+                                <li>${formattedTime}</li>
+                                <li>${rectrans.cost}원</li>
+                            </ul>
+                        </div>
+                    `
+                }
+
+
+
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+
+
+
+    // fetch('wetro/bookmark',
+    //     {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             "user":userid,
+    //             "from":from,
+    //             "layover":layover,
+    //             "to":to,
+    //             "min":rectype
+    //         }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         for (let i=0;i<data.mark;i++){
+    //             data.list[i].createMark();
+    //         }
+    //         for (let i=0;i<data.mark;i++){
+    //             if(data.list[i].alarm - time.getMinutes() <= 30){
+    //                 if(confirm('상세 경로 페이지로 이동하시겠습니까?')){
+    //                     location.href="routedetail"
+    //                 }
+    //             }
+    //         }
+    //     })
 
 </script>
 </body>
