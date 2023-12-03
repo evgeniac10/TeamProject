@@ -35,7 +35,7 @@ public class WetroApiController {
             log.info("경유지가 없다면 ");
             Node.result result1 = Node.calculateShortestTime(stationDto.getFrom(), stationDto.getTo());//최소시간
             Node.result result2 = Node.calculateShortestCost(stationDto.getFrom(), stationDto.getTo());//최소비용
-            Node.resultT resultT = Node.calculateMinTransfer(stationDto.getFrom(), stationDto.getTo());//최소환승
+            NodeT.resultT resultT = NodeT.calculateMinTransfer(stationDto.getFrom(), stationDto.getTo());//최소환승
 
             Integer time1 = result1.getTime();
             Integer cost1 = result1.getCost();
@@ -80,11 +80,11 @@ public class WetroApiController {
             log.info("경유지가 있다면 ");
             Node.result result1 = Node.calculateShortestTime(stationDto.getFrom(), stationDto.getLayover());//최소시간
             Node.result result2 = Node.calculateShortestCost(stationDto.getFrom(), stationDto.getLayover());//최소비용
-            Node.resultT resultT = Node.calculateMinTransfer(stationDto.getFrom(), stationDto.getLayover());//최소환승
+            NodeT.resultT resultT = NodeT.calculateMinTransfer(stationDto.getFrom(), stationDto.getLayover());//최소환승
 
             Node.result layResult1 = Node.calculateShortestTime(stationDto.getLayover(), stationDto.getTo());//최소시간
             Node.result layResult2 = Node.calculateShortestCost(stationDto.getLayover(), stationDto.getTo());//최소비용
-            Node.resultT layResultT = Node.calculateMinTransfer(stationDto.getLayover(), stationDto.getTo());//최소환승
+            NodeT.resultT layResultT = NodeT.calculateMinTransfer(stationDto.getLayover(), stationDto.getTo());//최소환승
 
         Integer time1 = result1.getTime()+layResult1.getTime();
         Integer cost1 = result1.getCost()+layResult1.getCost();
