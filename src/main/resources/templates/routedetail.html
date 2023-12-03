@@ -124,6 +124,8 @@
         .route-detail{
             height: 70%;
         }
+
+
     </style>
 </head>
 <body>
@@ -422,7 +424,12 @@
                         </div>
                     `
                     const transnode = document.querySelector('.line')
-                    transnode.appendChild(li)
+                    for(let i=0;length(data.translist);i++){
+                        const li =document.createElement("li")
+                        li.setAttribute('id',translist[i])
+                        transnode.appendChild(li)
+                    }
+
                 }
 
 
