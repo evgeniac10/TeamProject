@@ -33,9 +33,17 @@ public class WetroApiController {
         Node.result result2 = Node.calculateShortestCost(stationDto.getFrom(), stationDto.getTo());//최소비용
         Node.resultT resultT = Node.calculateMinTransfer(stationDto.getFrom(), stationDto.getTo());//최소환승
 
-        log.info("다익스트라 결과 = 최소 시간 {} , 최소 비용 {} , 환승 횟수 {}"
+        log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n"
                 , result1.getTime()
+                , result1.getCost()
+                ,result1.getTranferCount());
+        log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n"
+                , result2.getTime()
                 , result2.getCost()
+                ,result2.getTranferCount());
+        log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n"
+                , resultT.getTime()
+                , resultT.getCost()
                 ,resultT.getTransferCount());
 
 
