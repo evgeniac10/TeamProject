@@ -964,7 +964,7 @@ public class Node implements Comparable<Node>{
     public static result calculateShortestPath(String start, String end){
         Node source = null;
         Node destination = null;
-
+        init();
         //루프돌려서 이름에 맞는 노드 배정
         for (Node node:nodes) {
             if(start.equals(node.getName())){
