@@ -85,6 +85,7 @@ public class WetroApiController {
             Node.result layResult1 = Node.calculateShortestTime(stationDto.getLayover(), stationDto.getTo());//최소시간
             Node.result layResult2 = Node.calculateShortestCost(stationDto.getLayover(), stationDto.getTo());//최소비용
             Node.resultT layResultT = Node.calculateMinTransfer(stationDto.getLayover(), stationDto.getTo());//최소환승
+
         Integer time1 = result1.getTime()+layResult1.getTime();
         Integer cost1 = result1.getCost()+layResult1.getCost();
         Integer transfer1 = result1.getTransferCount()+layResult1.getTransferCount();
@@ -107,20 +108,20 @@ public class WetroApiController {
 
 
         log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
-                , result1.getTime()
-                , result1.getCost()
-                ,result1.getTransferCount()-1
-                ,result1.getPath());
+                , time1
+                , cost1
+                ,transfer1
+                ,result1.getPath()+layResult1.getPath());
         log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
-                , result2.getTime()
-                , result2.getCost()
-                ,result2.getTransferCount()-1
-                ,result2.getPath());
+                , time2
+                , cost2
+                ,transfer2
+                ,result2.getPath()+layResult2.getPath());
         log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
-                , resultT.getTime()
-                , resultT.getCost()
-                ,resultT.getTransferCount()
-                ,resultT.getPath());
+                , time3
+                , cost3
+                ,transfer3
+                ,resultT.getPath()+layResultT.getPath());
 
 
         return success(SUCCESS_TO_INFO,infolists);
