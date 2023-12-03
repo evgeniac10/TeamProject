@@ -101,6 +101,8 @@ button {
 }
 .opacity-bar {
     padding: 10px;
+    accent-color: #838383;
+    transition: background 450ms ease-in;
 }
 .result input[type="range"] {
     width: 100%;
@@ -152,4 +154,12 @@ button {
     color: #838383;
     transition: all .35s;
     border-radius: 5px;
+}
+#search-button {
+    width: 40%;
+    background-color: #838383;
+    color: white;
+    border-radius: 20px;
+    margin: 5px 30% 0;
+    padding: 10px;
 }
