@@ -122,7 +122,7 @@
             `
         }
     }
-
+    const time =new Date()
     fetch('wetro/bookmark',
         {
             method: 'POST',
@@ -138,6 +138,13 @@
         .then(data => {
             for (let i=0;i<data.mark;i++){
                 data.list[i].createMark();
+            }
+            for (let i=0;i<data.mark;i++){
+                if(data.list[i].alarm - time.getMinutes() <= 30){
+                    if(confirm('상세 경로 페이지로 이동하시겠습니까?')){
+                        location.href="routedetail"
+                    }
+                }
             }
         })
 </script>

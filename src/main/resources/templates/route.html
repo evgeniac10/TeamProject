@@ -123,8 +123,7 @@
     </div>
 </div>
 <script>
-    function printTime(){
-        const rectime=localStorage.getItem("list",data.list[0])
+    function printTime(rectime){
         const time=rectime.time
         const cost=rectime.cost
         const transfer=rectime.transfer
@@ -143,11 +142,10 @@
             </div>
         `
     }
-    function printCost(){
-        const reccost=localStorage.getItem("list",data.list[1])
-        const time=rectime.time
-        const cost=rectime.cost
-        const transfer=rectime.transfer
+    function printCost(reccost){
+        const time=reccost.time
+        const cost=reccost.cost
+        const transfer=reccost.transfer
 
         const recommend=document.querySelector('.route-detail')
         recommend.innerHTML=`
@@ -163,11 +161,10 @@
             </div>
         `
     }
-    function printTransfer(){
-        const rectransfer=localStorage.getItem("list",data.list[2])
-        const time=rectime.time
-        const cost=rectime.cost
-        const transfer=rectime.transfer
+    function printTransfer(rectransfer){
+        const time=rectransfer.time
+        const cost=rectransfer.cost
+        const transfer=rectransfer.transfer
 
         const recommend=document.querySelector('.route-detail')
         recommend.innerHTML=`
@@ -184,9 +181,40 @@
         `
     }
 
-    printTime()
-    printCost()
-    printTransfer()
+    const mainfrom = localStorage.getItem("from")
+    const mainto = localStorage.getItem("to")
+    localStorage.removeItem("from")
+    localStorage.removeItem("to")
+    fetch('/wetro/search', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: {
+            "from":from,
+            "to":to
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            const rectime = data.recTime;
+            const reccost = data.recCost;
+            const rectansfer = data.recTrans;
+            const from = data.from;
+            const to = data.to;
+
+            const info = document.querySelector('.info')
+            info.innerHTML=`
+                <h2 class="route-info">출발역 : ${from}</h2>
+                <h2 class="route-info">도착역 : ${to}</h2>
+            `
+
+            printTime(rectime)
+            printCost(reccost)
+            printTransfer(rectansfer)
+        })
+        .catch(error => console.error('Error:', error));
+
 </script>
 
 </body>
