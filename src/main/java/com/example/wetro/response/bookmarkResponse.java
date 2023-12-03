@@ -18,4 +18,8 @@ public class bookmarkResponse {
     public static bookmarkResponse success(String message) {
         return new bookmarkResponse(true, OK.value(), message);
     }
+
+    public static bookmarkResponse fail(String message){
+        return new bookmarkResponse(true,OK.value(),message);
+    }
 }
