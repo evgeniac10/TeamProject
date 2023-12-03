@@ -140,6 +140,7 @@
         const time=rectime.time
         const cost=rectime.cost
         const transfer=rectime.transfer
+        console.log(rectime)
 
         const recommend=document.querySelector('.recommend-time')
         recommend.innerHTML=`
@@ -208,9 +209,6 @@
 
     if(mainlayover!==null){
         localStorage.removeItem("layover")
-        let rectime
-        let reccost
-        let rectransfer
 
         fetch('/wetro/search', {
             method: 'POST',
@@ -224,9 +222,10 @@
         })
             .then(response => response.json())
             .then(data => {
-                rectime = data.recTime;
-                reccost = data.recCost;
-                rectransfer = data.recTrans;
+                var rectime = data.infolists[0]
+                var reccost = data.infolists[1]
+                var rectransfer = data.infolists[2]
+                console.log(rectime)
 
                 const info = document.querySelector('.info')
                 info.innerHTML=`
@@ -248,9 +247,17 @@
         })
             .then(response => response.json())
             .then(data => {
-                rectime += data.recTime;
-                reccost += data.recCost;
-                rectransfer += data.recTrans;
+                rectime.time += data.infolists[0].time
+                rectime.cost += data.infolists[0].cost
+                rectime.transfer += data.infolists[0].transfer
+
+                reccost.time += data.infolists[1].time
+                reccost.cost += data.infolists[1].cost
+                reccost.transfer += data.infolists[1].transfer
+
+                rectransfer.time += data.infolists[2].time
+                rectransfer.cost += data.infolists[2].cost
+                rectransfer.transfer += data.infolists[2].transfer
 
                 printTime(rectime)
                 printCost(reccost)
