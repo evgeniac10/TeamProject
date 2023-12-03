@@ -3,6 +3,7 @@ package com.example.wetro.bookmark.controller;
 
 import com.example.wetro.bookmark.dto.BookMark;
 import com.example.wetro.bookmark.dto.BookMarkDto;
+import com.example.wetro.bookmark.dto.BookMarkTokenDto;
 import com.example.wetro.bookmark.service.BookMarkService;
 import com.example.wetro.response.bookmarkResponse;
 import com.example.wetro.user.dto.TokenDto;
@@ -61,17 +62,12 @@ public class BookMarkApiController {
     }
 
     @PostMapping("/bookmark/lists")
-    public List<BookMark> bookMarksLists(@RequestBody TokenDto tokenDto) {
+    public List<BookMark> bookMarksLists(@RequestBody BookMarkTokenDto tokenDto) {
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String userId = ((UserDetails) principal).getUsername();
+        String token = tokenDto.getToken();
 
-        // 여기서 userId를 이용하여 사용자 정보를 가져오거나,
-        // 이미 가지고 있는 경우 생략할 수 있습니다.
-
-        Optional<User> user = userService.findByUserid(userId);
-        // 사용자 정보가 존재하는지 확인
-
+        // 토큰을 이용하여 회원 정보 가져오기
+        Optional<User> user = userService.findByToken(token);
 
             return bookMarkService.findAllByUser(user);
 

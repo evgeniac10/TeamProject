@@ -1,5 +1,6 @@
 package com.example.wetro.user.dto;
 import com.example.wetro.bookmark.dto.BookMark;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -29,8 +30,11 @@ public class User {
         return userid;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<BookMark> bookMarks = new ArrayList<>();
+
+
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
