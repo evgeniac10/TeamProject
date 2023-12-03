@@ -1932,6 +1932,12 @@ public class Node implements Comparable<Node>{
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
 
+            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
+                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
+            } else {
+                adjacentNode.setTransferCount(sourceNode.getTransferCount());
+            }
+
             adjacentNode.setCost(adjacentNode.getCost() + cost);
         }
     }
