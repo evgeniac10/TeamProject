@@ -435,7 +435,9 @@
             alert('로그인 후 이용가능한 기능입니다.')
         }
 
-        else{fetch('wetro/bookmark',
+        else{
+            const name = prompt('즐겨찾기의 별명을 입력해주세요.',)
+            fetch('/wetro/bookmark',
             {
                 method: 'POST',
                 headers: {
@@ -443,12 +445,11 @@
                 },
                 body: JSON.stringify({
                     "token":token,
-                    "from":routefrom,
-                    "layover":routelayover,
-                    "to":routeto,
+                    "start_location":routefrom,
+                    "layover_location":routelayover,
+                    "end_location":routeto,
                     "type":routetype,
-                    "alias":'즐겨찾기',
-                    "alarm":null,
+                    "alias":name,
                 }),
             })
             .then(response => response.json())

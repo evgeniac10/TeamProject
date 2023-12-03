@@ -97,59 +97,42 @@
 <!--    </div>-->
 </div>
 <script>
-    class Bookmark{
-        constructor(name,from,to,alarm) {
-            this.name=name
-            this.from=from
-            this.to=to
-            this.alarm=alarm
-        }
-        createMark(){
-            const bookmark=document.querySelector('.bookmark')
-            bookmark.innerHTML=`
-            <div class="first-mark">
-                <h1 id="mark-name">${this.name}</h1>
-                <div class="mark-info">
-                    <h2>출발역:${this.from}</h2>
-                    <h2>도착역:${this.to}</h2>
-                    <h2>알람 시간:${this.alarm}</h2>
-                </div>
-                <div class="mark-button">
-                    <button class="setting" type="button"><span class="material-symbols-outlined">edit</span></button>
-                    <button class="alarm" type="button"><span class="material-symbols-outlined">notifications</span></button>
-                </div>
-            </div>
-            `
-        }
-    }
-    const time =new Date()
-    fetch('wetro/bookmark',
+    const token = localStorage.getItem('token')
+    fetch('wetro/bookmark/lists',
         {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "token":token,
-                "from":routefrom,
-                "layover":routelayover,
-                "to":routeto,
-                "type":routetype
+                "token":token
             }),
         })
         .then(response => response.json())
         .then(data => {
-            for (let i=0;i<data.mark;i++){
-                data.list[i].createMark();
-            }
-            for (let i=0;i<data.mark;i++){
-                if(data.list[i].alarm - time.getMinutes() <= 30){
-                    if(confirm('상세 경로 페이지로 이동하시겠습니까?')){
-                        location.href="routedetail"
-                    }
-                }
-            }
+            const bookmark=document.querySelector('.bookmark')
+
+            bookmark.innerHTML=`
+                <button class="mark" onclick="askConfirm()">
+                    <div class="first-mark">
+                        <input type="text" id="mark-name">${data.name}
+                            <div class="mark-info">
+                                    <h2>출발역:${data.from}</h2>
+                                    <h2>도착역:${data.to}</h2>
+                                </div>
+                            </div>
+                </button>
+            `
         })
+
+    function askConfirm(){
+        if(confirm('상세경로 페이지로 이동하시겠습니까?')){
+            location.href='routedetail'
+        }
+        else {
+            return
+        }
+    }
 </script>
 </body>
 </html>
