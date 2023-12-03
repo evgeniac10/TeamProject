@@ -60,7 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                     .authorizeRequests()
-                    .antMatchers("/wetro/**").permitAll()
+                    .antMatchers("/wetro/**","wetro/search").permitAll()
+                    .antMatchers("/error").permitAll()
                     .anyRequest().authenticated()//다른 모든 요청에 대한 인증을 요구합니다.
 
                 .and()

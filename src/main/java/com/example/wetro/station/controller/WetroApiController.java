@@ -5,6 +5,7 @@ import com.example.wetro.dijkstra.*;
 import com.example.wetro.station.dto.StationDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +19,22 @@ import static com.example.wetro.response.stationResponse.*;
 @RequiredArgsConstructor
 public class WetroApiController {
 
-    private final Node node;
+
 
     @PostMapping(value = "/search")
+    @PreAuthorize("hasAuthority('USER')")
     @ResponseBody
     public stationResponse Info(@RequestBody StationDto stationDto) {
 
         log.info("입력한 출발역 = {}",stationDto.getFrom());
         log.info("입력한 도착역 = {}",stationDto.getTo());
 
-        Node.result result = Node.calculateShortestCost("123", "601");
+        Node.result result = Node.calculateShortestTime(stationDto.getFrom(), stationDto.getTo());
+        Integer time = result.getTime();
+        Integer cost = result.getCost();
+        String path = result.getPath();
 
-
-        log.info("다익스트라 결과 = {} , {}, {} ", result.getTime(), result.getCost(),result.getPath());
+        log.info("다익스트라 결과 = {} , {} ,{} ", time, cost,path);
 
         return success(SUCCESS_TO_INFO);
     }

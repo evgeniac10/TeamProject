@@ -3,6 +3,7 @@ package com.example.wetro.dijkstra;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -2180,7 +2181,7 @@ public class Node implements Comparable<Node>{
 
         String resultPath = destination.printMinTransfer(destination);
 
-        return new resultT(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
+        return new resultT(destination.getTime(),destination.getCost(),destination.getTransferCount(),resultPath);
     }
     private static void evaluateTransferAndPath(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
         Integer newDistance = sourceNode.getTime() + time;
@@ -2218,6 +2219,13 @@ public class Node implements Comparable<Node>{
         private Integer time;
         private String path;
 
+        public resultT(Integer time, Integer cost, int transferCount, String resultPath) {
+            this.time=time;
+            this.cost =cost;
+            this.transferCount=transferCount;
+            this.path=resultPath;
+        }
+
         @Override
         public int compareTo(resultT other) {
             int compare = Integer.compare(this.transferCount, other.transferCount);
@@ -2227,12 +2235,6 @@ public class Node implements Comparable<Node>{
             return compare;
         }
 
-        public resultT(Integer time, Integer cost, int transferCount, String path) {
-            this.time = time;
-            this.cost = cost;
-            this.transferCount = transferCount;
-            this.path = path;
-        }
     }
     @Getter
     @Setter
@@ -2248,8 +2250,5 @@ public class Node implements Comparable<Node>{
             this.path = path;
             this.tranferCount = transferCount;
         }
-    }
-    public static void main(String[] args) {
-
     }
 }
