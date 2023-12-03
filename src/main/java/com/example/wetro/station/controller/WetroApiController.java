@@ -30,10 +30,12 @@ public class WetroApiController {
         log.info("입력한 도착역 = {}",stationDto.getTo());
 
         Node.result result = Node.calculateShortestPath("101","123");
+
         Integer distance = result.getDistance();
         List<Node> shortestPath = result.getShortestPath();
-        shortestPath.get(0);
-        log.info("다익스트라 결과 = {} ,{} ",distance,shortestPath);
+        Node node1 = shortestPath.get(0);
+
+        log.info("다익스트라 결과 = {} , {} , {}", distance , node1.getDistance() , node1.getTransferCount());
 
         return success(SUCCESS_TO_INFO);
     }
