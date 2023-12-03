@@ -45,10 +45,23 @@
             border: #333333 solid 1px;
             margin: 10px 0;
         }
-        .recommend{
+        .recommend-time{
             border:  #333333 solid 1px;
             padding: 5px;
             margin: 10px 0;
+            width: 90%;
+        }
+        .recommend-cost{
+            border:  #333333 solid 1px;
+            padding: 5px;
+            margin: 10px 0;
+            width: 90%;
+        }
+        .recommend-trans{
+            border:  #333333 solid 1px;
+            padding: 5px;
+            margin: 10px 0;
+            width: 90%;
         }
         .rec-time h4{
             color: #6a9be8;
@@ -79,7 +92,8 @@
 <div class="info">
     <h2 class="route-info">출발역 :</h2>
     <h2 class="route-info">도착역 :</h2>
-    <div class="recommend">
+</div>
+    <div class="recommend-time">
         <a href="routedetail">
             <div class="rec-time">
                 <h4>최소 시간</h4>
@@ -93,7 +107,7 @@
             </div>
         </a>
     </div>
-    <div class="recommend">
+    <div class="recommend-cost">
         <a href="routedetail">
             <div class="rec-cost">
                 <h4>최소 비용</h4>
@@ -107,7 +121,7 @@
             </div>
         </a>
     </div>
-    <div class="recommend">
+    <div class="recommend-trans">
         <a href="routedetail">
             <div class="rec-trans">
                 <h4>최소 환승</h4>
@@ -121,15 +135,15 @@
             </div>
         </a>
     </div>
-</div>
 <script>
     function printTime(rectime){
         const time=rectime.time
         const cost=rectime.cost
         const transfer=rectime.transfer
 
-        const recommend=document.querySelector('.route-detail')
+        const recommend=document.querySelector('.recommend-time')
         recommend.innerHTML=`
+        <a href="routedetail">
             <div class="rec-time">
                 <h4>최소 시간</h4>
                 <div class="from"></div>
@@ -140,6 +154,7 @@
                     <p>환승 : ${transfer}</p>
                 </div>
             </div>
+        </a>
         `
     }
     function printCost(reccost){
@@ -147,8 +162,9 @@
         const cost=reccost.cost
         const transfer=reccost.transfer
 
-        const recommend=document.querySelector('.route-detail')
+        const recommend=document.querySelector('.recommend-cost')
         recommend.innerHTML=`
+        <a href="routedetail">
             <div class="rec-cost">
                 <h4>최소 비용</h4>
                 <div class="from"></div>
@@ -159,6 +175,7 @@
                     <p>환승 : ${transfer}</p>
                 </div>
             </div>
+        </a>
         `
     }
     function printTransfer(rectransfer){
@@ -166,8 +183,9 @@
         const cost=rectransfer.cost
         const transfer=rectransfer.transfer
 
-        const recommend=document.querySelector('.route-detail')
+        const recommend=document.querySelector('.recommend-trans')
         recommend.innerHTML=`
+        <a href="routedetail">
             <div class="rec-trans">
                 <h4>최소 환승</h4>
                 <div class="from"></div>
@@ -178,6 +196,7 @@
                     <p>환승 : ${transfer}</p>
                 </div>
             </div>
+        </a>
         `
     }
 
@@ -207,7 +226,7 @@
             .then(data => {
                 rectime = data.recTime;
                 reccost = data.recCost;
-                rectansfer = data.recTrans;
+                rectransfer = data.recTrans;
 
                 const info = document.querySelector('.info')
                 info.innerHTML=`
@@ -231,7 +250,7 @@
             .then(data => {
                 rectime += data.recTime;
                 reccost += data.recCost;
-                rectansfer += data.recTrans;
+                rectransfer += data.recTrans;
 
                 printTime(rectime)
                 printCost(reccost)
@@ -253,9 +272,9 @@
         })
             .then(response => response.json())
             .then(data => {
-                const rectime = data.recTime;
-                const reccost = data.recCost;
-                const rectansfer = data.recTrans;
+                const rectime = data.infolists[0]
+                const reccost = data.infolists[1]
+                const rectransfer = data.infolists[2]
 
                 const info = document.querySelector('.info')
                 info.innerHTML=`
@@ -265,7 +284,7 @@
 
                 printTime(rectime)
                 printCost(reccost)
-                printTransfer(rectansfer)
+                printTransfer(rectransfer)
             })
             .catch(error => console.error('Error:', error));
     }
