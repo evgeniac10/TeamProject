@@ -1916,6 +1916,7 @@ public class Node implements Comparable<Node>{
 
             settleNodes.add(currentNode);
         }
+
         String resultPath = destination.printTImePath(destination);
 
         return new result(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
@@ -1924,10 +1925,12 @@ public class Node implements Comparable<Node>{
     //주어진 인접노드와의 최단경로 평가하고 업데이트
     private static void evaluateTime(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
         Integer newTime = sourceNode.getTime() + time;
+        Integer newCost = sourceNode.getCost() + cost;
         //새 가중치가 기존 가중치보다 작으면
         if(newTime < adjacentNode.getTime()){
             //가중치 초기화
             adjacentNode.setTime(newTime);
+            adjacentNode.setCost(newCost);
             //ShortestPath에 추가
             List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
@@ -1938,8 +1941,6 @@ public class Node implements Comparable<Node>{
             } else {
                 adjacentNode.setTransferCount(sourceNode.getTransferCount());
             }
-
-            adjacentNode.setCost(adjacentNode.getCost() + cost);
         }
     }
 
@@ -1950,7 +1951,7 @@ public class Node implements Comparable<Node>{
                 .collect(Collectors.joining(" -> "));
         String resultPath = path.isBlank()
                 ? String.format("%s ", destination.getName())
-                : String.format("%s -> %s : ", path, destination.getName());
+                : String.format("%s -> %s ", path, destination.getName());
         return resultPath;
     }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -2019,10 +2020,13 @@ public class Node implements Comparable<Node>{
     //주어진 인접노드와의 최단경로 평가하고 업데이트
     private static void evaluateCost(Node adjacentNode, Integer cost, Integer time, Node sourceNode){
         Integer newCost = sourceNode.getCost() + cost;
+        Integer newTime = sourceNode.getTime() + time;
+
         //새 가중치가 기존 가중치보다 작으면
         if(newCost < adjacentNode.getCost()){
             //가중치 초기화
             adjacentNode.setCost(newCost);
+            adjacentNode.setTime(newTime);
             //ShortestPath에 추가
             List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
@@ -2034,7 +2038,6 @@ public class Node implements Comparable<Node>{
                 adjacentNode.setTransferCount(sourceNode.getTransferCount());
             }
 
-            adjacentNode.setTime(adjacentNode.getTime() + time);
         }
     }
 
@@ -2045,7 +2048,7 @@ public class Node implements Comparable<Node>{
                 .collect(Collectors.joining(" -> "));
         String resultPath = path.isBlank()
                 ? String.format("%s ", destination.getName())
-                : String.format("%s -> %s : ", path, destination.getName());
+                : String.format("%s -> %s ", path, destination.getName());
         return resultPath;
     }
 //최소환승 메서드들
@@ -2192,8 +2195,11 @@ public class Node implements Comparable<Node>{
     }
     private static void evaluateTransferAndPath(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
         Integer newDistance = sourceNode.getTime() + time;
+        Integer newCost = sourceNode.getCost() + cost;
+
         if(newDistance < adjacentNode.getTime()){
             adjacentNode.setTime(newDistance);
+            adjacentNode.setCost(newCost);
             List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
@@ -2204,8 +2210,6 @@ public class Node implements Comparable<Node>{
             } else {
                 adjacentNode.setTransferCount(sourceNode.getTransferCount());
             }
-            adjacentNode.setCost(adjacentNode.getCost() + cost);
-            adjacentNode.setTime(adjacentNode.getTime() + time);
         }
     }
     private String printMinTransfer(Node destination) {
@@ -2257,5 +2261,27 @@ public class Node implements Comparable<Node>{
             this.path = path;
             this.tranferCount = transferCount;
         }
+    }
+
+    public static void main(String[] args) {
+        initNodeList();
+        System.out.println(        calculateShortestCost("101", "805").getCost());
+        System.out.println(        calculateShortestCost("101", "805").getTime());
+        System.out.println(        calculateShortestCost("101", "805").getPath());
+        System.out.println(        calculateShortestCost("101", "805").getTranferCount());
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        initNodeList();
+        System.out.println(        calculateShortestTime("101", "805").getCost());
+        System.out.println(        calculateShortestTime("101", "805").getTime());
+        System.out.println(        calculateShortestTime("101", "805").getPath());
+        System.out.println(        calculateShortestTime("101", "805").getTranferCount());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        initNodeList();
+        System.out.println(        calculateMinTransfer("101", "805").getCost());
+        System.out.println(        calculateMinTransfer("101", "805").getTime());
+        System.out.println(        calculateMinTransfer("101", "805").getPath());
+        System.out.println(        calculateMinTransfer("101", "805").getTransferCount());
     }
 }
