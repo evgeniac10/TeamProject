@@ -199,6 +199,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectime.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -232,6 +233,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",reccost.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -265,6 +267,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectrans.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -323,6 +326,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectime.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -356,6 +360,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",reccost.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -389,6 +394,7 @@
                     const minutes = Math.floor((totalSeconds % 3600) / 60);
                     const seconds = totalSeconds % 60;
                     let formattedTime
+                    localStorage.setItem("time",rectrans.time)
 
                     if(hours===0){
                         formattedTime = `${minutes}분 ${seconds}초`;
@@ -439,7 +445,9 @@
                     "from":routefrom,
                     "layover":routelayover,
                     "to":routeto,
-                    "type":routetype
+                    "type":routetype,
+                    "alias":'즐겨찾기',
+                    "alarm":null,
                 }),
             })
             .then(response => response.json())

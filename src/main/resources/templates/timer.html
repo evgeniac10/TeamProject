@@ -30,10 +30,31 @@
 <body>
 <div class="header">
   <div class="logo">
-    <h1>타이머</h1>
+      <a href="main"><h1>WETRO</h1></a>
   </div>
 </div>
-<h2 class="setting">도착 --전 알림</h2>
-<button class="start" type="submit">열차 탑승</button>
+<h2 class="setting">도착 <input type="text" class="settime" id="settime">분 전 알림</h2>
+<button type="button" class="start" onclick="startTimer()">열차 탑승</button>
+<script>
+    const time=localStorage.getItem('time')
+    localStorage.removeItem('time')
+
+    function startTimer(){
+        const settime=document.getElementById('settime').value
+        const sec = settime*60
+
+        const alarmtime = time-sec
+        console.log(alarmtime)
+
+        setTimeout(()=>alert('설정한 타이머 시간입니다!'),alarmtime*1000)
+    }
+
+
+
+
+
+
+</script>
+
 </body>
 </html>
