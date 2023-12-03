@@ -29,12 +29,15 @@ public class WetroApiController {
         log.info("입력한 출발역 = {}",stationDto.getFrom());
         log.info("입력한 도착역 = {}",stationDto.getTo());
 
-        Node.result result = Node.calculateShortestTime(stationDto.getFrom(), stationDto.getTo());
-        Integer time = result.getTime();
-        Integer cost = result.getCost();
-        String path = result.getPath();
+        Node.result result1 = Node.calculateShortestTime(stationDto.getFrom(), stationDto.getTo());//최소시간
+        Node.result result2 = Node.calculateShortestCost(stationDto.getFrom(), stationDto.getTo());//최소비용
+        Node.resultT resultT = Node.calculateMinTransfer(stationDto.getFrom(), stationDto.getTo());//최소환승
 
-        log.info("다익스트라 결과 = {} , {} ,{} ", time, cost,path);
+        log.info("다익스트라 결과 = 최소 시간 {} , 최소 비용 {} , 환승 횟수 {}"
+                , result1.getTime()
+                , result2.getCost()
+                ,resultT.getTransferCount());
+
 
         return success(SUCCESS_TO_INFO);
     }

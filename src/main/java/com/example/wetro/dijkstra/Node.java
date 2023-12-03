@@ -3,13 +3,14 @@ package com.example.wetro.dijkstra;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 @Getter
 @Setter
 @RequiredArgsConstructor
