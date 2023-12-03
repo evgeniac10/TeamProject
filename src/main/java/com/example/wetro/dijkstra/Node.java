@@ -3,6 +3,7 @@ package com.example.wetro.dijkstra;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -2174,7 +2175,7 @@ public class Node implements Comparable<Node>{
 
         String resultPath = destination.printMinTransfer(destination);
 
-        return new resultT(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
+        return new resultT(destination.getTime(),destination.getCost(),destination.getTransferCount(),resultPath);
     }
     private static void evaluateTransferAndPath(Node adjacentNode, Integer edgeWeight, Node sourceNode){
         Integer newDistance = sourceNode.getCost() + edgeWeight;
@@ -2205,14 +2206,20 @@ public class Node implements Comparable<Node>{
     }
     @Getter
     @Setter
-    @Component
-    static
-    class resultT implements Comparable<resultT>{
+    static class resultT implements Comparable<resultT>{
 
         private int transferCount = 100;
         private Integer cost;
         private Integer time;
         private String path;
+
+        public resultT(Integer time, Integer cost, int transferCount, String resultPath) {
+            this.time=time;
+            this.cost =cost;
+            this.transferCount=transferCount;
+            this.path=resultPath;
+        }
+
         @Override
         public int compareTo(resultT other) {
             int compare = Integer.compare(this.transferCount, other.transferCount);
@@ -2222,30 +2229,18 @@ public class Node implements Comparable<Node>{
             return compare;
         }
 
-        public resultT(Integer time, Integer cost, int transferCount, String path) {
-            this.time = time;
-            this.cost = cost;
-            this.transferCount = transferCount;
-            this.path = path;
-        }
     }
     @Getter
     @Setter
     @RequiredArgsConstructor
     @Component
-
     public static class result{
 
         private Integer cost;
         private Integer time;
         private String path;
-        public result(Integer time, Integer cost, String path) {
-            this.time = time;
-            this.cost = cost;
-            this.path = path;
-        }
-    }
-    public static void main(String[] args) {
 
+        public result(Integer time, Integer cost, String resultPath) {
+        }
     }
 }

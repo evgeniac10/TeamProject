@@ -191,10 +191,10 @@
         headers: {
             'Content-Type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
             "from":mainfrom,
             "to":mainto
-        }
+        })
     })
         .then(response => response.json())
         .then(data => {
