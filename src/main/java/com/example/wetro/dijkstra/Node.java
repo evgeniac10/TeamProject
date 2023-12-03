@@ -1927,7 +1927,7 @@ public class Node implements Comparable<Node>{
         Integer newTime = sourceNode.getTime() + time;
         Integer newCost = sourceNode.getCost() + cost;
         //새 가중치가 기존 가중치보다 작으면
-        if(newTime < adjacentNode.getTime()){
+        if (newTime < adjacentNode.getTime() || (newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())){
             //가중치 초기화
             adjacentNode.setTime(newTime);
             adjacentNode.setCost(newCost);
@@ -2023,7 +2023,8 @@ public class Node implements Comparable<Node>{
         Integer newTime = sourceNode.getTime() + time;
 
         //새 가중치가 기존 가중치보다 작으면
-        if(newCost < adjacentNode.getCost()){
+        if (newCost < adjacentNode.getCost() ||
+                (newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())){
             //가중치 초기화
             adjacentNode.setCost(newCost);
             adjacentNode.setTime(newTime);

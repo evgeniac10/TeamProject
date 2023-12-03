@@ -57,18 +57,21 @@ public class WetroApiController {
         infolists.add(minTransInfo);
 
 
-        log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n"
+        log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                 , result1.getTime()
                 , result1.getCost()
-                ,result1.getTranferCount());
-        log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n"
+                ,result1.getTranferCount()-1
+                ,result1.getPath());
+        log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                 , result2.getTime()
                 , result2.getCost()
-                ,result2.getTranferCount());
-        log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n"
+                ,result2.getTranferCount()-1
+                ,result2.getPath());
+        log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                 , resultT.getTime()
                 , resultT.getCost()
-                ,resultT.getTransferCount());
+                ,resultT.getTransferCount()
+                ,resultT.getPath());
 
 
         return success(SUCCESS_TO_INFO,infolists);
