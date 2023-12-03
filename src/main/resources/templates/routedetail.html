@@ -140,7 +140,7 @@
             </ul>
         </div>
     </div>
-    <button type="button" id="marking">즐겨찾기 추가</button>
+    <button type="button" id="marking" onclick="marking()">즐겨찾기 추가</button>
 </div>
 
 
@@ -212,7 +212,7 @@
                         </div>
                     `
                 }
-                else{
+                else if(routetype==='mincost'){
                     const reccost = data.infolists[1]
                     const totalSeconds = reccost.time
                     const hours = Math.floor(totalSeconds / 3600);
@@ -281,7 +281,7 @@
             .catch(error => console.error('Error:', error));
     }
 
-    else if(routelayover===null){
+    else{
         fetch('/wetro/search', {
             method: 'POST',
             headers: {
@@ -404,37 +404,32 @@
             .catch(error => console.error('Error:', error));
     }
 
+    function marking(){
+        const token =localStorage.getItem('token')
+        if(token===null){
+            alert('로그인 후 이용가능한 기능입니다.')
+        }
 
-
-
-
-    // fetch('wetro/bookmark',
-    //     {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             "user":userid,
-    //             "from":from,
-    //             "layover":layover,
-    //             "to":to,
-    //             "min":rectype
-    //         }),
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         for (let i=0;i<data.mark;i++){
-    //             data.list[i].createMark();
-    //         }
-    //         for (let i=0;i<data.mark;i++){
-    //             if(data.list[i].alarm - time.getMinutes() <= 30){
-    //                 if(confirm('상세 경로 페이지로 이동하시겠습니까?')){
-    //                     location.href="routedetail"
-    //                 }
-    //             }
-    //         }
-    //     })
+        else{fetch('wetro/bookmark',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "token":token,
+                    "from":routefrom,
+                    "layover":routelayover,
+                    "to":routeto,
+                    "type":routetype
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('즐겨찾기에 추가되었습니다.')
+            })
+        }
+    }
 
 </script>
 </body>
