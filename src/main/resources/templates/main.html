@@ -106,32 +106,12 @@
     function validateForm() {
         return true;
     }
-    function fetchData() {
-        const from = document.getElementById('from').value;
-        const to = document.getElementById('to').value;
 
-        const requestData = {
-            from: from,
-            to: to
-        };
-
-        console.log('Request Data:', requestData);
-        fetch('/wetro/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)
-        })
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('data', JSON.stringify(data));
-            })
-            .catch(error => console.error('Error:', error));
-    }
     function makeItem(){
         const from = document.getElementById('from').value;
         const to = document.getElementById('to').value;
+        const check =document.getElementById('addButton');
+
         const node = ['101','102','103','104','105','106','107','108','109','110','111','112','113','114','115','116','117','118','119','120','121','122','123',
             '201','202','203','204','205','206','207','208','209','210','211','212','213','214','215','216','217',
             '301','302','303','304','305','306','307','308',
@@ -142,23 +122,62 @@
             '801', '802', '803', '804', '805', '806',
             '901', '902', '903', '904']
 
-        if(node.includes(from)){
-            localStorage.setItem("from",from)
-            localStorage.setItem("to",to)
+        if(check.checked){
+            const layover = document.getElementById('layover').value;
+
+            if(from===layover){
+                alert('출발역과 경유지가 같습니다.')
+                return;
+            }
+            else if(layover===to){
+                alert('경유지와 도착역이 같습니다.')
+                return;
+            }
+
+            if(node.includes(from)){
+                localStorage.setItem("from",from)
+            }
+            else{
+                alert('출발역 정보가 존재하지 않습니다.')
+                return;
+            }
+            if(node.includes(layover)){
+                localStorage.setItem("layover",layover)
+            }
+            else{
+                alert('경유지 정보가 존재하지 않습니다.')
+                return;
+            }
+            if(node.includes(to)){
+                localStorage.setItem("to",to)
+            }
+            else{
+                alert('도착역 정보가 존재하지 않습니다.')
+                return;
+            }
+            location.href="route"
         }
         else{
-            alert('출발역 정보가 존재하지 않습니다.')
-            return;
+            if(from===to){
+                alert('출발역과 도착역이 같습니다.')
+                return;
+            }
+            if(node.includes(from)){
+                localStorage.setItem("from",from)
+            }
+            else{
+                alert('출발역 정보가 존재하지 않습니다.')
+                return;
+            }
+            if(node.includes(to)){
+                localStorage.setItem("to",to)
+            }
+            else{
+                alert('도착역 정보가 존재하지 않습니다.')
+                return;
+            }
+            location.href="route"
         }
-        if(node.includes(to)){
-            localStorage.setItem("from",from)
-            localStorage.setItem("to",to)
-        }
-        else{
-            alert('도착역 정보가 존재하지 않습니다.')
-            return;
-        }
-        location.href="route"
     }
 
     function logout() {
