@@ -1,10 +1,12 @@
 package com.example.wetro.station.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Infolists {
-    int time;
-    int cost;
-    String transfer;
+    Integer time;
+    Integer cost;
+    Integer transfer;
 }
