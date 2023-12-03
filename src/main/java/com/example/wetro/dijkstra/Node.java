@@ -288,7 +288,7 @@ public class Node implements Comparable<Node>{
         node15.addAdjacentNode(node60, 480,280);//115 ->
         node15.addAdjacentNode(node108,  230,330);//115 ->
 //116
-        node16.addAdjacentNode(230,330);//116 ->
+        node16.addAdjacentNode(node15,230,330);//116 ->
         node16.addAdjacentNode(node17, 300,280);//116 ->
         node16.addAdjacentNode(node90, 320,650);//116 ->
         node16.addAdjacentNode(node91, 250,440);//116 ->
@@ -1183,7 +1183,7 @@ public class Node implements Comparable<Node>{
         node15.addAdjacentNodeT(node60, 480,280);//115 ->
         node15.addAdjacentNodeT(node108,  230,330);//115 ->
 //116
-        node16.addAdjacentNodeT(230,330);//116 ->
+        node16.addAdjacentNodeT(node15,230,330);//116 ->
         node16.addAdjacentNodeT(node17, 300,280);//116 ->
         node16.addAdjacentNodeT(node90, 320,650);//116 ->
         node16.addAdjacentNodeT(node91, 250,440);//116 ->
