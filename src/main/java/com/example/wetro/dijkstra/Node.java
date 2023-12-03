@@ -42,6 +42,7 @@ public class Node implements Comparable<Node>{
     }
 
     public static void init(){
+        initNodeList();
         Node node1 = new Node("1", "101");
         Node node2 = new Node("1", "102");
         Node node3 = new Node("1", "103");
@@ -937,6 +938,7 @@ public class Node implements Comparable<Node>{
     }
 
     public static void initT(){
+        initNodeList();
         Node node1 = new Node("1", "101");
         Node node2 = new Node("1", "102");
         Node node3 = new Node("1", "103");
@@ -1927,7 +1929,7 @@ public class Node implements Comparable<Node>{
         Integer newTime = sourceNode.getTime() + time;
         Integer newCost = sourceNode.getCost() + cost;
         //새 가중치가 기존 가중치보다 작으면
-        if (newTime < adjacentNode.getTime() || (newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())){
+        if(newTime < adjacentNode.getTime()){
             //가중치 초기화
             adjacentNode.setTime(newTime);
             adjacentNode.setCost(newCost);
@@ -2023,8 +2025,7 @@ public class Node implements Comparable<Node>{
         Integer newTime = sourceNode.getTime() + time;
 
         //새 가중치가 기존 가중치보다 작으면
-        if (newCost < adjacentNode.getCost() ||
-                (newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())){
+        if(newCost < adjacentNode.getCost()){
             //가중치 초기화
             adjacentNode.setCost(newCost);
             adjacentNode.setTime(newTime);
@@ -2057,11 +2058,13 @@ public class Node implements Comparable<Node>{
     public static void initializeNodesT() {
         for (Node node : nodes) {
             node.setCost(Integer.MAX_VALUE);
+            node.setTime(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
         }
         for (Node node : transNodes) {
             node.setCost(Integer.MAX_VALUE);
+            node.setTime(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
         }
@@ -2187,19 +2190,18 @@ public class Node implements Comparable<Node>{
 
             settleNodes.add(currentNode);
         }
-        destination.setCost(destination.getCost()-2000* destination.getTransferCount());
-        destination.setTime(destination.getCost()-2000* destination.getTransferCount());
+        destination.setTime(destination.getTime()-2000* destination.getTransferCount());
 
         String resultPath = destination.printMinTransfer(destination);
 
         return new resultT(destination.getTime(),destination.getCost(),destination.getTransferCount(),resultPath);
     }
     private static void evaluateTransferAndPath(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
-        Integer newDistance = sourceNode.getTime() + time;
+        Integer newTime = sourceNode.getTime() + time;
         Integer newCost = sourceNode.getCost() + cost;
 
-        if(newDistance < adjacentNode.getTime()){
-            adjacentNode.setTime(newDistance);
+        if(newTime < adjacentNode.getTime()){
+            adjacentNode.setTime(newTime);
             adjacentNode.setCost(newCost);
             List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
@@ -2226,7 +2228,7 @@ public class Node implements Comparable<Node>{
     @Setter
     @RequiredArgsConstructor
     public static class resultT implements Comparable<resultT>{
-        private int transferCount = 100;
+        private int transferCount;
         private Integer cost;
         private Integer time;
         private String path;
@@ -2252,7 +2254,7 @@ public class Node implements Comparable<Node>{
     @Setter
     @RequiredArgsConstructor
     public static class result{
-        private int tranferCount;
+        private int transferCount;
         private Integer cost;
         private Integer time;
         private String path;
@@ -2260,26 +2262,25 @@ public class Node implements Comparable<Node>{
             this.time = time;
             this.cost = cost;
             this.path = path;
-            this.tranferCount = transferCount;
+            this.transferCount = transferCount;
         }
     }
 
     public static void main(String[] args) {
-        initNodeList();
         System.out.println(        calculateShortestCost("101", "805").getCost());
         System.out.println(        calculateShortestCost("101", "805").getTime());
         System.out.println(        calculateShortestCost("101", "805").getPath());
-        System.out.println(        calculateShortestCost("101", "805").getTranferCount());
+        System.out.println(        calculateShortestCost("101", "805").getTransferCount());
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-        initNodeList();
         System.out.println(        calculateShortestTime("101", "805").getCost());
         System.out.println(        calculateShortestTime("101", "805").getTime());
         System.out.println(        calculateShortestTime("101", "805").getPath());
-        System.out.println(        calculateShortestTime("101", "805").getTranferCount());
+        System.out.println(        calculateShortestTime("101", "805").getTransferCount());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        initNodeList();
+
+        calculateMinTransfer("101", "805");
         System.out.println(        calculateMinTransfer("101", "805").getCost());
         System.out.println(        calculateMinTransfer("101", "805").getTime());
         System.out.println(        calculateMinTransfer("101", "805").getPath());
