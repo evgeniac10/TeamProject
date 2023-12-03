@@ -4,22 +4,22 @@ import com.example.wetro.user.dto.User;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalTime;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "book_mark")
 public class BookMark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String from;
-    private String to;
-    private String layover;
+    private String start_location;
+    private String end_location;
+    private String layover_location;
     private String alias;
 
 

@@ -9,6 +9,7 @@ import com.example.wetro.user.dto.TokenDto;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,27 +33,30 @@ public class BookMarkApiController {
 
     @PostMapping("/bookmark")
     public bookmarkResponse registerBookmark(@RequestBody BookMarkDto bookMarkdto) {
+        // 프론트에서 받은 토큰
+        String token = bookMarkdto.getToken();
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String userId = ((UserDetails) principal).getUsername();
+        // 토큰을 이용하여 회원 정보 가져오기
+        Optional<User> user = userService.findByToken(token);
 
-        // 여기서 userId를 이용하여 사용자 정보를 가져오거나,
-        // 이미 가지고 있는 경우 생략할 수 있습니다.
+        // 토큰에 해당하는 회원 정보가 있는지 확인
+        if (user.isPresent()) {
+            // 토큰에 해당하는 회원 정보가 있으면 BookMark 객체 생성 및 저장
+            BookMark bookmark = BookMark.builder()
+                    .from(bookMarkdto.getFrom())
+                    .to(bookMarkdto.getTo())
+                    .layover(bookMarkdto.getLayover())
+                    .alias(bookMarkdto.getAlias())
+                    .user(user.get())
+                    .build();
 
-        Optional<User> user = userService.findByUserid(userId);
+            bookMarkService.saveBookMark(bookmark);
 
-        // BookMark 객체를 생성하고 연관된 사용자 정보를 설정합니다.
-        BookMark bookmark = BookMark.builder()
-                .from(bookMarkdto.getFrom())
-                .to(bookMarkdto.getTo())
-                .layover(bookMarkdto.getLayover())
-                .alias(bookMarkdto.getAlias())
-                .user(user.orElse(null))
-                .build();
-
-        bookMarkService.saveBookMark(bookmark);
-
-        return success(SUCCESS_TO_BOOKMARK);
+            return success(SUCCESS_TO_BOOKMARK);
+        } else {
+            // 토큰에 해당하는 회원 정보가 없으면 실패 응답
+            return fail(FAIL_TO_BOOKMARK);
+        }
     }
 
     @PostMapping("/bookmark/lists")

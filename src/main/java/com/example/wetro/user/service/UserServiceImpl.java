@@ -1,7 +1,9 @@
 package com.example.wetro.user.service;
 
+import com.example.wetro.user.dto.Token;
 import com.example.wetro.user.dto.User;
 import com.example.wetro.user.dto.UserLoginDto;
+import com.example.wetro.user.repository.TokenRepository;
 import com.example.wetro.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TokenRepository tokenRepository;
 
     @Override
     public Optional<User> findByUserid(String userid) {
@@ -61,6 +64,14 @@ public class UserServiceImpl implements UserService {
         }
         // 로그인 실패
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> findByToken(String token) {
+        Optional<Token> optionalToken = tokenRepository.findByToken(token);
+
+        // If the Token entity is present, get the associated User
+        return optionalToken.map(Token::getUser);
     }
 
 }

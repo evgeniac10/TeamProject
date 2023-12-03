@@ -24,12 +24,12 @@ FOREIGN KEY (user_id) REFERENCES user (id),
 FOREIGN KEY (authority_name) REFERENCES authority (authority_name)
 );
 
-CREATE TABLE bookmark (
+CREATE TABLE book_mark (
     bookmark_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
-    `from` VARCHAR(5) NOT NULL,
-    layover VARCHAR(5) NOT NULL,
-    `to` VARCHAR(5) NOT NULL,
+    start_location VARCHAR(5) NOT NULL,
+    layover_location VARCHAR(5),
+    end_location VARCHAR(5) NOT NULL,
     alias VARCHAR(255) NOT NULL,
 FOREIGN KEY (user_id) REFERENCES user(id)
 );
