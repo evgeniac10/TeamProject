@@ -185,14 +185,15 @@
     const mainto = localStorage.getItem("to")
     localStorage.removeItem("from")
     localStorage.removeItem("to")
+
     fetch('/wetro/search', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: {
-            "from":from,
-            "to":to
+            "from":mainfrom,
+            "to":mainto
         }
     })
         .then(response => response.json())
@@ -200,13 +201,11 @@
             const rectime = data.recTime;
             const reccost = data.recCost;
             const rectansfer = data.recTrans;
-            const from = data.from;
-            const to = data.to;
 
             const info = document.querySelector('.info')
             info.innerHTML=`
-                <h2 class="route-info">출발역 : ${from}</h2>
-                <h2 class="route-info">도착역 : ${to}</h2>
+                <h2 class="route-info">출발역 : ${mainfrom}</h2>
+                <h2 class="route-info">도착역 : ${mainto}</h2>
             `
 
             printTime(rectime)

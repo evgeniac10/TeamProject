@@ -54,7 +54,7 @@
                 </label>
             </button>
             <input type="text" name="to" id="to" placeholder="도착역" onfocus="this.placeholder=''" onblur="this.placeholder='도착역'"><br>
-            <a href="route" id="search"><button type="submit" onclick="fetchData()" id="search-text">길찾기</button></a>
+            <a href="route" id="search"><button type="button" onclick="makeItem()" id="search-text">길찾기</button></a>
             <a href="map" id="map">노선도 보기</a>
         </form>
     </div>
@@ -128,6 +128,13 @@
                 localStorage.setItem('data', JSON.stringify(data));
             })
             .catch(error => console.error('Error:', error));
+    }
+    function makeItem(){
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+
+        localStorage.setItem("from",from)
+        localStorage.setItem("to",to)
     }
 
     function logout() {

@@ -226,713 +226,711 @@ public class Node implements Comparable<Node>{
             }
         }
         // 1호선
-        node1.addAdjacentNode(node2, 100);
-        node1.addAdjacentNode(node24, 100);
-        node1.addAdjacentNode(node23, 100);
-        node1.addAdjacentNode(node51, 100);
+        node1.addAdjacentNode(node2, 200,200);
+        node1.addAdjacentNode(node24, 1000,300);
+        node1.addAdjacentNode(node23, 480,200);
+        node1.addAdjacentNode(node51, 480,200);
 
-        node2.addAdjacentNode(node1, 100);
-        node2.addAdjacentNode(node3, 100);
-
-        node3.addAdjacentNode(node2, 100);
-        node3.addAdjacentNode(node4, 100);
-        node3.addAdjacentNode(node70, 100);
-
-        node4.addAdjacentNode(node3, 100);
-        node4.addAdjacentNode(node5, 100);
-        node4.addAdjacentNode(node53, 100);
-
-        node5.addAdjacentNode(node4, 100);
-        node5.addAdjacentNode(node6, 100);
-
-        node6.addAdjacentNode(node5, 100);
-        node6.addAdjacentNode(node7, 100);
-        node6.addAdjacentNode(node52, 100);
-
-        node7.addAdjacentNode(node6, 100);
-        node7.addAdjacentNode(node8, 100);
-        node7.addAdjacentNode(node49, 100);
-
-        node8.addAdjacentNode(node7, 100);
-        node8.addAdjacentNode(node9, 100);
-        node8.addAdjacentNode(node52, 100);
-        node8.addAdjacentNode(node84, 100);
-
-        node9.addAdjacentNode(node8, 100);
-        node9.addAdjacentNode(node10, 100);
-        node9.addAdjacentNode(node80, 100);
-
-        node10.addAdjacentNode(node9, 100);
-        node10.addAdjacentNode(node11, 100);
-
-        node11.addAdjacentNode(node10, 100);
-        node11.addAdjacentNode(node12, 100);
-        node11.addAdjacentNode(node139, 100);
-
-        node12.addAdjacentNode(node11, 100);
-        node12.addAdjacentNode(node13, 100);
-        node12.addAdjacentNode(node146, 100);
-
-        node13.addAdjacentNode(node12, 100);
-        node13.addAdjacentNode(node14, 100);
-        node13.addAdjacentNode(node124, 100);
-
-        node14.addAdjacentNode(node13, 100);
-        node14.addAdjacentNode(node15, 100);
-        node14.addAdjacentNode(node146, 100);
-        node14.addAdjacentNode(node72, 100);
-
-        node15.addAdjacentNode(node14, 100);
-        node15.addAdjacentNode(node16, 100);
-        node15.addAdjacentNode(node59, 100);
-        node15.addAdjacentNode(node60, 100);
-        node15.addAdjacentNode(node108, 100);
-
-        node16.addAdjacentNode(node15, 100);
-        node16.addAdjacentNode(node17, 100);
-        node16.addAdjacentNode(node90, 100);
-        node16.addAdjacentNode(node91, 100);
-        node16.addAdjacentNode(node72, 100);
-
-        node17.addAdjacentNode(node16, 100);
-        node17.addAdjacentNode(node18, 100);
-        node17.addAdjacentNode(node108, 100);
-
-        node18.addAdjacentNode(node17, 100);
-        node18.addAdjacentNode(node19, 100);
-        node18.addAdjacentNode(node142, 100);
-
-        node19.addAdjacentNode(node18, 100);
-        node19.addAdjacentNode(node20, 100);
-        node19.addAdjacentNode(node136, 100);
-        node19.addAdjacentNode(node137, 100);
-
-        node20.addAdjacentNode(node19, 100);
-        node20.addAdjacentNode(node21, 100);
-        node20.addAdjacentNode(node142, 100);
-        node20.addAdjacentNode(node107, 100);
-
-        node21.addAdjacentNode(node20, 100);
-        node21.addAdjacentNode(node22, 100);
-        node21.addAdjacentNode(node86, 100);
-        node21.addAdjacentNode(node87, 100);
-        node21.addAdjacentNode(node82, 100);
-
-        node22.addAdjacentNode(node21, 100);
-        node22.addAdjacentNode(node23, 100);
-        node22.addAdjacentNode(node77, 100);
-        node22.addAdjacentNode(node78, 100);
-        node22.addAdjacentNode(node107, 100);
-        node22.addAdjacentNode(node51, 100);
-
-        node23.addAdjacentNode(node22, 100);
-        node23.addAdjacentNode(node1, 100);
-        node23.addAdjacentNode(node45, 100);
-        node23.addAdjacentNode(node46, 100);
-        node23.addAdjacentNode(node41, 100);
-        node23.addAdjacentNode(node82, 100);
+        node2.addAdjacentNode(node1, 200,200);
+        node2.addAdjacentNode(node3, 300,300);
+//103
+        node3.addAdjacentNode(node2, 300,300);
+        node3.addAdjacentNode(node4, 1000,500);
+        node3.addAdjacentNode(node70, 1000,500);
+//104
+        node4.addAdjacentNode(node3, 1000,500);
+        node4.addAdjacentNode(node5, 500,340);
+        node4.addAdjacentNode(node53, 1000,650);
+//105
+        node5.addAdjacentNode(node4, 500,340);
+        node5.addAdjacentNode(node6, 150,450);
+//106
+        node6.addAdjacentNode(node5, 150,450);
+        node6.addAdjacentNode(node7, 320,120);
+        node6.addAdjacentNode(node52, 320,120);
+//107
+        node7.addAdjacentNode(node6, 320,120);
+        node7.addAdjacentNode(node8, 400,650);
+        node7.addAdjacentNode(node49, 400,120);
+//108
+        node8.addAdjacentNode(node7, 400,650);//108 ->
+        node8.addAdjacentNode(node9, 800,200);//108 ->
+        node8.addAdjacentNode(node52, 400,650);//108 ->
+        node8.addAdjacentNode(node84, 800,200);//108 ->
+//109
+        node9.addAdjacentNode(node8,  800,200);//109 ->
+        node9.addAdjacentNode(node10, 900,430);//109 ->
+        node9.addAdjacentNode(node80, 1000,540);//109 ->
+//110
+        node10.addAdjacentNode(node9, 900,430);//110 ->
+        node10.addAdjacentNode(node11, 500,120);//110 ->
+//111
+        node11.addAdjacentNode(node10, 500,120);//111 ->
+        node11.addAdjacentNode(node12, 1000,890);//111 ->
+        node11.addAdjacentNode(node139, 1000,890);//111 ->
+//112
+        node12.addAdjacentNode(node11, 1000,890);//112 ->
+        node12.addAdjacentNode(node13, 2000,800);//112 ->
+        node12.addAdjacentNode(node146, 2000,800);//112 ->
+//113
+        node13.addAdjacentNode(node12, 2000,800);//113 ->
+        node13.addAdjacentNode(node14, 500,700);//113 ->
+        node13.addAdjacentNode(node124, 600,430);//113 ->
+//114
+        node14.addAdjacentNode(node13, 500,700);//114 ->
+        node14.addAdjacentNode(node15, 220,540);//114 ->
+        node14.addAdjacentNode(node146, 500,700);//114 ->
+        node14.addAdjacentNode(node72, 220,540);//114 ->
+//115
+        node15.addAdjacentNode(node14, 220,540);//115 ->
+        node15.addAdjacentNode(node16, 230,330);//115 ->
+        node15.addAdjacentNode(node59, 320,330);//115 ->
+        node15.addAdjacentNode(node60, 480,280);//115 ->
+        node15.addAdjacentNode(node108,  230,330);//115 ->
+//116
+        node16.addAdjacentNode(230,330);//116 ->
+        node16.addAdjacentNode(node17, 300,280);//116 ->
+        node16.addAdjacentNode(node90, 320,650);//116 ->
+        node16.addAdjacentNode(node91, 250,440);//116 ->
+        node16.addAdjacentNode(node72, 230,330);//116 ->
+//117
+        node17.addAdjacentNode(node16, 300,280);//117 ->
+        node17.addAdjacentNode(node18, 500,800);//117 ->
+        node17.addAdjacentNode(node108, 300,280);//117 ->
+//118
+        node18.addAdjacentNode(node17, 500,800);//118 ->
+        node18.addAdjacentNode(node19, 480,1000);//118 ->
+        node18.addAdjacentNode(node142, 480,1000);//118 ->
+//119
+        node19.addAdjacentNode(node18, 480,1000);//119 ->
+        node19.addAdjacentNode(node20, 500,2000);//119 ->
+        node19.addAdjacentNode(node136, 430,800);//119 ->
+        node19.addAdjacentNode(node137, 1000,1000);//119 ->
+//120
+        node20.addAdjacentNode(node19, 500,2000);//120 ->
+        node20.addAdjacentNode(node21, 400,700);//120 ->
+        node20.addAdjacentNode(node142, 500,2000);//120 ->
+        node20.addAdjacentNode(node107, 400,700);//120 ->
+//121
+        node21.addAdjacentNode(node20, 400,700);//121 ->
+        node21.addAdjacentNode(node22, 900,650);//121 ->
+        node21.addAdjacentNode(node86, 700,280);//121 ->
+        node21.addAdjacentNode(node87, 500,800);//121 ->
+        node21.addAdjacentNode(node82, 900,650);//121 ->
+//122
+        node22.addAdjacentNode(node21, 900,650);//122 ->
+        node22.addAdjacentNode(node23, 300,440);//122 ->
+        node22.addAdjacentNode(node77, 320,430);//122 ->
+        node22.addAdjacentNode(node78, 480,120);//122 ->
+        node22.addAdjacentNode(node107, 900,650);//122 ->
+        node22.addAdjacentNode(node51, 300,440);//122 ->
+//123
+        node23.addAdjacentNode(node22, 300,440);//123 ->
+        node23.addAdjacentNode(node1, 480,200);//123 ->
+        node23.addAdjacentNode(node45, 250,200);//123 ->
+        node23.addAdjacentNode(node46, 300,300);//123 ->
+        node23.addAdjacentNode(node41, 480,200);//123 ->
+        node23.addAdjacentNode(node82, 300,440);//123 ->
 
         // 2호선
-        node24.addAdjacentNode(node1, 100);
-        node24.addAdjacentNode(node25, 100);
-        node24.addAdjacentNode(node118, 100);
-        node24.addAdjacentNode(node41, 100);
+        node24.addAdjacentNode(node1, 1000,300);//201 ->
+        node24.addAdjacentNode(node25, 250,500);//201 ->
+        node24.addAdjacentNode(node118, 250,500);//201 ->
+        node24.addAdjacentNode(node41, 1000,300);//201 ->
 
-        node25.addAdjacentNode(node24, 100);
-        node25.addAdjacentNode(node26, 100);
-        node25.addAdjacentNode(node44, 100);
-        node25.addAdjacentNode(node119, 100);
+        node25.addAdjacentNode(node24, 250,500);//202 ->
+        node25.addAdjacentNode(node26, 480,340);//202 ->
+        node25.addAdjacentNode(node44, 1000,2000);//202 ->
+        node25.addAdjacentNode(node119, 1000,2000);//202 ->
 
-        node26.addAdjacentNode(node25, 100);
-        node26.addAdjacentNode(node27, 100);
-        node26.addAdjacentNode(node118, 100);
+        node26.addAdjacentNode(node25, 480,340);//203 ->
+        node26.addAdjacentNode(node27, 400,450);//203 ->
+        node26.addAdjacentNode(node118, 480,340);//203 ->
 
-        node27.addAdjacentNode(node26, 100);
-        node27.addAdjacentNode(node28, 100);
+        node27.addAdjacentNode(node26, 400,450);//204 ->
+        node27.addAdjacentNode(node28, 250,120);//204 ->
 
-        node28.addAdjacentNode(node27, 100);
-        node28.addAdjacentNode(node29, 100);
+        node28.addAdjacentNode(node27, 250,120);//205 ->
+        node28.addAdjacentNode(node29, 500,650);//205 ->
 
-        node29.addAdjacentNode(node28, 100);
-        node29.addAdjacentNode(node30, 100);
-        node29.addAdjacentNode(node50, 100);
+        node29.addAdjacentNode(node28, 500,650);//206 ->
+        node29.addAdjacentNode(node30, 320,200);
+        node29.addAdjacentNode(node50, 320,200);
 
-        node30.addAdjacentNode(node29, 100);
-        node30.addAdjacentNode(node31, 100);
-        node30.addAdjacentNode(node42, 100);
+        node30.addAdjacentNode(node29, 320,200);//207 ->
+        node30.addAdjacentNode(node31, 250,430);
+        node30.addAdjacentNode(node42, 300,2000);
 
-        node31.addAdjacentNode(node30, 100);
-        node31.addAdjacentNode(node32, 100);
-        node31.addAdjacentNode(node50, 100);
-        node31.addAdjacentNode(node81, 100);
+        node31.addAdjacentNode(node30, 250,430);//208 ->
+        node31.addAdjacentNode(node32, 300,120);
+        node31.addAdjacentNode(node50, 250,430);
+        node31.addAdjacentNode(node81, 300,120);
 
-        node32.addAdjacentNode(node31, 100);
-        node32.addAdjacentNode(node33, 100);
-        node32.addAdjacentNode(node74, 100);
+        node32.addAdjacentNode(node31, 300,120);//209 ->
+        node32.addAdjacentNode(node33, 150,890);
+        node32.addAdjacentNode(node74, 320,450);
 
-        node33.addAdjacentNode(node32, 100);
-        node33.addAdjacentNode(node34, 100);
-        node33.addAdjacentNode(node81, 100);
-        node33.addAdjacentNode(node145, 100);
+        node33.addAdjacentNode(node32, 150,890);//210 ->
+        node33.addAdjacentNode(node34, 900,800);
+        node33.addAdjacentNode(node81, 150,890);
+        node33.addAdjacentNode(node145, 900,800);
 
-        node34.addAdjacentNode(node33, 100);
-        node34.addAdjacentNode(node35, 100);
-        node34.addAdjacentNode(node105, 100);
-        node34.addAdjacentNode(node144, 100);
+        node34.addAdjacentNode(node33, 900,800);//211 ->
+        node34.addAdjacentNode(node35, 320,700);
+        node34.addAdjacentNode(node105, 300,440);
+        node34.addAdjacentNode(node144, 300,440);
 
-        node35.addAdjacentNode(node34, 100);
-        node35.addAdjacentNode(node36, 100);
-        node35.addAdjacentNode(node145, 100);
+        node35.addAdjacentNode(node34, 320,700);
+        node35.addAdjacentNode(node36, 150,540);
+        node35.addAdjacentNode(node145, 320,700);
 
-        node36.addAdjacentNode(node35, 100);
-        node36.addAdjacentNode(node37, 100);
-        node36.addAdjacentNode(node134, 100);
+        node36.addAdjacentNode(node35, 150,540);
+        node36.addAdjacentNode(node37, 500,330);
+        node36.addAdjacentNode(node134, 500,330);
 
-        node37.addAdjacentNode(node36, 100);
-        node37.addAdjacentNode(node38, 100);
-        node37.addAdjacentNode(node102, 100);
-        node37.addAdjacentNode(node133, 100);
+        node37.addAdjacentNode(node36, 500,330);
+        node37.addAdjacentNode(node38, 210,280);
+        node37.addAdjacentNode(node102, 700,2000);
+        node37.addAdjacentNode(node133, 700,2000);
 
-        node38.addAdjacentNode(node37, 100);
-        node38.addAdjacentNode(node39, 100);
-        node38.addAdjacentNode(node134, 100);
-        node38.addAdjacentNode(node73, 100);
+        node38.addAdjacentNode(node37, 210,280);
+        node38.addAdjacentNode(node39, 150,800);
+        node38.addAdjacentNode(node134, 210,280);
+        node38.addAdjacentNode(node73, 150,800);
 
-        node39.addAdjacentNode(node38, 100);
-        node39.addAdjacentNode(node40, 100);
-        node39.addAdjacentNode(node69, 100);
-        node39.addAdjacentNode(node110, 100);
+        node39.addAdjacentNode(node38, 150,800);
+        node39.addAdjacentNode(node40, 500,1000);
+        node39.addAdjacentNode(node69, 900,340);
+        node39.addAdjacentNode(node110, 900,340);
 
-        node40.addAdjacentNode(node39, 100);
-        node40.addAdjacentNode(node73, 100);
+        node40.addAdjacentNode(node39, 500,1000);
+        node40.addAdjacentNode(node73, 500,1000);
 
-        node41.addAdjacentNode(node2, 100);
-        node41.addAdjacentNode(node24, 100);
-        node41.addAdjacentNode(node23, 100);
-        node41.addAdjacentNode(node51, 100);
+        node41.addAdjacentNode(node2, 200,200);
+        node41.addAdjacentNode(node24, 1000,300);
+        node41.addAdjacentNode(node23, 480,200);
+        node41.addAdjacentNode(node51, 480,200);
 
-        // 3호선
-        node42.addAdjacentNode(node43, 100);
-        node42.addAdjacentNode(node30, 100);
-        node42.addAdjacentNode(node50, 100);
+// 3호선
+        node42.addAdjacentNode(node43, 300,700);
+        node42.addAdjacentNode(node30, 300,2000);
+        node42.addAdjacentNode(node50, 300,2000);
 
-        node43.addAdjacentNode(node42, 100);
-        node43.addAdjacentNode(node44, 100);
-        node43.addAdjacentNode(node119, 100);
+        node43.addAdjacentNode(node42, 300,700);
+        node43.addAdjacentNode(node44, 480,650);
+        node43.addAdjacentNode(node119, 480,650);
 
-        node44.addAdjacentNode(node43, 100);
-        node44.addAdjacentNode(node45, 100);
-        node44.addAdjacentNode(node25, 100);
-        node44.addAdjacentNode(node118, 100);
-        node44.addAdjacentNode(node76, 100);
-        node44.addAdjacentNode(node120, 100);
+        node44.addAdjacentNode(node43, 480,650);
+        node44.addAdjacentNode(node45, 400,440);
+        node44.addAdjacentNode(node25, 1000,2000);
+        node44.addAdjacentNode(node118, 1000,2000);
+        node44.addAdjacentNode(node76, 700,700);
+        node44.addAdjacentNode(node120, 700,700);
 
-        node45.addAdjacentNode(node44, 100);
-        node45.addAdjacentNode(node119, 100);
-        node45.addAdjacentNode(node51, 100);
-        node45.addAdjacentNode(node23, 100);
+        node45.addAdjacentNode(node44, 400,440);
+        node45.addAdjacentNode(node119, 400,440);
+        node45.addAdjacentNode(node51, 250,200);
+        node45.addAdjacentNode(node23, 250,200);
 
-        node46.addAdjacentNode(node23, 100);
-        node46.addAdjacentNode(node51, 100);
-        node46.addAdjacentNode(node47, 100);
+        node46.addAdjacentNode(node23, 300,300);
+        node46.addAdjacentNode(node51, 300,300);
+        node46.addAdjacentNode(node47, 250,500);
 
-        node47.addAdjacentNode(node46, 100);
-        node47.addAdjacentNode(node71, 100);
-        node47.addAdjacentNode(node48, 100);
+        node47.addAdjacentNode(node46, 250,500);
+        node47.addAdjacentNode(node71, 900,340);
+        node47.addAdjacentNode(node48, 900,340);
 
-        node48.addAdjacentNode(node47, 100);
-        node48.addAdjacentNode(node49, 100);
-        node48.addAdjacentNode(node54, 100);
-        node48.addAdjacentNode(node53, 100);
+        node48.addAdjacentNode(node47, 900,340);
+        node48.addAdjacentNode(node49, 480,450);
+        node48.addAdjacentNode(node54, 300,430);
+        node48.addAdjacentNode(node53, 150,200);
 
-        node49.addAdjacentNode(node48, 100);
-        node49.addAdjacentNode(node52, 100);
-        node49.addAdjacentNode(node71, 100);
-        node49.addAdjacentNode(node7, 100);
+        node49.addAdjacentNode(node48, 480,450);
+        node49.addAdjacentNode(node52, 400,120);
+        node49.addAdjacentNode(node71, 480,450);
+        node49.addAdjacentNode(node7, 400,120);
 
-        node50.addAdjacentNode(node29, 100);
-        node50.addAdjacentNode(node31, 100);
-        node50.addAdjacentNode(node42, 100);
+        node50.addAdjacentNode(node29, 320,200);
+        node50.addAdjacentNode(node31, 250,430);
+        node50.addAdjacentNode(node42, 300,2000);
 
-        node51.addAdjacentNode(node45, 100);
-        node51.addAdjacentNode(node46, 100);
-        node51.addAdjacentNode(node1, 100);
-        node51.addAdjacentNode(node41, 100);
-        node51.addAdjacentNode(node22, 100);
-        node51.addAdjacentNode(node82, 100);
+        node51.addAdjacentNode(node45, 250,200);
+        node51.addAdjacentNode(node46, 300,300);
+        node51.addAdjacentNode(node1, 480,200);
+        node51.addAdjacentNode(node41, 480,200);
+        node51.addAdjacentNode(node22, 300,440);
+        node51.addAdjacentNode(node82, 300,440);
 
-        node52.addAdjacentNode(node6, 100);
-        node52.addAdjacentNode(node8, 100);
-        node52.addAdjacentNode(node49, 100);
+        node52.addAdjacentNode(node6, 320,120);
+        node52.addAdjacentNode(node8, 400,650);
+        node52.addAdjacentNode(node49, 400,120);
 
         // 4호선
-        node53.addAdjacentNode(node4, 100);
-        node53.addAdjacentNode(node70, 100);
-        node53.addAdjacentNode(node71, 100);
-        node53.addAdjacentNode(node48, 100);
+        node53.addAdjacentNode(node4, 1000,650);
+        node53.addAdjacentNode(node70, 1000,650);
+        node53.addAdjacentNode(node71, 150,200);
+        node53.addAdjacentNode(node48, 150,200);
 
-        node54.addAdjacentNode(node48, 100);
-        node54.addAdjacentNode(node71, 100);
-        node54.addAdjacentNode(node55, 100);
-        node54.addAdjacentNode(node83, 100);
+        node54.addAdjacentNode(node48, 300,430);
+        node54.addAdjacentNode(node71, 300,430);
+        node54.addAdjacentNode(node55, 210,120);
+        node54.addAdjacentNode(node83, 210,120);
 
-        node55.addAdjacentNode(node54, 100);
-        node55.addAdjacentNode(node56, 100);
+        node55.addAdjacentNode(node54, 210,120);
+        node55.addAdjacentNode(node56, 320,890);
 
-        node56.addAdjacentNode(node55, 100);
-        node56.addAdjacentNode(node57, 100);
-        node56.addAdjacentNode(node83, 100);
+        node56.addAdjacentNode(node55, 320,890);
+        node56.addAdjacentNode(node57, 210,800);
+        node56.addAdjacentNode(node83, 320,890);
 
-        node57.addAdjacentNode(node56, 100);
-        node57.addAdjacentNode(node58, 100);
-        node57.addAdjacentNode(node140, 100);
+        node57.addAdjacentNode(node56, 210,800);
+        node57.addAdjacentNode(node58, 500,700);
+        node57.addAdjacentNode(node140, 500,700);
 
-        node58.addAdjacentNode(node57, 100);
-        node58.addAdjacentNode(node59, 100);
-        node58.addAdjacentNode(node135, 100);
-        node58.addAdjacentNode(node141, 100);
-        node58.addAdjacentNode(node89, 100);
+        node58.addAdjacentNode(node57, 500,700);
+        node58.addAdjacentNode(node59, 300,540);
+        node58.addAdjacentNode(node135, 300,650);
+        node58.addAdjacentNode(node141, 210,440);
+        node58.addAdjacentNode(node89, 210,440);
 
-        node59.addAdjacentNode(node58, 100);
-        node59.addAdjacentNode(node140, 100);
-        node59.addAdjacentNode(node15, 100);
-        node59.addAdjacentNode(node72, 100);
+        node59.addAdjacentNode(node58, 300,540);
+        node59.addAdjacentNode(node140, 300,540);
+        node59.addAdjacentNode(node15, 320,330);
+        node59.addAdjacentNode(node72, 320,330);
 
-        node60.addAdjacentNode(node72, 100);
-        node60.addAdjacentNode(node15, 100);
-        node60.addAdjacentNode(node61, 100);
-        node60.addAdjacentNode(node130, 100);
+        node60.addAdjacentNode(node72, 480,280);
+        node60.addAdjacentNode(node15, 480,280);
+        node60.addAdjacentNode(node61, 300,800);
+        node60.addAdjacentNode(node130, 300,800);
 
-        node61.addAdjacentNode(node60, 100);
-        node61.addAdjacentNode(node62, 100);
+        node61.addAdjacentNode(node60, 300,800);
+        node61.addAdjacentNode(node62, 480,1000);
 
-        node62.addAdjacentNode(node61, 100);
-        node62.addAdjacentNode(node63, 100);
-        node62.addAdjacentNode(node130, 100);
+        node62.addAdjacentNode(node61, 480,1000);
+        node62.addAdjacentNode(node63, 300,2000);
+        node62.addAdjacentNode(node130, 480,1000);
 
-        node63.addAdjacentNode(node62, 100);
-        node63.addAdjacentNode(node64, 100);
+        node63.addAdjacentNode(node62, 300,2000);
+        node63.addAdjacentNode(node64, 900,700);
 
-        node64.addAdjacentNode(node63, 100);
-        node64.addAdjacentNode(node65, 100);
-        node64.addAdjacentNode(node93, 100);
-        node64.addAdjacentNode(node94, 100);
+        node64.addAdjacentNode(node63, 900,700);
+        node64.addAdjacentNode(node65, 400,650);
+        node64.addAdjacentNode(node93, 320,500);
+        node64.addAdjacentNode(node94, 1000,340);
 
-        node65.addAdjacentNode(node64, 100);
-        node65.addAdjacentNode(node66, 100);
-        node65.addAdjacentNode(node109, 100);
+        node65.addAdjacentNode(node64, 400,650);
+        node65.addAdjacentNode(node66, 430,440);
+        node65.addAdjacentNode(node109, 400,650);
 
-        node66.addAdjacentNode(node65, 100);
-        node66.addAdjacentNode(node67, 100);
+        node66.addAdjacentNode(node65, 430,440);
+        node66.addAdjacentNode(node67, 150,200);
 
-        node67.addAdjacentNode(node66, 100);
-        node67.addAdjacentNode(node68, 100);
-        node67.addAdjacentNode(node122, 100);
+        node67.addAdjacentNode(node66, 150,200);
+        node67.addAdjacentNode(node68, 1000,300);
+        node67.addAdjacentNode(node122, 1000,300);
 
-        node68.addAdjacentNode(node67, 100);
-        node68.addAdjacentNode(node69, 100);
-        node68.addAdjacentNode(node110, 100);
-        node68.addAdjacentNode(node116, 100);
-        node68.addAdjacentNode(node117, 100);
+        node68.addAdjacentNode(node67, 1000,300);
+        node68.addAdjacentNode(node69, 500,500);
+        node68.addAdjacentNode(node110, 500,500);
+        node68.addAdjacentNode(node116, 300,120);
+        node68.addAdjacentNode(node117, 430,650);
 
-        node69.addAdjacentNode(node68, 100);
-        node69.addAdjacentNode(node122, 100);
-        node69.addAdjacentNode(node101, 100);
-        node69.addAdjacentNode(node100, 100);
-        node69.addAdjacentNode(node73, 100);
-        node69.addAdjacentNode(node39, 100);
+        node69.addAdjacentNode(node68, 500,500);
+        node69.addAdjacentNode(node122, 500,500);
+        node69.addAdjacentNode(node101, 320,800);
+        node69.addAdjacentNode(node100, 480,890);
+        node69.addAdjacentNode(node73, 900,340);
+        node69.addAdjacentNode(node39, 900,340);
 
-        node70.addAdjacentNode(node3, 100);
-        node70.addAdjacentNode(node5, 100);
-        node70.addAdjacentNode(node53, 100);
+        node70.addAdjacentNode(node3, 1000,500);
+        node70.addAdjacentNode(node5, 500,340);
+        node70.addAdjacentNode(node53, 1000,650);
 
-        node71.addAdjacentNode(node53, 100);
-        node71.addAdjacentNode(node54, 100);
-        node71.addAdjacentNode(node47, 100);
-        node71.addAdjacentNode(node49, 100);
+        node71.addAdjacentNode(node53, 150,200);
+        node71.addAdjacentNode(node54, 300,430);
+        node71.addAdjacentNode(node47, 900,340);
+        node71.addAdjacentNode(node49, 480,450);
 
-        node72.addAdjacentNode(node59, 100);
-        node72.addAdjacentNode(node60, 100);
-        node72.addAdjacentNode(node14, 100);
-        node72.addAdjacentNode(node16, 100);
-        node72.addAdjacentNode(node108, 100);
+        node72.addAdjacentNode(node59, 320,330);
+        node72.addAdjacentNode(node60, 480,280);
+        node72.addAdjacentNode(node14, 220,540);
+        node72.addAdjacentNode(node16, 230,330);
+        node72.addAdjacentNode(node108, 230,330);
 
-        node73.addAdjacentNode(node38, 100);
-        node73.addAdjacentNode(node40, 100);
-        node73.addAdjacentNode(node69, 100);
-        node73.addAdjacentNode(node110, 100);
+        node73.addAdjacentNode(node38, 150,800);
+        node73.addAdjacentNode(node40, 500,1000);
+        node73.addAdjacentNode(node69, 900,340);
+        node73.addAdjacentNode(node110, 900,340);
 
         // 5호선
-        node74.addAdjacentNode(node75, 100);
-        node74.addAdjacentNode(node81, 100);
-        node74.addAdjacentNode(node32, 100);
+        node74.addAdjacentNode(node75, 320,120);
+        node74.addAdjacentNode(node81, 320,450);
+        node74.addAdjacentNode(node32, 320,450);
 
-        node75.addAdjacentNode(node74, 100);
-        node75.addAdjacentNode(node76, 100);
-        node75.addAdjacentNode(node120, 100);
+        node75.addAdjacentNode(node74, 320,120);
+        node75.addAdjacentNode(node76, 430,650);
+        node75.addAdjacentNode(node120, 430,650);
 
-        node76.addAdjacentNode(node75, 100);
-        node76.addAdjacentNode(node77, 100);
-        node76.addAdjacentNode(node119, 100);
-        node76.addAdjacentNode(node44, 100);
-        node76.addAdjacentNode(node85, 100);
-        node76.addAdjacentNode(node111, 100);
+        node76.addAdjacentNode(node75, 430,650);
+        node76.addAdjacentNode(node77, 210,200);
+        node76.addAdjacentNode(node119, 700,700);
+        node76.addAdjacentNode(node44, 700,700);
+        node76.addAdjacentNode(node85, 500,650);
+        node76.addAdjacentNode(node121, 500,650);
 
-        node77.addAdjacentNode(node76, 100);
-        node77.addAdjacentNode(node120, 100);
-        node77.addAdjacentNode(node82, 100);
-        node77.addAdjacentNode(node22, 100);
+        node77.addAdjacentNode(node76, 210,200);
+        node77.addAdjacentNode(node120, 210,200);
+        node77.addAdjacentNode(node82, 320,430);
+        node77.addAdjacentNode(node22, 320,430);
 
-        node78.addAdjacentNode(node79, 100);
-        node78.addAdjacentNode(node22, 100);
-        node78.addAdjacentNode(node82, 100);
+        node78.addAdjacentNode(node79, 300,890);
+        node78.addAdjacentNode(node22, 480,120);
+        node78.addAdjacentNode(node82, 480,120);
 
-        node79.addAdjacentNode(node78, 100);
-        node79.addAdjacentNode(node55, 100);
-        node79.addAdjacentNode(node83, 100);
+        node79.addAdjacentNode(node78, 300,890);
+        node79.addAdjacentNode(node55, 320,800);
+        node79.addAdjacentNode(node83, 320,800);
 
-        node80.addAdjacentNode(node83, 100);
-        node80.addAdjacentNode(node55, 100);
-        node80.addAdjacentNode(node9, 100);
-        node80.addAdjacentNode(node84, 100);
+        node80.addAdjacentNode(node83, 300,700);
+        node80.addAdjacentNode(node55, 300,700);
+        node80.addAdjacentNode(node9, 1000,540);
+        node80.addAdjacentNode(node84, 1000,540);
 
-        node81.addAdjacentNode(node31, 100);
-        node81.addAdjacentNode(node33, 100);
-        node81.addAdjacentNode(node74, 100);
+        node81.addAdjacentNode(node31, 300, 120);
+        node81.addAdjacentNode(node33, 150, 890);
+        node81.addAdjacentNode(node74, 320, 450);
 
-        node82.addAdjacentNode(node77, 100);
-        node82.addAdjacentNode(node78, 100);
-        node82.addAdjacentNode(node21, 100);
-        node82.addAdjacentNode(node23, 100);
-        node82.addAdjacentNode(node51, 100);
-        node82.addAdjacentNode(node107, 100);
+        node82.addAdjacentNode(node77, 320, 430);
+        node82.addAdjacentNode(node78, 480, 120);
+        node82.addAdjacentNode(node21, 900, 650);
+        node82.addAdjacentNode(node23, 300, 440);
+        node82.addAdjacentNode(node51, 300, 440);
+        node82.addAdjacentNode(node107, 900, 650);
 
-        node83.addAdjacentNode(node54, 100);
-        node83.addAdjacentNode(node56, 100);
-        node83.addAdjacentNode(node79, 100);
-        node83.addAdjacentNode(node80, 100);
+        node83.addAdjacentNode(node54, 210, 120);
+        node83.addAdjacentNode(node56, 320, 890);
+        node83.addAdjacentNode(node79, 320, 800);
+        node83.addAdjacentNode(node80, 300, 700);
 
-        node84.addAdjacentNode(node8, 100);
-        node84.addAdjacentNode(node10, 100);
-        node84.addAdjacentNode(node80, 100);
+        node84.addAdjacentNode(node8, 800, 200);
+        node84.addAdjacentNode(node10, 900, 430);
+        node84.addAdjacentNode(node80, 1000, 540);
 
         // 6호선
-        node85.addAdjacentNode(node86, 100);
-        node85.addAdjacentNode(node106, 100);
-        node85.addAdjacentNode(node76, 100);
-        node85.addAdjacentNode(node120, 100);
-        node85.addAdjacentNode(node111, 100);
+        node85.addAdjacentNode(node86, 150,330);
+        node85.addAdjacentNode(node106, 150,1000);
+        node85.addAdjacentNode(node76, 500, 650);
+        node85.addAdjacentNode(node120, 500, 650);
+        node85.addAdjacentNode(node111, 430, 440);
 
-        node86.addAdjacentNode(node85, 100);
-        node86.addAdjacentNode(node121, 100);
-        node86.addAdjacentNode(node107, 100);
-        node86.addAdjacentNode(node21, 100);
+        node86.addAdjacentNode(node85, 150, 330);
+        node86.addAdjacentNode(node121, 150,330);
+        node86.addAdjacentNode(node107, 70,280);
+        node86.addAdjacentNode(node21, 700, 280);
 
-        node87.addAdjacentNode(node88, 100);
-        node87.addAdjacentNode(node107, 100);
-        node87.addAdjacentNode(node21, 100);
+        node87.addAdjacentNode(node88, 300, 1000);
+        node87.addAdjacentNode(node107, 650, 800);
+        node87.addAdjacentNode(node21, 650,800);
 
-        node88.addAdjacentNode(node87, 100);
-        node88.addAdjacentNode(node89, 100);
-        node88.addAdjacentNode(node141, 100);
+        node88.addAdjacentNode(node87, 300, 1000);
+        node88.addAdjacentNode(node89, 430,2000);
+        node88.addAdjacentNode(node141, 430, 2000);
 
-        node89.addAdjacentNode(node88, 100);
-        node89.addAdjacentNode(node90, 100);
-        node89.addAdjacentNode(node136, 100);
-        node89.addAdjacentNode(node140, 100);
-        node89.addAdjacentNode(node58, 100);
+        node89.addAdjacentNode(node88, 430,2000);
+        node89.addAdjacentNode(node90, 480,700);
+        node89.addAdjacentNode(node136, 480, 280);
+        node89.addAdjacentNode(node140, 210, 440);
+        node89.addAdjacentNode(node58, 210,440);
 
-        node90.addAdjacentNode(node89, 100);
-        node90.addAdjacentNode(node141, 100);
-        node90.addAdjacentNode(node108, 100);
-        node90.addAdjacentNode(node16, 100);
+        node90.addAdjacentNode(node89, 480,700);
+        node90.addAdjacentNode(node141, 480,700);
+        node90.addAdjacentNode(node108, 320,650);
+        node90.addAdjacentNode(node16, 320,650);
 
-        node91.addAdjacentNode(node16, 100);
-        node91.addAdjacentNode(node108, 100);
-        node91.addAdjacentNode(node92, 100);
-        node91.addAdjacentNode(node131, 100);
+        node91.addAdjacentNode(node16, 250,440);
+        node91.addAdjacentNode(node108, 250,440);
+        node91.addAdjacentNode(node92, 500,200);
+        node91.addAdjacentNode(node131, 500,200);
 
-        node92.addAdjacentNode(node91, 100);
-        node92.addAdjacentNode(node93, 100);
-        node92.addAdjacentNode(node127, 100);
-        node92.addAdjacentNode(node130, 100);
-        node92.addAdjacentNode(node61, 100);
+        node92.addAdjacentNode(node91, 500,200);
+        node92.addAdjacentNode(node93, 700,300);
+        node92.addAdjacentNode(node127, 700,540);
+        node92.addAdjacentNode(node130, 500,700);
+        node92.addAdjacentNode(node61, 500,700);
 
-        node93.addAdjacentNode(node92, 100);
-        node93.addAdjacentNode(node131, 100);
-        node93.addAdjacentNode(node109, 100);
-        node93.addAdjacentNode(node64, 100);
+        node93.addAdjacentNode(node92, 700,300);
+        node93.addAdjacentNode(node131, 700,300);
+        node93.addAdjacentNode(node109, 320,500);
+        node93.addAdjacentNode(node64, 320,500);
 
-        node94.addAdjacentNode(node64, 100);
-        node94.addAdjacentNode(node109, 100);
-        node94.addAdjacentNode(node95, 100);
+        node94.addAdjacentNode(node64, 1000,340);
+        node94.addAdjacentNode(node109, 1000, 340);
+        node94.addAdjacentNode(node95, 700,450);
 
-        node95.addAdjacentNode(node94, 100);
-        node95.addAdjacentNode(node96, 100);
+        node95.addAdjacentNode(node94, 700,450);
+        node95.addAdjacentNode(node96, 700,120);
 
-        node96.addAdjacentNode(node95, 100);
-        node96.addAdjacentNode(node97, 100);
+        node96.addAdjacentNode(node95, 700,120);
+        node96.addAdjacentNode(node97, 150,650);
 
-        node97.addAdjacentNode(node96, 100);
-        node97.addAdjacentNode(node98, 100);
-        node97.addAdjacentNode(node123, 100);
+        node97.addAdjacentNode(node96, 150,650);
+        node97.addAdjacentNode(node98, 430,200);
+        node97.addAdjacentNode(node123, 430,200);
 
-        node98.addAdjacentNode(node97, 100);
-        node98.addAdjacentNode(node99, 100);
-        node98.addAdjacentNode(node117, 100);
+        node98.addAdjacentNode(node97, 430,200);
+        node98.addAdjacentNode(node99, 500,430);
+        node98.addAdjacentNode(node117, 480,200);
 
-        node99.addAdjacentNode(node98, 100);
-        node99.addAdjacentNode(node100, 100);
-        node99.addAdjacentNode(node123, 100);
+        node99.addAdjacentNode(node98, 500,430);
+        node99.addAdjacentNode(node100, 700,120);
+        node99.addAdjacentNode(node123, 500,430);
 
-        node100.addAdjacentNode(node99, 100);
-        node100.addAdjacentNode(node110, 100);
-        node100.addAdjacentNode(node69, 100);
+        node100.addAdjacentNode(node99, 700,120);
+        node100.addAdjacentNode(node110, 480,890);
+        node100.addAdjacentNode(node69, 480,890);
 
-        node101.addAdjacentNode(node69, 100);
-        node101.addAdjacentNode(node133, 100);
-        node101.addAdjacentNode(node102, 100);
-        node101.addAdjacentNode(node110, 100);
+        node101.addAdjacentNode(node69, 320,800);
+        node101.addAdjacentNode(node133, 300,700);
+        node101.addAdjacentNode(node102, 300,700);
+        node101.addAdjacentNode(node110, 320,800);
 
-        node102.addAdjacentNode(node37, 100);
-        node102.addAdjacentNode(node101, 100);
-        node102.addAdjacentNode(node103, 100);
-        node102.addAdjacentNode(node115, 100);
-        node102.addAdjacentNode(node132, 100);
-        node102.addAdjacentNode(node134, 100);
+        node102.addAdjacentNode(node37, 700,2000);
+        node102.addAdjacentNode(node101, 300,700);
+        node102.addAdjacentNode(node103, 250,540);
+        node102.addAdjacentNode(node115, 250,1000);
+        node102.addAdjacentNode(node132, 250,1000);
+        node102.addAdjacentNode(node134, 700,2000);
 
-        node103.addAdjacentNode(node133, 100);
-        node103.addAdjacentNode(node102, 100);
-        node103.addAdjacentNode(node104, 100);
+        node103.addAdjacentNode(node133, 250,540);
+        node103.addAdjacentNode(node102, 250,540);
+        node103.addAdjacentNode(node104, 700,330);
 
-        node104.addAdjacentNode(node144, 100);
-        node104.addAdjacentNode(node103, 100);
-        node104.addAdjacentNode(node105, 100);
+        node104.addAdjacentNode(node144, 320,280);
+        node104.addAdjacentNode(node103, 700,330);
+        node104.addAdjacentNode(node105, 320,280);
 
-        node105.addAdjacentNode(node138, 100);
-        node105.addAdjacentNode(node145, 100);
-        node105.addAdjacentNode(node34, 100);
-        node105.addAdjacentNode(node104, 100);
-        node105.addAdjacentNode(node106, 100);
+        node105.addAdjacentNode(node138, 250,650);
+        node105.addAdjacentNode(node145, 300,440);
+        node105.addAdjacentNode(node34, 300,440);
+        node105.addAdjacentNode(node104, 320,280);
+        node105.addAdjacentNode(node106, 480,800);
 
-        node106.addAdjacentNode(node144, 100);
-        node106.addAdjacentNode(node121, 100);
-        node106.addAdjacentNode(node85, 100);
-        node106.addAdjacentNode(node105, 100);
+        node106.addAdjacentNode(node144, 480,800);
+        node106.addAdjacentNode(node121, 150,1000);
+        node106.addAdjacentNode(node85, 150,1000);
+        node106.addAdjacentNode(node105, 480,800);
 
-        node107.addAdjacentNode(node20, 100);
-        node107.addAdjacentNode(node22, 100);
-        node107.addAdjacentNode(node86, 100);
-        node107.addAdjacentNode(node87, 100);
-        node107.addAdjacentNode(node82, 100);
+        node107.addAdjacentNode(node20, 400,700);
+        node107.addAdjacentNode(node22, 900,650);
+        node107.addAdjacentNode(node86, 700,280);
+        node107.addAdjacentNode(node87, 500,800);
+        node107.addAdjacentNode(node82, 900,650);
 
-        node108.addAdjacentNode(node15, 100);
-        node108.addAdjacentNode(node17, 100);
-        node108.addAdjacentNode(node90, 100);
-        node108.addAdjacentNode(node91, 100);
-        node108.addAdjacentNode(node72, 100);
+        node108.addAdjacentNode(node15, 230,330);
+        node108.addAdjacentNode(node17, 300,280);
+        node108.addAdjacentNode(node90, 320,660);
+        node108.addAdjacentNode(node91, 250,440);
+        node108.addAdjacentNode(node72, 230,330);
 
-        node109.addAdjacentNode(node63, 100);
-        node109.addAdjacentNode(node65, 100);
-        node109.addAdjacentNode(node93, 100);
-        node109.addAdjacentNode(node94, 100);
+        node109.addAdjacentNode(node63, 900,700);
+        node109.addAdjacentNode(node65, 400,650);
+        node109.addAdjacentNode(node93, 320,500);
+        node109.addAdjacentNode(node94, 1000,340);
 
-        node110.addAdjacentNode(node68, 100);
-        node110.addAdjacentNode(node122, 100);
-        node110.addAdjacentNode(node101, 100);
-        node110.addAdjacentNode(node100, 100);
-        node110.addAdjacentNode(node73, 100);
-        node110.addAdjacentNode(node39, 100);
+        node110.addAdjacentNode(node68, 500,500);
+        node110.addAdjacentNode(node122, 500,500);
+        node110.addAdjacentNode(node101, 320,800);
+        node110.addAdjacentNode(node100, 480,890);
+        node110.addAdjacentNode(node73, 900,340);
+        node110.addAdjacentNode(node39, 900,340);
 
 
         // 7호선
-        node111.addAdjacentNode(node85, 100);
-        node111.addAdjacentNode(node143, 100);
-        node111.addAdjacentNode(node112, 100);
-        node111.addAdjacentNode(node121, 100);
+        node111.addAdjacentNode(node85, 430,440);
+        node111.addAdjacentNode(node143, 150,200);
+        node111.addAdjacentNode(node112, 150,200);
+        node111.addAdjacentNode(node121, 430,440);
 
-        node112.addAdjacentNode(node137, 100);
-        node112.addAdjacentNode(node138, 100);
-        node112.addAdjacentNode(node111, 100);
-        node112.addAdjacentNode(node113, 100);
+        node112.addAdjacentNode(node137, 150,2000);
+        node112.addAdjacentNode(node138, 500,700);
+        node112.addAdjacentNode(node111, 150,200);
+        node112.addAdjacentNode(node113, 600,300);
 
-        node113.addAdjacentNode(node143, 100);
-        node113.addAdjacentNode(node112, 100);
-        node113.addAdjacentNode(node114, 100);
+        node113.addAdjacentNode(node143, 600,300);
+        node113.addAdjacentNode(node112, 600,300);
+        node113.addAdjacentNode(node114, 700,500);
 
-        node114.addAdjacentNode(node132, 100);
-        node114.addAdjacentNode(node113, 100);
-        node114.addAdjacentNode(node115, 100);
+        node114.addAdjacentNode(node132, 250,340);
+        node114.addAdjacentNode(node113, 700,500);
+        node114.addAdjacentNode(node115, 250,340);
 
-        node115.addAdjacentNode(node102, 100);
-        node115.addAdjacentNode(node129, 100);
-        node115.addAdjacentNode(node133, 100);
-        node115.addAdjacentNode(node114, 100);
-        node115.addAdjacentNode(node116, 100);
+        node115.addAdjacentNode(node102, 250,1000);
+        node115.addAdjacentNode(node129, 600,800);
+        node115.addAdjacentNode(node133, 250,1000);
+        node115.addAdjacentNode(node114, 250,340);
+        node115.addAdjacentNode(node116, 600,450);
 
-        node116.addAdjacentNode(node68, 100);
-        node116.addAdjacentNode(node132, 100);
-        node116.addAdjacentNode(node115, 100);
-        node116.addAdjacentNode(node122, 100);
+        node116.addAdjacentNode(node68, 300,120);
+        node116.addAdjacentNode(node132, 600,450);
+        node116.addAdjacentNode(node115, 600,450);
+        node116.addAdjacentNode(node122, 300,120);
 
-        node117.addAdjacentNode(node68, 100);
-        node117.addAdjacentNode(node98, 100);
-        node117.addAdjacentNode(node122, 100);
-        node117.addAdjacentNode(node123, 100);
+        node117.addAdjacentNode(node68, 430,650);
+        node117.addAdjacentNode(node98, 480,200);
+        node117.addAdjacentNode(node122, 430,650);
+        node117.addAdjacentNode(node123, 480,200);
 
-        node118.addAdjacentNode(node24, 100);
-        node118.addAdjacentNode(node26, 100);
-        node118.addAdjacentNode(node44, 100);
-        node118.addAdjacentNode(node119, 100);
+        node118.addAdjacentNode(node24, 250,500);
+        node118.addAdjacentNode(node26, 480,340);
+        node118.addAdjacentNode(node44, 1000,2000);
+        node118.addAdjacentNode(node119, 1000,2000);
 
-        node119.addAdjacentNode(node25, 100);
-        node119.addAdjacentNode(node43, 100);
-        node119.addAdjacentNode(node45, 100);
-        node119.addAdjacentNode(node76, 100);
-        node119.addAdjacentNode(node118, 100);
-        node119.addAdjacentNode(node120, 100);
+        node119.addAdjacentNode(node25, 1000,2000);
+        node119.addAdjacentNode(node43, 480,650);
+        node119.addAdjacentNode(node45, 400,440);
+        node119.addAdjacentNode(node76, 700,700);
+        node119.addAdjacentNode(node118, 1000,2000);
+        node119.addAdjacentNode(node120, 700,700);
 
-        node120.addAdjacentNode(node44, 100);
-        node120.addAdjacentNode(node75, 100);
-        node120.addAdjacentNode(node77, 100);
-        node120.addAdjacentNode(node85, 100);
-        node120.addAdjacentNode(node119, 100);
-        node120.addAdjacentNode(node121, 100);
+        node120.addAdjacentNode(node44, 700,700);
+        node120.addAdjacentNode(node75, 430,650);
+        node120.addAdjacentNode(node77, 210,200);
+        node120.addAdjacentNode(node85, 500,650);
+        node120.addAdjacentNode(node119, 700,700);
+        node120.addAdjacentNode(node121, 500,650);
 
-        node121.addAdjacentNode(node76, 100);
-        node121.addAdjacentNode(node86, 100);
-        node121.addAdjacentNode(node106, 100);
-        node121.addAdjacentNode(node111, 100);
-        node121.addAdjacentNode(node120, 100);
+        node121.addAdjacentNode(node76, 500,650);
+        node121.addAdjacentNode(node86, 150,330);
+        node121.addAdjacentNode(node106, 150,1000);
+        node121.addAdjacentNode(node111, 430,440);
+        node121.addAdjacentNode(node120, 500,650);
 
-        node122.addAdjacentNode(node67, 100);
-        node122.addAdjacentNode(node69, 100);
-        node122.addAdjacentNode(node110, 100);
-        node122.addAdjacentNode(node116, 100);
-        node122.addAdjacentNode(node117, 100);
+        node122.addAdjacentNode(node67, 1000,300);
+        node122.addAdjacentNode(node69, 500,500);
+        node122.addAdjacentNode(node110, 500,500);
+        node122.addAdjacentNode(node116, 300,120);
+        node122.addAdjacentNode(node117, 430,650);
 
-        node123.addAdjacentNode(node97, 100);
-        node123.addAdjacentNode(node99, 100);
-        node123.addAdjacentNode(node117, 100);
+        node123.addAdjacentNode(node97, 430,200);
+        node123.addAdjacentNode(node99, 500,430);
+        node123.addAdjacentNode(node117, 480,200);
 
+// 8호선
+        node124.addAdjacentNode(node125, 1000, 120);
+        node124.addAdjacentNode(node146, 600, 430);
+        node124.addAdjacentNode(node13, 600, 430);
 
-        // 8호선
-        node124.addAdjacentNode(node125, 100);
-        node124.addAdjacentNode(node146, 100);
-        node124.addAdjacentNode(node13, 100);
+        node125.addAdjacentNode(node124, 1000, 120);
+        node125.addAdjacentNode(node126, 700, 890);
 
-        node125.addAdjacentNode(node124, 100);
-        node125.addAdjacentNode(node126, 100);
+        node126.addAdjacentNode(node125, 700, 890);
+        node126.addAdjacentNode(node130, 600, 800);
+        node126.addAdjacentNode(node61, 600, 800);
 
-        node126.addAdjacentNode(node125, 100);
-        node126.addAdjacentNode(node130, 100);
-        node126.addAdjacentNode(node61, 100);
+        node127.addAdjacentNode(node128, 150, 330);
+        node127.addAdjacentNode(node131, 700, 540);
+        node127.addAdjacentNode(node92, 700, 540);
 
-        node127.addAdjacentNode(node128, 100);
-        node127.addAdjacentNode(node131, 100);
-        node127.addAdjacentNode(node92, 100);
+        node128.addAdjacentNode(node127, 150, 330);
+        node128.addAdjacentNode(node129, 210, 280);
 
-        node128.addAdjacentNode(node127, 100);
-        node128.addAdjacentNode(node129, 100);
+        node129.addAdjacentNode(node128, 210, 280);
+        node129.addAdjacentNode(node132, 600, 800);
+        node129.addAdjacentNode(node115, 600, 800);
 
-        node129.addAdjacentNode(node128, 100);
-        node129.addAdjacentNode(node132, 100);
-        node129.addAdjacentNode(node115, 100);
+        node130.addAdjacentNode(node60, 300, 800);
+        node130.addAdjacentNode(node62, 480, 1000);
+        node130.addAdjacentNode(node92, 500, 700);
+        node130.addAdjacentNode(node126, 600, 800);
+        node130.addAdjacentNode(node131, 500, 700);
 
-        node130.addAdjacentNode(node60, 100);
-        node130.addAdjacentNode(node62, 100);
-        node130.addAdjacentNode(node92, 100);
-        node130.addAdjacentNode(node126, 100);
-        node130.addAdjacentNode(node131, 100);
+        node131.addAdjacentNode(node61, 500, 700);
+        node131.addAdjacentNode(node91, 500, 200);
+        node131.addAdjacentNode(node93, 700, 300);
+        node131.addAdjacentNode(node127, 700, 540);
+        node131.addAdjacentNode(node130, 500, 700);
 
-        node131.addAdjacentNode(node61, 100);
-        node131.addAdjacentNode(node91, 100);
-        node131.addAdjacentNode(node93, 100);
-        node131.addAdjacentNode(node127, 100);
-        node131.addAdjacentNode(node130, 100);
+        node132.addAdjacentNode(node102, 250, 1000);
+        node132.addAdjacentNode(node114, 250, 340);
+        node132.addAdjacentNode(node116, 600, 450);
+        node132.addAdjacentNode(node129, 600, 800);
+        node132.addAdjacentNode(node133, 250, 1000);
 
-        node132.addAdjacentNode(node102, 100);
-        node132.addAdjacentNode(node114, 100);
-        node132.addAdjacentNode(node116, 100);
-        node132.addAdjacentNode(node129, 100);
-        node132.addAdjacentNode(node133, 100);
+        node133.addAdjacentNode(node37, 700, 2000);
+        node133.addAdjacentNode(node101, 300, 700);
+        node133.addAdjacentNode(node103, 250, 540);
+        node133.addAdjacentNode(node115, 250, 1000);
+        node133.addAdjacentNode(node132, 250, 1000);
+        node133.addAdjacentNode(node134, 700, 2000);
 
-        node133.addAdjacentNode(node37, 100);
-        node133.addAdjacentNode(node101, 100);
-        node133.addAdjacentNode(node103, 100);
-        node133.addAdjacentNode(node115, 100);
-        node133.addAdjacentNode(node132, 100);
-        node133.addAdjacentNode(node134, 100);
+        node134.addAdjacentNode(node36, 500, 330);
+        node134.addAdjacentNode(node38, 210, 280);
+        node134.addAdjacentNode(node102, 700, 2000);
+        node134.addAdjacentNode(node133, 700, 2000);
 
-        node134.addAdjacentNode(node36, 100);
-        node134.addAdjacentNode(node38, 100);
-        node134.addAdjacentNode(node102, 100);
-        node134.addAdjacentNode(node133, 100);
-
-        node146.addAdjacentNode(node12, 100);
-        node146.addAdjacentNode(node14, 100);
-        node146.addAdjacentNode(node139, 100);
-        node146.addAdjacentNode(node124, 100);
+        node146.addAdjacentNode(node12, 2000, 800);
+        node146.addAdjacentNode(node14, 500, 700);
+        node146.addAdjacentNode(node139, 2000, 800);
+        node146.addAdjacentNode(node124, 600, 430);
 
 
         // 9호선
-        node135.addAdjacentNode(node12, 100);
-        node135.addAdjacentNode(node58, 100);
-        node135.addAdjacentNode(node139, 100);
-        node135.addAdjacentNode(node140, 100);
+        node135.addAdjacentNode(node12, 600, 700);
+        node135.addAdjacentNode(node58, 300, 650);
+        node135.addAdjacentNode(node139, 600, 700);
+        node135.addAdjacentNode(node140, 300, 650);
 
-        node136.addAdjacentNode(node19, 100);
-        node136.addAdjacentNode(node89, 100);
-        node136.addAdjacentNode(node141, 100);
-        node136.addAdjacentNode(node142, 100);
+        node136.addAdjacentNode(node19, 430, 800);
+        node136.addAdjacentNode(node89, 480, 280);
+        node136.addAdjacentNode(node141, 480, 280);
+        node136.addAdjacentNode(node142, 430, 800);
 
-        node137.addAdjacentNode(node19, 100);
-        node137.addAdjacentNode(node112, 100);
-        node137.addAdjacentNode(node142, 100);
-        node137.addAdjacentNode(node143, 100);
+        node137.addAdjacentNode(node19, 1000, 1000);
+        node137.addAdjacentNode(node112, 150, 2000);
+        node137.addAdjacentNode(node142, 1000, 1000);
+        node137.addAdjacentNode(node143, 150, 2000);
 
-        node138.addAdjacentNode(node105, 100);
-        node138.addAdjacentNode(node112, 100);
-        node138.addAdjacentNode(node143, 100);
-        node138.addAdjacentNode(node144, 100);
+        node138.addAdjacentNode(node105, 250, 650);
+        node138.addAdjacentNode(node112, 500, 700);
+        node138.addAdjacentNode(node143, 500, 700);
+        node138.addAdjacentNode(node144, 250, 650);
 
-        node139.addAdjacentNode(node135, 100);
-        node139.addAdjacentNode(node11, 100);
-        node139.addAdjacentNode(node13, 100);
-        node139.addAdjacentNode(node146, 100);
+        node139.addAdjacentNode(node135, 600, 700);
+        node139.addAdjacentNode(node11, 1000, 890);
+        node139.addAdjacentNode(node13, 2000, 800);
+        node139.addAdjacentNode(node146, 2000, 800);
 
-        node140.addAdjacentNode(node135, 100);
-        node140.addAdjacentNode(node58, 100);
-        node140.addAdjacentNode(node141, 100);
-        node140.addAdjacentNode(node57, 100);
-        node140.addAdjacentNode(node59, 100);
+        node140.addAdjacentNode(node135, 300, 650);
+        node140.addAdjacentNode(node89, 210, 440);
+        node140.addAdjacentNode(node141, 210, 440);
+        node140.addAdjacentNode(node57, 500, 700);
+        node140.addAdjacentNode(node59, 300, 540);
 
-        node141.addAdjacentNode(node136, 100);
-        node141.addAdjacentNode(node140, 100);
-        node141.addAdjacentNode(node58, 100);
-        node141.addAdjacentNode(node88, 100);
-        node141.addAdjacentNode(node90, 100);
+        node141.addAdjacentNode(node136, 480, 280);
+        node141.addAdjacentNode(node140, 210, 440);
+        node141.addAdjacentNode(node58, 210, 440);
+        node141.addAdjacentNode(node88, 430, 2000);
+        node141.addAdjacentNode(node90, 480, 700);
 
-        node142.addAdjacentNode(node136, 100);
-        node142.addAdjacentNode(node137, 100);
-        node142.addAdjacentNode(node18, 100);
-        node142.addAdjacentNode(node19, 100);
+        node142.addAdjacentNode(node136, 430, 800);
+        node142.addAdjacentNode(node137, 1000, 1000);
+        node142.addAdjacentNode(node18, 480, 1000);
+        node142.addAdjacentNode(node20, 500, 2000);
 
-        node143.addAdjacentNode(node137, 100);
-        node143.addAdjacentNode(node138, 100);
-        node143.addAdjacentNode(node111, 100);
-        node143.addAdjacentNode(node113, 100);
+        node143.addAdjacentNode(node137, 150, 2000);
+        node143.addAdjacentNode(node138, 500, 700);
+        node143.addAdjacentNode(node111, 150, 200);
+        node143.addAdjacentNode(node113, 600, 300);
 
-        node144.addAdjacentNode(node138, 100);
-        node144.addAdjacentNode(node145, 100);
-        node144.addAdjacentNode(node34, 100);
-        node144.addAdjacentNode(node104, 100);
-        node144.addAdjacentNode(node106, 100);
+        node144.addAdjacentNode(node138, 250, 650);
+        node144.addAdjacentNode(node145, 300, 440);
+        node144.addAdjacentNode(node34, 300, 440);
+        node144.addAdjacentNode(node104, 320, 280);
+        node144.addAdjacentNode(node106, 480, 800);
 
-        node145.addAdjacentNode(node144, 100);
-        node145.addAdjacentNode(node33, 100);
-        node145.addAdjacentNode(node35, 100);
-
+        node145.addAdjacentNode(node144, 300, 440);
+        node145.addAdjacentNode(node33, 900, 800);
+        node145.addAdjacentNode(node35, 320, 700);
 
     }
 
@@ -1123,703 +1121,709 @@ public class Node implements Comparable<Node>{
             }
         }
         // 1호선
-        node1.addAdjacentNodeT(node2, 100);
-        node1.addAdjacentNodeT(node24, 100);
-        node1.addAdjacentNodeT(node23, 100);
-        node1.addAdjacentNodeT(node51, 100);
+        node1.addAdjacentNodeT(node2, 200,200);
+        node1.addAdjacentNodeT(node24, 1000,300);
+        node1.addAdjacentNodeT(node23, 480,200);
+        node1.addAdjacentNodeT(node51, 480,200);
 
-        node2.addAdjacentNodeT(node1, 100);
-        node2.addAdjacentNodeT(node3, 100);
+        node2.addAdjacentNodeT(node1, 200,200);
+        node2.addAdjacentNodeT(node3, 300,300);
+//103
+        node3.addAdjacentNodeT(node2, 300,300);
+        node3.addAdjacentNodeT(node4, 1000,500);
+        node3.addAdjacentNodeT(node70, 1000,500);
+//104
+        node4.addAdjacentNodeT(node3, 1000,500);
+        node4.addAdjacentNodeT(node5, 500,340);
+        node4.addAdjacentNodeT(node53, 1000,650);
+//105
+        node5.addAdjacentNodeT(node4, 500,340);
+        node5.addAdjacentNodeT(node6, 150,450);
+//106
+        node6.addAdjacentNodeT(node5, 150,450);
+        node6.addAdjacentNodeT(node7, 320,120);
+        node6.addAdjacentNodeT(node52, 320,120);
+//107
+        node7.addAdjacentNodeT(node6, 320,120);
+        node7.addAdjacentNodeT(node8, 400,650);
+        node7.addAdjacentNodeT(node49, 400,120);
+//108
+        node8.addAdjacentNodeT(node7, 400,650);//108 ->
+        node8.addAdjacentNodeT(node9, 800,200);//108 ->
+        node8.addAdjacentNodeT(node52, 400,650);//108 ->
+        node8.addAdjacentNodeT(node84, 800,200);//108 ->
+//109
+        node9.addAdjacentNodeT(node8,  800,200);//109 ->
+        node9.addAdjacentNodeT(node10, 900,430);//109 ->
+        node9.addAdjacentNodeT(node80, 1000,540);//109 ->
+//110
+        node10.addAdjacentNodeT(node9, 900,430);//110 ->
+        node10.addAdjacentNodeT(node11, 500,120);//110 ->
+//111
+        node11.addAdjacentNodeT(node10, 500,120);//111 ->
+        node11.addAdjacentNodeT(node12, 1000,890);//111 ->
+        node11.addAdjacentNodeT(node139, 1000,890);//111 ->
+//112
+        node12.addAdjacentNodeT(node11, 1000,890);//112 ->
+        node12.addAdjacentNodeT(node13, 2000,800);//112 ->
+        node12.addAdjacentNodeT(node146, 2000,800);//112 ->
+//113
+        node13.addAdjacentNodeT(node12, 2000,800);//113 ->
+        node13.addAdjacentNodeT(node14, 500,700);//113 ->
+        node13.addAdjacentNodeT(node124, 600,430);//113 ->
+//114
+        node14.addAdjacentNodeT(node13, 500,700);//114 ->
+        node14.addAdjacentNodeT(node15, 220,540);//114 ->
+        node14.addAdjacentNodeT(node146, 500,700);//114 ->
+        node14.addAdjacentNodeT(node72, 220,540);//114 ->
+//115
+        node15.addAdjacentNodeT(node14, 220,540);//115 ->
+        node15.addAdjacentNodeT(node16, 230,330);//115 ->
+        node15.addAdjacentNodeT(node59, 320,330);//115 ->
+        node15.addAdjacentNodeT(node60, 480,280);//115 ->
+        node15.addAdjacentNodeT(node108,  230,330);//115 ->
+//116
+        node16.addAdjacentNodeT(230,330);//116 ->
+        node16.addAdjacentNodeT(node17, 300,280);//116 ->
+        node16.addAdjacentNodeT(node90, 320,650);//116 ->
+        node16.addAdjacentNodeT(node91, 250,440);//116 ->
+        node16.addAdjacentNodeT(node72, 230,330);//116 ->
+//117
+        node17.addAdjacentNodeT(node16, 300,280);//117 ->
+        node17.addAdjacentNodeT(node18, 500,800);//117 ->
+        node17.addAdjacentNodeT(node108, 300,280);//117 ->
+//118
+        node18.addAdjacentNodeT(node17, 500,800);//118 ->
+        node18.addAdjacentNodeT(node19, 480,1000);//118 ->
+        node18.addAdjacentNodeT(node142, 480,1000);//118 ->
+//119
+        node19.addAdjacentNodeT(node18, 480,1000);//119 ->
+        node19.addAdjacentNodeT(node20, 500,2000);//119 ->
+        node19.addAdjacentNodeT(node136, 430,800);//119 ->
+        node19.addAdjacentNodeT(node137, 1000,1000);//119 ->
+//120
+        node20.addAdjacentNodeT(node19, 500,2000);//120 ->
+        node20.addAdjacentNodeT(node21, 400,700);//120 ->
+        node20.addAdjacentNodeT(node142, 500,2000);//120 ->
+        node20.addAdjacentNodeT(node107, 400,700);//120 ->
+//121
+        node21.addAdjacentNodeT(node20, 400,700);//121 ->
+        node21.addAdjacentNodeT(node22, 900,650);//121 ->
+        node21.addAdjacentNodeT(node86, 700,280);//121 ->
+        node21.addAdjacentNodeT(node87, 500,800);//121 ->
+        node21.addAdjacentNodeT(node82, 900,650);//121 ->
+//122
+        node22.addAdjacentNodeT(node21, 900,650);//122 ->
+        node22.addAdjacentNodeT(node23, 300,440);//122 ->
+        node22.addAdjacentNodeT(node77, 320,430);//122 ->
+        node22.addAdjacentNodeT(node78, 480,120);//122 ->
+        node22.addAdjacentNodeT(node107, 900,650);//122 ->
+        node22.addAdjacentNodeT(node51, 300,440);//122 ->
+//123
+        node23.addAdjacentNodeT(node22, 300,440);//123 ->
+        node23.addAdjacentNodeT(node1, 480,200);//123 ->
+        node23.addAdjacentNodeT(node45, 250,200);//123 ->
+        node23.addAdjacentNodeT(node46, 300,300);//123 ->
+        node23.addAdjacentNodeT(node41, 480,200);//123 ->
+        node23.addAdjacentNodeT(node82, 300,440);//123 ->
 
-        node3.addAdjacentNodeT(node2, 100);
-        node3.addAdjacentNodeT(node4, 100);
-        node3.addAdjacentNodeT(node70, 100);
+        // 2호선
+        node24.addAdjacentNodeT(node1, 1000,300);//201 ->
+        node24.addAdjacentNodeT(node25, 250,500);//201 ->
+        node24.addAdjacentNodeT(node118, 250,500);//201 ->
+        node24.addAdjacentNodeT(node41, 1000,300);//201 ->
 
-        node4.addAdjacentNodeT(node3, 100);
-        node4.addAdjacentNodeT(node5, 100);
-        node4.addAdjacentNodeT(node53, 100);
+        node25.addAdjacentNodeT(node24, 250,500);//202 ->
+        node25.addAdjacentNodeT(node26, 480,340);//202 ->
+        node25.addAdjacentNodeT(node44, 1000,2000);//202 ->
+        node25.addAdjacentNodeT(node119, 1000,2000);//202 ->
 
-        node5.addAdjacentNodeT(node4, 100);
-        node5.addAdjacentNodeT(node6, 100);
+        node26.addAdjacentNodeT(node25, 480,340);//203 ->
+        node26.addAdjacentNodeT(node27, 400,450);//203 ->
+        node26.addAdjacentNodeT(node118, 480,340);//203 ->
 
-        node6.addAdjacentNodeT(node5, 100);
-        node6.addAdjacentNodeT(node7, 100);
-        node6.addAdjacentNodeT(node52, 100);
+        node27.addAdjacentNodeT(node26, 400,450);//204 ->
+        node27.addAdjacentNodeT(node28, 250,120);//204 ->
 
-        node7.addAdjacentNodeT(node6, 100);
-        node7.addAdjacentNodeT(node8, 100);
-        node7.addAdjacentNodeT(node49, 100);
+        node28.addAdjacentNodeT(node27, 250,120);//205 ->
+        node28.addAdjacentNodeT(node29, 500,650);//205 ->
 
-        node8.addAdjacentNodeT(node7, 100);
-        node8.addAdjacentNodeT(node9, 100);
-        node8.addAdjacentNodeT(node52, 100);
-        node8.addAdjacentNodeT(node84, 100);
+        node29.addAdjacentNodeT(node28, 500,650);//206 ->
+        node29.addAdjacentNodeT(node30, 320,200);
+        node29.addAdjacentNodeT(node50, 320,200);
 
-        node9.addAdjacentNodeT(node8, 100);
-        node9.addAdjacentNodeT(node10, 100);
-        node9.addAdjacentNodeT(node80, 100);
+        node30.addAdjacentNodeT(node29, 320,200);//207 ->
+        node30.addAdjacentNodeT(node31, 250,430);
+        node30.addAdjacentNodeT(node42, 300,2000);
 
-        node10.addAdjacentNodeT(node9, 100);
-        node10.addAdjacentNodeT(node11, 100);
+        node31.addAdjacentNodeT(node30, 250,430);//208 ->
+        node31.addAdjacentNodeT(node32, 300,120);
+        node31.addAdjacentNodeT(node50, 250,430);
+        node31.addAdjacentNodeT(node81, 300,120);
 
-        node11.addAdjacentNodeT(node10, 100);
-        node11.addAdjacentNodeT(node12, 100);
-        node11.addAdjacentNodeT(node139, 100);
+        node32.addAdjacentNodeT(node31, 300,120);//209 ->
+        node32.addAdjacentNodeT(node33, 150,890);
+        node32.addAdjacentNodeT(node74, 320,450);
 
-        node12.addAdjacentNodeT(node11, 100);
-        node12.addAdjacentNodeT(node13, 100);
-        node12.addAdjacentNodeT(node146, 100);
+        node33.addAdjacentNodeT(node32, 150,890);//210 ->
+        node33.addAdjacentNodeT(node34, 900,800);
+        node33.addAdjacentNodeT(node81, 150,890);
+        node33.addAdjacentNodeT(node145, 900,800);
 
-        node13.addAdjacentNodeT(node12, 100);
-        node13.addAdjacentNodeT(node14, 100);
-        node13.addAdjacentNodeT(node124, 100);
+        node34.addAdjacentNodeT(node33, 900,800);//211 ->
+        node34.addAdjacentNodeT(node35, 320,700);
+        node34.addAdjacentNodeT(node105, 300,440);
+        node34.addAdjacentNodeT(node144, 300,440);
 
-        node14.addAdjacentNodeT(node13, 100);
-        node14.addAdjacentNodeT(node15, 100);
-        node14.addAdjacentNodeT(node146, 100);
-        node14.addAdjacentNodeT(node72, 100);
+        node35.addAdjacentNodeT(node34, 320,700);
+        node35.addAdjacentNodeT(node36, 150,540);
+        node35.addAdjacentNodeT(node145, 320,700);
 
-        node15.addAdjacentNodeT(node14, 100);
-        node15.addAdjacentNodeT(node16, 100);
-        node15.addAdjacentNodeT(node59, 100);
-        node15.addAdjacentNodeT(node60, 100);
-        node15.addAdjacentNodeT(node108, 100);
+        node36.addAdjacentNodeT(node35, 150,540);
+        node36.addAdjacentNodeT(node37, 500,330);
+        node36.addAdjacentNodeT(node134, 500,330);
 
-        node16.addAdjacentNodeT(node15, 100);
-        node16.addAdjacentNodeT(node17, 100);
-        node16.addAdjacentNodeT(node90, 100);
-        node16.addAdjacentNodeT(node91, 100);
-        node16.addAdjacentNodeT(node72, 100);
+        node37.addAdjacentNodeT(node36, 500,330);
+        node37.addAdjacentNodeT(node38, 210,280);
+        node37.addAdjacentNodeT(node102, 700,2000);
+        node37.addAdjacentNodeT(node133, 700,2000);
 
-        node17.addAdjacentNodeT(node16, 100);
-        node17.addAdjacentNodeT(node18, 100);
-        node17.addAdjacentNodeT(node108, 100);
+        node38.addAdjacentNodeT(node37, 210,280);
+        node38.addAdjacentNodeT(node39, 150,800);
+        node38.addAdjacentNodeT(node134, 210,280);
+        node38.addAdjacentNodeT(node73, 150,800);
 
-        node18.addAdjacentNodeT(node17, 100);
-        node18.addAdjacentNodeT(node19, 100);
-        node18.addAdjacentNodeT(node142, 100);
+        node39.addAdjacentNodeT(node38, 150,800);
+        node39.addAdjacentNodeT(node40, 500,1000);
+        node39.addAdjacentNodeT(node69, 900,340);
+        node39.addAdjacentNodeT(node110, 900,340);
 
-        node19.addAdjacentNodeT(node18, 100);
-        node19.addAdjacentNodeT(node20, 100);
-        node19.addAdjacentNodeT(node136, 100);
-        node19.addAdjacentNodeT(node137, 100);
+        node40.addAdjacentNodeT(node39, 500,1000);
+        node40.addAdjacentNodeT(node73, 500,1000);
 
-        node20.addAdjacentNodeT(node19, 100);
-        node20.addAdjacentNodeT(node21, 100);
-        node20.addAdjacentNodeT(node142, 100);
-        node20.addAdjacentNodeT(node107, 100);
+        node41.addAdjacentNodeT(node2, 200,200);
+        node41.addAdjacentNodeT(node24, 1000,300);
+        node41.addAdjacentNodeT(node23, 480,200);
+        node41.addAdjacentNodeT(node51, 480,200);
 
-        node21.addAdjacentNodeT(node20, 100);
-        node21.addAdjacentNodeT(node22, 100);
-        node21.addAdjacentNodeT(node86, 100);
-        node21.addAdjacentNodeT(node87, 100);
-        node21.addAdjacentNodeT(node82, 100);
+// 3호선
+        node42.addAdjacentNodeT(node43, 300,700);
+        node42.addAdjacentNodeT(node30, 300,2000);
+        node42.addAdjacentNodeT(node50, 300,2000);
 
-        node22.addAdjacentNodeT(node21, 100);
-        node22.addAdjacentNodeT(node23, 100);
-        node22.addAdjacentNodeT(node77, 100);
-        node22.addAdjacentNodeT(node78, 100);
-        node22.addAdjacentNodeT(node107, 100);
-        node22.addAdjacentNodeT(node51, 100);
+        node43.addAdjacentNodeT(node42, 300,700);
+        node43.addAdjacentNodeT(node44, 480,650);
+        node43.addAdjacentNodeT(node119, 480,650);
 
-        node23.addAdjacentNodeT(node22, 100);
-        node23.addAdjacentNodeT(node1, 100);
-        node23.addAdjacentNodeT(node45, 100);
-        node23.addAdjacentNodeT(node46, 100);
-        node23.addAdjacentNodeT(node41, 100);
-        node23.addAdjacentNodeT(node82, 100);
+        node44.addAdjacentNodeT(node43, 480,650);
+        node44.addAdjacentNodeT(node45, 400,440);
+        node44.addAdjacentNodeT(node25, 1000,2000);
+        node44.addAdjacentNodeT(node118, 1000,2000);
+        node44.addAdjacentNodeT(node76, 700,700);
+        node44.addAdjacentNodeT(node120, 700,700);
 
-// 2호선
-        node24.addAdjacentNodeT(node1, 100);
-        node24.addAdjacentNodeT(node25, 100);
-        node24.addAdjacentNodeT(node118, 100);
-        node24.addAdjacentNodeT(node41, 100);
+        node45.addAdjacentNodeT(node44, 400,440);
+        node45.addAdjacentNodeT(node119, 400,440);
+        node45.addAdjacentNodeT(node51, 250,200);
+        node45.addAdjacentNodeT(node23, 250,200);
 
-        node25.addAdjacentNodeT(node24, 100);
-        node25.addAdjacentNodeT(node26, 100);
-        node25.addAdjacentNodeT(node44, 100);
-        node25.addAdjacentNodeT(node119, 100);
+        node46.addAdjacentNodeT(node23, 300,300);
+        node46.addAdjacentNodeT(node51, 300,300);
+        node46.addAdjacentNodeT(node47, 250,500);
 
-        node26.addAdjacentNodeT(node25, 100);
-        node26.addAdjacentNodeT(node27, 100);
-        node26.addAdjacentNodeT(node118, 100);
+        node47.addAdjacentNodeT(node46, 250,500);
+        node47.addAdjacentNodeT(node71, 900,340);
+        node47.addAdjacentNodeT(node48, 900,340);
 
-        node27.addAdjacentNodeT(node26, 100);
-        node27.addAdjacentNodeT(node28, 100);
+        node48.addAdjacentNodeT(node47, 900,340);
+        node48.addAdjacentNodeT(node49, 480,450);
+        node48.addAdjacentNodeT(node54, 300,430);
+        node48.addAdjacentNodeT(node53, 150,200);
 
-        node28.addAdjacentNodeT(node27, 100);
-        node28.addAdjacentNodeT(node29, 100);
+        node49.addAdjacentNodeT(node48, 480,450);
+        node49.addAdjacentNodeT(node52, 400,120);
+        node49.addAdjacentNodeT(node71, 480,450);
+        node49.addAdjacentNodeT(node7, 400,120);
 
-        node29.addAdjacentNodeT(node28, 100);
-        node29.addAdjacentNodeT(node30, 100);
-        node29.addAdjacentNodeT(node50, 100);
+        node50.addAdjacentNodeT(node29, 320,200);
+        node50.addAdjacentNodeT(node31, 250,430);
+        node50.addAdjacentNodeT(node42, 300,2000);
 
-        node30.addAdjacentNodeT(node29, 100);
-        node30.addAdjacentNodeT(node31, 100);
-        node30.addAdjacentNodeT(node42, 100);
+        node51.addAdjacentNodeT(node45, 250,200);
+        node51.addAdjacentNodeT(node46, 300,300);
+        node51.addAdjacentNodeT(node1, 480,200);
+        node51.addAdjacentNodeT(node41, 480,200);
+        node51.addAdjacentNodeT(node22, 300,440);
+        node51.addAdjacentNodeT(node82, 300,440);
 
-        node31.addAdjacentNodeT(node30, 100);
-        node31.addAdjacentNodeT(node32, 100);
-        node31.addAdjacentNodeT(node50, 100);
-        node31.addAdjacentNodeT(node81, 100);
-
-        node32.addAdjacentNodeT(node31, 100);
-        node32.addAdjacentNodeT(node33, 100);
-        node32.addAdjacentNodeT(node74, 100);
-
-        node33.addAdjacentNodeT(node32, 100);
-        node33.addAdjacentNodeT(node34, 100);
-        node33.addAdjacentNodeT(node81, 100);
-        node33.addAdjacentNodeT(node145, 100);
-
-        node34.addAdjacentNodeT(node33, 100);
-        node34.addAdjacentNodeT(node35, 100);
-        node34.addAdjacentNodeT(node105, 100);
-        node34.addAdjacentNodeT(node144, 100);
-
-        node35.addAdjacentNodeT(node34, 100);
-        node35.addAdjacentNodeT(node36, 100);
-        node35.addAdjacentNodeT(node145, 100);
-
-        node36.addAdjacentNodeT(node35, 100);
-        node36.addAdjacentNodeT(node37, 100);
-        node36.addAdjacentNodeT(node134, 100);
-
-        node37.addAdjacentNodeT(node36, 100);
-        node37.addAdjacentNodeT(node38, 100);
-        node37.addAdjacentNodeT(node102, 100);
-        node37.addAdjacentNodeT(node133, 100);
-
-        node38.addAdjacentNodeT(node37, 100);
-        node38.addAdjacentNodeT(node39, 100);
-        node38.addAdjacentNodeT(node134, 100);
-        node38.addAdjacentNodeT(node73, 100);
-
-        node39.addAdjacentNodeT(node38, 100);
-        node39.addAdjacentNodeT(node40, 100);
-        node39.addAdjacentNodeT(node69, 100);
-        node39.addAdjacentNodeT(node110, 100);
-
-        node40.addAdjacentNodeT(node39, 100);
-        node40.addAdjacentNodeT(node73, 100);
-
-        node41.addAdjacentNodeT(node2, 100);
-        node41.addAdjacentNodeT(node24, 100);
-        node41.addAdjacentNodeT(node23, 100);
-        node41.addAdjacentNodeT(node51, 100);
-
-        // 3호선
-        node42.addAdjacentNodeT(node43, 100);
-        node42.addAdjacentNodeT(node30, 100);
-        node42.addAdjacentNodeT(node50, 100);
-
-        node43.addAdjacentNodeT(node42, 100);
-        node43.addAdjacentNodeT(node44, 100);
-        node43.addAdjacentNodeT(node119, 100);
-
-        node44.addAdjacentNodeT(node43, 100);
-        node44.addAdjacentNodeT(node45, 100);
-        node44.addAdjacentNodeT(node25, 100);
-        node44.addAdjacentNodeT(node118, 100);
-        node44.addAdjacentNodeT(node76, 100);
-        node44.addAdjacentNodeT(node120, 100);
-
-        node45.addAdjacentNodeT(node44, 100);
-        node45.addAdjacentNodeT(node119, 100);
-        node45.addAdjacentNodeT(node51, 100);
-        node45.addAdjacentNodeT(node23, 100);
-
-        node46.addAdjacentNodeT(node23, 100);
-        node46.addAdjacentNodeT(node51, 100);
-        node46.addAdjacentNodeT(node47, 100);
-
-        node47.addAdjacentNodeT(node46, 100);
-        node47.addAdjacentNodeT(node71, 100);
-        node47.addAdjacentNodeT(node48, 100);
-
-        node48.addAdjacentNodeT(node47, 100);
-        node48.addAdjacentNodeT(node49, 100);
-        node48.addAdjacentNodeT(node54, 100);
-        node48.addAdjacentNodeT(node53, 100);
-
-        node49.addAdjacentNodeT(node48, 100);
-        node49.addAdjacentNodeT(node52, 100);
-        node49.addAdjacentNodeT(node71, 100);
-        node49.addAdjacentNodeT(node7, 100);
-
-        node50.addAdjacentNodeT(node29, 100);
-        node50.addAdjacentNodeT(node31, 100);
-        node50.addAdjacentNodeT(node42, 100);
-
-        node51.addAdjacentNodeT(node45, 100);
-        node51.addAdjacentNodeT(node46, 100);
-        node51.addAdjacentNodeT(node1, 100);
-        node51.addAdjacentNodeT(node41, 100);
-        node51.addAdjacentNodeT(node22, 100);
-        node51.addAdjacentNodeT(node82, 100);
-
-        node52.addAdjacentNodeT(node6, 100);
-        node52.addAdjacentNodeT(node8, 100);
-        node52.addAdjacentNodeT(node49, 100);
+        node52.addAdjacentNodeT(node6, 320,120);
+        node52.addAdjacentNodeT(node8, 400,650);
+        node52.addAdjacentNodeT(node49, 400,120);
 
         // 4호선
-        node53.addAdjacentNodeT(node4, 100);
-        node53.addAdjacentNodeT(node70, 100);
-        node53.addAdjacentNodeT(node71, 100);
-        node53.addAdjacentNodeT(node48, 100);
+        node53.addAdjacentNodeT(node4, 1000,650);
+        node53.addAdjacentNodeT(node70, 1000,650);
+        node53.addAdjacentNodeT(node71, 150,200);
+        node53.addAdjacentNodeT(node48, 150,200);
 
-        node54.addAdjacentNodeT(node48, 100);
-        node54.addAdjacentNodeT(node71, 100);
-        node54.addAdjacentNodeT(node55, 100);
-        node54.addAdjacentNodeT(node83, 100);
+        node54.addAdjacentNodeT(node48, 300,430);
+        node54.addAdjacentNodeT(node71, 300,430);
+        node54.addAdjacentNodeT(node55, 210,120);
+        node54.addAdjacentNodeT(node83, 210,120);
 
-        node55.addAdjacentNodeT(node54, 100);
-        node55.addAdjacentNodeT(node56, 100);
+        node55.addAdjacentNodeT(node54, 210,120);
+        node55.addAdjacentNodeT(node56, 320,890);
 
-        node56.addAdjacentNodeT(node55, 100);
-        node56.addAdjacentNodeT(node57, 100);
-        node56.addAdjacentNodeT(node83, 100);
+        node56.addAdjacentNodeT(node55, 320,890);
+        node56.addAdjacentNodeT(node57, 210,800);
+        node56.addAdjacentNodeT(node83, 320,890);
 
-        node57.addAdjacentNodeT(node56, 100);
-        node57.addAdjacentNodeT(node58, 100);
-        node57.addAdjacentNodeT(node140, 100);
+        node57.addAdjacentNodeT(node56, 210,800);
+        node57.addAdjacentNodeT(node58, 500,700);
+        node57.addAdjacentNodeT(node140, 500,700);
 
-        node58.addAdjacentNodeT(node57, 100);
-        node58.addAdjacentNodeT(node59, 100);
-        node58.addAdjacentNodeT(node135, 100);
-        node58.addAdjacentNodeT(node141, 100);
-        node58.addAdjacentNodeT(node89, 100);
+        node58.addAdjacentNodeT(node57, 500,700);
+        node58.addAdjacentNodeT(node59, 300,540);
+        node58.addAdjacentNodeT(node135, 300,650);
+        node58.addAdjacentNodeT(node141, 210,440);
+        node58.addAdjacentNodeT(node89, 210,440);
 
-        node59.addAdjacentNodeT(node58, 100);
-        node59.addAdjacentNodeT(node140, 100);
-        node59.addAdjacentNodeT(node15, 100);
-        node59.addAdjacentNodeT(node72, 100);
+        node59.addAdjacentNodeT(node58, 300,540);
+        node59.addAdjacentNodeT(node140, 300,540);
+        node59.addAdjacentNodeT(node15, 320,330);
+        node59.addAdjacentNodeT(node72, 320,330);
 
-        node60.addAdjacentNodeT(node72, 100);
-        node60.addAdjacentNodeT(node15, 100);
-        node60.addAdjacentNodeT(node61, 100);
-        node60.addAdjacentNodeT(node130, 100);
+        node60.addAdjacentNodeT(node72, 480,280);
+        node60.addAdjacentNodeT(node15, 480,280);
+        node60.addAdjacentNodeT(node61, 300,800);
+        node60.addAdjacentNodeT(node130, 300,800);
 
-        node61.addAdjacentNodeT(node60, 100);
-        node61.addAdjacentNodeT(node62, 100);
+        node61.addAdjacentNodeT(node60, 300,800);
+        node61.addAdjacentNodeT(node62, 480,1000);
 
-        node62.addAdjacentNodeT(node61, 100);
-        node62.addAdjacentNodeT(node63, 100);
-        node62.addAdjacentNodeT(node130, 100);
+        node62.addAdjacentNodeT(node61, 480,1000);
+        node62.addAdjacentNodeT(node63, 300,2000);
+        node62.addAdjacentNodeT(node130, 480,1000);
 
-        node63.addAdjacentNodeT(node62, 100);
-        node63.addAdjacentNodeT(node64, 100);
+        node63.addAdjacentNodeT(node62, 300,2000);
+        node63.addAdjacentNodeT(node64, 900,700);
 
-        node64.addAdjacentNodeT(node63, 100);
-        node64.addAdjacentNodeT(node65, 100);
-        node64.addAdjacentNodeT(node93, 100);
-        node64.addAdjacentNodeT(node94, 100);
+        node64.addAdjacentNodeT(node63, 900,700);
+        node64.addAdjacentNodeT(node65, 400,650);
+        node64.addAdjacentNodeT(node93, 320,500);
+        node64.addAdjacentNodeT(node94, 1000,340);
 
-        node65.addAdjacentNodeT(node64, 100);
-        node65.addAdjacentNodeT(node66, 100);
-        node65.addAdjacentNodeT(node109, 100);
+        node65.addAdjacentNodeT(node64, 400,650);
+        node65.addAdjacentNodeT(node66, 430,440);
+        node65.addAdjacentNodeT(node109, 400,650);
 
-        node66.addAdjacentNodeT(node65, 100);
-        node66.addAdjacentNodeT(node67, 100);
+        node66.addAdjacentNodeT(node65, 430,440);
+        node66.addAdjacentNodeT(node67, 150,200);
 
-        node67.addAdjacentNodeT(node66, 100);
-        node67.addAdjacentNodeT(node68, 100);
-        node67.addAdjacentNodeT(node122, 100);
+        node67.addAdjacentNodeT(node66, 150,200);
+        node67.addAdjacentNodeT(node68, 1000,300);
+        node67.addAdjacentNodeT(node122, 1000,300);
 
-        node68.addAdjacentNodeT(node67, 100);
-        node68.addAdjacentNodeT(node69, 100);
-        node68.addAdjacentNodeT(node110, 100);
-        node68.addAdjacentNodeT(node116, 100);
-        node68.addAdjacentNodeT(node117, 100);
+        node68.addAdjacentNodeT(node67, 1000,300);
+        node68.addAdjacentNodeT(node69, 500,500);
+        node68.addAdjacentNodeT(node110, 500,500);
+        node68.addAdjacentNodeT(node116, 300,120);
+        node68.addAdjacentNodeT(node117, 430,650);
 
-        node69.addAdjacentNodeT(node68, 100);
-        node69.addAdjacentNodeT(node122, 100);
-        node69.addAdjacentNodeT(node101, 100);
-        node69.addAdjacentNodeT(node100, 100);
-        node69.addAdjacentNodeT(node73, 100);
-        node69.addAdjacentNodeT(node39, 100);
+        node69.addAdjacentNodeT(node68, 500,500);
+        node69.addAdjacentNodeT(node122, 500,500);
+        node69.addAdjacentNodeT(node101, 320,800);
+        node69.addAdjacentNodeT(node100, 480,890);
+        node69.addAdjacentNodeT(node73, 900,340);
+        node69.addAdjacentNodeT(node39, 900,340);
 
-        node70.addAdjacentNodeT(node3, 100);
-        node70.addAdjacentNodeT(node5, 100);
-        node70.addAdjacentNodeT(node53, 100);
+        node70.addAdjacentNodeT(node3, 1000,500);
+        node70.addAdjacentNodeT(node5, 500,340);
+        node70.addAdjacentNodeT(node53, 1000,650);
 
-        node71.addAdjacentNodeT(node53, 100);
-        node71.addAdjacentNodeT(node54, 100);
-        node71.addAdjacentNodeT(node47, 100);
-        node71.addAdjacentNodeT(node49, 100);
+        node71.addAdjacentNodeT(node53, 150,200);
+        node71.addAdjacentNodeT(node54, 300,430);
+        node71.addAdjacentNodeT(node47, 900,340);
+        node71.addAdjacentNodeT(node49, 480,450);
 
-        node72.addAdjacentNodeT(node59, 100);
-        node72.addAdjacentNodeT(node60, 100);
-        node72.addAdjacentNodeT(node14, 100);
-        node72.addAdjacentNodeT(node16, 100);
-        node72.addAdjacentNodeT(node108, 100);
+        node72.addAdjacentNodeT(node59, 320,330);
+        node72.addAdjacentNodeT(node60, 480,280);
+        node72.addAdjacentNodeT(node14, 220,540);
+        node72.addAdjacentNodeT(node16, 230,330);
+        node72.addAdjacentNodeT(node108, 230,330);
 
-        node73.addAdjacentNodeT(node38, 100);
-        node73.addAdjacentNodeT(node40, 100);
-        node73.addAdjacentNodeT(node69, 100);
-        node73.addAdjacentNodeT(node110, 100);
+        node73.addAdjacentNodeT(node38, 150,800);
+        node73.addAdjacentNodeT(node40, 500,1000);
+        node73.addAdjacentNodeT(node69, 900,340);
+        node73.addAdjacentNodeT(node110, 900,340);
 
-// 5호선
-        node74.addAdjacentNodeT(node75, 100);
-        node74.addAdjacentNodeT(node81, 100);
-        node74.addAdjacentNodeT(node32, 100);
+        // 5호선
+        node74.addAdjacentNodeT(node75, 320,120);
+        node74.addAdjacentNodeT(node81, 320,450);
+        node74.addAdjacentNodeT(node32, 320,450);
 
-        node75.addAdjacentNodeT(node74, 100);
-        node75.addAdjacentNodeT(node76, 100);
-        node75.addAdjacentNodeT(node120, 100);
+        node75.addAdjacentNodeT(node74, 320,120);
+        node75.addAdjacentNodeT(node76, 430,650);
+        node75.addAdjacentNodeT(node120, 430,650);
 
-        node76.addAdjacentNodeT(node75, 100);
-        node76.addAdjacentNodeT(node77, 100);
-        node76.addAdjacentNodeT(node119, 100);
-        node76.addAdjacentNodeT(node44, 100);
-        node76.addAdjacentNodeT(node85, 100);
-        node76.addAdjacentNodeT(node111, 100);
+        node76.addAdjacentNodeT(node75, 430,650);
+        node76.addAdjacentNodeT(node77, 210,200);
+        node76.addAdjacentNodeT(node119, 700,700);
+        node76.addAdjacentNodeT(node44, 700,700);
+        node76.addAdjacentNodeT(node85, 500,650);
+        node76.addAdjacentNodeT(node121, 500,650);
 
-        node77.addAdjacentNodeT(node76, 100);
-        node77.addAdjacentNodeT(node120, 100);
-        node77.addAdjacentNodeT(node82, 100);
-        node77.addAdjacentNodeT(node22, 100);
+        node77.addAdjacentNodeT(node76, 210,200);
+        node77.addAdjacentNodeT(node120, 210,200);
+        node77.addAdjacentNodeT(node82, 320,430);
+        node77.addAdjacentNodeT(node22, 320,430);
 
-        node78.addAdjacentNodeT(node79, 100);
-        node78.addAdjacentNodeT(node22, 100);
-        node78.addAdjacentNodeT(node82, 100);
+        node78.addAdjacentNodeT(node79, 300,890);
+        node78.addAdjacentNodeT(node22, 480,120);
+        node78.addAdjacentNodeT(node82, 480,120);
 
-        node79.addAdjacentNodeT(node78, 100);
-        node79.addAdjacentNodeT(node55, 100);
-        node79.addAdjacentNodeT(node83, 100);
+        node79.addAdjacentNodeT(node78, 300,890);
+        node79.addAdjacentNodeT(node55, 320,800);
+        node79.addAdjacentNodeT(node83, 320,800);
 
-        node80.addAdjacentNodeT(node83, 100);
-        node80.addAdjacentNodeT(node55, 100);
-        node80.addAdjacentNodeT(node9, 100);
-        node80.addAdjacentNodeT(node84, 100);
+        node80.addAdjacentNodeT(node83, 300,700);
+        node80.addAdjacentNodeT(node55, 300,700);
+        node80.addAdjacentNodeT(node9, 1000,540);
+        node80.addAdjacentNodeT(node84, 1000,540);
 
-        node81.addAdjacentNodeT(node31, 100);
-        node81.addAdjacentNodeT(node33, 100);
-        node81.addAdjacentNodeT(node74, 100);
+        node81.addAdjacentNodeT(node31, 300, 120);
+        node81.addAdjacentNodeT(node33, 150, 890);
+        node81.addAdjacentNodeT(node74, 320, 450);
 
-        node82.addAdjacentNodeT(node77, 100);
-        node82.addAdjacentNodeT(node78, 100);
-        node82.addAdjacentNodeT(node21, 100);
-        node82.addAdjacentNodeT(node23, 100);
-        node82.addAdjacentNodeT(node51, 100);
-        node82.addAdjacentNodeT(node107, 100);
+        node82.addAdjacentNodeT(node77, 320, 430);
+        node82.addAdjacentNodeT(node78, 480, 120);
+        node82.addAdjacentNodeT(node21, 900, 650);
+        node82.addAdjacentNodeT(node23, 300, 440);
+        node82.addAdjacentNodeT(node51, 300, 440);
+        node82.addAdjacentNodeT(node107, 900, 650);
 
-        node83.addAdjacentNodeT(node54, 100);
-        node83.addAdjacentNodeT(node56, 100);
-        node83.addAdjacentNodeT(node79, 100);
-        node83.addAdjacentNodeT(node80, 100);
+        node83.addAdjacentNodeT(node54, 210, 120);
+        node83.addAdjacentNodeT(node56, 320, 890);
+        node83.addAdjacentNodeT(node79, 320, 800);
+        node83.addAdjacentNodeT(node80, 300, 700);
 
-        node84.addAdjacentNodeT(node8, 100);
-        node84.addAdjacentNodeT(node10, 100);
-        node84.addAdjacentNodeT(node80, 100);
+        node84.addAdjacentNodeT(node8, 800, 200);
+        node84.addAdjacentNodeT(node10, 900, 430);
+        node84.addAdjacentNodeT(node80, 1000, 540);
 
 // 6호선
-        node85.addAdjacentNodeT(node86, 100);
-        node85.addAdjacentNodeT(node106, 100);
-        node85.addAdjacentNodeT(node76, 100);
-        node85.addAdjacentNodeT(node120, 100);
-        node85.addAdjacentNodeT(node111, 100);
+        node85.addAdjacentNodeT(node86, 150,330);
+        node85.addAdjacentNodeT(node106, 150,1000);
+        node85.addAdjacentNodeT(node76, 500, 650);
+        node85.addAdjacentNodeT(node120, 500, 650);
+        node85.addAdjacentNodeT(node111, 430, 440);
 
-        node86.addAdjacentNodeT(node85, 100);
-        node86.addAdjacentNodeT(node121, 100);
-        node86.addAdjacentNodeT(node107, 100);
-        node86.addAdjacentNodeT(node21, 100);
+        node86.addAdjacentNodeT(node85, 150, 330);
+        node86.addAdjacentNodeT(node121, 150,330);
+        node86.addAdjacentNodeT(node107, 70,280);
+        node86.addAdjacentNodeT(node21, 700, 280);
 
-        node87.addAdjacentNodeT(node88, 100);
-        node87.addAdjacentNodeT(node107, 100);
-        node87.addAdjacentNodeT(node21, 100);
+        node87.addAdjacentNodeT(node88, 300, 1000);
+        node87.addAdjacentNodeT(node107, 650, 800);
+        node87.addAdjacentNodeT(node21, 650,800);
 
-        node88.addAdjacentNodeT(node87, 100);
-        node88.addAdjacentNodeT(node89, 100);
-        node88.addAdjacentNodeT(node141, 100);
+        node88.addAdjacentNodeT(node87, 300, 1000);
+        node88.addAdjacentNodeT(node89, 430,2000);
+        node88.addAdjacentNodeT(node141, 430, 2000);
 
-        node89.addAdjacentNodeT(node88, 100);
-        node89.addAdjacentNodeT(node90, 100);
-        node89.addAdjacentNodeT(node136, 100);
-        node89.addAdjacentNodeT(node140, 100);
-        node89.addAdjacentNodeT(node58, 100);
+        node89.addAdjacentNodeT(node88, 430,2000);
+        node89.addAdjacentNodeT(node90, 480,700);
+        node89.addAdjacentNodeT(node136, 480, 280);
+        node89.addAdjacentNodeT(node140, 210, 440);
+        node89.addAdjacentNodeT(node58, 210,440);
 
-        node90.addAdjacentNodeT(node89, 100);
-        node90.addAdjacentNodeT(node141, 100);
-        node90.addAdjacentNodeT(node108, 100);
-        node90.addAdjacentNodeT(node16, 100);
+        node90.addAdjacentNodeT(node89, 480,700);
+        node90.addAdjacentNodeT(node141, 480,700);
+        node90.addAdjacentNodeT(node108, 320,650);
+        node90.addAdjacentNodeT(node16, 320,650);
 
-        node91.addAdjacentNodeT(node16, 100);
-        node91.addAdjacentNodeT(node108, 100);
-        node91.addAdjacentNodeT(node92, 100);
-        node91.addAdjacentNodeT(node131, 100);
+        node91.addAdjacentNodeT(node16, 250,440);
+        node91.addAdjacentNodeT(node108, 250,440);
+        node91.addAdjacentNodeT(node92, 500,200);
+        node91.addAdjacentNodeT(node131, 500,200);
 
-        node92.addAdjacentNodeT(node91, 100);
-        node92.addAdjacentNodeT(node93, 100);
-        node92.addAdjacentNodeT(node127, 100);
-        node92.addAdjacentNodeT(node130, 100);
-        node92.addAdjacentNodeT(node61, 100);
+        node92.addAdjacentNodeT(node91, 500,200);
+        node92.addAdjacentNodeT(node93, 700,300);
+        node92.addAdjacentNodeT(node127, 700,540);
+        node92.addAdjacentNodeT(node130, 500,700);
+        node92.addAdjacentNodeT(node61, 500,700);
 
-        node93.addAdjacentNodeT(node92, 100);
-        node93.addAdjacentNodeT(node131, 100);
-        node93.addAdjacentNodeT(node109, 100);
-        node93.addAdjacentNodeT(node64, 100);
+        node93.addAdjacentNodeT(node92, 700,300);
+        node93.addAdjacentNodeT(node131, 700,300);
+        node93.addAdjacentNodeT(node109, 320,500);
+        node93.addAdjacentNodeT(node64, 320,500);
 
-        node94.addAdjacentNodeT(node64, 100);
-        node94.addAdjacentNodeT(node109, 100);
-        node94.addAdjacentNodeT(node95, 100);
+        node94.addAdjacentNodeT(node64, 1000,340);
+        node94.addAdjacentNodeT(node109, 1000, 340);
+        node94.addAdjacentNodeT(node95, 700,450);
 
-        node95.addAdjacentNodeT(node94, 100);
-        node95.addAdjacentNodeT(node96, 100);
+        node95.addAdjacentNodeT(node94, 700,450);
+        node95.addAdjacentNodeT(node96, 700,120);
 
-        node96.addAdjacentNodeT(node95, 100);
-        node96.addAdjacentNodeT(node97, 100);
+        node96.addAdjacentNodeT(node95, 700,120);
+        node96.addAdjacentNodeT(node97, 150,650);
 
-        node97.addAdjacentNodeT(node96, 100);
-        node97.addAdjacentNodeT(node98, 100);
-        node97.addAdjacentNodeT(node123, 100);
+        node97.addAdjacentNodeT(node96, 150,650);
+        node97.addAdjacentNodeT(node98, 430,200);
+        node97.addAdjacentNodeT(node123, 430,200);
 
-        node98.addAdjacentNodeT(node97, 100);
-        node98.addAdjacentNodeT(node99, 100);
-        node98.addAdjacentNodeT(node117, 100);
+        node98.addAdjacentNodeT(node97, 430,200);
+        node98.addAdjacentNodeT(node99, 500,430);
+        node98.addAdjacentNodeT(node117, 480,200);
 
-        node99.addAdjacentNodeT(node98, 100);
-        node99.addAdjacentNodeT(node100, 100);
-        node99.addAdjacentNodeT(node123, 100);
+        node99.addAdjacentNodeT(node98, 500,430);
+        node99.addAdjacentNodeT(node100, 700,120);
 
-        node100.addAdjacentNodeT(node99, 100);
-        node100.addAdjacentNodeT(node110, 100);
-        node100.addAdjacentNodeT(node69, 100);
+        node100.addAdjacentNodeT(node99, 700,120);
+        node100.addAdjacentNodeT(node110, 480,890);
+        node100.addAdjacentNodeT(node69, 480,890);
 
-        node101.addAdjacentNodeT(node69, 100);
-        node101.addAdjacentNodeT(node133, 100);
-        node101.addAdjacentNodeT(node102, 100);
-        node101.addAdjacentNodeT(node110, 100);
+        node101.addAdjacentNodeT(node69, 320,800);
+        node101.addAdjacentNodeT(node133, 300,700);
+        node101.addAdjacentNodeT(node102, 300,700);
+        node101.addAdjacentNodeT(node110, 320,800);
 
-        node102.addAdjacentNodeT(node37, 100);
-        node102.addAdjacentNodeT(node101, 100);
-        node102.addAdjacentNodeT(node103, 100);
-        node102.addAdjacentNodeT(node115, 100);
-        node102.addAdjacentNodeT(node132, 100);
-        node102.addAdjacentNodeT(node134, 100);
+        node102.addAdjacentNodeT(node37, 700,2000);
+        node102.addAdjacentNodeT(node101, 300,700);
+        node102.addAdjacentNodeT(node103, 250,540);
+        node102.addAdjacentNodeT(node115, 250,1000);
+        node102.addAdjacentNodeT(node132, 250,1000);
+        node102.addAdjacentNodeT(node134, 700,2000);
 
-        node103.addAdjacentNodeT(node133, 100);
-        node103.addAdjacentNodeT(node102, 100);
-        node103.addAdjacentNodeT(node104, 100);
+        node103.addAdjacentNodeT(node133, 250,540);
+        node103.addAdjacentNodeT(node102, 250,540);
+        node103.addAdjacentNodeT(node104, 700,330);
 
-        node104.addAdjacentNodeT(node144, 100);
-        node104.addAdjacentNodeT(node103, 100);
-        node104.addAdjacentNodeT(node105, 100);
+        node104.addAdjacentNodeT(node144, 320,280);
+        node104.addAdjacentNodeT(node103, 700,330);
+        node104.addAdjacentNodeT(node105, 320,280);
 
-        node105.addAdjacentNodeT(node138, 100);
-        node105.addAdjacentNodeT(node145, 100);
-        node105.addAdjacentNodeT(node34, 100);
-        node105.addAdjacentNodeT(node104, 100);
-        node105.addAdjacentNodeT(node106, 100);
+        node105.addAdjacentNodeT(node138, 250,650);
+        node105.addAdjacentNodeT(node145, 300,440);
+        node105.addAdjacentNodeT(node34, 300,440);
+        node105.addAdjacentNodeT(node104, 320,280);
+        node105.addAdjacentNodeT(node106, 480,800);
 
-        node106.addAdjacentNodeT(node144, 100);
-        node106.addAdjacentNodeT(node121, 100);
-        node106.addAdjacentNodeT(node85, 100);
-        node106.addAdjacentNodeT(node105, 100);
+        node106.addAdjacentNodeT(node144, 480,800);
+        node106.addAdjacentNodeT(node121, 150,1000);
+        node106.addAdjacentNodeT(node85, 150,1000);
+        node106.addAdjacentNodeT(node105, 480,800);
 
-        node107.addAdjacentNodeT(node20, 100);
-        node107.addAdjacentNodeT(node22, 100);
-        node107.addAdjacentNodeT(node86, 100);
-        node107.addAdjacentNodeT(node87, 100);
-        node107.addAdjacentNodeT(node82, 100);
+        node107.addAdjacentNodeT(node20, 400,700);
+        node107.addAdjacentNodeT(node22, 900,650);
+        node107.addAdjacentNodeT(node86, 700,280);
+        node107.addAdjacentNodeT(node87, 500,800);
+        node107.addAdjacentNodeT(node82, 900,650);
 
-        node108.addAdjacentNodeT(node15, 100);
-        node108.addAdjacentNodeT(node17, 100);
-        node108.addAdjacentNodeT(node90, 100);
-        node108.addAdjacentNodeT(node91, 100);
-        node108.addAdjacentNodeT(node72, 100);
+        node108.addAdjacentNodeT(node15, 230,330);
+        node108.addAdjacentNodeT(node17, 300,280);
+        node108.addAdjacentNodeT(node90, 320,660);
+        node108.addAdjacentNodeT(node91, 250,440);
+        node108.addAdjacentNodeT(node72, 230,330);
 
-        node109.addAdjacentNodeT(node63, 100);
-        node109.addAdjacentNodeT(node65, 100);
-        node109.addAdjacentNodeT(node93, 100);
-        node109.addAdjacentNodeT(node94, 100);
+        node109.addAdjacentNodeT(node63, 900,700);
+        node109.addAdjacentNodeT(node65, 400,650);
+        node109.addAdjacentNodeT(node93, 320,500);
+        node109.addAdjacentNodeT(node94, 1000,340);
 
-        node110.addAdjacentNodeT(node68, 100);
-        node110.addAdjacentNodeT(node122, 100);
-        node110.addAdjacentNodeT(node101, 100);
-        node110.addAdjacentNodeT(node100, 100);
-        node110.addAdjacentNodeT(node73, 100);
-        node110.addAdjacentNodeT(node39, 100);
+        node110.addAdjacentNodeT(node68, 500,500);
+        node110.addAdjacentNodeT(node122, 500,500);
+        node110.addAdjacentNodeT(node101, 320,800);
+        node110.addAdjacentNodeT(node100, 480,890);
+        node110.addAdjacentNodeT(node73, 900,340);
+        node110.addAdjacentNodeT(node39, 900,340);
+
 
         // 7호선
-        node111.addAdjacentNodeT(node85, 100);
-        node111.addAdjacentNodeT(node143, 100);
-        node111.addAdjacentNodeT(node112, 100);
-        node111.addAdjacentNodeT(node121, 100);
+        node111.addAdjacentNodeT(node85, 430,440);
+        node111.addAdjacentNodeT(node143, 150,200);
+        node111.addAdjacentNodeT(node112, 150,200);
+        node111.addAdjacentNodeT(node121, 430,440);
 
-        node112.addAdjacentNodeT(node137, 100);
-        node112.addAdjacentNodeT(node138, 100);
-        node112.addAdjacentNodeT(node111, 100);
-        node112.addAdjacentNodeT(node113, 100);
+        node112.addAdjacentNodeT(node137, 150,2000);
+        node112.addAdjacentNodeT(node138, 500,700);
+        node112.addAdjacentNodeT(node111, 150,200);
+        node112.addAdjacentNodeT(node113, 600,300);
 
-        node113.addAdjacentNodeT(node143, 100);
-        node113.addAdjacentNodeT(node112, 100);
-        node113.addAdjacentNodeT(node114, 100);
+        node113.addAdjacentNodeT(node143, 600,300);
+        node113.addAdjacentNodeT(node112, 600,300);
+        node113.addAdjacentNodeT(node114, 700,500);
 
-        node114.addAdjacentNodeT(node132, 100);
-        node114.addAdjacentNodeT(node113, 100);
-        node114.addAdjacentNodeT(node115, 100);
+        node114.addAdjacentNodeT(node132, 250,340);
+        node114.addAdjacentNodeT(node113, 700,500);
+        node114.addAdjacentNodeT(node115, 250,340);
 
-        node115.addAdjacentNodeT(node102, 100);
-        node115.addAdjacentNodeT(node129, 100);
-        node115.addAdjacentNodeT(node133, 100);
-        node115.addAdjacentNodeT(node114, 100);
-        node115.addAdjacentNodeT(node116, 100);
+        node115.addAdjacentNodeT(node102, 250,1000);
+        node115.addAdjacentNodeT(node129, 600,800);
+        node115.addAdjacentNodeT(node133, 250,1000);
+        node115.addAdjacentNodeT(node114, 250,340);
+        node115.addAdjacentNodeT(node116, 600,450);
 
-        node116.addAdjacentNodeT(node68, 100);
-        node116.addAdjacentNodeT(node132, 100);
-        node116.addAdjacentNodeT(node115, 100);
-        node116.addAdjacentNodeT(node122, 100);
+        node116.addAdjacentNodeT(node68, 300,120);
+        node116.addAdjacentNodeT(node132, 600,450);
+        node116.addAdjacentNodeT(node115, 600,450);
+        node116.addAdjacentNodeT(node122, 300,120);
 
-        node117.addAdjacentNodeT(node68, 100);
-        node117.addAdjacentNodeT(node98, 100);
-        node117.addAdjacentNodeT(node122, 100);
-        node117.addAdjacentNodeT(node123, 100);
+        node117.addAdjacentNodeT(node68, 430,650);
+        node117.addAdjacentNodeT(node98, 480,200);
+        node117.addAdjacentNodeT(node122, 430,650);
+        node117.addAdjacentNodeT(node123, 480,200);
 
-        node118.addAdjacentNodeT(node24, 100);
-        node118.addAdjacentNodeT(node26, 100);
-        node118.addAdjacentNodeT(node44, 100);
-        node118.addAdjacentNodeT(node119, 100);
+        node118.addAdjacentNodeT(node24, 250,500);
+        node118.addAdjacentNodeT(node26, 480,340);
+        node118.addAdjacentNodeT(node44, 1000,2000);
+        node118.addAdjacentNodeT(node119, 1000,2000);
 
-        node119.addAdjacentNodeT(node25, 100);
-        node119.addAdjacentNodeT(node43, 100);
-        node119.addAdjacentNodeT(node45, 100);
-        node119.addAdjacentNodeT(node76, 100);
-        node119.addAdjacentNodeT(node118, 100);
-        node119.addAdjacentNodeT(node120, 100);
+        node119.addAdjacentNodeT(node25, 1000,2000);
+        node119.addAdjacentNodeT(node43, 480,650);
+        node119.addAdjacentNodeT(node45, 400,440);
+        node119.addAdjacentNodeT(node76, 700,700);
+        node119.addAdjacentNodeT(node118, 1000,2000);
+        node119.addAdjacentNodeT(node120, 700,700);
 
-        node121.addAdjacentNodeT(node76, 100);
-        node121.addAdjacentNodeT(node86, 100);
-        node121.addAdjacentNodeT(node106, 100);
-        node121.addAdjacentNodeT(node111, 100);
-        node121.addAdjacentNodeT(node120, 100);
+        node120.addAdjacentNodeT(node44, 700,700);
+        node120.addAdjacentNodeT(node75, 430,650);
+        node120.addAdjacentNodeT(node77, 210,200);
+        node120.addAdjacentNodeT(node85, 500,650);
+        node120.addAdjacentNodeT(node119, 700,700);
+        node120.addAdjacentNodeT(node121, 500,650);
 
-        node122.addAdjacentNodeT(node67, 100);
-        node122.addAdjacentNodeT(node69, 100);
-        node122.addAdjacentNodeT(node110, 100);
-        node122.addAdjacentNodeT(node116, 100);
-        node122.addAdjacentNodeT(node117, 100);
+        node121.addAdjacentNodeT(node76, 500,650);
+        node121.addAdjacentNodeT(node86, 150,330);
+        node121.addAdjacentNodeT(node106, 150,1000);
+        node121.addAdjacentNodeT(node111, 430,440);
+        node121.addAdjacentNodeT(node120, 500,650);
 
-        node123.addAdjacentNodeT(node97, 100);
-        node123.addAdjacentNodeT(node99, 100);
-        node123.addAdjacentNodeT(node117, 100);
+        node122.addAdjacentNodeT(node67, 1000,300);
+        node122.addAdjacentNodeT(node69, 500,500);
+        node122.addAdjacentNodeT(node110, 500,500);
+        node122.addAdjacentNodeT(node116, 300,120);
+        node122.addAdjacentNodeT(node117, 430,650);
 
-// 8호선
-        node124.addAdjacentNodeT(node125, 100);
-        node124.addAdjacentNodeT(node146, 100);
-        node124.addAdjacentNodeT(node13, 100);
+        node123.addAdjacentNodeT(node97, 430,200);
+        node123.addAdjacentNodeT(node99, 500,430);
+        node123.addAdjacentNodeT(node117, 480,200);
 
-        node125.addAdjacentNodeT(node124, 100);
-        node125.addAdjacentNodeT(node126, 100);
+        node124.addAdjacentNodeT(node125, 1000, 120);
+        node124.addAdjacentNodeT(node146, 600, 430);
+        node124.addAdjacentNodeT(node13, 600, 430);
 
-        node126.addAdjacentNodeT(node125, 100);
-        node126.addAdjacentNodeT(node130, 100);
-        node126.addAdjacentNodeT(node61, 100);
+        node125.addAdjacentNodeT(node124, 1000, 120);
+        node125.addAdjacentNodeT(node126, 700, 890);
 
-        node127.addAdjacentNodeT(node128, 100);
-        node127.addAdjacentNodeT(node131, 100);
-        node127.addAdjacentNodeT(node92, 100);
+        node126.addAdjacentNodeT(node125, 700, 890);
+        node126.addAdjacentNodeT(node130, 600, 800);
+        node126.addAdjacentNodeT(node61, 600, 800);
 
-        node128.addAdjacentNodeT(node127, 100);
-        node128.addAdjacentNodeT(node129, 100);
+        node127.addAdjacentNodeT(node128, 150, 330);
+        node127.addAdjacentNodeT(node131, 700, 540);
+        node127.addAdjacentNodeT(node92, 700, 540);
 
-        node129.addAdjacentNodeT(node128, 100);
-        node129.addAdjacentNodeT(node132, 100);
-        node129.addAdjacentNodeT(node115, 100);
+        node128.addAdjacentNodeT(node127, 150, 330);
+        node128.addAdjacentNodeT(node129, 210, 280);
 
-        node130.addAdjacentNodeT(node60, 100);
-        node130.addAdjacentNodeT(node62, 100);
-        node130.addAdjacentNodeT(node92, 100);
-        node130.addAdjacentNodeT(node126, 100);
-        node130.addAdjacentNodeT(node131, 100);
+        node129.addAdjacentNodeT(node128, 210, 280);
+        node129.addAdjacentNodeT(node132, 600, 800);
+        node129.addAdjacentNodeT(node115, 600, 800);
+
+        node130.addAdjacentNodeT(node60, 300, 800);
+        node130.addAdjacentNodeT(node62, 480, 1000);
+        node130.addAdjacentNodeT(node92, 500, 700);
+        node130.addAdjacentNodeT(node126, 600, 800);
+        node130.addAdjacentNodeT(node131, 500, 700);
+
+        node131.addAdjacentNodeT(node61, 500, 700);
+        node131.addAdjacentNodeT(node91, 500, 200);
+        node131.addAdjacentNodeT(node93, 700, 300);
+        node131.addAdjacentNodeT(node127, 700, 540);
+        node131.addAdjacentNodeT(node130, 500, 700);
+
+        node132.addAdjacentNodeT(node102, 250, 1000);
+        node132.addAdjacentNodeT(node114, 250, 340);
+        node132.addAdjacentNodeT(node116, 600, 450);
+        node132.addAdjacentNodeT(node129, 600, 800);
+        node132.addAdjacentNodeT(node133, 250, 1000);
+
+        node133.addAdjacentNodeT(node37, 700, 2000);
+        node133.addAdjacentNodeT(node101, 300, 700);
+        node133.addAdjacentNodeT(node103, 250, 540);
+        node133.addAdjacentNodeT(node115, 250, 1000);
+        node133.addAdjacentNodeT(node132, 250, 1000);
+        node133.addAdjacentNodeT(node134, 700, 2000);
+
+        node134.addAdjacentNodeT(node36, 500, 330);
+        node134.addAdjacentNodeT(node38, 210, 280);
+        node134.addAdjacentNodeT(node102, 700, 2000);
+        node134.addAdjacentNodeT(node133, 700, 2000);
+
+        node146.addAdjacentNodeT(node12, 2000, 800);
+        node146.addAdjacentNodeT(node14, 500, 700);
+        node146.addAdjacentNodeT(node139, 2000, 800);
+        node146.addAdjacentNodeT(node124, 600, 430);
 
 
-        node131.addAdjacentNodeT(node61, 100);
-        node131.addAdjacentNodeT(node91, 100);
-        node131.addAdjacentNodeT(node93, 100);
-        node131.addAdjacentNodeT(node127, 100);
-        node131.addAdjacentNodeT(node130, 100);
+        // 9호선
+        node135.addAdjacentNodeT(node12, 600, 700);
+        node135.addAdjacentNodeT(node58, 300, 650);
+        node135.addAdjacentNodeT(node139, 600, 700);
+        node135.addAdjacentNodeT(node140, 300, 650);
 
-        node132.addAdjacentNodeT(node102, 100);
-        node132.addAdjacentNodeT(node114, 100);
-        node132.addAdjacentNodeT(node116, 100);
-        node132.addAdjacentNodeT(node129, 100);
-        node132.addAdjacentNodeT(node133, 100);
+        node136.addAdjacentNodeT(node19, 430, 800);
+        node136.addAdjacentNodeT(node89, 480, 280);
+        node136.addAdjacentNodeT(node141, 480, 280);
+        node136.addAdjacentNodeT(node142, 430, 800);
 
-        node133.addAdjacentNodeT(node37, 100);
-        node133.addAdjacentNodeT(node101, 100);
-        node133.addAdjacentNodeT(node103, 100);
-        node133.addAdjacentNodeT(node115, 100);
-        node133.addAdjacentNodeT(node132, 100);
-        node133.addAdjacentNodeT(node134, 100);
+        node137.addAdjacentNodeT(node19, 1000, 1000);
+        node137.addAdjacentNodeT(node112, 150, 2000);
+        node137.addAdjacentNodeT(node142, 1000, 1000);
+        node137.addAdjacentNodeT(node143, 150, 2000);
 
-        node134.addAdjacentNodeT(node36, 100);
-        node134.addAdjacentNodeT(node38, 100);
-        node134.addAdjacentNodeT(node102, 100);
-        node134.addAdjacentNodeT(node133, 100);
+        node138.addAdjacentNodeT(node105, 250, 650);
+        node138.addAdjacentNodeT(node112, 500, 700);
+        node138.addAdjacentNodeT(node143, 500, 700);
+        node138.addAdjacentNodeT(node144, 250, 650);
 
-        node146.addAdjacentNodeT(node12, 100);
-        node146.addAdjacentNodeT(node14, 100);
-        node146.addAdjacentNodeT(node139, 100);
-        node146.addAdjacentNodeT(node124, 100);
+        node139.addAdjacentNodeT(node135, 600, 700);
+        node139.addAdjacentNodeT(node11, 1000, 890);
+        node139.addAdjacentNodeT(node13, 2000, 800);
+        node139.addAdjacentNodeT(node146, 2000, 800);
 
-// 9호선
-        node135.addAdjacentNodeT(node12, 100);
-        node135.addAdjacentNodeT(node58, 100);
-        node135.addAdjacentNodeT(node139, 100);
-        node135.addAdjacentNodeT(node140, 100);
+        node140.addAdjacentNodeT(node135, 300, 650);
+        node140.addAdjacentNodeT(node89, 210, 440);
+        node140.addAdjacentNodeT(node141, 210, 440);
+        node140.addAdjacentNodeT(node57, 500, 700);
+        node140.addAdjacentNodeT(node59, 300, 540);
 
-        node136.addAdjacentNodeT(node19, 100);
-        node136.addAdjacentNodeT(node89, 100);
-        node136.addAdjacentNodeT(node141, 100);
-        node136.addAdjacentNodeT(node142, 100);
+        node141.addAdjacentNodeT(node136, 480, 280);
+        node141.addAdjacentNodeT(node140, 210, 440);
+        node141.addAdjacentNodeT(node58, 210, 440);
+        node141.addAdjacentNodeT(node88, 430, 2000);
+        node141.addAdjacentNodeT(node90, 480, 700);
 
-        node137.addAdjacentNodeT(node19, 100);
-        node137.addAdjacentNodeT(node112, 100);
-        node137.addAdjacentNodeT(node142, 100);
-        node137.addAdjacentNodeT(node143, 100);
+        node142.addAdjacentNodeT(node136, 430, 800);
+        node142.addAdjacentNodeT(node137, 1000, 1000);
+        node142.addAdjacentNodeT(node18, 480, 1000);
+        node142.addAdjacentNodeT(node20, 500, 2000);
 
-        node138.addAdjacentNodeT(node105, 100);
-        node138.addAdjacentNodeT(node112, 100);
-        node138.addAdjacentNodeT(node143, 100);
-        node138.addAdjacentNodeT(node144, 100);
+        node143.addAdjacentNodeT(node137, 150, 2000);
+        node143.addAdjacentNodeT(node138, 500, 700);
+        node143.addAdjacentNodeT(node111, 150, 200);
+        node143.addAdjacentNodeT(node113, 600, 300);
 
-        node139.addAdjacentNodeT(node135, 100);
-        node139.addAdjacentNodeT(node11, 100);
-        node139.addAdjacentNodeT(node13, 100);
-        node139.addAdjacentNodeT(node146, 100);
+        node144.addAdjacentNodeT(node138, 250, 650);
+        node144.addAdjacentNodeT(node145, 300, 440);
+        node144.addAdjacentNodeT(node34, 300, 440);
+        node144.addAdjacentNodeT(node104, 320, 280);
+        node144.addAdjacentNodeT(node106, 480, 800);
 
-        node140.addAdjacentNodeT(node135, 100);
-        node140.addAdjacentNodeT(node58, 100);
-        node140.addAdjacentNodeT(node141, 100);
-        node140.addAdjacentNodeT(node57, 100);
-        node140.addAdjacentNodeT(node59, 100);
-
-        node141.addAdjacentNodeT(node136, 100);
-        node141.addAdjacentNodeT(node140, 100);
-        node141.addAdjacentNodeT(node58, 100);
-        node141.addAdjacentNodeT(node88, 100);
-        node141.addAdjacentNodeT(node90, 100);
-
-        node142.addAdjacentNodeT(node136, 100);
-        node142.addAdjacentNodeT(node137, 100);
-        node142.addAdjacentNodeT(node18, 100);
-        node142.addAdjacentNodeT(node19, 100);
-
-        node143.addAdjacentNodeT(node137, 100);
-        node143.addAdjacentNodeT(node138, 100);
-        node143.addAdjacentNodeT(node111, 100);
-        node143.addAdjacentNodeT(node113, 100);
-
-        node144.addAdjacentNodeT(node138, 100);
-        node144.addAdjacentNodeT(node145, 100);
-        node144.addAdjacentNodeT(node34, 100);
-        node144.addAdjacentNodeT(node104, 100);
-        node144.addAdjacentNodeT(node106, 100);
-
-        node145.addAdjacentNodeT(node144, 100);
-        node145.addAdjacentNodeT(node33, 100);
-        node145.addAdjacentNodeT(node35, 100);
+        node145.addAdjacentNodeT(node144, 300, 440);
+        node145.addAdjacentNodeT(node33, 900, 800);
+        node145.addAdjacentNodeT(node35, 320, 700);
     }
     public static void initNodeList(){
         nodes = new ArrayList<>();
