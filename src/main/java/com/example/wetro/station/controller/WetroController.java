@@ -35,7 +35,7 @@ public class WetroController {
 
 
     @GetMapping("/main")
-    public String main(Model model){
+    public String main(){
         return "main";
     }
     
