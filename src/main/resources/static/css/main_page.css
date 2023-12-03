@@ -259,7 +259,7 @@ input[id="addButton"]:checked + label span:nth-child(2) {
 input[id="addButton"]:checked + label {
     margin-top: 80px;
 }
-#search{
+#search-text {
     height: 50px;
     width: 120px;
     line-height: 30px;
@@ -272,15 +272,6 @@ input[id="addButton"]:checked + label {
     text-align: center;
     font-size: 20px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-}
-#search-text {
-    height: 50px;
-    width: 120px;
-    background-color: #6a9be8;
-    color: white;
-    border-radius: 30px;
-    text-align: center;
-    font-size: 20px;
 }
 #map{
     height: 30px;
