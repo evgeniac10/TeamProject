@@ -3,14 +3,16 @@ package com.example.wetro.bookmark.service;
 import com.example.wetro.bookmark.dto.BookMark;
 import com.example.wetro.bookmark.repository.BookMarkrepository;
 import com.example.wetro.user.dto.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BookMarkService {
-    private BookMarkrepository bookMarkrepository;
+    private final BookMarkrepository bookMarkrepository;
 
     public void saveBookMark(BookMark bookMark) {
         bookMarkrepository.save(bookMark);

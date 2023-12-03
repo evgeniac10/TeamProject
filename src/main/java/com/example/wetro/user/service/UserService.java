@@ -16,4 +16,5 @@ public interface UserService {
 
     public Optional<User> login(UserLoginDto dto);
 
+    Optional<User> findByToken(String token);
 }
