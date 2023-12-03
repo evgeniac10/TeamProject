@@ -140,17 +140,15 @@
     </div>
     <div class="result">
         <div>
-            <button type="button" class="reset" id="resetStartButton">x</button><p></p>
+            <button type="button" class="reset" id="resetStartButton">x</button><p id="from"></p>
         </div>
         <div>
-            <button type="button" class="reset" id="resetEndButton">x</button><p></p>
+            <button type="button" class="reset" id="resetEndButton">x</button><p id="to"></p>
         </div>
         <div>
-            <button type="button" class="reset" id="resetLayButton">x</button><p></p>
+            <button type="button" class="reset" id="resetLayButton">x</button><p id="layover"></p>
         </div>
-        <div id="search-button">
-            <a href="route">길찾기</a>
-        </div>
+        <button type="button" onclick="makeItem()" id="search-button">길찾기</button>
         <div class="opacity-bar">
             <input type="range" min="0.4" max="1" step="0.01" value="0.85" id="opacityRange">
         </div>
@@ -174,9 +172,11 @@
     const resultLay = document.querySelector('.result div:nth-child(3) p');
     const resultL = document.querySelector('.result div:nth-child(3)');
 
+
     startButton.addEventListener('click', () => {
         const stationName = stationNameElement.innerText;
         resultStart.innerText = `출발역 : ${stationName}`;
+        localStorage.setItem("from",stationName)
         resultS.style.opacity = '1';
         resultS.style.visibility = 'visible';
     });
@@ -184,6 +184,7 @@
     endButton.addEventListener('click', () => {
         const stationName = stationNameElement.innerText;
         resultEnd.innerText = `도착역 : ${stationName}`;
+        localStorage.setItem("to",stationName)
         resultE.style.opacity = '1';
         resultE.style.visibility = 'visible';
     });
@@ -191,6 +192,7 @@
     layButton.addEventListener('click', () => {
         const stationName = stationNameElement.innerText;
         resultLay.innerText = `경유지 : ${stationName}`;
+        localStorage.setItem("layover",stationName)
         resultL.style.opacity = '1';
         resultL.style.visibility = 'visible';
     });
@@ -199,6 +201,7 @@
         resultStart.innerText = '';
         resultS.style.opacity = '0';
         resultS.style.visibility = 'hidden';
+        localStorage.removeItem('from')
     };
 
     document.getElementById('resetStartButton').addEventListener('click', resetStart);
@@ -207,6 +210,7 @@
         resultEnd.innerText = '';
         resultE.style.opacity = '0';
         resultE.style.visibility = 'hidden';
+        localStorage.removeItem('to')
     };
 
     document.getElementById('resetEndButton').addEventListener('click', resetEnd);
@@ -215,6 +219,7 @@
         resultLay.innerText = '';
         resultL.style.opacity = '0';
         resultL.style.visibility = 'hidden';
+        localStorage.removeItem('layover')
     };
 
     document.getElementById('resetLayButton').addEventListener('click', resetLay);
@@ -431,4 +436,35 @@
         document.addEventListener("touchend", touchEndHandler);
     });
 
+    function makeItem(){
+        const from = localStorage.getItem('from')
+        const to = localStorage.getItem('to')
+        const layover = localStorage.getItem('layover')
+
+        if (layover === null) {
+            if (from === null || to === null){
+                alert('역 정보를 입력하세요.')
+                return
+            }
+            if (from===to) {
+                alert('출발역과 도착역이 같습니다.')
+                return
+            }
+            location.href="route"
+        } else {
+            if (from === null || to === null){
+                alert('역 정보를 입력하세요.')
+                return
+            }
+            if (from===layover) {
+                alert('출발역과 경유지가 같습니다.')
+                return
+            }
+            if (layover===to){
+                alert('경유지와 도착역이 같습니다.')
+                return
+            }
+            location.href="route"
+        }
+    }
 </script>
