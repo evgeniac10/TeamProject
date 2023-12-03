@@ -26,6 +26,10 @@ public class User {
     @NotEmpty
     private String password;
 
+    public String getUserid() {
+        return userid;
+    }
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_authority",
