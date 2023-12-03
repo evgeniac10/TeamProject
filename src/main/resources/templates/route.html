@@ -217,51 +217,24 @@
             },
             body: JSON.stringify({
                 "from":mainfrom,
+                "layover":mainlayover,
                 "to":mainlayover
             })
         })
             .then(response => response.json())
             .then(data => {
-                var rectime = data.infolists[0]
-                var reccost = data.infolists[1]
-                var rectransfer = data.infolists[2]
-                console.log(rectime)
+                const rectime = data.infolists[0]
+                const reccost = data.infolists[1]
+                const rectransfer = data.infolists[2]
 
                 const info = document.querySelector('.info')
                 info.innerHTML=`
                 <h2 class="route-info">출발역 : ${mainfrom}</h2>
                 <h2 class="route-info">도착역 : ${mainto}</h2>
             `
-            })
-            .catch(error => console.error('Error:', error));
-
-        fetch('/wetro/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "from":mainlayover,
-                "to":mainto
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                rectime.time += data.infolists[0].time
-                rectime.cost += data.infolists[0].cost
-                rectime.transfer += data.infolists[0].transfer
-
-                reccost.time += data.infolists[1].time
-                reccost.cost += data.infolists[1].cost
-                reccost.transfer += data.infolists[1].transfer
-
-                rectransfer.time += data.infolists[2].time
-                rectransfer.cost += data.infolists[2].cost
-                rectransfer.transfer += data.infolists[2].transfer
-
                 printTime(rectime)
                 printCost(reccost)
-                printTransfer(rectansfer)
+                printTransfer(rectransfer)
             })
             .catch(error => console.error('Error:', error));
     }
@@ -274,6 +247,7 @@
             },
             body: JSON.stringify({
                 "from":mainfrom,
+                "layover":mainlayover,
                 "to":mainto
             })
         })
