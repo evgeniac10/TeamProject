@@ -36,9 +36,6 @@ public class WetroController {
 
     @GetMapping("/main")
     public String main(Model model){
-
-        model.addAttribute("user","최경봉")
-                ;
         return "main";
     }
     
