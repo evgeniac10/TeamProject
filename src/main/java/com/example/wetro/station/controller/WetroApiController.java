@@ -39,12 +39,12 @@ public class WetroApiController {
 
             Integer time1 = result1.getTime();
             Integer cost1 = result1.getCost();
-            Integer transfer1 = result1.getTranferCount();
+            Integer transfer1 = result1.getTransferCount();
             Infolists minTimeInfo = new Infolists(time1, cost1, transfer1);
 
             Integer time2 = result2.getTime();
             Integer cost2 = result2.getCost();
-            Integer transfer2 = result2.getTranferCount();
+            Integer transfer2 = result2.getTransferCount();
             Infolists minCostInfo = new Infolists(time2, cost2, transfer2);
 
             Integer time3 = resultT.getTime();
@@ -61,12 +61,12 @@ public class WetroApiController {
             log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                     , result1.getTime()
                     , result1.getCost()
-                    ,result1.getTranferCount()-1
+                    ,result1.getTransferCount()-1
                     ,result1.getPath());
             log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                     , result2.getTime()
                     , result2.getCost()
-                    ,result2.getTranferCount()-1
+                    ,result2.getTransferCount()-1
                     ,result2.getPath());
             log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                     , resultT.getTime()
@@ -87,12 +87,12 @@ public class WetroApiController {
             Node.resultT layResultT = Node.calculateMinTransfer(stationDto.getLayover(), stationDto.getTo());//최소환승
         Integer time1 = result1.getTime()+layResult1.getTime();
         Integer cost1 = result1.getCost()+layResult1.getCost();
-        Integer transfer1 = result1.getTranferCount()+layResult1.getTranferCount();
+        Integer transfer1 = result1.getTransferCount()+layResult1.getTransferCount();
         Infolists minTimeInfo = new Infolists(time1, cost1, transfer1);
 
         Integer time2 = result2.getTime()+layResult2.getTime();
         Integer cost2 = result2.getCost()+layResult2.getCost();
-        Integer transfer2 = result2.getTranferCount()+layResult2.getTranferCount();
+        Integer transfer2 = result2.getTransferCount()+layResult2.getTransferCount();
         Infolists minCostInfo = new Infolists(time2, cost2, transfer2);
 
         Integer time3 = resultT.getTime()+layResultT.getTime();
@@ -109,12 +109,12 @@ public class WetroApiController {
         log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                 , result1.getTime()
                 , result1.getCost()
-                ,result1.getTranferCount()-1
+                ,result1.getTransferCount()-1
                 ,result1.getPath());
         log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                 , result2.getTime()
                 , result2.getCost()
-                ,result2.getTranferCount()-1
+                ,result2.getTransferCount()-1
                 ,result2.getPath());
         log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                 , resultT.getTime()
