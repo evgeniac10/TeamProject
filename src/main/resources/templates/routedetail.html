@@ -407,7 +407,7 @@
                     const container = document.querySelector('.route-container')
                     container.innerHTML =`
                         <div class="route-detail">
-                            <ul>
+                            <ul id="node">
                                 <li class="dot"><p class="dot-text">${routefrom}</p></li>
                                 <li class="line"><div class="line-text"></div></li>
                                 <li class="dot"><p class="dot-text">${routeto}</p></li>
@@ -421,6 +421,8 @@
                             </ul>
                         </div>
                     `
+                    const transnode = document.querySelector('.line')
+                    transnode.appendChild(li)
                 }
 
 
