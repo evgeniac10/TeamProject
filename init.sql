@@ -27,11 +27,13 @@ FOREIGN KEY (authority_name) REFERENCES authority (authority_name)
 CREATE TABLE bookmark (
     bookmark_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
-    from VARCHAR(5) NOT NULL,
+    `from` VARCHAR(5) NOT NULL,
     layover VARCHAR(5) NOT NULL,
-    to VARCHAR(5) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    `to` VARCHAR(5) NOT NULL,
+    alias VARCHAR(255) NOT NULL,
+FOREIGN KEY (user_id) REFERENCES user(id)
 );
+
 # -- 데이터 삽입
 # -- "user" 테이블
 # INSERT INTO user (email, userid, password)VALUES

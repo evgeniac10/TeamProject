@@ -19,7 +19,7 @@ public class BookMarkService {
 
     public List<BookMark> findAllByUser(Optional<User> user) {
         // 사용자 아이디에 해당하는 즐겨찾기 목록을 가져옴
-        return bookMarkrepository.findAllByUserId(user.getId());
+        return bookMarkrepository.findAllByUserId(user.get().getId());
     }
 
 }
