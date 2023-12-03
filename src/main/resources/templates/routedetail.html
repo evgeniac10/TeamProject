@@ -68,6 +68,16 @@
             margin-left: 50%;
             transform: translate(-50%, 0);
         }
+        #timer{
+            background-color: rgb(115, 170, 253);;
+            color: #ffffff;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 20px;
+            margin-left: 50%;
+            transform: translate(-50%, 0);
+        }
         .dot{
             list-style: none;
             font-weight: bold;
@@ -137,6 +147,8 @@
         <div class="route-time">
             <ul>
                 <li>분 초</li>
+                <li>원</li>
+                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
             </ul>
         </div>
     </div>
@@ -208,6 +220,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectime.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -240,6 +253,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${reccost.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -272,6 +286,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectrans.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -329,6 +344,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectime.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -361,6 +377,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${reccost.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -393,6 +410,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectrans.cost}원</li>
+                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
