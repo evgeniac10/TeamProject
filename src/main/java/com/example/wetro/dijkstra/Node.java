@@ -10,6 +10,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.example.wetro.dijkstra.NodeT.calculateMinTransfer;
+
 @Slf4j
 @Getter
 @Setter
@@ -937,164 +939,524 @@ public class Node implements Comparable<Node>{
 
     }
 
+    public static void initNodeList(){
+        nodes = new ArrayList<>();
+        transNodes = new ArrayList<>();
+    }
+
+    //노드 초기화
+    public static void initializeNodes() {
+        for (Node node : nodes) {
+            node.setCost(Integer.MAX_VALUE);
+            node.setTime(Integer.MAX_VALUE);
+            node.setShortestPath(new LinkedList<>());
+            node.transferCount = 0;
+        }
+        for (Node node : transNodes) {
+            node.setCost(Integer.MAX_VALUE);
+            node.setTime(Integer.MAX_VALUE);
+            node.setShortestPath(new LinkedList<>());
+            node.transferCount = 0;
+        }
+    }
+
+
+    //노드에 인접노드, 가중치 추가
+    public void addAdjacentNode(Node node, int time, int cost){
+        List<Integer> arr = new ArrayList<>();
+        arr.add(0, time);
+        arr.add(1, cost);
+        adjacentNodes.put(node,arr);
+    }
+
+
+    @Override
+    public int compareTo(Node node){
+        return Integer.compare(this.cost, node.getCost());
+    }
+
+
+    //string으로 이름받아서
+    public static result calculateShortestTime(String start, String end){
+        Node source = null;
+        Node destination = null;
+        init();
+        //루프돌려서 이름에 맞는 노드 배정
+        for (Node node:nodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+        for (Node node:transNodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+
+        return timeCalcLogic(source, destination);
+    }
+
+    //다익스트라 계산 로직
+    public static result timeCalcLogic(Node source, Node destination){
+        initializeNodes();
+
+        source.setTime(0);
+        source.setCost(0);
+
+        //최단거리 확정된 경로
+        Set<Node> settleNodes = new HashSet<>();
+        //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
+        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
+
+        //
+        while(!unsettledNodes.isEmpty()){
+            Node currentNode = unsettledNodes.poll();
+
+            if(currentNode.equals(destination)){
+                break;
+            }
+
+            currentNode.getAdjacentNodes()
+                    .entrySet().stream()
+                    .filter(entry -> !settleNodes.contains(entry.getKey()))
+                    .forEach(entry -> {
+                        evaluateTime(entry.getKey(), entry.getValue().get(0), entry.getValue().get(1), currentNode);
+                        unsettledNodes.add(entry.getKey());
+                    });
+
+            settleNodes.add(currentNode);
+        }
+
+        String resultPath = destination.printTImePath(destination);
+
+        if(destination.getTransferCount() == 0){
+            return new result(destination.getTime(), destination.getCost(), 0, resultPath);
+        }
+        else{
+            return new result(destination.getTime(), destination.getCost(), destination.getTransferCount()-1, resultPath);
+        }
+    }
+
+    //주어진 인접노드와의 최단경로 평가하고 업데이트
+    private static void evaluateTime(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
+        Integer newTime = sourceNode.getTime() + time;
+        Integer newCost = sourceNode.getCost() + cost;
+        //새 가중치가 기존 가중치보다 작으면
+        if (newTime < adjacentNode.getTime()
+                || (newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
+
+            //가중치 초기화
+            adjacentNode.setTime(newTime);
+            adjacentNode.setCost(newCost);
+            //ShortestPath에 추가
+            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
+                    .collect(Collectors.toList());
+            adjacentNode.setShortestPath(newPath);
+
+            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
+                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
+            } else {
+                adjacentNode.setTransferCount(sourceNode.getTransferCount());
+            }
+        }
+    }
+//    private static void evaluateTime(Node adjacentNode, Integer time, Integer cost, Node sourceNode){
+//        Integer newTime = sourceNode.getTime() + time;
+//        Integer newCost = sourceNode.getCost() + cost;
+//
+//        if (newTime < adjacentNode.getTime()
+//                || (newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
+//
+//            adjacentNode.setTime(newTime);
+//            adjacentNode.setCost(newCost);
+//
+//            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
+//                    .collect(Collectors.toList());
+//            adjacentNode.setShortestPath(newPath);
+//
+//            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
+//                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
+//            } else {
+//                adjacentNode.setTransferCount(sourceNode.getTransferCount());
+//            }
+//        } else if (newTime.equals(adjacentNode.getTime()) && newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() <= adjacentNode.getTransferCount()) {
+//            adjacentNode.setTransferCount(sourceNode.getTransferCount());
+//        }
+//    }
+
+
+
+
+
+    //경로 + 최소 가중치
+    private String printTImePath(Node destination) {
+        String path = destination.getShortestPath().stream()
+                .map(Node::getName)
+                .collect(Collectors.joining(" -> "));
+        String resultPath = path.isBlank()
+                ? String.format("%s ", destination.getName())
+                : String.format("%s -> %s ", path, destination.getName());
+        return resultPath;
+    }
+/////////////////////////////////////////////////////////////////////////////////////////
+
+    //string으로 이름받아서
+    public static result calculateShortestCost(String start, String end){
+        Node source = null;
+        Node destination = null;
+        init();
+        //루프돌려서 이름에 맞는 노드 배정
+        for (Node node:nodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+        for (Node node:transNodes) {
+            if(start.equals(node.getName())){
+                source = node;
+            }
+            if (end.equals(node.getName())) {
+                destination = node;
+            }
+        }
+
+        return costCalcLogic(source, destination);
+    }
+
+    //다익스트라 계산 로직
+    public static result costCalcLogic(Node source, Node destination){
+        initializeNodes();
+
+        source.setTime(0);
+        source.setCost(0);
+
+        //최단거리 확정된 경로
+        Set<Node> settleNodes = new HashSet<>();
+        //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
+        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
+
+        //
+        while(!unsettledNodes.isEmpty()){
+            Node currentNode = unsettledNodes.poll();
+
+            if(currentNode.equals(destination)){
+                break;
+            }
+
+            currentNode.getAdjacentNodes()
+                    .entrySet().stream()
+                    .filter(entry -> !settleNodes.contains(entry.getKey()))
+                    .forEach(entry -> {
+                        evaluateCost(entry.getKey(), entry.getValue().get(1), entry.getValue().get(0), currentNode);
+                        unsettledNodes.add(entry.getKey());
+                    });
+
+            settleNodes.add(currentNode);
+        }
+        String resultPath = destination.printCostPath(destination);
+
+        if(destination.getTransferCount() == 0){
+            return new result(destination.getTime(), destination.getCost(), 0, resultPath);
+        }
+        else{
+            return new result(destination.getTime(), destination.getCost(), destination.getTransferCount() -1, resultPath);
+        }
+    }
+
+//    주어진 인접노드와의 최단경로 평가하고 업데이트
+    private static void evaluateCost(Node adjacentNode, Integer cost, Integer time, Node sourceNode){
+        Integer newCost = sourceNode.getCost() + cost;
+        Integer newTime = sourceNode.getTime() + time;
+
+        //새 가중치가 기존 가중치보다 작으면
+        if (newCost < adjacentNode.getCost()
+                || (newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
+            //가중치 초기화
+            adjacentNode.setCost(newCost);
+            adjacentNode.setTime(newTime);
+            //ShortestPath에 추가
+            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
+                    .collect(Collectors.toList());
+            adjacentNode.setShortestPath(newPath);
+
+            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
+                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
+            } else {
+                adjacentNode.setTransferCount(sourceNode.getTransferCount());
+            }
+
+        }
+    }
+//    private static void evaluateCost(Node adjacentNode, Integer cost, Integer time, Node sourceNode){
+//        Integer newCost = sourceNode.getCost() + cost;
+//        Integer newTime = sourceNode.getTime() + time;
+//
+//        if (newCost < adjacentNode.getCost()
+//                || (newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
+//
+//            adjacentNode.setCost(newCost);
+//            adjacentNode.setTime(newTime);
+//
+//            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
+//                    .collect(Collectors.toList());
+//            adjacentNode.setShortestPath(newPath);
+//
+//            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
+//                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
+//            } else {
+//                adjacentNode.setTransferCount(sourceNode.getTransferCount());
+//            }
+//        } else if (newCost.equals(adjacentNode.getCost()) && newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() <= adjacentNode.getTransferCount()) {
+//            adjacentNode.setTransferCount(sourceNode.getTransferCount());
+//        }
+//    }
+
+
+
+    //경로 + 최소 가중치
+    private String printCostPath(Node destination) {
+        String path = destination.getShortestPath().stream()
+                .map(Node::getName)
+                .collect(Collectors.joining(" -> "));
+        String resultPath = path.isBlank()
+                ? String.format("%s ", destination.getName())
+                : String.format("%s -> %s ", path, destination.getName());
+        return resultPath;
+    }
+
+    @Getter
+    @Setter
+    @RequiredArgsConstructor
+    public static class result{
+        private int transferCount;
+        private Integer cost;
+        private Integer time;
+        private String path;
+        public result(Integer time, Integer cost, int transferCount,String path) {
+            this.time = time;
+            this.cost = cost;
+            this.path = path;
+            this.transferCount = transferCount;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(        calculateShortestCost("307", "615").getCost());
+        System.out.println(        calculateShortestCost("307", "615").getTime());
+        System.out.println(        calculateShortestCost("307", "615").getPath());
+        System.out.println(        calculateShortestCost("307", "615").getTransferCount());
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~307~~~~615~~~~~~~~~~~~~~~~~~~~~");
+
+        System.out.println(        calculateShortestTime("307", "615").getCost());
+        System.out.println(        calculateShortestTime("307", "615").getTime());
+        System.out.println(        calculateShortestTime("307", "615").getPath());
+        System.out.println(        calculateShortestTime("307", "615").getTransferCount());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~215~~~~~~~~~~~~~~~~~~~~~");
+
+        System.out.println(        calculateMinTransfer("307",  "615").getCost());
+        System.out.println(        calculateMinTransfer("307",  "615").getTime());
+        System.out.println(        calculateMinTransfer("307",  "615").getPath());
+        System.out.println(        calculateMinTransfer("307",  "615").getTransferCount());
+    }
+}
+
+@Slf4j
+@Getter
+@Setter
+@RequiredArgsConstructor
+@Component
+class NodeT implements Comparable<NodeT>{
+    //호선
+    private String line;
+    //노드 이름
+    private String name;
+    //현재까지의 최단 거리 초기값 무한
+    private Integer cost = Integer.MAX_VALUE;
+    private Integer time = Integer.MAX_VALUE;
+    //최단 경로 저장, 수정 용이하게 위해 링크드리스트
+    private List<NodeT> shortestPath = new LinkedList<>();
+    //해당 노드의 인접한 노드와 그 사이의 가중치를 저장
+    private Map<NodeT, List<Integer>> adjacentNodes = new HashMap<>();
+    //환승 횟수
+    private int transferCount = 0;
+
+    //일반역 리스트
+    private static List<NodeT> nodes = new ArrayList<>();
+    //환승역 리스트
+    private static List<NodeT> transNodes = new ArrayList<>();
+
+    public NodeT(String Line, String name){
+        this.line = Line;
+        this.name = name;
+    }
     public static void initT(){
         initNodeList();
-        Node node1 = new Node("1", "101");
-        Node node2 = new Node("1", "102");
-        Node node3 = new Node("1", "103");
-        Node node4 = new Node("1", "104");
-        Node node5 = new Node("1", "105");
-        Node node6 = new Node("1", "106");
-        Node node7 = new Node("1", "107");
-        Node node8 = new Node("1", "108");
-        Node node9 = new Node("1", "109");
-        Node node10 = new Node("1", "110");
-        Node node11 = new Node("1", "111");
-        Node node12 = new Node("1", "112");
-        Node node13 = new Node("1", "113");
-        Node node14 = new Node("1", "114");
-        Node node15 = new Node("1", "115");
-        Node node16 = new Node("1", "116");
-        Node node17 = new Node("1", "117");
-        Node node18 = new Node("1", "118");
-        Node node19 = new Node("1", "119");
-        Node node20 = new Node("1", "120");
-        Node node21 = new Node("1", "121");
-        Node node22 = new Node("1", "122");
-        Node node23 = new Node("1", "123");
+        NodeT node1 = new NodeT("1", "101");
+        NodeT node2 = new NodeT("1", "102");
+        NodeT node3 = new NodeT("1", "103");
+        NodeT node4 = new NodeT("1", "104");
+        NodeT node5 = new NodeT("1", "105");
+        NodeT node6 = new NodeT("1", "106");
+        NodeT node7 = new NodeT("1", "107");
+        NodeT node8 = new NodeT("1", "108");
+        NodeT node9 = new NodeT("1", "109");
+        NodeT node10 = new NodeT("1", "110");
+        NodeT node11 = new NodeT("1", "111");
+        NodeT node12 = new NodeT("1", "112");
+        NodeT node13 = new NodeT("1", "113");
+        NodeT node14 = new NodeT("1", "114");
+        NodeT node15 = new NodeT("1", "115");
+        NodeT node16 = new NodeT("1", "116");
+        NodeT node17 = new NodeT("1", "117");
+        NodeT node18 = new NodeT("1", "118");
+        NodeT node19 = new NodeT("1", "119");
+        NodeT node20 = new NodeT("1", "120");
+        NodeT node21 = new NodeT("1", "121");
+        NodeT node22 = new NodeT("1", "122");
+        NodeT node23 = new NodeT("1", "123");
 
-        Node node24 = new Node("2", "201");
-        Node node25 = new Node("2", "202");
-        Node node26 = new Node("2", "203");
-        Node node27 = new Node("2", "204");
-        Node node28 = new Node("2", "205");
-        Node node29 = new Node("2", "206");
-        Node node30 = new Node("2", "207");
-        Node node31 = new Node("2", "208");
-        Node node32 = new Node("2", "209");
-        Node node33 = new Node("2", "210");
-        Node node34 = new Node("2", "211");
-        Node node35 = new Node("2", "212");
-        Node node36 = new Node("2", "213");
-        Node node37 = new Node("2", "214");
-        Node node38 = new Node("2", "215");
-        Node node39 = new Node("2", "216");
-        Node node40 = new Node("2", "217");
-        Node node41 = new Node("2", "101");
+        NodeT node24 = new NodeT("2", "201");
+        NodeT node25 = new NodeT("2", "202");
+        NodeT node26 = new NodeT("2", "203");
+        NodeT node27 = new NodeT("2", "204");
+        NodeT node28 = new NodeT("2", "205");
+        NodeT node29 = new NodeT("2", "206");
+        NodeT node30 = new NodeT("2", "207");
+        NodeT node31 = new NodeT("2", "208");
+        NodeT node32 = new NodeT("2", "209");
+        NodeT node33 = new NodeT("2", "210");
+        NodeT node34 = new NodeT("2", "211");
+        NodeT node35 = new NodeT("2", "212");
+        NodeT node36 = new NodeT("2", "213");
+        NodeT node37 = new NodeT("2", "214");
+        NodeT node38 = new NodeT("2", "215");
+        NodeT node39 = new NodeT("2", "216");
+        NodeT node40 = new NodeT("2", "217");
+        NodeT node41 = new NodeT("2", "101");
 
-        Node node42 = new Node("3", "301");
-        Node node43 = new Node("3", "302");
-        Node node44 = new Node("3", "303");
-        Node node45 = new Node("3", "304");
-        Node node46 = new Node("3", "305");
-        Node node47 = new Node("3", "306");
-        Node node48 = new Node("3", "307");
-        Node node49 = new Node("3", "308");
-        Node node50 = new Node("3", "207");
-        Node node51 = new Node("3", "123");
-        Node node52 = new Node("3", "107");
+        NodeT node42 = new NodeT("3", "301");
+        NodeT node43 = new NodeT("3", "302");
+        NodeT node44 = new NodeT("3", "303");
+        NodeT node45 = new NodeT("3", "304");
+        NodeT node46 = new NodeT("3", "305");
+        NodeT node47 = new NodeT("3", "306");
+        NodeT node48 = new NodeT("3", "307");
+        NodeT node49 = new NodeT("3", "308");
+        NodeT node50 = new NodeT("3", "207");
+        NodeT node51 = new NodeT("3", "123");
+        NodeT node52 = new NodeT("3", "107");
 
-        Node node53 = new Node("4", "401");
-        Node node54 = new Node("4", "402");
-        Node node55 = new Node("4", "403");
-        Node node56 = new Node("4", "404");
-        Node node57 = new Node("4", "405");
-        Node node58 = new Node("4", "406");
-        Node node59 = new Node("4", "407");
-        Node node60 = new Node("4", "408");
-        Node node61 = new Node("4", "409");
-        Node node62 = new Node("4", "410");
-        Node node63 = new Node("4", "411");
-        Node node64 = new Node("4", "412");
-        Node node65 = new Node("4", "413");
-        Node node66 = new Node("4", "414");
-        Node node67 = new Node("4", "415");
-        Node node68 = new Node("4", "416");
-        Node node69 = new Node("4", "417");
-        Node node70 = new Node("4", "104");
-        Node node71 = new Node("4", "307");
-        Node node72 = new Node("4", "115");
-        Node node73 = new Node("4", "216");
+        NodeT node53 = new NodeT("4", "401");
+        NodeT node54 = new NodeT("4", "402");
+        NodeT node55 = new NodeT("4", "403");
+        NodeT node56 = new NodeT("4", "404");
+        NodeT node57 = new NodeT("4", "405");
+        NodeT node58 = new NodeT("4", "406");
+        NodeT node59 = new NodeT("4", "407");
+        NodeT node60 = new NodeT("4", "408");
+        NodeT node61 = new NodeT("4", "409");
+        NodeT node62 = new NodeT("4", "410");
+        NodeT node63 = new NodeT("4", "411");
+        NodeT node64 = new NodeT("4", "412");
+        NodeT node65 = new NodeT("4", "413");
+        NodeT node66 = new NodeT("4", "414");
+        NodeT node67 = new NodeT("4", "415");
+        NodeT node68 = new NodeT("4", "416");
+        NodeT node69 = new NodeT("4", "417");
+        NodeT node70 = new NodeT("4", "104");
+        NodeT node71 = new NodeT("4", "307");
+        NodeT node72 = new NodeT("4", "115");
+        NodeT node73 = new NodeT("4", "216");
 
-        Node node74 = new Node("5", "501");
-        Node node75 = new Node("5", "502");
-        Node node76 = new Node("5", "503");
-        Node node77 = new Node("5", "504");
-        Node node78 = new Node("5", "505");
-        Node node79 = new Node("5", "506");
-        Node node80 = new Node("5", "507");
-        Node node81 = new Node("5", "209");
-        Node node82 = new Node("5", "122");
-        Node node83 = new Node("5", "403");
-        Node node84 = new Node("5", "109");
+        NodeT node74 = new NodeT("5", "501");
+        NodeT node75 = new NodeT("5", "502");
+        NodeT node76 = new NodeT("5", "503");
+        NodeT node77 = new NodeT("5", "504");
+        NodeT node78 = new NodeT("5", "505");
+        NodeT node79 = new NodeT("5", "506");
+        NodeT node80 = new NodeT("5", "507");
+        NodeT node81 = new NodeT("5", "209");
+        NodeT node82 = new NodeT("5", "122");
+        NodeT node83 = new NodeT("5", "403");
+        NodeT node84 = new NodeT("5", "109");
 
-        Node node85 = new Node("6", "601");
-        Node node86 = new Node("6", "602");
-        Node node87 = new Node("6", "603");
-        Node node88 = new Node("6", "604");
-        Node node89 = new Node("6", "605");
-        Node node90 = new Node("6", "606");
-        Node node91 = new Node("6", "607");
-        Node node92 = new Node("6", "608");
-        Node node93 = new Node("6", "609");
-        Node node94 = new Node("6", "610");
-        Node node95 = new Node("6", "611");
-        Node node96 = new Node("6", "612");
-        Node node97 = new Node("6", "613");
-        Node node98 = new Node("6", "614");
-        Node node99 = new Node("6", "615");
-        Node node100 = new Node("6", "616");
-        Node node101 = new Node("6", "617");
-        Node node102 = new Node("6", "618");
-        Node node103 = new Node("6", "619");
-        Node node104 = new Node("6", "620");
-        Node node105 = new Node("6", "621");
-        Node node106 = new Node("6", "622");
-        Node node107 = new Node("6", "121");
-        Node node108 = new Node("6", "116");
-        Node node109 = new Node("6", "412");
-        Node node110 = new Node("6", "417");
+        NodeT node85 = new NodeT("6", "601");
+        NodeT node86 = new NodeT("6", "602");
+        NodeT node87 = new NodeT("6", "603");
+        NodeT node88 = new NodeT("6", "604");
+        NodeT node89 = new NodeT("6", "605");
+        NodeT node90 = new NodeT("6", "606");
+        NodeT node91 = new NodeT("6", "607");
+        NodeT node92 = new NodeT("6", "608");
+        NodeT node93 = new NodeT("6", "609");
+        NodeT node94 = new NodeT("6", "610");
+        NodeT node95 = new NodeT("6", "611");
+        NodeT node96 = new NodeT("6", "612");
+        NodeT node97 = new NodeT("6", "613");
+        NodeT node98 = new NodeT("6", "614");
+        NodeT node99 = new NodeT("6", "615");
+        NodeT node100 = new NodeT("6", "616");
+        NodeT node101 = new NodeT("6", "617");
+        NodeT node102 = new NodeT("6", "618");
+        NodeT node103 = new NodeT("6", "619");
+        NodeT node104 = new NodeT("6", "620");
+        NodeT node105 = new NodeT("6", "621");
+        NodeT node106 = new NodeT("6", "622");
+        NodeT node107 = new NodeT("6", "121");
+        NodeT node108 = new NodeT("6", "116");
+        NodeT node109 = new NodeT("6", "412");
+        NodeT node110 = new NodeT("6", "417");
 
-        Node node111 = new Node("7", "701");
-        Node node112 = new Node("7", "702");
-        Node node113 = new Node("7", "703");
-        Node node114 = new Node("7", "704");
-        Node node115 = new Node("7", "705");
-        Node node116 = new Node("7", "706");
-        Node node117 = new Node("7", "707");
-        Node node118 = new Node("7", "202");
-        Node node119 = new Node("7", "303");
-        Node node120 = new Node("7", "503");
-        Node node121 = new Node("7", "601");
-        Node node122 = new Node("7", "416");
-        Node node123 = new Node("7", "614");
+        NodeT node111 = new NodeT("7", "701");
+        NodeT node112 = new NodeT("7", "702");
+        NodeT node113 = new NodeT("7", "703");
+        NodeT node114 = new NodeT("7", "704");
+        NodeT node115 = new NodeT("7", "705");
+        NodeT node116 = new NodeT("7", "706");
+        NodeT node117 = new NodeT("7", "707");
+        NodeT node118 = new NodeT("7", "202");
+        NodeT node119 = new NodeT("7", "303");
+        NodeT node120 = new NodeT("7", "503");
+        NodeT node121 = new NodeT("7", "601");
+        NodeT node122 = new NodeT("7", "416");
+        NodeT node123 = new NodeT("7", "614");
 
-        Node node124 = new Node("8", "801");
-        Node node125 = new Node("8", "802");
-        Node node126 = new Node("8", "803");
-        Node node127 = new Node("8", "804");
-        Node node128 = new Node("8", "805");
-        Node node129 = new Node("8", "806");
-        Node node130 = new Node("8", "409");
-        Node node131 = new Node("8", "608");
-        Node node132 = new Node("8", "705");
-        Node node133 = new Node("8", "618");
-        Node node134 = new Node("8", "214");
-        Node node146 = new Node("8", "113");
+        NodeT node124 = new NodeT("8", "801");
+        NodeT node125 = new NodeT("8", "802");
+        NodeT node126 = new NodeT("8", "803");
+        NodeT node127 = new NodeT("8", "804");
+        NodeT node128 = new NodeT("8", "805");
+        NodeT node129 = new NodeT("8", "806");
+        NodeT node130 = new NodeT("8", "409");
+        NodeT node131 = new NodeT("8", "608");
+        NodeT node132 = new NodeT("8", "705");
+        NodeT node133 = new NodeT("8", "618");
+        NodeT node134 = new NodeT("8", "214");
+        NodeT node146 = new NodeT("8", "113");
 
-        Node node135 = new Node("9", "901");
-        Node node136 = new Node("9", "902");
-        Node node137 = new Node("9", "903");
-        Node node138 = new Node("9", "904");
-        Node node139 = new Node("9", "112");
-        Node node140 = new Node("9", "406");
-        Node node141 = new Node("9", "605");
-        Node node142 = new Node("9", "119");
-        Node node143 = new Node("9", "702");
-        Node node144 = new Node("9", "621");
-        Node node145 = new Node("9", "211");
+        NodeT node135 = new NodeT("9", "901");
+        NodeT node136 = new NodeT("9", "902");
+        NodeT node137 = new NodeT("9", "903");
+        NodeT node138 = new NodeT("9", "904");
+        NodeT node139 = new NodeT("9", "112");
+        NodeT node140 = new NodeT("9", "406");
+        NodeT node141 = new NodeT("9", "605");
+        NodeT node142 = new NodeT("9", "119");
+        NodeT node143 = new NodeT("9", "702");
+        NodeT node144 = new NodeT("9", "621");
+        NodeT node145 = new NodeT("9", "211");
 
-        Node[] allNodes = {
+        NodeT[] allNodes = {
                 node1, node2, node3, node4, node5, node6, node7, node8, node9, node10,
                 node11, node12, node13, node14, node15, node16, node17, node18, node19, node20,
                 node21, node22, node23, node24, node25, node26, node27, node28, node29, node30,
@@ -1113,11 +1475,11 @@ public class Node implements Comparable<Node>{
         };
 
         Map<String, Integer> nameCount = new HashMap<>();
-        for (Node node : allNodes) {
+        for (NodeT node : allNodes) {
             nameCount.put(node.getName(), nameCount.getOrDefault(node.getName(), 0) + 1);
         }
 
-        for (Node node : allNodes) {
+        for (NodeT node : allNodes) {
             if (nameCount.get(node.getName()) == 1) {
                 nodes.add(node);
             } else {
@@ -1834,245 +2196,25 @@ public class Node implements Comparable<Node>{
         transNodes = new ArrayList<>();
     }
 
-    //노드 초기화
-    public static void initializeNodes() {
-        for (Node node : nodes) {
-            node.setCost(Integer.MAX_VALUE);
-            node.setShortestPath(new LinkedList<>());
-        }
-        for (Node node : transNodes) {
-            node.setCost(Integer.MAX_VALUE);
-            node.setShortestPath(new LinkedList<>());
-        }
-    }
-
-
-    //노드에 인접노드, 가중치 추가
-    public void addAdjacentNode(Node node, int time, int cost){
-        List<Integer> arr = new ArrayList<>();
-        arr.add(0, time);
-        arr.add(1, cost);
-        adjacentNodes.put(node,arr);
-    }
-
-
     @Override
-    public int compareTo(Node node){
+    public int compareTo(NodeT node){
         return Integer.compare(this.time, node.getTime());
     }
-
-
-    //string으로 이름받아서
-    public static result calculateShortestTime(String start, String end){
-        Node source = null;
-        Node destination = null;
-        init();
-        //루프돌려서 이름에 맞는 노드 배정
-        for (Node node:nodes) {
-            if(start.equals(node.getName())){
-                source = node;
-            }
-            if (end.equals(node.getName())) {
-                destination = node;
-            }
-        }
-        for (Node node:transNodes) {
-            if(start.equals(node.getName())){
-                source = node;
-            }
-            if (end.equals(node.getName())) {
-                destination = node;
-            }
-        }
-
-        return timeCalcLogic(source, destination);
-    }
-
-    //다익스트라 계산 로직
-    public static result timeCalcLogic(Node source, Node destination){
-        initializeNodes();
-
-        source.setTime(0);
-        source.setCost(0);
-
-        //최단거리 확정된 경로
-        Set<Node> settleNodes = new HashSet<>();
-        //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
-        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
-
-        //
-        while(!unsettledNodes.isEmpty()){
-            Node currentNode = unsettledNodes.poll();
-
-            if(currentNode.equals(destination)){
-                break;
-            }
-
-            currentNode.getAdjacentNodes()
-                    .entrySet().stream()
-                    .filter(entry -> !settleNodes.contains(entry.getKey()))
-                    .forEach(entry -> {
-                        evaluateTime(entry.getKey(), entry.getValue().get(0), entry.getValue().get(1), currentNode);
-                        unsettledNodes.add(entry.getKey());
-                    });
-
-            settleNodes.add(currentNode);
-        }
-
-        String resultPath = destination.printTImePath(destination);
-
-        return new result(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
-    }
-
-    //주어진 인접노드와의 최단경로 평가하고 업데이트
-    private static void evaluateTime(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
-        Integer newTime = sourceNode.getTime() + time;
-        Integer newCost = sourceNode.getCost() + cost;
-        //새 가중치가 기존 가중치보다 작으면
-        if (newTime < adjacentNode.getTime()
-                || (newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
-
-            //가중치 초기화
-            adjacentNode.setTime(newTime);
-            adjacentNode.setCost(newCost);
-            //ShortestPath에 추가
-            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
-                    .collect(Collectors.toList());
-            adjacentNode.setShortestPath(newPath);
-
-            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
-                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
-            } else {
-                adjacentNode.setTransferCount(sourceNode.getTransferCount());
-            }
-        }
-    }
-
-    //경로 + 최소 가중치
-    private String printTImePath(Node destination) {
-        String path = destination.getShortestPath().stream()
-                .map(Node::getName)
-                .collect(Collectors.joining(" -> "));
-        String resultPath = path.isBlank()
-                ? String.format("%s ", destination.getName())
-                : String.format("%s -> %s ", path, destination.getName());
-        return resultPath;
-    }
-/////////////////////////////////////////////////////////////////////////////////////////
-
-    //string으로 이름받아서
-    public static result calculateShortestCost(String start, String end){
-        Node source = null;
-        Node destination = null;
-        init();
-        //루프돌려서 이름에 맞는 노드 배정
-        for (Node node:nodes) {
-            if(start.equals(node.getName())){
-                source = node;
-            }
-            if (end.equals(node.getName())) {
-                destination = node;
-            }
-        }
-        for (Node node:transNodes) {
-            if(start.equals(node.getName())){
-                source = node;
-            }
-            if (end.equals(node.getName())) {
-                destination = node;
-            }
-        }
-
-        return costCalcLogic(source, destination);
-    }
-
-    //다익스트라 계산 로직
-    public static result costCalcLogic(Node source, Node destination){
-        initializeNodes();
-
-        source.setTime(0);
-        source.setCost(0);
-
-        //최단거리 확정된 경로
-        Set<Node> settleNodes = new HashSet<>();
-        //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
-        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
-
-        //
-        while(!unsettledNodes.isEmpty()){
-            Node currentNode = unsettledNodes.poll();
-
-            if(currentNode.equals(destination)){
-                break;
-            }
-
-            currentNode.getAdjacentNodes()
-                    .entrySet().stream()
-                    .filter(entry -> !settleNodes.contains(entry.getKey()))
-                    .forEach(entry -> {
-                        evaluateCost(entry.getKey(), entry.getValue().get(1), entry.getValue().get(0), currentNode);
-                        unsettledNodes.add(entry.getKey());
-                    });
-
-            settleNodes.add(currentNode);
-        }
-        String resultPath = destination.printCostPath(destination);
-
-        return new result(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
-    }
-
-    //주어진 인접노드와의 최단경로 평가하고 업데이트
-    private static void evaluateCost(Node adjacentNode, Integer cost, Integer time, Node sourceNode){
-        Integer newCost = sourceNode.getCost() + cost;
-        Integer newTime = sourceNode.getTime() + time;
-
-        //새 가중치가 기존 가중치보다 작으면
-        if (newCost < adjacentNode.getCost()
-                || (newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
-            //가중치 초기화
-            adjacentNode.setCost(newCost);
-            adjacentNode.setTime(newTime);
-            //ShortestPath에 추가
-            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
-                    .collect(Collectors.toList());
-            adjacentNode.setShortestPath(newPath);
-
-            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
-                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
-            } else {
-                adjacentNode.setTransferCount(sourceNode.getTransferCount());
-            }
-
-        }
-    }
-
-    //경로 + 최소 가중치
-    private String printCostPath(Node destination) {
-        String path = destination.getShortestPath().stream()
-                .map(Node::getName)
-                .collect(Collectors.joining(" -> "));
-        String resultPath = path.isBlank()
-                ? String.format("%s ", destination.getName())
-                : String.format("%s -> %s ", path, destination.getName());
-        return resultPath;
-    }
-//최소환승 메서드들
-
     public static void initializeNodesT() {
-        for (Node node : nodes) {
+        for (NodeT node : nodes) {
             node.setCost(Integer.MAX_VALUE);
             node.setTime(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
         }
-        for (Node node : transNodes) {
+        for (NodeT node : transNodes) {
             node.setCost(Integer.MAX_VALUE);
             node.setTime(Integer.MAX_VALUE);
             node.setShortestPath(new LinkedList<>());
             node.setTransferCount(0);
         }
     }
-    public void addAdjacentNodeT(Node node, int time, int cost){
+    public void addAdjacentNodeT(NodeT node, int time, int cost){
         if (!((this.getLine()).equals(node.getLine()))) {
             time += 2000; // 환승하면 가중치에 추가
         }
@@ -2084,14 +2226,14 @@ public class Node implements Comparable<Node>{
 
     //이름받아서
     public static resultT calculateMinTransfer(String start, String end){
-        Node source = null;
-        Node source2 = null;
-        Node destination = null;
-        Node destination2 = null;
+        NodeT source = null;
+        NodeT source2 = null;
+        NodeT destination = null;
+        NodeT destination2 = null;
         initT();
 
         //이름 맞는거 찾아서 노드 배정
-        for (Node node:nodes) {
+        for (NodeT node:nodes) {
             if(start.equals(node.getName())){
                 source = node;
             }
@@ -2101,7 +2243,7 @@ public class Node implements Comparable<Node>{
         }
 
         //출발 or 도착이 환승역이면 source2, destination2도 배정
-        for (Node node:transNodes) {
+        for (NodeT node:transNodes) {
             if(source != null){
                 break;
             }
@@ -2110,12 +2252,12 @@ public class Node implements Comparable<Node>{
             }
         }
 
-        for (Node node:transNodes) {
+        for (NodeT node:transNodes) {
             if(start.equals(node.getName())){
                 source2 = node;
             }
         }
-        for (Node node:transNodes) {
+        for (NodeT node:transNodes) {
             if(destination != null){
                 break;
             }
@@ -2123,7 +2265,7 @@ public class Node implements Comparable<Node>{
                 destination = node;
             }
         }
-        for (Node node:transNodes) {
+        for (NodeT node:transNodes) {
             if(end.equals(node.getName())){
                 destination2 = node;
             }
@@ -2157,7 +2299,7 @@ public class Node implements Comparable<Node>{
     }
 
     public static resultT findMinimumResult(resultT... results) {
-        resultT minResult = results[0];
+       resultT minResult = results[0];
         for (int i = 1; i < results.length; i++) {
             if (minResult.compareTo(results[i]) > 0) {
                 minResult = results[i];
@@ -2165,19 +2307,19 @@ public class Node implements Comparable<Node>{
         }
         return minResult;
     }
-    public static resultT calcLogicT(Node source, Node destination){
+    public static resultT calcLogicT(NodeT source, NodeT destination){
         initializeNodesT();
 
         source.setTime(0);
         source.setCost(0);
         //최단거리 확정된 경로
-        Set<Node> settleNodes = new HashSet<>();
+        Set<NodeT> settleNodes = new HashSet<>();
         //최단거리 미확정 경로, 미확정 노드들 중 최소 거리를 가진 노드 먼저 처리하려고 우선순위큐 사용
-        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
+        Queue<NodeT> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
 
         //
         while(!unsettledNodes.isEmpty()){
-            Node currentNode = unsettledNodes.poll();
+            NodeT currentNode = unsettledNodes.poll();
 
             if(currentNode.equals(destination)){
                 break;
@@ -2199,14 +2341,14 @@ public class Node implements Comparable<Node>{
 
         return new resultT(destination.getTime(),destination.getCost(),destination.getTransferCount(),resultPath);
     }
-    private static void evaluateTransferAndPath(Node adjacentNode, Integer time, Integer cost,Node sourceNode){
+    private static void evaluateTransferAndPath(NodeT adjacentNode, Integer time, Integer cost,NodeT sourceNode){
         Integer newTime = sourceNode.getTime() + time;
         Integer newCost = sourceNode.getCost() + cost;
 
         if(newTime < adjacentNode.getTime()){
             adjacentNode.setTime(newTime);
             adjacentNode.setCost(newCost);
-            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
+            List<NodeT> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
 
@@ -2218,15 +2360,16 @@ public class Node implements Comparable<Node>{
             }
         }
     }
-    private String printMinTransfer(Node destination) {
+    private String printMinTransfer(NodeT destination) {
         String path = destination.getShortestPath().stream()
-                .map(Node::getName)
+                .map(NodeT::getName)
                 .collect(Collectors.joining(" -> "));
         String resultPath = path.isBlank()
                 ? String.format("%s", destination.getName())
                 : String.format("%s -> %s", path, destination.getName()); // 거리 출력 제거
         return resultPath;
     }
+
     @Getter
     @Setter
     @RequiredArgsConstructor
@@ -2252,40 +2395,5 @@ public class Node implements Comparable<Node>{
             return compare;
         }
 
-    }
-    @Getter
-    @Setter
-    @RequiredArgsConstructor
-    public static class result{
-        private int transferCount;
-        private Integer cost;
-        private Integer time;
-        private String path;
-        public result(Integer time, Integer cost, int transferCount,String path) {
-            this.time = time;
-            this.cost = cost;
-            this.path = path;
-            this.transferCount = transferCount;
-        }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(        calculateShortestCost("101", "702").getCost());
-        System.out.println(        calculateShortestCost("101", "702").getTime());
-        System.out.println(        calculateShortestCost("101", "702").getPath());
-        System.out.println(        calculateShortestCost("101", "702").getTransferCount());
-
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-        System.out.println(        calculateShortestTime("101", "702").getCost());
-        System.out.println(        calculateShortestTime("101", "702").getTime());
-        System.out.println(        calculateShortestTime("101", "702").getPath());
-        System.out.println(        calculateShortestTime("101", "702").getTransferCount());
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        calculateMinTransfer("101", "702");
-        System.out.println(        calculateMinTransfer("101", "702").getCost());
-        System.out.println(        calculateMinTransfer("101", "702").getTime());
-        System.out.println(        calculateMinTransfer("101", "702").getPath());
-        System.out.println(        calculateMinTransfer("101", "702").getTransferCount());
     }
 }
