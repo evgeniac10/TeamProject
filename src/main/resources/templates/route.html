@@ -142,8 +142,14 @@
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
+        let formattedTime
 
-        const formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+        if(hours===0){
+            formattedTime = `${minutes}분 ${seconds}초`;
+        }
+        else {
+            formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+        }
 
         const recommend = document.querySelector('.recommend-time');
         recommend.innerHTML = `
@@ -167,8 +173,14 @@
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
+        let formattedTime
 
-        const formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+        if(hours===0){
+            formattedTime = `${minutes}분 ${seconds}초`;
+        }
+        else {
+            formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+        }
 
         const recommend = document.querySelector('.recommend-cost');
         recommend.innerHTML = `
@@ -192,8 +204,14 @@
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
+        let formattedTime
 
-        const formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+        if(hours===0){
+            formattedTime = `${minutes}분 ${seconds}초`;
+        }
+        else {
+            formattedTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+        }
 
         const recommend = document.querySelector('.recommend-trans');
         recommend.innerHTML = `
@@ -229,7 +247,7 @@
             body: JSON.stringify({
                 "from":mainfrom,
                 "layover":mainlayover,
-                "to":mainlayover
+                "to":mainto
             })
         })
             .then(response => response.json())
