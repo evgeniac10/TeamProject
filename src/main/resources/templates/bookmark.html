@@ -83,56 +83,106 @@
     </div>
 </div>
 <div class="bookmark">
-<!--    <div class="first-mark">-->
-<!--        <h1 id="mark-name">등교</h1>-->
-<!--        <div class="mark-info">-->
-<!--            <h2>출발역:</h2>-->
-<!--            <h2>도착역:</h2>-->
-<!--            <h2>알람 시간:</h2>-->
-<!--        </div>-->
-<!--        <div class="mark-button">-->
-<!--            <button class="setting" type="button"><span class="material-symbols-outlined">edit</span></button>-->
-<!--            <button class="alarm" type="button"><span class="material-symbols-outlined">notifications</span></button>-->
-<!--        </div>-->
-<!--    </div>-->
+
 </div>
 <script>
     const token = localStorage.getItem('token')
-    fetch('/wetro/bookmark/lists',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "token":token
-            }),
-        })
+    // fetch('/wetro/bookmark/lists',
+    //     {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             "token":token
+    //         }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         const bookmark=document.querySelector('.bookmark')
+    //
+    //         for(let i=0;i<data.bookMarkList.length;i++) {
+    //             bookmark.insertAdjacentHTML("afterend",`
+    //             <button class="mark" onclick="askConfirm(${i},${JSON.stringify(data)})">
+    //                  <div class="first-mark">
+    //                      <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+    //                          <div class="mark-info">
+    //                                  <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+    //                                  <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+    //                              </div>
+    //                          </div>`)
+    //         }
+    //     })
+    //
+    // function askConfirm(num,data){
+    //
+    //     if(confirm('상세경로 페이지로 이동하시겠습니까?')){
+    //         if(data.bookMarkList[num].layover_location===null){
+    //             localStorage.setItem("from",data.bookMarkList[num].start_location)
+    //             localStorage.setItem("to",data.bookMarkList[num].end_location)
+    //             localStorage.setItem("type",'mintime')
+    //         }
+    //         else{
+    //             localStorage.setItem("from",data.bookMarkList[num].start_location)
+    //             localStorage.setItem("to",data.bookMarkList[num].end_location)
+    //             localStorage.setItem("type",'mintime')
+    //             localStorage.setItem("layover",data.bookMarkList[num].layover_location)
+    //         }
+    //         location.href='routedetail'
+    //     }
+    //     else {
+    //         return
+    //     }
+    // }
+    fetch('/wetro/bookmark/lists', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "token": token
+        }),
+    })
         .then(response => response.json())
         .then(data => {
-            const bookmark=document.querySelector('.bookmark')
+            const bookmark = document.querySelector('.bookmark');
+            for (let i = 0; i < data.bookMarkList.length; i++) {
+                const button = document.createElement('button');
+                button.classList.add('mark');
+                button.innerHTML = `
+                <div class="first-mark">
+                    <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+                    <div class="mark-info">
+                        <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+                        <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                    </div>
+                </div>`;
 
-            bookmark.innerHTML=`
-                <button class="mark" onclick="askConfirm()">
-                    <div class="first-mark">
-                        <input type="text" id="mark-name">${data.alias}
-                            <div class="mark-info">
-                                    <h2>출발역:${data.start_location}</h2>
-                                    <h2>도착역:${data.end_location}</h2>
-                                </div>
-                            </div>
-                </button>
-            `
-        })
+                // 클로저를 이용하여 각 버튼에 대한 데이터 전달
+                button.onclick = function (event) {
+                    askConfirm(i, data);
+                };
 
-    function askConfirm(){
-        if(confirm('상세경로 페이지로 이동하시겠습니까?')){
-            location.href='routedetail'
-        }
-        else {
-            return
+                bookmark.appendChild(button);
+            }
+        });
+
+    function askConfirm(num, data) {
+        if (confirm('상세경로 페이지로 이동하시겠습니까?')) {
+            if (data.bookMarkList[num].layover_location === null) {
+                localStorage.setItem("from", data.bookMarkList[num].start_location);
+                localStorage.setItem("to", data.bookMarkList[num].end_location);
+                localStorage.setItem("type", 'mintime');
+            } else {
+                localStorage.setItem("from", data.bookMarkList[num].start_location);
+                localStorage.setItem("to", data.bookMarkList[num].end_location);
+                localStorage.setItem("type", 'mintime');
+                localStorage.setItem("layover", data.bookMarkList[num].layover_location);
+            }
+            location.href = 'routedetail';
         }
     }
+
 </script>
 </body>
 </html>
