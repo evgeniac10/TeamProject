@@ -26,6 +26,8 @@ public class Message {
 
     public static final String SUCCESS_TO_BOOKMARK = "즐겨찾기 등록 완료";
     public static final String FAIL_TO_BOOKMARK = "즐겨찾기 등록 실패";
+    public static final String SUCCESS_TO_LOAD_BOOKMARKS = "즐겨찾기 리스트 불러오기 완료";
+    public static final String FAIL_TO_LOAD_BOOKMARKS = "즐겨찾기 리스트 불러오기 실패";
     public static final String SUCCESS_TO_EDIT_BOOKMARK = "즐겨찾기 수정 완료";
     public static final String FAIL_TO_EDIT_BOOKMARK = "즐겨찾기 수정 실패";
 

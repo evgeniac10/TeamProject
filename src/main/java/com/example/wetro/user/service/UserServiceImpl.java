@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
         log.info("login service");
         // 사용자 아이디로 사용자 조회
         Optional<User> loginUser = userRepository.findByUserid(dto.getUserid());
-        log.info("로그인을 위한 사용자 조회 = {}",loginUser.get());
         // 사용자가 존재하고, 비밀번호가 일치하면 로그인 성공
         if (loginUser.isPresent() && passwordEncoder.matches(dto.getPassword(), loginUser.get().getPassword())) {
             User user = loginUser.get();

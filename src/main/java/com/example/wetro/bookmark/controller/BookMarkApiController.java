@@ -4,20 +4,20 @@ package com.example.wetro.bookmark.controller;
 import com.example.wetro.bookmark.dto.BookMark;
 import com.example.wetro.bookmark.dto.BookMarkDto;
 import com.example.wetro.bookmark.dto.BookMarkTokenDto;
+import com.example.wetro.bookmark.repository.BookMarkrepository;
 import com.example.wetro.bookmark.service.BookMarkService;
 import com.example.wetro.response.bookmarkResponse;
 import com.example.wetro.user.dto.TokenDto;
 import com.example.wetro.user.dto.User;
+import com.example.wetro.user.repository.UserRepository;
 import com.example.wetro.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -25,6 +25,7 @@ import static com.example.wetro.response.Message.*;
 import static com.example.wetro.response.bookmarkResponse.fail;
 import static com.example.wetro.response.bookmarkResponse.success;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/wetro")
@@ -47,9 +48,9 @@ public class BookMarkApiController {
                                     .start_location(bookMarkdto.getStart_location())
                                     .end_location(bookMarkdto.getEnd_location())
                                     .layover_location(bookMarkdto.getLayover_location())
-                                            .alias(bookMarkdto.getAlias())
-                                                    .user(user.get())
-                                                            .build();
+                                    .alias(bookMarkdto.getAlias())
+                                    .user(user.get())
+                                    .build();
 
 
             bookMarkService.saveBookMark(bookmark);
@@ -62,15 +63,24 @@ public class BookMarkApiController {
     }
 
     @PostMapping("/bookmark/lists")
-    public List<BookMark> bookMarksLists(@RequestBody BookMarkTokenDto tokenDto) {
-
+    public bookmarkResponse bookMarksLists(@RequestBody BookMarkTokenDto tokenDto) {
+        log.info("입력 받은 토큰 = {}", tokenDto.getToken());
         String token = tokenDto.getToken();
 
-        // 토큰을 이용하여 회원 정보 가져오기
-        Optional<User> user = userService.findByToken(token);
+        Optional<User> userOptional = userService.findByToken(token);
 
-            return bookMarkService.findAllByUser(user);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            log.info("토큰을 이용한 회원 객체 찾기 = {}",user);
 
+            // 토큰을 이용하여 회원 정보 가져오기
+            List<BookMark> bookMarks = bookMarkService.findAllByUser(Optional.of(user));
+            return success(SUCCESS_TO_LOAD_BOOKMARKS,bookMarks);
+        } else {
+            log.info("토큰에 해당하는 사용자가 없습니다.");
+            // 사용자가 없는 경우 빈 리스트 반환 또는 다른 처리를 수행할 수 있습니다.
+            return fail(FAIL_TO_LOAD_BOOKMARKS);
+        }
     }
 
 }

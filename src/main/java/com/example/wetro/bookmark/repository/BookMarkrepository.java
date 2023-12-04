@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookMarkrepository extends JpaRepository<BookMark,Long> {
-    List<BookMark> findAllByUser(Optional<User> user);
+public interface BookMarkrepository extends JpaRepository<BookMark, Long> {
+    List<BookMark> findAllByUser(User user);
 }
