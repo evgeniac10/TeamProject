@@ -35,19 +35,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 0;
             padding: 0;
         }
         .bookmark{
-            width: 90%;
             padding: 5px;
-            margin: 10px 0;
+            margin: 20px;
+        }
+        .mark {
+            width: 300px;
+            height: 100px;
+            background-color: white;
+            margin: 20px 0;
         }
         .first-mark{
-            border: #333333 1px solid ;
             padding: 10px;
-            width: 90%;
-            margin-top: 20px;
+            height : 90px;
+            border-radius: 20px;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
+            transition: 0.35s;
+        }
+        .first-mark:hover {
+            background-color: #d7d7d7;
         }
         #mark-name{
             color: #6a9be8;
@@ -55,25 +63,38 @@
         .mark-info{
             color: #838383;
         }
+        .button {
+        }
         .mark-button{
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
         }
         .material-symbols-outlined {
             font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-          }
-         .material-symbols-outlined {
-             font-variation-settings:
-                 'FILL' 0,
-                 'wght' 400,
-                 'GRAD' 0,
-                 'opsz' 24
-         }
+                    'FILL' 0,
+                    'wght' 400,
+                    'GRAD' 0,
+                    'opsz' 24
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+                    'FILL' 0,
+                    'wght' 400,
+                    'GRAD' 0,
+                    'opsz' 24
+        }
+        .left-mark {
+            float: left;
+            width: 50%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .right-mark {
+            float: right;
+            width: 50%;
+            box-sizing: border-box;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -87,38 +108,52 @@
 </div>
 <script>
     const token = localStorage.getItem('token')
-    fetch('/wetro/bookmark/lists',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "token":token
-            }),
-        })
+    fetch('/wetro/bookmark/lists', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "token": token
+        }),
+    })
         .then(response => response.json())
         .then(data => {
-            const bookmark=document.querySelector('.bookmark')
+            const bookmarkContainer = document.querySelector('.bookmark');
+            let isLeft = true; // Flag to alternate between left and right
 
-            for(let i=0;i<data.bookMarkList.length;i++) {
-                bookmark.insertAdjacentHTML("afterend",`
-                <button class="mark" )">
-                     <div class="first-mark">
-                         <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
-                             <div class="mark-info">
-                                     <h2>출발역:${data.bookMarkList[i].start_location}</h2>
-                                     <h2>도착역:${data.bookMarkList[i].end_location}</h2>
-                             </div>
-                         </div>
-                     </div>
-                </button>`)
-                const button = document.querySelector('button')
-                button.onclick = function (e){
-                    askConfirm(i,data)
+            for (let i = 0; i < data.bookMarkList.length; i++) {
+                const markHTML = `
+                <button class="mark">
+                    <div class="first-mark">
+                        <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+                        <div class="mark-info">
+                            <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+                            <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                        </div>
+                    </div>
+                </button>`;
+
+                const containerDiv = document.createElement('div');
+                containerDiv.classList.add('mark-container');
+                containerDiv.innerHTML = markHTML;
+
+                if (isLeft) {
+                    containerDiv.classList.add('left-mark');
+                } else {
+                    containerDiv.classList.add('right-mark');
                 }
+
+                bookmarkContainer.appendChild(containerDiv);
+
+                const button = containerDiv.querySelector('button');
+                button.onclick = function (e) {
+                    askConfirm(i, data);
+                }
+
+                isLeft = !isLeft; // Toggle for the next iteration
             }
-        })
+        });
 
     function askConfirm(i,data){
         if(confirm('상세경로 페이지로 이동하시겠습니까?')){

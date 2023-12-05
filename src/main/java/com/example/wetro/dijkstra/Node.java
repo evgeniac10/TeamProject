@@ -10,8 +10,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.example.wetro.dijkstra.NodeT.calculateMinTransfer;
-
 @Slf4j
 @Getter
 @Setter
@@ -23,9 +21,10 @@ public class Node implements Comparable<Node>{
     private String line;
     //노드 이름
     private String name;
-    //현재까지의 최단 거리 초기값 무한
-    private Integer cost = Integer.MAX_VALUE;
+    //현재까지의 최소시간 초기값 무한
     private Integer time = Integer.MAX_VALUE;
+    //현재까지의 최소비용 초기값 무한
+    private Integer cost = Integer.MAX_VALUE;
     //최단 경로 저장, 수정 용이하게 위해 링크드리스트
     private List<Node> shortestPath = new LinkedList<>();
     //해당 노드의 인접한 노드와 그 사이의 가중치를 저장
@@ -43,6 +42,7 @@ public class Node implements Comparable<Node>{
         this.name = name;
     }
 
+    //노드 선언 및 초기화
     public static void init(){
         initNodeList();
         Node node1 = new Node("1", "101");
@@ -939,6 +939,7 @@ public class Node implements Comparable<Node>{
 
     }
 
+    //역 리스트 초기화
     public static void initNodeList(){
         nodes = new ArrayList<>();
         transNodes = new ArrayList<>();
@@ -960,6 +961,17 @@ public class Node implements Comparable<Node>{
         }
     }
 
+    public List<Node> findTransferredNodesInShortestPath(List<Node> transNodes) {
+        List<Node> transferredNodes = new ArrayList<>();
+
+        for (Node node : shortestPath) {
+            if (transNodes.contains(node)) {
+                transferredNodes.add(node);
+            }
+        }
+
+        return transferredNodes;
+    }
 
     //노드에 인접노드, 가중치 추가
     public void addAdjacentNode(Node node, int time, int cost){
@@ -976,7 +988,7 @@ public class Node implements Comparable<Node>{
     }
 
 
-    //string으로 이름받아서
+    //최단시간 계산 메서드
     public static result calculateShortestTime(String start, String end){
         Node source = null;
         Node destination = null;
@@ -1032,14 +1044,19 @@ public class Node implements Comparable<Node>{
 
             settleNodes.add(currentNode);
         }
-
+        //최단시간 경로
         String resultPath = destination.printTImePath(destination);
 
+
+
+        List<Node> transInPath = destination.findTransferredNodesInShortestPath(transNodes);
+
+
         if(destination.getTransferCount() == 0){
-            return new result(destination.getTime(), destination.getCost(), 0, resultPath);
+            return new result(destination.getTime(), destination.getCost(), 0, resultPath, transInPath);
         }
         else{
-            return new result(destination.getTime(), destination.getCost(), destination.getTransferCount()-1, resultPath);
+            return new result(destination.getTime(), destination.getCost(), destination.getTransferCount()-1, resultPath, transInPath);
         }
     }
 
@@ -1059,6 +1076,7 @@ public class Node implements Comparable<Node>{
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
 
+            //환승횟수 설정
             if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
                 adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
             } else {
@@ -1066,35 +1084,8 @@ public class Node implements Comparable<Node>{
             }
         }
     }
-//    private static void evaluateTime(Node adjacentNode, Integer time, Integer cost, Node sourceNode){
-//        Integer newTime = sourceNode.getTime() + time;
-//        Integer newCost = sourceNode.getCost() + cost;
-//
-//        if (newTime < adjacentNode.getTime()
-//                || (newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
-//
-//            adjacentNode.setTime(newTime);
-//            adjacentNode.setCost(newCost);
-//
-//            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
-//                    .collect(Collectors.toList());
-//            adjacentNode.setShortestPath(newPath);
-//
-//            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
-//                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
-//            } else {
-//                adjacentNode.setTransferCount(sourceNode.getTransferCount());
-//            }
-//        } else if (newTime.equals(adjacentNode.getTime()) && newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() <= adjacentNode.getTransferCount()) {
-//            adjacentNode.setTransferCount(sourceNode.getTransferCount());
-//        }
-//    }
 
-
-
-
-
-    //경로 + 최소 가중치
+    //경로
     private String printTImePath(Node destination) {
         String path = destination.getShortestPath().stream()
                 .map(Node::getName)
@@ -1104,9 +1095,8 @@ public class Node implements Comparable<Node>{
                 : String.format("%s -> %s ", path, destination.getName());
         return resultPath;
     }
-/////////////////////////////////////////////////////////////////////////////////////////
 
-    //string으로 이름받아서
+    //최소비용 계산 메서드
     public static result calculateShortestCost(String start, String end){
         Node source = null;
         Node destination = null;
@@ -1162,17 +1152,19 @@ public class Node implements Comparable<Node>{
 
             settleNodes.add(currentNode);
         }
+        //경로
         String resultPath = destination.printCostPath(destination);
+        List<Node> transInPath = destination.findTransferredNodesInShortestPath(transNodes);
 
         if(destination.getTransferCount() == 0){
-            return new result(destination.getTime(), destination.getCost(), 0, resultPath);
+            return new result(destination.getTime(), destination.getCost(), 0, resultPath, transInPath);
         }
         else{
-            return new result(destination.getTime(), destination.getCost(), destination.getTransferCount() -1, resultPath);
+            return new result(destination.getTime(), destination.getCost(), destination.getTransferCount() -1, resultPath, transInPath);
         }
     }
 
-//    주어진 인접노드와의 최단경로 평가하고 업데이트
+    //    주어진 인접노드와의 최단경로 평가하고 업데이트
     private static void evaluateCost(Node adjacentNode, Integer cost, Integer time, Node sourceNode){
         Integer newCost = sourceNode.getCost() + cost;
         Integer newTime = sourceNode.getTime() + time;
@@ -1196,33 +1188,8 @@ public class Node implements Comparable<Node>{
 
         }
     }
-//    private static void evaluateCost(Node adjacentNode, Integer cost, Integer time, Node sourceNode){
-//        Integer newCost = sourceNode.getCost() + cost;
-//        Integer newTime = sourceNode.getTime() + time;
-//
-//        if (newCost < adjacentNode.getCost()
-//                || (newCost.equals(adjacentNode.getCost()) && sourceNode.getTransferCount() < adjacentNode.getTransferCount())) {
-//
-//            adjacentNode.setCost(newCost);
-//            adjacentNode.setTime(newTime);
-//
-//            List<Node> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
-//                    .collect(Collectors.toList());
-//            adjacentNode.setShortestPath(newPath);
-//
-//            if (!sourceNode.getLine().equals(adjacentNode.getLine())) {
-//                adjacentNode.setTransferCount(sourceNode.getTransferCount() + 1);
-//            } else {
-//                adjacentNode.setTransferCount(sourceNode.getTransferCount());
-//            }
-//        } else if (newCost.equals(adjacentNode.getCost()) && newTime.equals(adjacentNode.getTime()) && sourceNode.getTransferCount() <= adjacentNode.getTransferCount()) {
-//            adjacentNode.setTransferCount(sourceNode.getTransferCount());
-//        }
-//    }
 
 
-
-    //경로 + 최소 가중치
     private String printCostPath(Node destination) {
         String path = destination.getShortestPath().stream()
                 .map(Node::getName)
@@ -1241,32 +1208,28 @@ public class Node implements Comparable<Node>{
         private Integer cost;
         private Integer time;
         private String path;
-        public result(Integer time, Integer cost, int transferCount,String path) {
+        private List<Node> transInPath;
+        public result(Integer time, Integer cost, int transferCount,String path, List<Node> transInPath) {
             this.time = time;
             this.cost = cost;
             this.path = path;
             this.transferCount = transferCount;
+            this.transInPath  = transInPath;
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(        calculateShortestCost("307", "615").getCost());
-        System.out.println(        calculateShortestCost("307", "615").getTime());
-        System.out.println(        calculateShortestCost("307", "615").getPath());
-        System.out.println(        calculateShortestCost("307", "615").getTransferCount());
-
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~307~~~~615~~~~~~~~~~~~~~~~~~~~~");
-
-        System.out.println(        calculateShortestTime("307", "615").getCost());
-        System.out.println(        calculateShortestTime("307", "615").getTime());
-        System.out.println(        calculateShortestTime("307", "615").getPath());
-        System.out.println(        calculateShortestTime("307", "615").getTransferCount());
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~215~~~~~~~~~~~~~~~~~~~~~");
-
-        System.out.println(        calculateMinTransfer("307",  "615").getCost());
-        System.out.println(        calculateMinTransfer("307",  "615").getTime());
-        System.out.println(        calculateMinTransfer("307",  "615").getPath());
-        System.out.println(        calculateMinTransfer("307",  "615").getTransferCount());
-    }
+//    public static void main(String[] args) {
+//        System.out.println(calculateShortestCost("123", "805").getCost());
+//        System.out.println(calculateShortestCost("123", "805").getPath());
+//        System.out.println(calculateShortestCost("123", "805").getTime());
+//        System.out.println(calculateShortestCost("123", "805").getTransferCount());
+//        System.out.println("----------------------------------------------------------");
+//        System.out.println(calculateShortestTime("123", "805").getCost());
+//        System.out.println(calculateShortestTime("123", "805").getPath());
+//        System.out.println(calculateShortestTime("123", "805").getTime());
+//        System.out.println(calculateShortestTime("123", "805").getTransferCount());
+//        System.out.println("----------------------------------------------------------");
+//
+//    }
 }
 

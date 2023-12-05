@@ -40,17 +40,32 @@ public class WetroApiController {
             Integer time1 = result1.getTime();
             Integer cost1 = result1.getCost();
             Integer transfer1 = result1.getTransferCount();
-            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1);
+            List<Node> transNode1 = result1.getTransInPath();
+            List<String> stations1 = new ArrayList<>();
+            for (Node node : transNode1) {
+                stations1.add(node.getName());
+            }
+            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1,stations1);
 
             Integer time2 = result2.getTime();
             Integer cost2 = result2.getCost();
             Integer transfer2 = result2.getTransferCount();
-            Infolists minCostInfo = new Infolists(time2, cost2, transfer2);
+            List<Node> transNode2 = result2.getTransInPath();
+            List<String> stations2 = new ArrayList<>();
+            for (Node node : transNode2) {
+                stations2.add(node.getName());
+            }
+            Infolists minCostInfo = new Infolists(time2, cost2, transfer2,stations2);
 
             Integer time3 = resultT.getTime();
             Integer cost3 = resultT.getCost();
             int transfer3 = resultT.getTransferCount();
-            Infolists minTransInfo = new Infolists(time3, cost3, transfer3);
+            List<NodeT> transNodeT = resultT.getTransInPath();
+            List<String> stationsT = new ArrayList<>();
+            for (NodeT node : transNodeT) {
+                stationsT.add(node.getName());
+            }
+            Infolists minTransInfo = new Infolists(time3, cost3, transfer3,stationsT);
 
             List<Infolists> infolists = new ArrayList<>();
             infolists.add(minTimeInfo);
@@ -58,11 +73,12 @@ public class WetroApiController {
             infolists.add(minTransInfo);
 
 
-            log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
+            log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}"
                     , result1.getTime()
                     , result1.getCost()
                     ,result1.getTransferCount()-1
                     ,result1.getPath());
+
             log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                     , result2.getTime()
                     , result2.getCost()
@@ -89,17 +105,38 @@ public class WetroApiController {
         Integer time1 = result1.getTime()+layResult1.getTime();
         Integer cost1 = result1.getCost()+layResult1.getCost();
         Integer transfer1 = result1.getTransferCount()+layResult1.getTransferCount();
-        Infolists minTimeInfo = new Infolists(time1, cost1, transfer1);
+            List<Node> transNodes1 = result1.getTransInPath();
+            List<Node> transNode1 = layResult1.getTransInPath();
+            transNodes1.addAll(transNode1);
+            List<String> stations1 = new ArrayList<>();
+            for (Node node : transNodes1) {
+                stations1.add(node.getName());
+            }
+            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1,stations1);
 
         Integer time2 = result2.getTime()+layResult2.getTime();
         Integer cost2 = result2.getCost()+layResult2.getCost();
         Integer transfer2 = result2.getTransferCount()+layResult2.getTransferCount();
-        Infolists minCostInfo = new Infolists(time2, cost2, transfer2);
+            List<Node> transNodes2 = result2.getTransInPath();
+            List<Node> transNode2 = layResult2.getTransInPath();
+            transNodes2.addAll(transNode2);
+            List<String> stations2 = new ArrayList<>();
+            for (Node node : transNodes2) {
+                stations2.add(node.getName());
+            }
+            Infolists minCostInfo = new Infolists(time1, cost1, transfer1,stations2);
 
         Integer time3 = resultT.getTime()+layResultT.getTime();
         Integer cost3 = resultT.getCost()+layResultT.getCost();
         int transfer3 = resultT.getTransferCount()+layResultT.getTransferCount();
-        Infolists minTransInfo = new Infolists(time3, cost3, transfer3);
+            List<NodeT> transInPath1 = resultT.getTransInPath();
+            List<NodeT> transInPath = layResultT.getTransInPath();
+            transInPath1.addAll(transInPath);
+            List<String> stationsT = new ArrayList<>();
+            for (NodeT node : transInPath1) {
+                stationsT.add(node.getName());
+            }
+            Infolists minTransInfo = new Infolists(time3, cost3, transfer3,stationsT);
 
         List<Infolists> infolists = new ArrayList<>();
         infolists.add(minTimeInfo);
@@ -117,7 +154,7 @@ public class WetroApiController {
                 , cost2
                 ,transfer2
                 ,result2.getPath()+layResult2.getPath());
-        log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
+        log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n "
                 , time3
                 , cost3
                 ,transfer3

@@ -126,12 +126,18 @@ input[id="menuicon"]:checked + label + div {
     border-radius: 8px;
     color: #828282;
     font-weight: bold;
+    transition: 0.35s;
+}
+.menu-button:hover {
+    background-color: rgba(62,62,62,0.77);
+    color: white;
 }
 #welcome-text {
     font-size: 20px;
     color: #d7d7d7;
     font-weight: bolder;
     border: 3px dashed #d7d7d7;
+    border-radius: 20px;
     margin: 0 20px 50px;
     padding: 20px 0;
 }
@@ -143,6 +149,11 @@ input[id="menuicon"]:checked + label + div {
     border-radius: 8px;
     color: #828282;
     font-weight: bold;
+    transition: .35s;
+}
+#logoutForm:hover {
+    background-color: rgba(62,62,62);
+    color: white;
 }
 .background {
     position: fixed;
@@ -275,7 +286,7 @@ input[id="addButton"]:checked + label {
     transition: 0.35s;
 }
 #search-text:hover {
-    background-color: #fd7373;
+    background-color: rgba(62,62,62);
 }
 #map{
     height: 30px;
@@ -291,6 +302,10 @@ input[id="addButton"]:checked + label {
     text-align: center;
     font-size: 20px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.35s;
+}
+#map:hover{
+    background-color: rgba(62,62,62);
 }
 .info{
 
