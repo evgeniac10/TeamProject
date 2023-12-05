@@ -40,32 +40,20 @@ public class WetroApiController {
             Integer time1 = result1.getTime();
             Integer cost1 = result1.getCost();
             Integer transfer1 = result1.getTransferCount();
-            List<Node> transNode1 = result1.getTransInPath();
-            List<String> stations1 = new ArrayList<>();
-            for (Node node : transNode1) {
-                stations1.add(node.getName());
-            }
-            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1,stations1);
+            String path1 = result1.getPath();
+            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1, path1);
 
             Integer time2 = result2.getTime();
             Integer cost2 = result2.getCost();
             Integer transfer2 = result2.getTransferCount();
-            List<Node> transNode2 = result2.getTransInPath();
-            List<String> stations2 = new ArrayList<>();
-            for (Node node : transNode2) {
-                stations2.add(node.getName());
-            }
-            Infolists minCostInfo = new Infolists(time2, cost2, transfer2,stations2);
+            String path2 = result2.getPath();
+            Infolists minCostInfo = new Infolists(time2, cost2, transfer2, path2);
 
             Integer time3 = resultT.getTime();
             Integer cost3 = resultT.getCost();
             int transfer3 = resultT.getTransferCount();
-            List<NodeT> transNodeT = resultT.getTransInPath();
-            List<String> stationsT = new ArrayList<>();
-            for (NodeT node : transNodeT) {
-                stationsT.add(node.getName());
-            }
-            Infolists minTransInfo = new Infolists(time3, cost3, transfer3,stationsT);
+            String path3 = resultT.getPath();
+            Infolists minTransInfo = new Infolists(time3, cost3, transfer3, path3);
 
             List<Infolists> infolists = new ArrayList<>();
             infolists.add(minTimeInfo);
@@ -73,12 +61,11 @@ public class WetroApiController {
             infolists.add(minTransInfo);
 
 
-            log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}"
+            log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                     , result1.getTime()
                     , result1.getCost()
                     ,result1.getTransferCount()-1
                     ,result1.getPath());
-
             log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
                     , result2.getTime()
                     , result2.getCost()
@@ -102,66 +89,48 @@ public class WetroApiController {
             Node.result layResult2 = Node.calculateShortestCost(stationDto.getLayover(), stationDto.getTo());//최소비용
             NodeT.resultT layResultT = NodeT.calculateMinTransfer(stationDto.getLayover(), stationDto.getTo());//최소환승
 
-        Integer time1 = result1.getTime()+layResult1.getTime();
-        Integer cost1 = result1.getCost()+layResult1.getCost();
-        Integer transfer1 = result1.getTransferCount()+layResult1.getTransferCount();
-            List<Node> transNodes1 = result1.getTransInPath();
-            List<Node> transNode1 = layResult1.getTransInPath();
-            transNodes1.addAll(transNode1);
-            List<String> stations1 = new ArrayList<>();
-            for (Node node : transNodes1) {
-                stations1.add(node.getName());
-            }
-            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1,stations1);
+            Integer time1 = result1.getTime()+layResult1.getTime();
+            Integer cost1 = result1.getCost()+layResult1.getCost();
+            Integer transfer1 = result1.getTransferCount()+layResult1.getTransferCount();
+            String path1 = result1.getPath() + " " + layResult1.getPath();
+            Infolists minTimeInfo = new Infolists(time1, cost1, transfer1, path1);
 
-        Integer time2 = result2.getTime()+layResult2.getTime();
-        Integer cost2 = result2.getCost()+layResult2.getCost();
-        Integer transfer2 = result2.getTransferCount()+layResult2.getTransferCount();
-            List<Node> transNodes2 = result2.getTransInPath();
-            List<Node> transNode2 = layResult2.getTransInPath();
-            transNodes2.addAll(transNode2);
-            List<String> stations2 = new ArrayList<>();
-            for (Node node : transNodes2) {
-                stations2.add(node.getName());
-            }
-            Infolists minCostInfo = new Infolists(time1, cost1, transfer1,stations2);
+            Integer time2 = result2.getTime()+layResult2.getTime();
+            Integer cost2 = result2.getCost()+layResult2.getCost();
+            Integer transfer2 = result2.getTransferCount()+layResult2.getTransferCount();
+            String path2 = result1.getPath() + " " + layResult2.getPath();
+            Infolists minCostInfo = new Infolists(time2, cost2, transfer2, path2);
 
-        Integer time3 = resultT.getTime()+layResultT.getTime();
-        Integer cost3 = resultT.getCost()+layResultT.getCost();
-        int transfer3 = resultT.getTransferCount()+layResultT.getTransferCount();
-            List<NodeT> transInPath1 = resultT.getTransInPath();
-            List<NodeT> transInPath = layResultT.getTransInPath();
-            transInPath1.addAll(transInPath);
-            List<String> stationsT = new ArrayList<>();
-            for (NodeT node : transInPath1) {
-                stationsT.add(node.getName());
-            }
-            Infolists minTransInfo = new Infolists(time3, cost3, transfer3,stationsT);
+            Integer time3 = resultT.getTime()+layResultT.getTime();
+            Integer cost3 = resultT.getCost()+layResultT.getCost();
+            int transfer3 = resultT.getTransferCount()+layResultT.getTransferCount();
+            String path3 = resultT.getPath() + " " + layResultT.getPath();
+            Infolists minTransInfo = new Infolists(time3, cost3, transfer3, path3);
 
-        List<Infolists> infolists = new ArrayList<>();
-        infolists.add(minTimeInfo);
-        infolists.add(minCostInfo);
-        infolists.add(minTransInfo);
+            List<Infolists> infolists = new ArrayList<>();
+            infolists.add(minTimeInfo);
+            infolists.add(minCostInfo);
+            infolists.add(minTransInfo);
 
 
-        log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
-                , time1
-                , cost1
-                ,transfer1
-                ,result1.getPath()+layResult1.getPath());
-        log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
-                , time2
-                , cost2
-                ,transfer2
-                ,result2.getPath()+layResult2.getPath());
-        log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n "
-                , time3
-                , cost3
-                ,transfer3
-                ,resultT.getPath()+layResultT.getPath());
+            log.info("\n최소 시간 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
+                    , time1
+                    , cost1
+                    ,transfer1
+                    ,result1.getPath()+layResult1.getPath());
+            log.info("\n최소 비용 결과 = \n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
+                    , time2
+                    , cost2
+                    ,transfer2
+                    ,result2.getPath()+layResult2.getPath());
+            log.info("\n최소 환승 결과 =\n 시간 {} \n 비용 {} \n 환승 횟수 {}\n 경로 {}\n"
+                    , time3
+                    , cost3
+                    ,transfer3
+                    ,resultT.getPath()+layResultT.getPath());
 
 
-        return success(SUCCESS_TO_INFO,infolists);
+            return success(SUCCESS_TO_INFO,infolists);
         }
     }
 }
