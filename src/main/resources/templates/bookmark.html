@@ -35,7 +35,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 0;
+            background-color: #f4f4f4;
         }
         .bookmark{
             padding: 5px;
@@ -44,14 +44,16 @@
         .mark {
             width: 300px;
             height: 100px;
+            border-radius: 20px;
             background-color: white;
-            margin: 20px 0;
+            margin: 20px 20px;
         }
         .first-mark{
             padding: 10px;
             height : 90px;
             border-radius: 20px;
             box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
+            background-color: white;
             transition: 0.35s;
         }
         .first-mark:hover {
@@ -62,8 +64,6 @@
         }
         .mark-info{
             color: #838383;
-        }
-        .button {
         }
         .mark-button{
             display: flex;
@@ -86,14 +86,10 @@
         .left-mark {
             float: left;
             width: 50%;
-            box-sizing: border-box;
-            text-align: center;
         }
         .right-mark {
             float: right;
             width: 50%;
-            box-sizing: border-box;
-            text-align: center;
         }
     </style>
 </head>
@@ -104,68 +100,73 @@
     </div>
 </div>
 <div class="bookmark">
-
+    <div class="left-mark"></div>
+    <div class="right-mark"></div>
 </div>
 <script>
     const token = localStorage.getItem('token')
-    fetch('/wetro/bookmark/lists', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "token": token
-        }),
-    })
+    fetch('/wetro/bookmark/lists',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "token":token
+            }),
+        })
         .then(response => response.json())
         .then(data => {
-            const bookmarkContainer = document.querySelector('.bookmark');
-            let isLeft = true; // Flag to alternate between left and right
+            const leftMark=document.querySelector('.left-mark')
+            const rightMark=document.querySelector('.right-mark')
 
-            for (let i = 0; i < data.bookMarkList.length; i++) {
-                const markHTML = `
-                    <button class="mark">
-                        <div class="first-mark">
-                            <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
-                            <div class="mark-info">
-                                <h2>출발역:${data.bookMarkList[i].start_location}</h2>
-                                <h2>도착역:${data.bookMarkList[i].end_location}</h2>
-                            </div>
-                        </div>
-                    </button>`;
-
-                const containerDiv = document.createElement('div');
-                containerDiv.classList.add('mark-container');
-                containerDiv.innerHTML = markHTML;
-
-                if (isLeft) {
-                    containerDiv.classList.add('left-mark');
+            for(let i=0;i<data.bookMarkList.length;i++) {
+                if (i % 2 === 0) {
+                    leftMark.insertAdjacentHTML("afterend",`
+                        <button class="mark" )">
+                             <div class="first-mark">
+                                 <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+                                     <div class="mark-info">
+                                         <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+                                         <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                                     </div>
+                                 </div>
+                             </div>
+                        </button>`
+                    )
                 } else {
-                    containerDiv.classList.add('right-mark');
+                    rightMark.insertAdjacentHTML("afterend",`
+                        <button class="mark" )">
+                            <div class="first-mark">
+                                <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+                                    <div class="mark-info">
+                                        <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+                                        <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>`
+                    )
                 }
 
-                bookmarkContainer.appendChild(containerDiv);
-
-                const button = containerDiv.querySelector('button');
-                button.onclick = function (e) {
-                    askConfirm(i, data);
+                const button = document.querySelector('button')
+                button.onclick = function (e){
+                    askConfirm(i,data)
                 }
-
-                isLeft = !isLeft; // Toggle for the next iteration
             }
-        });
+        })
 
     function askConfirm(i,data){
         if(confirm('상세경로 페이지로 이동하시겠습니까?')){
             if(data.bookMarkList[i].layover_location===null){
                 localStorage.setItem("from",data.bookMarkList[i].start_location)
                 localStorage.setItem("to",data.bookMarkList[i].end_location)
-                localStorage.setItem("type",data.bookMarkList[i].type)
+                localStorage.setItem("type",'mintime')
             }
             else{
                 localStorage.setItem("from",data.bookMarkList[i].start_location)
                 localStorage.setItem("to",data.bookMarkList[i].end_location)
-                localStorage.setItem("type",data.bookMarkList[i].type)
+                localStorage.setItem("type",'mintime')
                 localStorage.setItem("layover",data.bookMarkList[i].layover_location)
             }
             location.href='routedetail'
