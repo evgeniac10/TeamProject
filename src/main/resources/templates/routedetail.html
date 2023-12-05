@@ -446,34 +446,52 @@
             .catch(error => console.error('Error:', error));
     }
 
-    function marking(){
-        const token =localStorage.getItem('token')
-        if(token===null){
-            alert('로그인 후 이용가능한 기능입니다.')
-        }
-        else{
-            const name = prompt('즐겨찾기의 별명을 입력해주세요.',)
-            fetch('/wetro/bookmark',
-            {
+    function marking() {
+        const token = localStorage.getItem('token');
+
+        if (token === null) {
+            alert('로그인 후 이용 가능한 기능입니다.');
+        } else {
+            let name;
+
+            do {
+                name = prompt('즐겨찾기의 별명을 입력해주세요.');
+
+                // 사용자가 프롬프트를 취소했을 때
+                if (name === null) {
+                    alert('취소되었습니다.');
+                    return;
+                } else if (name.trim() === '') {
+                    alert('별명을 입력해주세요.');
+                }
+
+            } while (name.trim() === '');
+
+            fetch('/wetro/bookmark', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "token":token,
-                    "start_location":routefrom,
-                    "layover_location":routelayover,
-                    "end_location":routeto,
-                    "type":routetype,
-                    "alias":name,
+                    "token": token,
+                    "start_location": routefrom,
+                    "layover_location": routelayover,
+                    "end_location": routeto,
+                    "type": routetype,
+                    "alias": name,
                 }),
             })
-            .then(response => response.json())
-            .then(data => {
-                alert('즐겨찾기에 추가되었습니다.')
-            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('즐겨찾기에 추가되었습니다.');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('오류가 발생했습니다.');
+                });
         }
     }
+
 
 </script>
 </body>
