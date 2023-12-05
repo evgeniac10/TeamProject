@@ -125,12 +125,12 @@
             if(data.bookMarkList[i].layover_location===null){
                 localStorage.setItem("from",data.bookMarkList[i].start_location)
                 localStorage.setItem("to",data.bookMarkList[i].end_location)
-                localStorage.setItem("type",'mintime')
+                localStorage.setItem("type",data.bookMarkList[i].type)
             }
             else{
                 localStorage.setItem("from",data.bookMarkList[i].start_location)
                 localStorage.setItem("to",data.bookMarkList[i].end_location)
-                localStorage.setItem("type",'mintime')
+                localStorage.setItem("type",data.bookMarkList[i].type)
                 localStorage.setItem("layover",data.bookMarkList[i].layover_location)
             }
             location.href='routedetail'
