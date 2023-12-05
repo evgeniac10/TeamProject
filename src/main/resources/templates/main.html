@@ -26,13 +26,7 @@
         <div class="sidebar-menu">
             <a href="login"><div class="menu-button" id="login-button">로그인</div></a>
             <a href="join"><div class="menu-button" id="join-button">회원가입</div></a>
-            <script th:inline="javascript">
-                // JavaScript 코드를 Thymeleaf에서 직접 작성하기 위한 설정
-                // 유저 이름이 존재하는 경우에만 동적으로 표시
-                if (window.loggedInUserid) {
-                    document.write('<div class="menu-text" id="welcome-text">' + window.loggedInUserid + '님 어서오세요!</div>');
-                }
-            </script>
+            <div class="menu-text" id="welcome-text">WETRO에 오신 것을<br>환영합니다!</div>
             <a href="bookmark"><div class="menu-button" id="bookmark-button">즐겨찾기</div></a>
             <input type="submit"  id="logoutForm" onclick="logout()" value="로그아웃">
         </div>
@@ -60,7 +54,7 @@
     </div>
 </main>
 <footer>
-    <div class="info"><a href="#">웹사이트 기타 정보</a></div>
+        <div class="info"><a href="#"></a></div>
 </footer>
 </body>
 <div class="result-container">
@@ -72,20 +66,20 @@
         const login=document.getElementById('login-button')
         const join=document.getElementById('join-button')
         const bookmark=document.getElementById('bookmark-button')
-        //const welcome=document.getElementById('welcome-text')
+        const welcome=document.getElementById('welcome-text')
         const logout=document.getElementById('logoutForm')
         if(localStorage.getItem("token")===null){
             bookmark.style.display='none'
             logout.style.display='none'
             login.style.display='block'
             join.style.display='block'
-            //welcome.style.display='none'
+            welcome.style.display='none'
         }
         else{
             login.style.display='none'
             join.style.display='none'
             bookmark.style.display='block'
-            //welcome.style.display='block'
+            welcome.style.display='block'
             logout.style.display='block'
         }
     }
