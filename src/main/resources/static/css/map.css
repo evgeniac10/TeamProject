@@ -71,13 +71,26 @@ button {
 }
 #start {
     background-color: #73aafd;
+    transition: 0.35s;
+}
+#start:hover {
+    background-color: #838383;
 }
 #end {
     background-color: #fd7373;
+    transition: 0.35s;
+}
+#end:hover {
+    background-color: #838383;
 }
 #lay {
     background-color: #fde400;
     color: #838383;
+    transition: 0.35s;
+}
+#lay:hover {
+    background-color: #838383;
+    color: white;
 }
 .popup-trigger:hover + .popup {
     display: block;
@@ -155,6 +168,10 @@ button {
     transition: all .35s;
     border-radius: 5px;
 }
+.reset:hover {
+    background-color: #838383;
+    color: #f77070;
+}
 #search-button {
     width: 40%;
     background-color: #838383;
@@ -162,4 +179,10 @@ button {
     border-radius: 20px;
     margin: 5px 30% 0;
     padding: 10px;
+    transition: 0.35s;
+}
+#search-button:hover {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #838383;
 }
