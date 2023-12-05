@@ -22,7 +22,7 @@ public class BookMark {
     private String end_location;
     private String layover_location;
     private String alias;
-
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

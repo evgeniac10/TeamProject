@@ -30,6 +30,7 @@ CREATE TABLE book_mark (
     start_location VARCHAR(5) NOT NULL,
     layover_location VARCHAR(5),
     end_location VARCHAR(5) NOT NULL,
+    type VARCHAR(100) NOT NULL,
     alias VARCHAR(255) NOT NULL,
 FOREIGN KEY (user_id) REFERENCES user(id)
 );

@@ -49,6 +49,7 @@ public class BookMarkApiController {
                                     .end_location(bookMarkdto.getEnd_location())
                                     .layover_location(bookMarkdto.getLayover_location())
                                     .alias(bookMarkdto.getAlias())
+                                    .type(bookMarkdto.getType())
                                     .user(user.get())
                                     .build();
 
