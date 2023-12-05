@@ -124,15 +124,15 @@
 
             for (let i = 0; i < data.bookMarkList.length; i++) {
                 const markHTML = `
-                <button class="mark">
-                    <div class="first-mark">
-                        <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
-                        <div class="mark-info">
-                            <h2>출발역:${data.bookMarkList[i].start_location}</h2>
-                            <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                    <button class="mark">
+                        <div class="first-mark">
+                            <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+                            <div class="mark-info">
+                                <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+                                <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                            </div>
                         </div>
-                    </div>
-                </button>`;
+                    </button>`;
 
                 const containerDiv = document.createElement('div');
                 containerDiv.classList.add('mark-container');

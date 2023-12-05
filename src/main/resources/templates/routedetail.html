@@ -34,6 +34,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background-color: #f4f4f4;
         }
         .main {
             margin-top: 30px;
@@ -159,7 +160,7 @@
             <ul>
                 <li>분 초</li>
                 <li>원</li>
-                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
             </ul>
         </div>
     </div>
@@ -232,7 +233,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectime.cost}원</li>
-                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -266,7 +267,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${reccost.cost}원</li>
-                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -300,7 +301,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectrans.cost}원</li>
-                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -359,7 +360,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectime.cost}원</li>
-                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -393,7 +394,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${reccost.cost}원</li>
-                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -427,7 +428,7 @@
                             <ul>
                                 <li>${formattedTime}</li>
                                 <li>${rectrans.cost}원</li>
-                                <li><button type="button" id="timer" onclick="location.href='timer'">타이머 설정</button></li>
+                                <li><button type="button" id="timer" onclick="confirmTimerNavigation()">타이머 설정</button></li>
                             </ul>
                         </div>
                     `
@@ -445,7 +446,17 @@
             })
             .catch(error => console.error('Error:', error));
     }
+    function confirmTimerNavigation() {
+        const isConfirmed = confirm('타이머를 설정하시겠습니까?');
+        if (isConfirmed) {
+            location.href = 'timer';
+        }
+    }
 
+    const timerButton = document.getElementById('timer');
+    if (timerButton) {
+        timerButton.addEventListener('click', confirmTimerNavigation);
+    }
     function marking() {
         const token = localStorage.getItem('token');
 
