@@ -1148,6 +1148,11 @@ public class NodeT implements Comparable<NodeT> {
         String resultPath = path.isBlank()
                 ? String.format("%s", destination.getName())
                 : String.format("%s -> %s", path, destination.getName()); // 거리 출력 제거
+        int lastIndex = resultPath.lastIndexOf(" -> ");
+        if (lastIndex != -1) {
+            resultPath = resultPath.substring(0, lastIndex);
+        }
+
         return resultPath;
     }
 

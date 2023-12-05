@@ -264,11 +264,15 @@
       .then(data => {
         if (data.status === 'ok') {
           alert(data.message);
+          load()
         } else {
           alert(data.message);
         }
       })
       .catch(error => console.error('통신 오류:', error));
+  }
+  function load(){
+    location.href="login"
   }
 </script>
 </body>

@@ -1101,6 +1101,12 @@ public class Node implements Comparable<Node> {
         String resultPath = path.isBlank()
                 ? String.format("%s ", destination.getName())
                 : String.format("%s -> %s ", path, destination.getName());
+
+        int lastIndex = resultPath.lastIndexOf(" -> ");
+        if (lastIndex != -1) {
+            resultPath = resultPath.substring(0, lastIndex);
+        }
+
         return resultPath;
     }
 
@@ -1200,6 +1206,11 @@ public class Node implements Comparable<Node> {
         String resultPath = path.isBlank()
                 ? String.format("%s ", destination.getName())
                 : String.format("%s -> %s ", path, destination.getName());
+        int lastIndex = resultPath.lastIndexOf(" -> ");
+        if (lastIndex != -1) {
+            resultPath = resultPath.substring(0, lastIndex);
+        }
+
         return resultPath;
     }
 
@@ -1220,6 +1231,7 @@ public class Node implements Comparable<Node> {
             this.transferCount = transferCount;
         }
     }
+
 }
 
 

@@ -237,6 +237,14 @@
                             </ul>
                         </div>
                     `
+
+                    const path=rectime.path
+                    const pathlist=path.split('->')
+                    const list=document.querySelector('.line-text')
+                    for(let i=pathlist.length-1;i>0;i--){
+                        list.insertAdjacentHTML("afterend",`<li class='line'>"${pathlist[i]}</li>`)
+                    }
+
                 }
                 else if(routetype==='mincost'){
                     const reccost = data.infolists[1]
@@ -271,6 +279,13 @@
                             </ul>
                         </div>
                     `
+                    const path=reccost.path
+                    const pathlist=path.split('->')
+                    const list=document.querySelector('.line-text')
+                    for(let i=pathlist.length-1;i>0;i--){
+                        list.insertAdjacentHTML("afterend",`<li class='line'>"${pathlist[i]}</li>`)
+                    }
+
                 }
                 else if(routetype==='mintrans'){
                     const rectrans = data.infolists[2]
@@ -305,7 +320,15 @@
                             </ul>
                         </div>
                     `
+
+                    const path=rectrans.path
+                    const pathlist=path.split('->')
+                    const list=document.querySelector('.line-text')
+                    for(let i=pathlist.length-1;i>0;i--){
+                        list.insertAdjacentHTML("afterend",`<li class='line'>"${pathlist[i]}</li>`)
+                    }
                 }
+
 
             })
             .catch(error => console.error('Error:', error));
@@ -364,6 +387,14 @@
                             </ul>
                         </div>
                     `
+
+                    const path=rectime.path
+                    const pathlist=path.split('->')
+                    const list=document.querySelector('.line-text')
+                    for(let i=pathlist.length-1;i>0;i--){
+                        list.insertAdjacentHTML("afterend",`<li class='line'>"${pathlist[i]}</li>`)
+                    }
+
                 }
                 else if(routetype==='mincost'){
                     const reccost = data.infolists[1]
@@ -398,6 +429,14 @@
                             </ul>
                         </div>
                     `
+
+                    const path=reccost.path
+                    const pathlist=path.split('->')
+                    const list=document.querySelector('.line-text')
+                    for(let i=pathlist.length-1;i>0;i--){
+                        list.insertAdjacentHTML("afterend",`<li class='line'>"${pathlist[i]}</li>`)
+                    }
+
                 }
                 else if(routetype==='mintrans'){
                     const rectrans = data.infolists[2]
@@ -432,11 +471,11 @@
                             </ul>
                         </div>
                     `
-                    const transnode = document.querySelector('.line')
-                    for(let i=0;length(data.translist);i++){
-                        const li =document.createElement("li")
-                        li.setAttribute('id',translist[i])
-                        transnode.appendChild(li)
+                    const path=rectrans.path
+                    const pathlist=path.split('->')
+                    const list=document.querySelector('.line-text')
+                    for(let i=pathlist.length-1;i>0;i--){
+                        list.insertAdjacentHTML("afterend",`<li class='line'>"${pathlist[i]}</li>`)
                     }
 
                 }

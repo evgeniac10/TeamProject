@@ -92,19 +92,19 @@ public class WetroApiController {
             Integer time1 = result1.getTime()+layResult1.getTime();
             Integer cost1 = result1.getCost()+layResult1.getCost();
             Integer transfer1 = result1.getTransferCount()+layResult1.getTransferCount();
-            String path1 = result1.getPath() + " " + layResult1.getPath();
+            String path1 = result1.getPath() + "-> " + layResult1.getPath();
             Infolists minTimeInfo = new Infolists(time1, cost1, transfer1, path1);
 
             Integer time2 = result2.getTime()+layResult2.getTime();
             Integer cost2 = result2.getCost()+layResult2.getCost();
             Integer transfer2 = result2.getTransferCount()+layResult2.getTransferCount();
-            String path2 = result1.getPath() + " " + layResult2.getPath();
+            String path2 = result2.getPath() + "-> " + layResult2.getPath();
             Infolists minCostInfo = new Infolists(time2, cost2, transfer2, path2);
 
             Integer time3 = resultT.getTime()+layResultT.getTime();
             Integer cost3 = resultT.getCost()+layResultT.getCost();
             int transfer3 = resultT.getTransferCount()+layResultT.getTransferCount();
-            String path3 = resultT.getPath() + " " + layResultT.getPath();
+            String path3 = resultT.getPath() + "-> " + layResultT.getPath();
             Infolists minTransInfo = new Infolists(time3, cost3, transfer3, path3);
 
             List<Infolists> infolists = new ArrayList<>();
