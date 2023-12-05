@@ -40,6 +40,7 @@ public class NodeT implements Comparable<NodeT> {
         this.name = name;
     }
 
+    //노드 선언 및 초기화
     public static void initT() {
         initNodeList();
         NodeT node1 = new NodeT("1", "101");
@@ -933,9 +934,21 @@ public class NodeT implements Comparable<NodeT> {
         node145.addAdjacentNodeT(node35, 320, 700);
     }
 
+    //역 리스트 초기화
     public static void initNodeList() {
         nodes = new ArrayList<>();
         transNodes = new ArrayList<>();
+    }
+    public List<NodeT> findTransferredNodesInShortestPath(List<NodeT> transNodes) {
+        List<NodeT> transferredNodes = new ArrayList<>();
+
+        for (NodeT node : shortestPath) {
+            if (transNodes.contains(node)) {
+                transferredNodes.add(node);
+            }
+        }
+
+        return transferredNodes;
     }
 
     @Override
@@ -943,6 +956,7 @@ public class NodeT implements Comparable<NodeT> {
         return Integer.compare(this.time, node.getTime());
     }
 
+    //노드 초기화
     public static void initializeNodesT() {
         for (NodeT node : nodes) {
             node.setCost(Integer.MAX_VALUE);
@@ -958,6 +972,7 @@ public class NodeT implements Comparable<NodeT> {
         }
     }
 
+    //노드에 인접노드, 가중치 추가, 호선 다르면 추가로 가중치 추가
     public void addAdjacentNodeT(NodeT node, int time, int cost) {
         if (!((this.getLine()).equals(node.getLine()))) {
             time += 2000; // 환승하면 가중치에 추가
@@ -968,7 +983,7 @@ public class NodeT implements Comparable<NodeT> {
         this.adjacentNodes.put(node, arr);
     }
 
-    //이름받아서
+    //최소환승 계산 메서드
     public static resultT calculateMinTransfer(String start, String end) {
         NodeT source = null;
         NodeT source2 = null;
@@ -1042,6 +1057,7 @@ public class NodeT implements Comparable<NodeT> {
         return result1;
     }
 
+    //최소 환승 경로 중 최단 시간 경로 선별
     public static resultT findMinimumResult(resultT... results) {
         resultT minResult = results[0];
         for (int i = 1; i < results.length; i++) {
@@ -1052,6 +1068,7 @@ public class NodeT implements Comparable<NodeT> {
         return minResult;
     }
 
+    //다익스트라 계산 로직
     public static resultT calcLogicT(NodeT source, NodeT destination) {
         initializeNodesT();
 
@@ -1082,18 +1099,25 @@ public class NodeT implements Comparable<NodeT> {
         }
         destination.setTime(destination.getTime() - 2000 * destination.getTransferCount());
 
+        //최소환승 경로
         String resultPath = destination.printMinTransfer(destination);
+        List<NodeT> transInPath = destination.findTransferredNodesInShortestPath(transNodes);
 
-        return new resultT(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath);
+        return new resultT(destination.getTime(), destination.getCost(), destination.getTransferCount(), resultPath,transInPath);
     }
 
+    //주어진 인접노드와의 최단경로 평가하고 업데이트
     private static void evaluateTransferAndPath(NodeT adjacentNode, Integer time, Integer cost, NodeT sourceNode) {
         Integer newTime = sourceNode.getTime() + time;
         Integer newCost = sourceNode.getCost() + cost;
 
+        //새 가중치가 기존 가중치보다 작으면
         if (newTime < adjacentNode.getTime()) {
+
+            //가중치 초기화
             adjacentNode.setTime(newTime);
             adjacentNode.setCost(newCost);
+            //ShortestPath에 추가
             List<NodeT> newPath = Stream.concat(sourceNode.getShortestPath().stream(), Stream.of(sourceNode))
                     .collect(Collectors.toList());
             adjacentNode.setShortestPath(newPath);
@@ -1107,6 +1131,7 @@ public class NodeT implements Comparable<NodeT> {
         }
     }
 
+    //경로
     private String printMinTransfer(NodeT destination) {
         String path = destination.getShortestPath().stream()
                 .map(NodeT::getName)
@@ -1125,12 +1150,14 @@ public class NodeT implements Comparable<NodeT> {
         private Integer cost;
         private Integer time;
         private String path;
+        private List<NodeT> transInPath;
 
-        public resultT(Integer time, Integer cost, int transferCount, String resultPath) {
+        public resultT(Integer time, Integer cost, int transferCount, String resultPath, List<NodeT> transInPath) {
             this.time = time;
             this.cost = cost;
             this.transferCount = transferCount;
             this.path = resultPath;
+            this.transInPath  = transInPath;
         }
 
         @Override
