@@ -118,8 +118,6 @@
         .then(response => response.json())
         .then(data => {
             const bookmark=document.querySelector('.bookmark')
-            const leftMark=document.querySelector('.left-mark')
-            const rightMark=document.querySelector('.right-mark')
 
             for(let i=0;i<data.bookMarkList.length;i++) {
                 bookmark.insertAdjacentHTML("afterend",`
@@ -133,38 +131,6 @@
                          </div>
                      </div>
                 </button>`)
-                const button = document.querySelector('button')
-                button.onclick = function (e){
-                    askConfirm(i,data)
-            for(let i=0;i<data.bookMarkList.length;i++) {
-                if (i % 2 === 0) {
-                    leftMark.insertAdjacentHTML("afterend",`
-                        <button class="mark" )">
-                             <div class="first-mark">
-                                 <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
-                                     <div class="mark-info">
-                                         <h2>출발역:${data.bookMarkList[i].start_location}</h2>
-                                         <h2>도착역:${data.bookMarkList[i].end_location}</h2>
-                                     </div>
-                                 </div>
-                             </div>
-                        </button>`
-                    )
-                } else {
-                    rightMark.insertAdjacentHTML("afterend",`
-                        <button class="mark" )">
-                            <div class="first-mark">
-                                <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
-                                    <div class="mark-info">
-                                        <h2>출발역:${data.bookMarkList[i].start_location}</h2>
-                                        <h2>도착역:${data.bookMarkList[i].end_location}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>`
-                    )
-                }
-
                 const button = document.querySelector('button')
                 button.onclick = function (e){
                     askConfirm(i,data)
