@@ -119,39 +119,24 @@
     })
         .then(response => response.json())
         .then(data => {
-            const bookmarkContainer = document.querySelector('.bookmark');
-            let isLeft = true; // Flag to alternate between left and right
+            const bookmark=document.querySelector('.bookmark')
 
-            for (let i = 0; i < data.bookMarkList.length; i++) {
-                const markHTML = `
-                    <button class="mark">
-                        <div class="first-mark">
-                            <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
-                            <div class="mark-info">
-                                <h2>출발역:${data.bookMarkList[i].start_location}</h2>
-                                <h2>도착역:${data.bookMarkList[i].end_location}</h2>
-                            </div>
-                        </div>
-                    </button>`;
-
-                const containerDiv = document.createElement('div');
-                containerDiv.classList.add('mark-container');
-                containerDiv.innerHTML = markHTML;
-
-                if (isLeft) {
-                    containerDiv.classList.add('left-mark');
-                } else {
-                    containerDiv.classList.add('right-mark');
+            for(let i=0;i<data.bookMarkList.length;i++) {
+                bookmark.insertAdjacentHTML("afterend",`
+                <button class="mark" )">
+                     <div class="first-mark">
+                         <h1 id="mark-name">${data.bookMarkList[i].alias}</h1>
+                             <div class="mark-info">
+                                     <h2>출발역:${data.bookMarkList[i].start_location}</h2>
+                                     <h2>도착역:${data.bookMarkList[i].end_location}</h2>
+                             </div>
+                         </div>
+                     </div>
+                </button>`)
+                const button = document.querySelector('button')
+                button.onclick = function (e){
+                    askConfirm(i,data)
                 }
-
-                bookmarkContainer.appendChild(containerDiv);
-
-                const button = containerDiv.querySelector('button');
-                button.onclick = function (e) {
-                    askConfirm(i, data);
-                }
-
-                isLeft = !isLeft; // Toggle for the next iteration
             }
         });
 
