@@ -34,17 +34,12 @@ WETRO는 사용자 편의성을 중심으로 설계된 지하철 길찾기 서�
 
 
 
-## 기술 스택 (Tech Stack) 💻
-
-- **Backend**: Spring Boot `2.7.17`
-- **Database**: MySQL `8.0.27`
-- **Deployment**: Docker
-
 ---
 
-## 개발 환경
+## 개발 환경 💻
 WETRO는 다음 버전의 기술 스택을 사용하여 개발되었습니다:
 
+- **Java language**: `11`  
 - **Spring Boot**: `2.7.17`  
   Spring Framework를 기반으로 한 간단하고 효율적인 백엔드 개발
 - **MySQL**: `8.0.27`  
