@@ -65,3 +65,11 @@ WETRO는 다음 버전의 기술 스택을 사용하여 개발되었습니다:
 <img width="597" alt="wetro_즐겨찾기_3" src="https://github.com/user-attachments/assets/0383b279-ffb4-4a5d-89dd-a52ba2be2f55" />
 
 
+# 🛠️ 담당자 역할 및 코드 설명
+
+### ✨ 김현성 - 백엔드 회원가입/로그인 담당
+🔗 [코드 설명 보기](https://garrulous-file-3a5.notion.site/WETRO-1693647f6d94801c963fc3259d266284?pvs=4)
+
+---
+
+
